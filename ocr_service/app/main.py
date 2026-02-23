@@ -1,61 +1,65 @@
-import json
 import os
-import threading
-import base64
-from kafka import KafkaConsumer, KafkaProducer
+import sys
+import argparse
+
+# Add the parent directory to sys.path to allow importing from utils
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from utils.ocr_engine import extract_text_from_pdf
 from utils.fhir_converter import text_to_abdm_fhir
 
-KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
-INPUT_TOPIC = os.getenv('INPUT_TOPIC', 'pdf-tasks')
-OUTPUT_TOPIC = os.getenv('OUTPUT_TOPIC', 'fhir-results')
-
-def process_message(message, producer):
+def process_pdf(pdf_path, output_dir=None, md_dir=None):
     try:
-        data = json.loads(message.value.decode('utf-8'))
-        file_content_b64 = data.get('content')
-        filename = data.get('filename', 'input.pdf')
-
-        if not file_content_b64:
-            print("No content found in message")
-            return
-
-        # Save PDF temporarily
-        temp_path = f"/tmp/{filename}"
-        with open(temp_path, "wb") as f:
-            f.write(base64.b64decode(file_content_b64))
-
-        # Perform OCR
+        filename = os.path.basename(pdf_path)
         print(f"Processing {filename}...")
-        extracted_text = extract_text_from_pdf(temp_path)
+        
+        # Perform OCR
+        extracted_text = extract_text_from_pdf(pdf_path)
+
+        # Save intermediate Markdown if requested
+        if md_dir:
+            if not os.path.exists(md_dir):
+                os.makedirs(md_dir)
+            md_path = os.path.join(md_dir, f"{os.path.splitext(filename)[0]}.md")
+            with open(md_path, "w") as f:
+                f.write(extracted_text)
+            print(f"Saved intermediate markdown to {md_path}")
 
         # Convert to FHIR
         fhir_json = text_to_abdm_fhir(extracted_text, filename)
 
-        # Send to output topic
-        producer.send(OUTPUT_TOPIC, value=fhir_json.encode('utf-8'))
-        print(f"Successfully processed {filename} and sent to {OUTPUT_TOPIC}")
+        # Save result
+        if output_dir:
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_fhir.json")
+            with open(output_path, "w") as f:
+                f.write(fhir_json)
+            print(f"Successfully processed {filename} and saved to {output_path}")
+        else:
+            print(f"Successfully processed {filename}. Result:")
+            print(fhir_json)
 
-        # Cleanup
-        os.remove(temp_path)
     except Exception as e:
-        print(f"Error processing message: {e}")
+        print(f"Error processing {pdf_path}: {e}")
 
 def main():
-    consumer = KafkaConsumer(
-        INPUT_TOPIC,
-        bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
-        group_id='ocr-group',
-        auto_offset_reset='earliest'
-    )
-    producer = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS)
+    parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
+    parser.add_argument("input", help="Path to input PDF file or directory")
+    parser.add_argument("--output_dir", help="Directory to save FHIR JSON results", default="fhir_results")
+    parser.add_argument("--md_dir", help="Directory to save intermediate Markdown results", default=None)
+    
+    args = parser.parse_args()
 
-    print(f"OCR Service started. Listening on {INPUT_TOPIC}...")
-
-    for message in consumer:
-        # Multiple threads for processing
-        thread = threading.Thread(target=process_message, args=(message, producer))
-        thread.start()
+    if os.path.isfile(args.input):
+        process_pdf(args.input, args.output_dir, args.md_dir)
+    elif os.path.isdir(args.input):
+        for file in os.listdir(args.input):
+            if file.lower().endswith(".pdf"):
+                process_pdf(os.path.join(args.input, file), args.output_dir, args.md_dir)
+    else:
+        print(f"Error: {args.input} is not a valid file or directory")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
