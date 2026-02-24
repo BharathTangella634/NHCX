@@ -94,23 +94,25 @@ def parse_extracted_text(text):
 def text_to_abdm_fhir(text, original_filename="document.pdf"):
     """
     Wraps extracted text into an ABDM-compliant FHIR Bundle with structured resources.
+    Creates a separate DocumentReference for each page identified by <!-- PAGE_BREAK -->.
     """
+    # Split text by page break marker
+    pages = text.split("<!-- PAGE_BREAK -->")
+    
+    # Use the full text for patient and overall data extraction
+    # (Patient details usually appear on the first page or are consistent throughout)
     parsed_data = parse_extracted_text(text)
     entries = []
 
-    # 1. Patient Resource
+    # 1. Patient Resource (One per bundle)
     patient = Patient(
         id=str(uuid.uuid4()),
         name=[{"text": parsed_data["patient_name"]}],
         gender=parsed_data["gender"] if parsed_data["gender"] else "unknown"
     )
-    if parsed_data["age"]:
-        # Simplified: just adding age as a comment or extension since birthDate is preferred
-        pass
-    
     entries.append(BundleEntry(resource=patient, fullUrl=f"Patient/{patient.id}"))
 
-    # 2. Observation Resources
+    # 2. Observation Resources (Extracted from whole text, linked to patient)
     observation_refs = []
     for obs_data in parsed_data["observations"]:
         obs = Observation(
@@ -124,24 +126,28 @@ def text_to_abdm_fhir(text, original_filename="document.pdf"):
         entries.append(BundleEntry(resource=obs, fullUrl=f"Observation/{obs.id}"))
         observation_refs.append({"reference": f"Observation/{obs.id}"})
 
-    # 3. DocumentReference (Raw OCR text)
-    attachment = Attachment(
-        contentType="text/plain",
-        data=base64.b64encode(text.encode('utf-8')).decode('utf-8'),
-        title=f"Extracted text from {original_filename}"
-    )
-
+    # 3. DocumentReference (One per page)
     doc_ref_type = LOINC_MAP.get("Consult Note", {"code": "11488-4", "display": "Consult Note"})
-    doc_ref = DocumentReference(
-        id=str(uuid.uuid4()),
-        status="current",
-        docStatus="final",
-        type={"coding": [{"system": "http://loinc.org", "code": doc_ref_type["code"], "display": doc_ref_type["display"]}]},
-        subject={"reference": f"Patient/{patient.id}"},
-        date=parsed_data.get("timestamp", datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')),
-        content=[{"attachment": attachment}]
-    )
-    entries.append(BundleEntry(resource=doc_ref, fullUrl=f"DocumentReference/{doc_ref.id}"))
+    for i, page_content in enumerate(pages):
+        page_content = page_content.strip()
+        if not page_content:
+            continue
+            
+        attachment = Attachment(
+            contentType="text/plain",
+            title=f"Extracted text from {original_filename} - Page {i+1}"
+        )
+
+        doc_ref = DocumentReference(
+            id=str(uuid.uuid4()),
+            status="current",
+            docStatus="final",
+            type={"coding": [{"system": "http://loinc.org", "code": doc_ref_type["code"], "display": doc_ref_type["display"]}]},
+            subject={"reference": f"Patient/{patient.id}"},
+            date=parsed_data.get("timestamp", datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')),
+            content=[{"attachment": attachment}]
+        )
+        entries.append(BundleEntry(resource=doc_ref, fullUrl=f"DocumentReference/{doc_ref.id}"))
 
     # 4. DiagnosticReport (Linking them all)
     report_type = LOINC_MAP.get("Laboratory report", {"code": "11502-2", "display": "Laboratory report"})
