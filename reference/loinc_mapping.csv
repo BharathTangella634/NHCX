@@ -1,36 +1,36 @@
 Test Name,LOINC Code,Display Name,Unit
-Hemoglobin,17856-6,Hemoglobin,g/dL
-HGB,17856-6,Hemoglobin,g/dL
-RBC,2894-7,Erythrocytes [#/volume] in Blood,x10^6/uL
-HCT,4544-3,Hematocrit [Volume Fraction] of Blood,%
-MCV,28539-5,Erythrocyte mean corpuscular volume,fL
-MCH,28540-3,Erythrocyte mean corpuscular hemoglobin,pg
-MCHC,28541-1,Erythrocyte mean corpuscular hemoglobin concentration,g/dL
-RDW CV,46530-2,Erythrocyte distribution width [Ratio] by Automated count,%
-RDW-CV,46530-2,Erythrocyte distribution width [Ratio] by Automated count,%
+Hemoglobin,17856-6,Hemoglobin A1c/Hemoglobin.total in Blood by HPLC,g/dL
+HGB,17856-6,Hemoglobin A1c/Hemoglobin.total in Blood by HPLC,g/dL
+RBC,2894-7,Erythrocytes [#/volume] in Blood by Automated count,x10^6/uL
+HCT,4544-3,Hematocrit [Volume Fraction] of Blood by Automated count,%
+MCV,28539-5,MCH [Entitic mass],fL
+MCH,28540-3,MCHC [Entitic Mass/volume] in Red Blood Cells,pg
+MCHC,28541-1,Metamyelocytes/Leukocytes in Blood,g/dL
+RDW CV,46530-2,Sensory status - hearing and ability to understand spoken language [OASIS],%
+RDW-CV,46530-2,Sensory status - hearing and ability to understand spoken language [OASIS],%
 RDW-SD,46532-8,Erythrocyte distribution width [Entitic volume] by Automated count,fL
-Platelet Count,777-3,Platelet Count,x10^3/uL
-PLT,777-3,Platelet Count,x10^3/uL
+Platelet Count,777-3,Platelets [#/volume] in Blood by Automated count,x10^3/uL
+PLT,777-3,Platelets [#/volume] in Blood by Automated count,x10^3/uL
 MPV,32623-1,Platelet mean volume [Entitic volume] in Blood by Automated count,fL
 PDW,46531-0,Platelet distribution width [Entitic volume] in Blood by Automated count,fL
 PCT,46533-6,Platelet crit [Volume Fraction] in Blood by Automated count,%
-TLC,6690-2,Leukocytes [#/volume] in Blood,x10^3/uL
-WBC,6690-2,Leukocytes [#/volume] in Blood,x10^3/uL
-Neutrophils,770-8,Neutrophils/100 leukocytes in Blood,%
-Neu%,770-8,Neutrophils/100 leukocytes in Blood,%
-Lymphocytes,731-0,Lymphocytes/100 leukocytes in Blood,%
-Lym%,731-0,Lymphocytes/100 leukocytes in Blood,%
-Monocytes,742-7,Monocytes/100 leukocytes in Blood,%
-Mon%,742-7,Monocytes/100 leukocytes in Blood,%
-Eosinophils,711-3,Eosinophils/100 leukocytes in Blood,%
-Eos%,711-3,Eosinophils/100 leukocytes in Blood,%
-Basophils,704-7,Basophils/100 leukocytes in Blood,%
-Bas%,704-7,Basophils/100 leukocytes in Blood,%
-Absolute Neutrophil Count,751-8,Neutrophils [#/volume] in Blood,x10^3/uL
-Absolute Lymphocyte Count,736-9,Lymphocytes [#/volume] in Blood,x10^3/uL
-Absolute Monocyte Count,744-3,Monocytes [#/volume] in Blood,x10^3/uL
-Absolute Eosinophil Count,713-9,Eosinophils [#/volume] in Blood,x10^3/uL
-Absolute Basophil Count,706-2,Basophils [#/volume] in Blood,x10^3/uL
+TLC,6690-2,Leukocytes [#/volume] in Blood by Automated count,x10^3/uL
+WBC,6690-2,Leukocytes [#/volume] in Blood by Automated count,x10^3/uL
+Neutrophils,770-8,Neutrophils/Leukocytes in Blood by Automated count,%
+Neu%,770-8,Neutrophils/Leukocytes in Blood by Automated count,%
+Lymphocytes,731-0,Lymphocytes [#/volume] in Blood by Automated count,%
+Lym%,731-0,Lymphocytes [#/volume] in Blood by Automated count,%
+Monocytes,742-7,Monocytes [#/volume] in Blood by Automated count,%
+Mon%,742-7,Monocytes [#/volume] in Blood by Automated count,%
+Eosinophils,711-3,Eosinophils/Leukocytes in Blood by Automated count,%
+Eos%,711-3,Eosinophils/Leukocytes in Blood by Automated count,%
+Basophils,704-7,Basophils/Leukocytes in Blood by Automated count,%
+Bas%,704-7,Basophils/Leukocytes in Blood by Automated count,%
+Absolute Neutrophil Count,751-8,Neutrophils [#/volume] in Blood by Automated count,x10^3/uL
+Absolute Lymphocyte Count,736-9,Lymphocytes/Leukocytes in Blood by Automated count,x10^3/uL
+Absolute Monocyte Count,744-3,Monocytes/Leukocytes in Blood by Manual count,x10^3/uL
+Absolute Eosinophil Count,713-9,Eosinophils/Leukocytes in Blood by Automated count,x10^3/uL
+Absolute Basophil Count,706-2,Basophils/Leukocytes in Blood by Automated count,x10^3/uL
 B. Urea,22664-7,Urea [Mass/volume] in Serum or Plasma,mg/dL
 Urea,22664-7,Urea [Mass/volume] in Serum or Plasma,mg/dL
 BUN,3094-0,Urea nitrogen [Mass/volume] in Serum or Plasma,mg/dL
@@ -47,7 +47,7 @@ ALT,1742-6,Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plas
 Alkaline Phosphatase,6768-6,Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma,U/L
 Total Protein,2885-2,Protein [Mass/volume] in Serum or Plasma,g/dL
 Albumin,1751-7,Albumin [Mass/volume] in Serum or Plasma,g/dL
-Consult Note,11488-4,Consult Note,
+Consult Note,11488-4,Consultant note,
 Laboratory report,11502-2,Laboratory report,
 Patient Name,name,Patient Name,
 Age,age,Age,

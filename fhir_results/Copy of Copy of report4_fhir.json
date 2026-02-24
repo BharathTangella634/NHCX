@@ -1,1 +1,1788 @@
-{"resourceType":"Bundle","identifier":{"system":"https://www.abdm.gov.in/bundle","value":"cc1bffc7-9048-47a6-985f-719375c6d15d"},"type":"document","entry":[{"fullUrl":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27","resource":{"resourceType":"Patient","id":"c581df91-aa20-4133-9a64-ebcde2cc0b27","name":[{"text":"anonymous"}],"gender":"male"}},{"fullUrl":"Observation/26358ae9-07c2-40a3-ae15-a9335be14e70","resource":{"resourceType":"Observation","id":"26358ae9-07c2-40a3-ae15-a9335be14e70","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"17856-6","display":"Hemoglobin"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":8.0,"unit":"g/dL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/935fda51-fab2-4b61-aaa1-8179cd1ed4d8","resource":{"resourceType":"Observation","id":"935fda51-fab2-4b61-aaa1-8179cd1ed4d8","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"2894-7","display":"Erythrocytes [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":8.0,"unit":"x10^6/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/433b9563-bb0e-4250-bf15-5733ba47b04d","resource":{"resourceType":"Observation","id":"433b9563-bb0e-4250-bf15-5733ba47b04d","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"4544-3","display":"Hematocrit [Volume Fraction] of Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":8.0,"unit":"%","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/fdfe453f-9231-48da-a113-57faea4a2f0d","resource":{"resourceType":"Observation","id":"fdfe453f-9231-48da-a113-57faea4a2f0d","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"28539-5","display":"Erythrocyte mean corpuscular volume"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":8.0,"unit":"fL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/692e5ba7-5884-4582-86c1-820a6d74356e","resource":{"resourceType":"Observation","id":"692e5ba7-5884-4582-86c1-820a6d74356e","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"28540-3","display":"Erythrocyte mean corpuscular hemoglobin"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":8.0,"unit":"pg","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/45a98600-2edc-49be-9c78-589ce6b8b3fe","resource":{"resourceType":"Observation","id":"45a98600-2edc-49be-9c78-589ce6b8b3fe","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"28541-1","display":"Erythrocyte mean corpuscular hemoglobin concentration"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":8.0,"unit":"g/dL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/aaa08631-8563-432c-b427-5a7bae3fbfee","resource":{"resourceType":"Observation","id":"aaa08631-8563-432c-b427-5a7bae3fbfee","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"46530-2","display":"Erythrocyte distribution width [Ratio] by Automated count"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":21.0,"unit":"%","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/7a6d7e06-e179-487d-bc9d-80efbbbef6d1","resource":{"resourceType":"Observation","id":"7a6d7e06-e179-487d-bc9d-80efbbbef6d1","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"777-3","display":"Platelet Count"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":120.0,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/b3a10427-7953-40c2-938a-eb51b38d1bc2","resource":{"resourceType":"Observation","id":"b3a10427-7953-40c2-938a-eb51b38d1bc2","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"6690-2","display":"Leukocytes [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":225.7,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/6d991388-de0d-467b-9ab3-8e33a5c9e501","resource":{"resourceType":"Observation","id":"6d991388-de0d-467b-9ab3-8e33a5c9e501","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"770-8","display":"Neutrophils/100 leukocytes in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":40.0,"unit":"%","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/1da46fad-5893-4d94-93f0-925214197e20","resource":{"resourceType":"Observation","id":"1da46fad-5893-4d94-93f0-925214197e20","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"731-0","display":"Lymphocytes/100 leukocytes in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":20.0,"unit":"%","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/80e76fa5-f054-41b5-a094-8ed8df001d59","resource":{"resourceType":"Observation","id":"80e76fa5-f054-41b5-a094-8ed8df001d59","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"742-7","display":"Monocytes/100 leukocytes in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":2.0,"unit":"%","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/7eb39844-1725-48fb-afaa-a51171e49ce9","resource":{"resourceType":"Observation","id":"7eb39844-1725-48fb-afaa-a51171e49ce9","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"711-3","display":"Eosinophils/100 leukocytes in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":1.0,"unit":"%","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/8acc1a01-eb7f-4096-a759-4f44e7166aae","resource":{"resourceType":"Observation","id":"8acc1a01-eb7f-4096-a759-4f44e7166aae","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"751-8","display":"Neutrophils [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":2.0,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/ccdb1714-a978-4881-b807-241a71283771","resource":{"resourceType":"Observation","id":"ccdb1714-a978-4881-b807-241a71283771","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"736-9","display":"Lymphocytes [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":1.0,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/cd87cb23-22c3-4240-82e0-8690ffca4d12","resource":{"resourceType":"Observation","id":"cd87cb23-22c3-4240-82e0-8690ffca4d12","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"744-3","display":"Monocytes [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":0.2,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/232d7a20-20da-44c1-ae0c-dcc238b0600c","resource":{"resourceType":"Observation","id":"232d7a20-20da-44c1-ae0c-dcc238b0600c","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"713-9","display":"Eosinophils [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":0.02,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"Observation/e866c843-aa92-4a12-b2a8-e03b35e1ab0d","resource":{"resourceType":"Observation","id":"e866c843-aa92-4a12-b2a8-e03b35e1ab0d","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"706-2","display":"Basophils [#/volume] in Blood"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"effectiveDateTime":"2023-01-02T08:56:00Z","valueQuantity":{"value":0.02,"unit":"x10^3/uL","system":"http://unitsofmeasure.org"}}},{"fullUrl":"DocumentReference/ca17e13e-70aa-4edf-b79e-8f2201667f85","resource":{"resourceType":"DocumentReference","id":"ca17e13e-70aa-4edf-b79e-8f2201667f85","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 1"}}]}},{"fullUrl":"DocumentReference/c54fdeea-7671-48e4-a4c5-efa1ab1e8e37","resource":{"resourceType":"DocumentReference","id":"c54fdeea-7671-48e4-a4c5-efa1ab1e8e37","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 2"}}]}},{"fullUrl":"DocumentReference/f536d088-146b-4a6e-b8ae-ee806cf935f4","resource":{"resourceType":"DocumentReference","id":"f536d088-146b-4a6e-b8ae-ee806cf935f4","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 3"}}]}},{"fullUrl":"DocumentReference/41ee60d8-f287-4a6c-af01-e6a99e0266c7","resource":{"resourceType":"DocumentReference","id":"41ee60d8-f287-4a6c-af01-e6a99e0266c7","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 4"}}]}},{"fullUrl":"DocumentReference/ff74e85f-5a2f-4632-85e9-76f24c857486","resource":{"resourceType":"DocumentReference","id":"ff74e85f-5a2f-4632-85e9-76f24c857486","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 5"}}]}},{"fullUrl":"DocumentReference/47df8e7c-e023-421d-8cf6-90f74b7388a0","resource":{"resourceType":"DocumentReference","id":"47df8e7c-e023-421d-8cf6-90f74b7388a0","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 6"}}]}},{"fullUrl":"DocumentReference/2fd8937a-4f82-4348-8a93-b81e7f76d48f","resource":{"resourceType":"DocumentReference","id":"2fd8937a-4f82-4348-8a93-b81e7f76d48f","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 7"}}]}},{"fullUrl":"DocumentReference/e8764b13-282d-44db-9702-66c299607ed7","resource":{"resourceType":"DocumentReference","id":"e8764b13-282d-44db-9702-66c299607ed7","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 8"}}]}},{"fullUrl":"DocumentReference/f269e4a0-4f54-4a8a-a18a-7559593c0657","resource":{"resourceType":"DocumentReference","id":"f269e4a0-4f54-4a8a-a18a-7559593c0657","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 9"}}]}},{"fullUrl":"DocumentReference/a1ee06ab-f0ee-432d-8963-54c76e67a721","resource":{"resourceType":"DocumentReference","id":"a1ee06ab-f0ee-432d-8963-54c76e67a721","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 10"}}]}},{"fullUrl":"DocumentReference/f8235422-cb4d-4777-9be5-6bb4fbc51d7a","resource":{"resourceType":"DocumentReference","id":"f8235422-cb4d-4777-9be5-6bb4fbc51d7a","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 11"}}]}},{"fullUrl":"DocumentReference/2d9c485e-04a8-41b5-8bbd-5475535c7b88","resource":{"resourceType":"DocumentReference","id":"2d9c485e-04a8-41b5-8bbd-5475535c7b88","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 12"}}]}},{"fullUrl":"DocumentReference/0ad14048-4c8f-4785-a12e-7ac3312e47f8","resource":{"resourceType":"DocumentReference","id":"0ad14048-4c8f-4785-a12e-7ac3312e47f8","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 13"}}]}},{"fullUrl":"DocumentReference/5a696e6e-5c42-41a1-8f00-371bd21aee4c","resource":{"resourceType":"DocumentReference","id":"5a696e6e-5c42-41a1-8f00-371bd21aee4c","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 14"}}]}},{"fullUrl":"DocumentReference/a16727cf-8d57-4a22-a567-af79664b036d","resource":{"resourceType":"DocumentReference","id":"a16727cf-8d57-4a22-a567-af79664b036d","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 15"}}]}},{"fullUrl":"DocumentReference/b308949c-5286-4e4a-8f90-81d1805a840f","resource":{"resourceType":"DocumentReference","id":"b308949c-5286-4e4a-8f90-81d1805a840f","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 16"}}]}},{"fullUrl":"DocumentReference/19837e24-39f3-4522-bf54-8e075e9567c3","resource":{"resourceType":"DocumentReference","id":"19837e24-39f3-4522-bf54-8e075e9567c3","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 17"}}]}},{"fullUrl":"DocumentReference/ea039663-5616-47ad-9d3a-f98902e13cd8","resource":{"resourceType":"DocumentReference","id":"ea039663-5616-47ad-9d3a-f98902e13cd8","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 18"}}]}},{"fullUrl":"DocumentReference/927d1a8d-7d71-442d-a040-fdb26523c1e4","resource":{"resourceType":"DocumentReference","id":"927d1a8d-7d71-442d-a040-fdb26523c1e4","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 19"}}]}},{"fullUrl":"DocumentReference/f1ee264c-bb62-4dcb-a9fe-5a70da2d5a68","resource":{"resourceType":"DocumentReference","id":"f1ee264c-bb62-4dcb-a9fe-5a70da2d5a68","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 20"}}]}},{"fullUrl":"DocumentReference/f3141029-0d93-4e31-b900-5cd0772d2fc8","resource":{"resourceType":"DocumentReference","id":"f3141029-0d93-4e31-b900-5cd0772d2fc8","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 21"}}]}},{"fullUrl":"DocumentReference/ac99e4d1-a633-4610-81f8-45f9c403d93e","resource":{"resourceType":"DocumentReference","id":"ac99e4d1-a633-4610-81f8-45f9c403d93e","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 22"}}]}},{"fullUrl":"DocumentReference/b7b12a45-e09c-4b0a-b6ec-9432be9a7378","resource":{"resourceType":"DocumentReference","id":"b7b12a45-e09c-4b0a-b6ec-9432be9a7378","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 23"}}]}},{"fullUrl":"DocumentReference/bc03a7dc-c08f-47a2-b519-8f2510ac4f36","resource":{"resourceType":"DocumentReference","id":"bc03a7dc-c08f-47a2-b519-8f2510ac4f36","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 24"}}]}},{"fullUrl":"DocumentReference/d6d9fdd2-a06e-4524-a13d-ffe28310b09f","resource":{"resourceType":"DocumentReference","id":"d6d9fdd2-a06e-4524-a13d-ffe28310b09f","status":"current","docStatus":"final","type":{"coding":[{"system":"http://loinc.org","code":"11488-4","display":"Consult Note"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"date":"2023-01-02T08:56:00Z","content":[{"attachment":{"contentType":"text/plain","title":"Extracted text from Copy of Copy of report4.pdf - Page 25"}}]}},{"fullUrl":"DiagnosticReport/ed5a436d-9697-4342-9e7b-b4d7ca76952c","resource":{"resourceType":"DiagnosticReport","id":"ed5a436d-9697-4342-9e7b-b4d7ca76952c","status":"final","code":{"coding":[{"system":"http://loinc.org","code":"11502-2","display":"Laboratory report"}]},"subject":{"reference":"Patient/c581df91-aa20-4133-9a64-ebcde2cc0b27"},"issued":"2023-01-02T08:56:00Z","result":[{"reference":"Observation/26358ae9-07c2-40a3-ae15-a9335be14e70"},{"reference":"Observation/935fda51-fab2-4b61-aaa1-8179cd1ed4d8"},{"reference":"Observation/433b9563-bb0e-4250-bf15-5733ba47b04d"},{"reference":"Observation/fdfe453f-9231-48da-a113-57faea4a2f0d"},{"reference":"Observation/692e5ba7-5884-4582-86c1-820a6d74356e"},{"reference":"Observation/45a98600-2edc-49be-9c78-589ce6b8b3fe"},{"reference":"Observation/aaa08631-8563-432c-b427-5a7bae3fbfee"},{"reference":"Observation/7a6d7e06-e179-487d-bc9d-80efbbbef6d1"},{"reference":"Observation/b3a10427-7953-40c2-938a-eb51b38d1bc2"},{"reference":"Observation/6d991388-de0d-467b-9ab3-8e33a5c9e501"},{"reference":"Observation/1da46fad-5893-4d94-93f0-925214197e20"},{"reference":"Observation/80e76fa5-f054-41b5-a094-8ed8df001d59"},{"reference":"Observation/7eb39844-1725-48fb-afaa-a51171e49ce9"},{"reference":"Observation/8acc1a01-eb7f-4096-a759-4f44e7166aae"},{"reference":"Observation/ccdb1714-a978-4881-b807-241a71283771"},{"reference":"Observation/cd87cb23-22c3-4240-82e0-8690ffca4d12"},{"reference":"Observation/232d7a20-20da-44c1-ae0c-dcc238b0600c"},{"reference":"Observation/e866c843-aa92-4a12-b2a8-e03b35e1ab0d"}]}}]}
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "a3e528a3-9f97-431f-9728-ddc57c59ffea"
+  },
+  "type": "document",
+  "timestamp": "2023-01-02T08:56:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:a1e14383-3a15-479b-8b16-14ee19f60a67",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "a1e14383-3a15-479b-8b16-14ee19f60a67",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T08:56:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:2c28f21a-fb07-4712-8825-0cae69d433d9"
+          }
+        ],
+        "title": "Diagnostic Report - anonymous",
+        "section": [
+          {
+            "title": "Laboratory Results",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11502-2",
+                  "display": "Laboratory report"
+                }
+              ],
+              "text": "Laboratory report"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:c4550844-327d-4b23-9bf1-b1498bac47a7"
+              },
+              {
+                "reference": "urn:uuid:9c3b18fb-3707-4cfc-a81c-12d0a7feaba4"
+              },
+              {
+                "reference": "urn:uuid:d81c4480-370d-4de8-8442-74bab96abf1b"
+              },
+              {
+                "reference": "urn:uuid:9bf970f6-c6f0-47f9-bf9b-3dd2cbe5c827"
+              },
+              {
+                "reference": "urn:uuid:90a2e8f0-2bce-4906-a1fa-4657550ba392"
+              },
+              {
+                "reference": "urn:uuid:66f963e4-bd9e-4fa5-b492-591ac23905b1"
+              },
+              {
+                "reference": "urn:uuid:39eed25e-aaff-4080-9e32-0070e43923fd"
+              },
+              {
+                "reference": "urn:uuid:12c95d40-60ce-4447-a64b-53045cd4bb25"
+              },
+              {
+                "reference": "urn:uuid:04c83972-edca-4506-8dc3-6b2b41f3fa6e"
+              },
+              {
+                "reference": "urn:uuid:93a57c13-fa6e-4c10-b479-45d05883dcb6"
+              },
+              {
+                "reference": "urn:uuid:2a28ec65-d896-4ee3-accb-d063d39931c2"
+              },
+              {
+                "reference": "urn:uuid:6709438d-9368-4600-bf5b-494e44ce06b2"
+              },
+              {
+                "reference": "urn:uuid:ed5e2ffd-c226-43c8-9cb3-0b66485af2f4"
+              },
+              {
+                "reference": "urn:uuid:034765f1-d69e-4a0e-84fa-05e6408bb035"
+              },
+              {
+                "reference": "urn:uuid:e3ce2f8a-fb8f-45f2-8222-7d00bb245b46"
+              },
+              {
+                "reference": "urn:uuid:df2aff40-4913-4512-bc05-dd7ff788d878"
+              },
+              {
+                "reference": "urn:uuid:2a189005-baf4-4560-afb7-add780909ff6"
+              },
+              {
+                "reference": "urn:uuid:1ca4e4aa-967a-48e4-ac55-b41488a22694"
+              },
+              {
+                "reference": "urn:uuid:4bbade81-df9f-4d62-9ded-84ba806e51b0"
+              },
+              {
+                "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+              },
+              {
+                "reference": "urn:uuid:12a4ddac-0dea-4121-be69-630416e904af"
+              },
+              {
+                "reference": "urn:uuid:c12d7ee9-d28c-4a1f-8071-2987a35eb426"
+              },
+              {
+                "reference": "urn:uuid:8d9a7b0a-50cc-4dd5-9624-aa9b64e08b03"
+              },
+              {
+                "reference": "urn:uuid:1053b99a-322b-436e-905c-f280ccb2ed9f"
+              },
+              {
+                "reference": "urn:uuid:2957f6bd-6f73-4465-b7b6-a9eb5a3414e4"
+              },
+              {
+                "reference": "urn:uuid:33115e88-7beb-4be5-a4cc-b97035638e99"
+              },
+              {
+                "reference": "urn:uuid:7d4a95e8-6d60-490c-a22c-d2190b20d226"
+              },
+              {
+                "reference": "urn:uuid:0447d1e2-2726-4107-ad15-f77ae6c2db04"
+              },
+              {
+                "reference": "urn:uuid:f18505b2-c634-4afe-b523-d291521fd966"
+              },
+              {
+                "reference": "urn:uuid:0b8ec684-5fa2-4d82-9c44-32860cebd94f"
+              },
+              {
+                "reference": "urn:uuid:c0fff422-b4bd-43d3-a570-176b8d65f954"
+              },
+              {
+                "reference": "urn:uuid:c97da152-5ccb-4284-86d6-12b490ea1018"
+              },
+              {
+                "reference": "urn:uuid:bfda3bad-c867-4ee5-9455-46a1ea625ace"
+              },
+              {
+                "reference": "urn:uuid:9c3704c8-2cc8-46b2-89fd-f07e7a41362e"
+              },
+              {
+                "reference": "urn:uuid:cb1b6fa8-27e5-4228-bc04-b3b367f1a932"
+              },
+              {
+                "reference": "urn:uuid:d3d045ec-8059-45a9-a628-16616b15b0d6"
+              },
+              {
+                "reference": "urn:uuid:972072e3-d0da-470b-b368-e442aa9fe657"
+              },
+              {
+                "reference": "urn:uuid:7ddecf06-0850-4669-9c32-e63c21c5cabf"
+              },
+              {
+                "reference": "urn:uuid:517072f9-e1cd-425e-a050-5933736c1103"
+              },
+              {
+                "reference": "urn:uuid:2b1a04ae-729c-4e40-8c9e-e36ff593a943"
+              },
+              {
+                "reference": "urn:uuid:95169078-fd2b-4197-bfdc-960f8524b308"
+              },
+              {
+                "reference": "urn:uuid:593cd20b-3acc-457a-8768-d44925520c8f"
+              },
+              {
+                "reference": "urn:uuid:989adfb5-1b34-409f-ba78-218d39c01566"
+              },
+              {
+                "reference": "urn:uuid:7e097a45-6ee9-4872-833e-f3ba7f995692"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2c28f21a-fb07-4712-8825-0cae69d433d9",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2c28f21a-fb07-4712-8825-0cae69d433d9",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "bfe77159-d58e-4db4-b3df-973aeca4875f",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "male"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9c3b18fb-3707-4cfc-a81c-12d0a7feaba4",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9c3b18fb-3707-4cfc-a81c-12d0a7feaba4",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "17856-6",
+              "display": "Hemoglobin A1c/Hemoglobin.total in Blood by HPLC"
+            }
+          ],
+          "text": "Hemoglobin A1c/Hemoglobin.total in Blood by HPLC"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d81c4480-370d-4de8-8442-74bab96abf1b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d81c4480-370d-4de8-8442-74bab96abf1b",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2894-7",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Erythrocytes [#/volume] in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "x10^6/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9bf970f6-c6f0-47f9-bf9b-3dd2cbe5c827",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9bf970f6-c6f0-47f9-bf9b-3dd2cbe5c827",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "Hematocrit [Volume Fraction] of Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:90a2e8f0-2bce-4906-a1fa-4657550ba392",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "90a2e8f0-2bce-4906-a1fa-4657550ba392",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "28539-5",
+              "display": "MCH [Entitic mass]"
+            }
+          ],
+          "text": "MCH [Entitic mass]"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:66f963e4-bd9e-4fa5-b492-591ac23905b1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "66f963e4-bd9e-4fa5-b492-591ac23905b1",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "28540-3",
+              "display": "MCHC [Entitic Mass/volume] in Red Blood Cells"
+            }
+          ],
+          "text": "MCHC [Entitic Mass/volume] in Red Blood Cells"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "pg",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:39eed25e-aaff-4080-9e32-0070e43923fd",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "39eed25e-aaff-4080-9e32-0070e43923fd",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "28541-1",
+              "display": "Metamyelocytes/Leukocytes in Blood"
+            }
+          ],
+          "text": "Metamyelocytes/Leukocytes in Blood"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:12c95d40-60ce-4447-a64b-53045cd4bb25",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "12c95d40-60ce-4447-a64b-53045cd4bb25",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "46530-2",
+              "display": "Sensory status - hearing and ability to understand spoken language [OASIS]"
+            }
+          ],
+          "text": "Sensory status - hearing and ability to understand spoken language [OASIS]"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 21.0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:04c83972-edca-4506-8dc3-6b2b41f3fa6e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "04c83972-edca-4506-8dc3-6b2b41f3fa6e",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Platelets [#/volume] in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 120.0,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:93a57c13-fa6e-4c10-b479-45d05883dcb6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "93a57c13-fa6e-4c10-b479-45d05883dcb6",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "Leukocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Leukocytes [#/volume] in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 225.7,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2a28ec65-d896-4ee3-accb-d063d39931c2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2a28ec65-d896-4ee3-accb-d063d39931c2",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "770-8",
+              "display": "Neutrophils/Leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Neutrophils/Leukocytes in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 40.0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6709438d-9368-4600-bf5b-494e44ce06b2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "6709438d-9368-4600-bf5b-494e44ce06b2",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "731-0",
+              "display": "Lymphocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Lymphocytes [#/volume] in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 20.0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ed5e2ffd-c226-43c8-9cb3-0b66485af2f4",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ed5e2ffd-c226-43c8-9cb3-0b66485af2f4",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "742-7",
+              "display": "Monocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Monocytes [#/volume] in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 2.0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:034765f1-d69e-4a0e-84fa-05e6408bb035",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "034765f1-d69e-4a0e-84fa-05e6408bb035",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "711-3",
+              "display": "Eosinophils/Leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Eosinophils/Leukocytes in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e3ce2f8a-fb8f-45f2-8222-7d00bb245b46",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e3ce2f8a-fb8f-45f2-8222-7d00bb245b46",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "751-8",
+              "display": "Neutrophils [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Neutrophils [#/volume] in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 2.0,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:df2aff40-4913-4512-bc05-dd7ff788d878",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "df2aff40-4913-4512-bc05-dd7ff788d878",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "736-9",
+              "display": "Lymphocytes/Leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Lymphocytes/Leukocytes in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2a189005-baf4-4560-afb7-add780909ff6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2a189005-baf4-4560-afb7-add780909ff6",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "744-3",
+              "display": "Monocytes/Leukocytes in Blood by Manual count"
+            }
+          ],
+          "text": "Monocytes/Leukocytes in Blood by Manual count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 0.2,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1ca4e4aa-967a-48e4-ac55-b41488a22694",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1ca4e4aa-967a-48e4-ac55-b41488a22694",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "713-9",
+              "display": "Eosinophils/Leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Eosinophils/Leukocytes in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 0.02,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4bbade81-df9f-4d62-9ded-84ba806e51b0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4bbade81-df9f-4d62-9ded-84ba806e51b0",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "706-2",
+              "display": "Basophils/Leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Basophils/Leukocytes in Blood by Automated count"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "effectiveDateTime": "2023-01-02T08:56:00Z",
+        "valueQuantity": {
+          "value": 0.02,
+          "unit": "x10^3/uL",
+          "system": "http://unitsofmeasure.org"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:905b21a2-d567-41b7-be10-8e49e55418a4",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "905b21a2-d567-41b7-be10-8e49e55418a4",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T08:56:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:12a4ddac-0dea-4121-be69-630416e904af",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "12a4ddac-0dea-4121-be69-630416e904af",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:19:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c12d7ee9-d28c-4a1f-8071-2987a35eb426",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "c12d7ee9-d28c-4a1f-8071-2987a35eb426",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T08:46:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8d9a7b0a-50cc-4dd5-9624-aa9b64e08b03",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "8d9a7b0a-50cc-4dd5-9624-aa9b64e08b03",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:03:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1053b99a-322b-436e-905c-f280ccb2ed9f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "1053b99a-322b-436e-905c-f280ccb2ed9f",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:19:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 5"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2957f6bd-6f73-4465-b7b6-a9eb5a3414e4",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "2957f6bd-6f73-4465-b7b6-a9eb5a3414e4",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T07:46:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 6"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:33115e88-7beb-4be5-a4cc-b97035638e99",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "33115e88-7beb-4be5-a4cc-b97035638e99",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:15:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 7"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7d4a95e8-6d60-490c-a22c-d2190b20d226",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7d4a95e8-6d60-490c-a22c-d2190b20d226",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:03:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 8"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0447d1e2-2726-4107-ad15-f77ae6c2db04",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "0447d1e2-2726-4107-ad15-f77ae6c2db04",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T15:37:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f18505b2-c634-4afe-b523-d291521fd966",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "f18505b2-c634-4afe-b523-d291521fd966",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T08:50:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 10"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0b8ec684-5fa2-4d82-9c44-32860cebd94f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "0b8ec684-5fa2-4d82-9c44-32860cebd94f",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T15:48:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 11"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c0fff422-b4bd-43d3-a570-176b8d65f954",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "c0fff422-b4bd-43d3-a570-176b8d65f954",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:19:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 12"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c97da152-5ccb-4284-86d6-12b490ea1018",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "c97da152-5ccb-4284-86d6-12b490ea1018",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T15:34:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 13"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bfda3bad-c867-4ee5-9455-46a1ea625ace",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "bfda3bad-c867-4ee5-9455-46a1ea625ace",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T15:50:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 14"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9c3704c8-2cc8-46b2-89fd-f07e7a41362e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "9c3704c8-2cc8-46b2-89fd-f07e7a41362e",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T15:48:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 15"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cb1b6fa8-27e5-4228-bc04-b3b367f1a932",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "cb1b6fa8-27e5-4228-bc04-b3b367f1a932",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:19:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 16"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d3d045ec-8059-45a9-a628-16616b15b0d6",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d3d045ec-8059-45a9-a628-16616b15b0d6",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T16:07:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 17"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:972072e3-d0da-470b-b368-e442aa9fe657",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "972072e3-d0da-470b-b368-e442aa9fe657",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T15:34:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 18"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7ddecf06-0850-4669-9c32-e63c21c5cabf",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7ddecf06-0850-4669-9c32-e63c21c5cabf",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-03T15:57:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 19"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:517072f9-e1cd-425e-a050-5933736c1103",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "517072f9-e1cd-425e-a050-5933736c1103",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T08:46:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 20"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2b1a04ae-729c-4e40-8c9e-e36ff593a943",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "2b1a04ae-729c-4e40-8c9e-e36ff593a943",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T07:46:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 21"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:95169078-fd2b-4197-bfdc-960f8524b308",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "95169078-fd2b-4197-bfdc-960f8524b308",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T15:34:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 22"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:593cd20b-3acc-457a-8768-d44925520c8f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "593cd20b-3acc-457a-8768-d44925520c8f",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-10T16:19:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 23"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:989adfb5-1b34-409f-ba78-218d39c01566",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "989adfb5-1b34-409f-ba78-218d39c01566",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-05T23:42:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 24"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7e097a45-6ee9-4872-833e-f3ba7f995692",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7e097a45-6ee9-4872-833e-f3ba7f995692",
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consultant note"
+            }
+          ],
+          "text": "Consultant note"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "date": "2023-01-02T07:58:00Z",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "title": "Extracted text from Copy of Copy of report4.pdf - Page 25"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c4550844-327d-4b23-9bf1-b1498bac47a7",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "c4550844-327d-4b23-9bf1-b1498bac47a7",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:bfe77159-d58e-4db4-b3df-973aeca4875f"
+        },
+        "issued": "2023-01-02T08:56:00Z",
+        "result": [
+          {
+            "reference": "urn:uuid:9c3b18fb-3707-4cfc-a81c-12d0a7feaba4"
+          },
+          {
+            "reference": "urn:uuid:d81c4480-370d-4de8-8442-74bab96abf1b"
+          },
+          {
+            "reference": "urn:uuid:9bf970f6-c6f0-47f9-bf9b-3dd2cbe5c827"
+          },
+          {
+            "reference": "urn:uuid:90a2e8f0-2bce-4906-a1fa-4657550ba392"
+          },
+          {
+            "reference": "urn:uuid:66f963e4-bd9e-4fa5-b492-591ac23905b1"
+          },
+          {
+            "reference": "urn:uuid:39eed25e-aaff-4080-9e32-0070e43923fd"
+          },
+          {
+            "reference": "urn:uuid:12c95d40-60ce-4447-a64b-53045cd4bb25"
+          },
+          {
+            "reference": "urn:uuid:04c83972-edca-4506-8dc3-6b2b41f3fa6e"
+          },
+          {
+            "reference": "urn:uuid:93a57c13-fa6e-4c10-b479-45d05883dcb6"
+          },
+          {
+            "reference": "urn:uuid:2a28ec65-d896-4ee3-accb-d063d39931c2"
+          },
+          {
+            "reference": "urn:uuid:6709438d-9368-4600-bf5b-494e44ce06b2"
+          },
+          {
+            "reference": "urn:uuid:ed5e2ffd-c226-43c8-9cb3-0b66485af2f4"
+          },
+          {
+            "reference": "urn:uuid:034765f1-d69e-4a0e-84fa-05e6408bb035"
+          },
+          {
+            "reference": "urn:uuid:e3ce2f8a-fb8f-45f2-8222-7d00bb245b46"
+          },
+          {
+            "reference": "urn:uuid:df2aff40-4913-4512-bc05-dd7ff788d878"
+          },
+          {
+            "reference": "urn:uuid:2a189005-baf4-4560-afb7-add780909ff6"
+          },
+          {
+            "reference": "urn:uuid:1ca4e4aa-967a-48e4-ac55-b41488a22694"
+          },
+          {
+            "reference": "urn:uuid:4bbade81-df9f-4d62-9ded-84ba806e51b0"
+          }
+        ]
+      }
+    }
+  ]
+}
