@@ -1,0 +1,3266 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "527c49a3-0c95-489d-9b70-ead7e284c9d4"
+  },
+  "type": "document",
+  "timestamp": "2023-01-04T17:40:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:31c2525d-27fc-45a5-a118-21aa83c18610",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "31c2525d-27fc-45a5-a118-21aa83c18610",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T17:40:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "title": "Diagnostic Report - anonymous",
+        "section": [
+          {
+            "title": "Laboratory Results",
+            "code": {
+              "coding": [
+                {
+                  "code": "11502-2",
+                  "display": "Laboratory report"
+                }
+              ],
+              "text": "Laboratory report"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:bbf732f1-486d-455a-9f02-d9bb808ce4c4"
+              },
+              {
+                "reference": "urn:uuid:4cbbc4cf-a7ce-4026-a4fd-9d0f04b38e62"
+              },
+              {
+                "reference": "urn:uuid:90338e41-1686-4141-bd0e-3304b31d4034"
+              },
+              {
+                "reference": "urn:uuid:2b3fe91e-2c49-4c59-bc3c-e0ca9bbc6ea0"
+              },
+              {
+                "reference": "urn:uuid:51b4ed81-afd7-4ba4-8744-92c625d5bb45"
+              },
+              {
+                "reference": "urn:uuid:d62dfa77-d6df-4615-94ae-d31f7b2d49ad"
+              },
+              {
+                "reference": "urn:uuid:ed67bb72-e45a-4341-9f69-84599eb2c37b"
+              },
+              {
+                "reference": "urn:uuid:760151bc-fbe7-4dd3-b182-50d9fc58fec6"
+              },
+              {
+                "reference": "urn:uuid:db245a2b-be03-48c1-9ec4-68a9334aad1e"
+              },
+              {
+                "reference": "urn:uuid:439f7a92-9a1a-4002-864f-2847743f8571"
+              },
+              {
+                "reference": "urn:uuid:5178fadd-e842-4fa0-9342-90d363a3344d"
+              },
+              {
+                "reference": "urn:uuid:cf3c81f4-c2eb-42c7-8eff-4aba92b02a54"
+              },
+              {
+                "reference": "urn:uuid:dccdff96-0050-4362-b502-59fffbf31efe"
+              },
+              {
+                "reference": "urn:uuid:e5743831-04e6-47f6-a8f9-008a68f72a9b"
+              },
+              {
+                "reference": "urn:uuid:2ea81c61-6090-4588-9c5d-682a333b8c96"
+              },
+              {
+                "reference": "urn:uuid:e19c0015-0b30-4b93-956c-986ce86cd9c5"
+              },
+              {
+                "reference": "urn:uuid:18daa8be-60a3-43aa-8d5c-711644b109ee"
+              },
+              {
+                "reference": "urn:uuid:cbbf2af5-9bb2-4a15-8abb-b03d51c724b5"
+              },
+              {
+                "reference": "urn:uuid:c206c900-1f6f-4e1d-9738-c29079277e1c"
+              },
+              {
+                "reference": "urn:uuid:803615fe-470f-48c3-91b7-3659868fa967"
+              },
+              {
+                "reference": "urn:uuid:d7635160-cd8d-45bc-8a2c-b3c1ed0069ea"
+              },
+              {
+                "reference": "urn:uuid:8364a0fe-8306-42fe-aa47-673f47e5de7d"
+              },
+              {
+                "reference": "urn:uuid:c1e7161e-aa65-47c9-b914-641c9c043518"
+              },
+              {
+                "reference": "urn:uuid:5cf14269-fc66-450a-9968-c730a812f895"
+              },
+              {
+                "reference": "urn:uuid:a08e8a42-61ff-4c68-ab1a-b21f420617cb"
+              },
+              {
+                "reference": "urn:uuid:4af08bdc-f799-40a7-9a14-b225ad550afa"
+              },
+              {
+                "reference": "urn:uuid:f76c11d4-ca61-4a18-8250-9a890656e163"
+              },
+              {
+                "reference": "urn:uuid:aeb47b96-8a2f-4545-9ef4-11308c0ab4ee"
+              },
+              {
+                "reference": "urn:uuid:10983ee8-3b38-44cd-a7a8-1ca92be3a595"
+              },
+              {
+                "reference": "urn:uuid:f1242d6d-7d2d-4cea-a8e9-f7be3c848a45"
+              },
+              {
+                "reference": "urn:uuid:bdd52390-b866-49ce-8a48-6d2154411053"
+              },
+              {
+                "reference": "urn:uuid:2a62a1ea-b8d7-4f4f-bae7-e16f76a7850e"
+              },
+              {
+                "reference": "urn:uuid:32f4e2d7-8cbb-41c3-94f5-3cc062a860ce"
+              },
+              {
+                "reference": "urn:uuid:251d8eb3-ad9b-482a-a9b7-9037da0bd79f"
+              },
+              {
+                "reference": "urn:uuid:a4ed2f45-0d6d-4e92-b633-b332a91d14e5"
+              },
+              {
+                "reference": "urn:uuid:283b6899-af4d-4b4a-a070-6a09650b5ae3"
+              },
+              {
+                "reference": "urn:uuid:69c20590-ddc7-4eb7-97cd-be6a53d17243"
+              },
+              {
+                "reference": "urn:uuid:d1cc7c48-8ab5-474a-a406-dfa1012e4fd5"
+              },
+              {
+                "reference": "urn:uuid:4d7b178c-5cc9-45a2-9b38-32ef8de02d4f"
+              },
+              {
+                "reference": "urn:uuid:ddbd331c-2ddc-40f5-a1a3-3315d5c6b7ee"
+              },
+              {
+                "reference": "urn:uuid:70a8f46a-ca88-4512-8548-c50444eac8d3"
+              },
+              {
+                "reference": "urn:uuid:7c38edd8-2caa-4670-ab99-fcd4dba4624f"
+              },
+              {
+                "reference": "urn:uuid:cac2569e-674a-4868-9456-a32abdf509a5"
+              },
+              {
+                "reference": "urn:uuid:4ba87bce-4aad-4209-8b9b-7df97c36ba0d"
+              },
+              {
+                "reference": "urn:uuid:f4a18071-f736-4193-971e-0a5997ed2467"
+              },
+              {
+                "reference": "urn:uuid:d7b49488-606c-488c-84c3-7848a42ac925"
+              },
+              {
+                "reference": "urn:uuid:e4fc313b-cddf-4a9e-945b-454849f126ab"
+              },
+              {
+                "reference": "urn:uuid:7e00068c-2029-4708-9649-912314062e5b"
+              },
+              {
+                "reference": "urn:uuid:09ff01ff-b892-4878-b038-c19a6d3796f8"
+              },
+              {
+                "reference": "urn:uuid:b3207fa9-b2f9-496b-a5b6-23da63a067ee"
+              },
+              {
+                "reference": "urn:uuid:c10f8520-272d-4a28-98b1-e17329133c64"
+              },
+              {
+                "reference": "urn:uuid:5f5d4068-7318-4112-85af-5bb0f68e6347"
+              },
+              {
+                "reference": "urn:uuid:0ab1a7f2-2799-4bcd-8d6b-c0cd521d6c0e"
+              },
+              {
+                "reference": "urn:uuid:eaf443c9-75a9-4a35-823a-0ba584423418"
+              },
+              {
+                "reference": "urn:uuid:7578e2d4-e28b-42b7-a153-46040444bebb"
+              },
+              {
+                "reference": "urn:uuid:a0307ba9-dbfc-4632-9616-a839ee441bbe"
+              },
+              {
+                "reference": "urn:uuid:505ad2f7-c041-433b-8a48-e4096db4cd60"
+              },
+              {
+                "reference": "urn:uuid:95428c95-c945-48a2-8c71-498c9abbf3c2"
+              },
+              {
+                "reference": "urn:uuid:abc7fae5-c8d4-4688-846a-bf7d18c0e11e"
+              },
+              {
+                "reference": "urn:uuid:7606fdb3-d627-4fa1-9603-dab86b1887bb"
+              },
+              {
+                "reference": "urn:uuid:8473973c-19b6-421f-98c9-e65bf0aaf2ac"
+              },
+              {
+                "reference": "urn:uuid:80928ea0-db5e-445c-90b5-600178b2137d"
+              },
+              {
+                "reference": "urn:uuid:8f86d0bd-3e7b-4c45-987c-048550f695a1"
+              },
+              {
+                "reference": "urn:uuid:89cec118-5b35-465c-95b3-d0fb6e1bdb30"
+              },
+              {
+                "reference": "urn:uuid:f0b1a9c1-8678-45dc-8894-4fb61616bc64"
+              },
+              {
+                "reference": "urn:uuid:4b5a8468-ab03-4616-bd70-126e25ef8a07"
+              },
+              {
+                "reference": "urn:uuid:5f0db844-2e20-4fed-a1fa-c53b0013cc4b"
+              },
+              {
+                "reference": "urn:uuid:81d419f4-45ef-45b5-916e-3ce8bb9480de"
+              },
+              {
+                "reference": "urn:uuid:6a0a1202-dee0-4bf5-a3c4-3662f66228d9"
+              },
+              {
+                "reference": "urn:uuid:a28aee12-29fe-4b53-86c8-8163f5b6f325"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "fe2d7359-e784-4d29-961f-be09b2cfff61",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "5c0a6b45-5c9b-43d4-8dbf-75a9de76b480",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "25 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "female"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4cbbc4cf-a7ce-4026-a4fd-9d0f04b38e62",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4cbbc4cf-a7ce-4026-a4fd-9d0f04b38e62",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:2a62a1ea-b8d7-4f4f-bae7-e16f76a7850e"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T17:40:00Z",
+        "valueQuantity": {
+          "value": 6.4,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:90338e41-1686-4141-bd0e-3304b31d4034",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "90338e41-1686-4141-bd0e-3304b31d4034",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:32f4e2d7-8cbb-41c3-94f5-3cc062a860ce"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T10:04:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2b3fe91e-2c49-4c59-bc3c-e0ca9bbc6ea0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2b3fe91e-2c49-4c59-bc3c-e0ca9bbc6ea0",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:251d8eb3-ad9b-482a-a9b7-9037da0bd79f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-10T17:51:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:51b4ed81-afd7-4ba4-8744-92c625d5bb45",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "51b4ed81-afd7-4ba4-8744-92c625d5bb45",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4ed2f45-0d6d-4e92-b633-b332a91d14e5"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T09:37:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d62dfa77-d6df-4615-94ae-d31f7b2d49ad",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d62dfa77-d6df-4615-94ae-d31f7b2d49ad",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:283b6899-af4d-4b4a-a070-6a09650b5ae3"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:04:00Z",
+        "valueQuantity": {
+          "value": 5.3,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ed67bb72-e45a-4341-9f69-84599eb2c37b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ed67bb72-e45a-4341-9f69-84599eb2c37b",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:4d7b178c-5cc9-45a2-9b38-32ef8de02d4f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:30:00Z",
+        "valueQuantity": {
+          "value": 6.7,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:760151bc-fbe7-4dd3-b182-50d9fc58fec6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "760151bc-fbe7-4dd3-b182-50d9fc58fec6",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:ddbd331c-2ddc-40f5-a1a3-3315d5c6b7ee"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-01T18:27:00Z",
+        "valueQuantity": {
+          "value": 4.1,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:db245a2b-be03-48c1-9ec4-68a9334aad1e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "db245a2b-be03-48c1-9ec4-68a9334aad1e",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:7c38edd8-2caa-4670-ab99-fcd4dba4624f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T14:50:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:439f7a92-9a1a-4002-864f-2847743f8571",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "439f7a92-9a1a-4002-864f-2847743f8571",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:cac2569e-674a-4868-9456-a32abdf509a5"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-01T11:32:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5178fadd-e842-4fa0-9342-90d363a3344d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "5178fadd-e842-4fa0-9342-90d363a3344d",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:4ba87bce-4aad-4209-8b9b-7df97c36ba0d"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T09:37:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cf3c81f4-c2eb-42c7-8eff-4aba92b02a54",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cf3c81f4-c2eb-42c7-8eff-4aba92b02a54",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:e4fc313b-cddf-4a9e-945b-454849f126ab"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:30:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dccdff96-0050-4362-b502-59fffbf31efe",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "dccdff96-0050-4362-b502-59fffbf31efe",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:09ff01ff-b892-4878-b038-c19a6d3796f8"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-01T18:25:00Z",
+        "valueQuantity": {
+          "value": 5.5,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e5743831-04e6-47f6-a8f9-008a68f72a9b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e5743831-04e6-47f6-a8f9-008a68f72a9b",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:c10f8520-272d-4a28-98b1-e17329133c64"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:30:00Z",
+        "valueQuantity": {
+          "value": 7.3,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2ea81c61-6090-4588-9c5d-682a333b8c96",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2ea81c61-6090-4588-9c5d-682a333b8c96",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:5f5d4068-7318-4112-85af-5bb0f68e6347"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-01T10:49:00Z",
+        "valueQuantity": {
+          "value": 2.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e19c0015-0b30-4b93-956c-986ce86cd9c5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e19c0015-0b30-4b93-956c-986ce86cd9c5",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:0ab1a7f2-2799-4bcd-8d6b-c0cd521d6c0e"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T10:03:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:18daa8be-60a3-43aa-8d5c-711644b109ee",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "18daa8be-60a3-43aa-8d5c-711644b109ee",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:eaf443c9-75a9-4a35-823a-0ba584423418"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T10:03:00Z",
+        "valueQuantity": {
+          "value": 3.7,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cbbf2af5-9bb2-4a15-8abb-b03d51c724b5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cbbf2af5-9bb2-4a15-8abb-b03d51c724b5",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:7578e2d4-e28b-42b7-a153-46040444bebb"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T10:04:00Z",
+        "valueQuantity": {
+          "value": 9.1,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c206c900-1f6f-4e1d-9738-c29079277e1c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c206c900-1f6f-4e1d-9738-c29079277e1c",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a0307ba9-dbfc-4632-9616-a839ee441bbe"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:30:00Z",
+        "valueQuantity": {
+          "value": 2.9,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:803615fe-470f-48c3-91b7-3659868fa967",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "803615fe-470f-48c3-91b7-3659868fa967",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:505ad2f7-c041-433b-8a48-e4096db4cd60"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T15:05:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d7635160-cd8d-45bc-8a2c-b3c1ed0069ea",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d7635160-cd8d-45bc-8a2c-b3c1ed0069ea",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:505ad2f7-c041-433b-8a48-e4096db4cd60"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2093-3",
+              "display": "Total Cholesterol"
+            }
+          ],
+          "text": "Total Cholesterol"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T15:05:00Z",
+        "valueQuantity": {
+          "value": 122.0,
+          "unit": "mg/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8364a0fe-8306-42fe-aa47-673f47e5de7d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "8364a0fe-8306-42fe-aa47-673f47e5de7d",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:abc7fae5-c8d4-4688-846a-bf7d18c0e11e"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-01T18:27:00Z",
+        "valueQuantity": {
+          "value": 6.4,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c1e7161e-aa65-47c9-b914-641c9c043518",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c1e7161e-aa65-47c9-b914-641c9c043518",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:7606fdb3-d627-4fa1-9603-dab86b1887bb"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:33:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5cf14269-fc66-450a-9968-c730a812f895",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "5cf14269-fc66-450a-9968-c730a812f895",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:8473973c-19b6-421f-98c9-e65bf0aaf2ac"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-10T17:51:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a08e8a42-61ff-4c68-ab1a-b21f420617cb",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a08e8a42-61ff-4c68-ab1a-b21f420617cb",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:8f86d0bd-3e7b-4c45-987c-048550f695a1"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:28:00Z",
+        "valueQuantity": {
+          "value": 5.5,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4af08bdc-f799-40a7-9a14-b225ad550afa",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4af08bdc-f799-40a7-9a14-b225ad550afa",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:89cec118-5b35-465c-95b3-d0fb6e1bdb30"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T09:51:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f76c11d4-ca61-4a18-8250-9a890656e163",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f76c11d4-ca61-4a18-8250-9a890656e163",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:f0b1a9c1-8678-45dc-8894-4fb61616bc64"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "34385-5",
+              "display": "Uric Acid"
+            }
+          ],
+          "text": "Uric Acid"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-01T18:27:00Z",
+        "valueQuantity": {
+          "value": 6.7,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:aeb47b96-8a2f-4545-9ef4-11308c0ab4ee",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "aeb47b96-8a2f-4545-9ef4-11308c0ab4ee",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:4b5a8468-ab03-4616-bd70-126e25ef8a07"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T09:49:00Z",
+        "valueQuantity": {
+          "value": 8.0,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:10983ee8-3b38-44cd-a7a8-1ca92be3a595",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "10983ee8-3b38-44cd-a7a8-1ca92be3a595",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:81d419f4-45ef-45b5-916e-3ce8bb9480de"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "2889-4",
+              "display": "Total Protein"
+            }
+          ],
+          "text": "Total Protein"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T09:38:00Z",
+        "valueQuantity": {
+          "value": 6.1,
+          "unit": "mg/d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f1242d6d-7d2d-4cea-a8e9-f7be3c848a45",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f1242d6d-7d2d-4cea-a8e9-f7be3c848a45",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:6a0a1202-dee0-4bf5-a3c4-3662f66228d9"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-02T09:38:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bdd52390-b866-49ce-8a48-6d2154411053",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "bdd52390-b866-49ce-8a48-6d2154411053",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a28aee12-29fe-4b53-86c8-8163f5b6f325"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "effectiveDateTime": "2023-01-04T15:18:00Z",
+        "valueQuantity": {
+          "value": 6.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2a62a1ea-b8d7-4f4f-bae7-e16f76a7850e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "2a62a1ea-b8d7-4f4f-bae7-e16f76a7850e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T17:40:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n6.4\nmg/dl\n2.5 - 6.8\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:04\nPatient Name\n: anonymous\nAge/Sex\n: 25 Yr/F\nAcceptance Date\n: 01-Jan-2023 14:19\nSample Type\n: Serum\nLab No.\n: 0111\nReporting Date\n: 04-Jan-2023 17:40\nReferred Doctor :\nPatient Type\n: IPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:32f4e2d7-8cbb-41c3-94f5-3cc062a860ce",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "32f4e2d7-8cbb-41c3-94f5-3cc062a860ce",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T10:04:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 15:31\nPatient Name\n: anonymous\nAge/Sex\n: 52 Yr/M\nAcceptance Date\n: 01-Jan-2023 20:38\nSample Type\n: Serum\nLab No.\n: 0186\nReporting Date\n: 02-Jan-2023 10:04\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation   |   Result | Unit       | Biological Reference Interval   |\n|-----------------|----------|------------|---------------------------------|\n| Creatinine      |     3.06 | mg/dl      | 0.9 - 1.3                       |\n| Sodium          |   138    | mmol/L     | 135 - 145                       |\n| Potassium       |     4.52 | mmol/L     | 3.5 - 5                         |\n| Chloride        |   106    | mmol/L     | 102 - 109                       |\n| Serum Iron      |    23    | microg/dL  | 41 - 141                        |\n| TIBC            |   221    | microgm/dL | 251 - 406                       |\n| LDH             |   279    | u/l        | 230 - 460                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:251d8eb3-ad9b-482a-a9b7-9037da0bd79f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "251d8eb3-ad9b-482a-a9b7-9037da0bd79f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-10T17:51:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:37\nPatient Name\n: anonymous\nAge/Sex\n: 1 D/F\nAcceptance Date\n: 02-Jan-2023 10:56\nSample Type\n: Dried Blood Spot\nLab No.\n: 0105\nReporting Date\n: 10-Jan-2023 17:51\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation          | Result                 | Unit                   | Biological Reference Interval   |\n|------------------------|------------------------|------------------------|---------------------------------|\n| Newborn Screening Test | Newborn Screening Test | Newborn Screening Test | Newborn Screening Test          |\n| TSH NBS                | 1.2                    | mIU/L                  | < 10                            |\n| G6PD NBS               | 9.5                    | IU/gHb                 | > 3                             |\n| 17 OHP                 | 25.1                   | nmol/L                 | < 35                            |\n| Biotinidase            | 177.4                  | U                      | >= 50                           |\n| PKU                    | 0.7                    | mg/dL                  | < 2.5                           |\n| IRT                    | 22.6                   | \u00b5g/L                   | < 70                            |\n| Gal                    | 9.4                    | mg/dL                  | < 17                            |\n| MSUD                   | 1.4                    | mg/dL                  | < 4.12                          |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a4ed2f45-0d6d-4e92-b633-b332a91d14e5",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "a4ed2f45-0d6d-4e92-b633-b332a91d14e5",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:37:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 15:33\nPatient Name\n: anonymous\nAge/Sex\n: 2 D/M\nAcceptance Date\n: 01-Jan-2023 18:47\nSample Type\n: Serum\nLab No.\n: 0163\nReporting Date\n: 02-Jan-2023 09:37\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation      |   Result | Unit   | Biological Reference Interval   |\n|--------------------|----------|--------|---------------------------------|\n| Indirect Bilirubin |     9.42 | mg/dl  | 0.20 - 0.90                     |\n| Direct Bilirubin   |     0.62 | mg/dl  | 0.1 - 0.4                       |\n| Total Bilirubin    |    10.04 | mg/dl  | 0.3 - 1.3                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:283b6899-af4d-4b4a-a070-6a09650b5ae3",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "283b6899-af4d-4b4a-a070-6a09650b5ae3",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:04:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 00:49\nPatient Name\n: anonymous\nAge/Sex\n: 60 Yr/M\nAcceptance Date\n: 01-Jan-2023 01:56\nSample Type\n: Serum\nLab No.\n: 0044\nReporting Date\n: 04-Jan-2023 15:04\nReferred Doctor :\nPatient Type\n: IPD\nLiver Fuction Test (Lft)\n| Investigation      | Result   | Unit   | Biological Reference Interval   |\n|--------------------|----------|--------|---------------------------------|\n| Total Bilirubin    | 0.85     |        |                                 |\n| Direct Bilirubin   |          |        | 0.31                            |\n| Indirect Bilirubin |          |        | 0.54                            |\n| AST                |          |        | 13                              |\n| GGT                |          |        | 385                             |\n| ALP                |          |        | 216                             |\n| Total Protein      |          |        | 5.3                             |\n| Rft                | Rft      | Rft    | Rft                             |\n| Creatinine         |          |        | 0.49                            |\n| Sodium             |          |        | 138                             |\n| Potassium          |          |        | 4.04                            |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 5"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:69c20590-ddc7-4eb7-97cd-be6a53d17243",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "69c20590-ddc7-4eb7-97cd-be6a53d17243",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:04:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nChloride\n103\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 00:49\nPatient Name\n: anonymous\nAge/Sex\n: 60 Yr/M\nAcceptance Date\n: 01-Jan-2023 01:56\nSample Type\n: Serum\nLab No.\n: 0044\nReporting Date\n: 04-Jan-2023 15:04\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 6"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d1cc7c48-8ab5-474a-a406-dfa1012e4fd5",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d1cc7c48-8ab5-474a-a406-dfa1012e4fd5",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 02:26\nPatient Name\n: anonymous\nAge/Sex\n: 33 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:26\nSample Type\n: Serum\nLab No.\n: 0132\nReporting Date\n: 04-Jan-2023 15:30\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation            | Result                   | Unit                     | Biological Reference Interval   |\n|--------------------------|--------------------------|--------------------------|---------------------------------|\n| Creatinine               | 0.71                     |                          |                                 |\n| Sodium                   |                          |                          | 138                             |\n| Potassium                |                          |                          | 3.84                            |\n| Chloride                 |                          |                          | 95                              |\n| Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft)        |\n| Total Bilirubin          |                          |                          | 0.51                            |\n| Direct Bilirubin         |                          |                          | 0.10                            |\n| Indirect Bilirubin       |                          |                          | 0.41                            |\n| AST                      |                          |                          | 36                              |\n| GGT                      |                          |                          | 26                              |\n| ALP                      |                          |                          | 101                             |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 7"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4d7b178c-5cc9-45a2-9b38-32ef8de02d4f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "4d7b178c-5cc9-45a2-9b38-32ef8de02d4f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nTotal Protein\n6.7\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 02:26\nPatient Name\n: anonymous\nAge/Sex\n: 33 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:26\nSample Type\n: Serum\nLab No.\n: 0132\nReporting Date\n: 04-Jan-2023 15:30\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 8"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ddbd331c-2ddc-40f5-a1a3-3315d5c6b7ee",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "ddbd331c-2ddc-40f5-a1a3-3315d5c6b7ee",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T18:27:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n4.1\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:32\nPatient Name\n: anonymous\nAge/Sex\n: 44 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:14\nSample Type\n: Serum\nLab No.\n: 0102\nReporting Date\n: 01-Jan-2023 18:27\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:70a8f46a-ca88-4512-8548-c50444eac8d3",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "70a8f46a-ca88-4512-8548-c50444eac8d3",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T17:40:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological\nReference\nInterval\nCreatinine\n1.57\nSodium\n138\nPotassium\n4.33\nChloride\n100\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:05\nPatient Name\n: anonymous\nAge/Sex\n: 73 Yr/M\nAcceptance Date\n: 01-Jan-2023 12:31\nSample Type\n: Serum\nLab No.\n: 0099\nReporting Date\n: 04-Jan-2023 17:40\nReferred Doctor :\nPatient Type\n: IPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 10"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7c38edd8-2caa-4670-ab99-fcd4dba4624f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7c38edd8-2caa-4670-ab99-fcd4dba4624f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T14:50:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 02:24\nPatient Name\n: anonymous\nAge/Sex\n: 5 D/F\nAcceptance Date\n: 01-Jan-2023 03:23\nSample Type\n: Serum\nLab No.\n: 0054\nReporting Date\n: 04-Jan-2023 14:50\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation      |   Result | Unit   | Biological Reference Interval   |\n|--------------------|----------|--------|---------------------------------|\n| Indirect Bilirubin |     8.57 | mg/dl  | 0.20 - 0.90                     |\n| Direct Bilirubin   |     1.44 | mg/dl  | 0.1 - 0.4                       |\n| Total Bilirubin    |    10.01 | mg/dl  | 0.3 - 1.3                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 11"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:cac2569e-674a-4868-9456-a32abdf509a5",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "cac2569e-674a-4868-9456-a32abdf509a5",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T11:32:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 04:04\nPatient Name\n: anonymous\nAge/Sex\n: 68 Yr/M\nAcceptance Date\n: 01-Jan-2023 10:08\nSample Type\n: Serum\nLab No.\n: 0059\nReporting Date\n: 01-Jan-2023 11:32\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation   | Result   | Unit   | Biological Reference Interval   |\n|-----------------|----------|--------|---------------------------------|\n| Phosphorous     | 5.6      | mg/dL  | 2.8 - 4.7                       |\n| Creatinine      |          |        | 1.37                            |\n| Sodium          |          |        | 137                             |\n| Potassium       |          |        | 5.16                            |\n| Chloride        |          |        | 109                             |\n| Comments:       |          |        |                                 |\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 12"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4ba87bce-4aad-4209-8b9b-7df97c36ba0d",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "4ba87bce-4aad-4209-8b9b-7df97c36ba0d",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:37:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:37\nPatient Name\n: anonymous\nAge/Sex\n: 1 D/F\nAcceptance Date\n: 01-Jan-2023 23:43\nSample Type\n: Serum\nLab No.\n: 0194\nReporting Date\n: 02-Jan-2023 09:37\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation      |   Result | Unit   | Biological Reference Interval   |\n|--------------------|----------|--------|---------------------------------|\n| Indirect Bilirubin |     8.52 | mg/dl  | 0.20 - 0.90                     |\n| Direct Bilirubin   |     0.48 | mg/dl  | 0.1 - 0.4                       |\n| Total Bilirubin    |     9    | mg/dl  | 0.3 - 1.3                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 13"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f4a18071-f736-4193-971e-0a5997ed2467",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "f4a18071-f736-4193-971e-0a5997ed2467",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T11:22:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nInvestigation\nResult\nUnit\nBiological Reference Interval\nASCITIC FLUID LDH\n40\nU/L\n- - --\nComments:\nCSF FLUID\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 00:49\nPatient Name\n: anonymous\nAge/Sex\n: 60 Yr/M\nAcceptance Date\n: 01-Jan-2023 01:58\nSample Type\n: Ascitic Fluid\nLab No.\n: 0045\nReporting Date\n: 01-Jan-2023 11:22\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 14"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d7b49488-606c-488c-84c3-7848a42ac925",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d7b49488-606c-488c-84c3-7848a42ac925",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T11:24:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nCSF Glucose\n216\nmg/dl\n> 18Y : 40-70 <18Y : 60-80\nCsf Protein\n59.1\nmg/dl\n- - --\nComments:\nCSF FLUID\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 00:49\nPatient Name\n: anonymous\nAge/Sex\n: 60 Yr/M\nAcceptance Date\n: 01-Jan-2023 01:59\nSample Type\n: Csf\nLab No.\n: 0046\nReporting Date\n: 01-Jan-2023 11:24\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 15"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e4fc313b-cddf-4a9e-945b-454849f126ab",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "e4fc313b-cddf-4a9e-945b-454849f126ab",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 03:43\nPatient Name\n: anonymous\nAge/Sex\n: 57 Yr/F\nAcceptance Date\n: 01-Jan-2023 14:19\nSample Type\n: Serum\nLab No.\n: 0109\nReporting Date\n: 04-Jan-2023 15:30\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation   |   Result | Unit   | Biological Reference Interval   |\n|-----------------|----------|--------|---------------------------------|\n| Creatinine      |     4.39 | mg/dl  | 0.6 - 1.1                       |\n| Sodium          |   133    | mmol/L | 135 - 145                       |\n| Potassium       |     4.54 | mmol/L | 3.5 - 5                         |\n| Chloride        |    95    | mmol/L | 102 - 109                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 16"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7e00068c-2029-4708-9649-912314062e5b",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7e00068c-2029-4708-9649-912314062e5b",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T18:25:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:30\nPatient Name\n: anonymous\nAge/Sex\n: 51 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:28\nSample Type\n: Serum\nLab No.\n: 0137\nReporting Date\n: 01-Jan-2023 18:25\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation            | Result                   | Unit                     | Biological Reference Interval   |\n|--------------------------|--------------------------|--------------------------|---------------------------------|\n| Creatinine               | 4.36                     | mg/dl                    | 0.9 - 1.3                       |\n| Sodium                   | 139                      | mmol/L                   | 135 - 145                       |\n| Potassium                | 4.31                     | mmol/L                   | 3.5 - 5                         |\n| Chloride                 | 104                      | mmol/L                   | 102 - 109                       |\n| Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft)        |\n| Total Bilirubin          |                          |                          | 0.32                            |\n| Direct Bilirubin         |                          |                          | 0.06                            |\n| Indirect Bilirubin       |                          |                          | 0.26                            |\n| AST                      |                          |                          | 14                              |\n| GGT                      |                          |                          | 13                              |\n| ALP                      |                          |                          | 65                              |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 17"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:09ff01ff-b892-4878-b038-c19a6d3796f8",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "09ff01ff-b892-4878-b038-c19a6d3796f8",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T18:25:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nTotal Protein\n5.5\nCalcium\n7.9\nmg/dL\n08.7 - 10.4\nIonized Calcium\n1.14\nmmol/L\n1.12 - 1.32\nPhosphorous\n4.7\nmg/dL\n2.8 - 4.7\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:30\nPatient Name\n: anonymous\nAge/Sex\n: 51 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:28\nSample Type\n: Serum\nLab No.\n: 0137\nReporting Date\n: 01-Jan-2023 18:25\nReferred Doctor :\nPatient Type\n: IPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 18"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b3207fa9-b2f9-496b-a5b6-23da63a067ee",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "b3207fa9-b2f9-496b-a5b6-23da63a067ee",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 06:55\nPatient Name\n: anonymous\nAge/Sex\n: 2 Yr/F\nAcceptance Date\n: 01-Jan-2023 10:10\nSample Type\n: Serum\nLab No.\n: 0066\nReporting Date\n: 04-Jan-2023 15:30\nReferred Doctor :\nPatient Type\n: OPD\nRft\n| Investigation            | Result                   | Unit                     | Biological Reference Interval   |\n|--------------------------|--------------------------|--------------------------|---------------------------------|\n| Creatinine               | 0.56                     | mg/dl                    | 0.6 - 1.1                       |\n| Sodium                   | 136                      | mmol/L                   | 135 - 145                       |\n| Potassium                | 5.28                     | mmol/L                   | 3.5 - 5                         |\n| Chloride                 | 107                      | mmol/L                   | 102 - 109                       |\n| Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft)        |\n| Total Bilirubin          | 0.21                     | mg/dl                    | 0.3 - 1.3                       |\n| Direct Bilirubin         | 0.11                     | mg/dl                    | 0.1 - 0.4                       |\n| Indirect Bilirubin       | 0.10                     | mg/dl                    | 0.20 - 0.90                     |\n| AST                      | 80                       | U/L                      | 12 - 38                         |\n| GGT                      | 11                       | U/L                      | 9 - 58                          |\n| ALP                      | 295                      | U/L                      | 156 - 369                       |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 19"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c10f8520-272d-4a28-98b1-e17329133c64",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "c10f8520-272d-4a28-98b1-e17329133c64",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nTotal Protein\n7.3\ngm/dL\n6.7 - 8.6\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 06:55\nPatient Name\n: anonymous\nAge/Sex\n: 2 Yr/F\nAcceptance Date\n: 01-Jan-2023 10:10\nSample Type\n: Serum\nLab No.\n: 0066\nReporting Date\n: 04-Jan-2023 15:30\nReferred Doctor :\nPatient Type\n: OPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 20"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5f5d4068-7318-4112-85af-5bb0f68e6347",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "5f5d4068-7318-4112-85af-5bb0f68e6347",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T10:49:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n2.5\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 00:49\nPatient Name\n: anonymous\nAge/Sex\n: 60 Yr/M\nAcceptance Date\n: 01-Jan-2023 01:56\nSample Type\n: Serum\nLab No.\n: 0044\nReporting Date\n: 01-Jan-2023 10:49\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 21"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0ab1a7f2-2799-4bcd-8d6b-c0cd521d6c0e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "0ab1a7f2-2799-4bcd-8d6b-c0cd521d6c0e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T10:03:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n6.0\nmg/dl\n3.6 - 7.7\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 18:19\nPatient Name\n: anonymous\nAge/Sex\n: 58 Yr/M\nAcceptance Date\n: 01-Jan-2023 23:45\nSample Type\n: Serum\nLab No.\n: 0201\nReporting Date\n: 02-Jan-2023 10:03\nReferred Doctor :\nPatient Type\n: IPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 22"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:eaf443c9-75a9-4a35-823a-0ba584423418",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "eaf443c9-75a9-4a35-823a-0ba584423418",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T10:03:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n3.7\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 18:17\nPatient Name\n: anonymous\nAge/Sex\n: 18 Yr/F\nAcceptance Date\n: 01-Jan-2023 18:50\nSample Type\n: Serum\nLab No.\n: 0172\nReporting Date\n: 02-Jan-2023 10:03\nReferred Doctor :\nPatient Type\n: OPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 23"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7578e2d4-e28b-42b7-a153-46040444bebb",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7578e2d4-e28b-42b7-a153-46040444bebb",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T10:04:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n9.1\nmg/dl\n3.6 - 7.7\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 15:31\nPatient Name\n: anonymous\nAge/Sex\n: 52 Yr/M\nAcceptance Date\n: 01-Jan-2023 20:38\nSample Type\n: Serum\nLab No.\n: 0186\nReporting Date\n: 02-Jan-2023 10:04\nReferred Doctor :\nPatient Type\n: IPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 24"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a0307ba9-dbfc-4632-9616-a839ee441bbe",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "a0307ba9-dbfc-4632-9616-a839ee441bbe",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n2.9\nmg/dl\n2.5 - 6.8\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 06:55\nPatient Name\n: anonymous\nAge/Sex\n: 2 Yr/F\nAcceptance Date\n: 01-Jan-2023 10:10\nSample Type\n: Serum\nLab No.\n: 0066\nReporting Date\n: 04-Jan-2023 15:30\nReferred Doctor :\nPatient Type\n: OPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 25"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:505ad2f7-c041-433b-8a48-e4096db4cd60",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "505ad2f7-c041-433b-8a48-e4096db4cd60",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T15:05:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 03:44\nPatient Name\n: anonymous\nAge/Sex\n: 80 Yr/M\nAcceptance Date\n: 02-Jan-2023 12:27\nSample Type\n: Serum\nLab No.\n: 0173\nReporting Date\n: 02-Jan-2023 15:05\nReferred Doctor :\nPatient Type\n: IPD\nLipid Profile\n| Investigation     |   Result | Unit   | Biological Reference Interval   |\n|-------------------|----------|--------|---------------------------------|\n| Total Cholesterol |      122 | mg/dl  | < 200                           |\n| HDL               |       36 | mg/dl  | 40 - 60                         |\n| LDL               |       71 | mg/dl  | 100 - 129                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 26"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:95428c95-c945-48a2-8c71-498c9abbf3c2",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "95428c95-c945-48a2-8c71-498c9abbf3c2",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T18:27:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No.\n: -\nCollection Date\n: 01-Jan-2023 12:32\nPatient Name\n: anonymous\nAge/Sex\n: 44 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:14\nSample Type\n: Serum\nLab No.\n: 0102\nReporting Date\n: 01-Jan-2023 18:27\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation            | Result                   | Unit                     | Biological Reference Interval   |\n|--------------------------|--------------------------|--------------------------|---------------------------------|\n| Creatinine               | 0.65                     |                          |                                 |\n| Sodium                   |                          |                          | 129                             |\n| Potassium                |                          |                          | 3.99                            |\n| Chloride                 |                          |                          | 90                              |\n| Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft)        |\n| Total Bilirubin          |                          |                          | 0.61                            |\n| Direct Bilirubin         |                          |                          | 0.23                            |\n| Indirect Bilirubin       |                          |                          | 0.38                            |\n| AST                      |                          |                          | 47                              |\n| GGT                      |                          |                          | 79                              |\n| ALP                      |                          |                          | 97                              |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 27"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:abc7fae5-c8d4-4688-846a-bf7d18c0e11e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "abc7fae5-c8d4-4688-846a-bf7d18c0e11e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T18:27:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nTotal Protein\n6.4\nCalcium\n8.6\nIonized Calcium\n1.22\nPhosphorous\n2.9\nmg/dL\n2.8 - 4.7\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:32\nPatient Name\n: anonymous\nAge/Sex\n: 44 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:14\nSample Type\n: Serum\nLab No.\n: 0102\nReporting Date\n: 01-Jan-2023 18:27\nReferred Doctor :\nPatient Type\n: IPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 28"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7606fdb3-d627-4fa1-9603-dab86b1887bb",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7606fdb3-d627-4fa1-9603-dab86b1887bb",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:33:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:26\nPatient Name\n: anonymous\nAge/Sex\n: 42 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:32\nSample Type\n: Serum\nLab No.\n: 0139\nReporting Date\n: 04-Jan-2023 15:33\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation   |   Result | Unit   | Biological Reference Interval   |\n|-----------------|----------|--------|---------------------------------|\n| Creatinine      |     3.53 | mg/dl  | 0.9 - 1.3                       |\n| Sodium          |   132    | mmol/L | 135 - 145                       |\n| Potassium       |     4.19 | mmol/L | 3.5 - 5                         |\n| Chloride        |    98    | mmol/L | 102 - 109                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 29"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8473973c-19b6-421f-98c9-e65bf0aaf2ac",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "8473973c-19b6-421f-98c9-e65bf0aaf2ac",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-10T17:51:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 15:33\nPatient Name\n: anonymous\nAge/Sex\n: 2 D/M\nAcceptance Date\n: 02-Jan-2023 10:57\nSample Type\n: Dried Blood Spot\nLab No.\n: 0108\nReporting Date\n: 10-Jan-2023 17:51\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation          | Result                 | Unit                   | Biological Reference Interval   |\n|------------------------|------------------------|------------------------|---------------------------------|\n| Newborn Screening Test | Newborn Screening Test | Newborn Screening Test | Newborn Screening Test          |\n| TSH NBS                | 1.2                    | mIU/L                  | < 10                            |\n| G6PD NBS               | 10.7                   | IU/gHb                 | > 3                             |\n| 17 OHP                 | 20.4                   | nmol/L                 | < 35                            |\n| Biotinidase            | 129.9                  | U                      | >= 50                           |\n| PKU                    | 0.7                    | mg/dL                  | < 2.5                           |\n| IRT                    | 8.5                    | \u00b5g/L                   | < 70                            |\n| Gal                    | 0.1                    | mg/dL                  | < 17                            |\n| MSUD                   | 1.5                    | mg/dL                  | < 4.12                          |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 30"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:80928ea0-db5e-445c-90b5-600178b2137d",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "80928ea0-db5e-445c-90b5-600178b2137d",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:28:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 04:41\nPatient Name\n: anonymous\nAge/Sex\n: 44 Yr/M\nAcceptance Date\n: 01-Jan-2023 04:42\nSample Type\n: Serum\nLab No.\n: 0056\nReporting Date\n: 04-Jan-2023 15:28\nReferred Doctor :\nPatient Type\n: OPD\nRft\n| Investigation            | Result                   | Unit                     | Biological Reference Interval   |\n|--------------------------|--------------------------|--------------------------|---------------------------------|\n| Creatinine               | 1.20                     | mg/dl                    | 0.9 - 1.3                       |\n| Sodium                   | 137                      | mmol/L                   | 135 - 145                       |\n| Potassium                | 3.80                     | mmol/L                   | 3.5 - 5                         |\n| Chloride                 | 106                      | mmol/L                   | 102 - 109                       |\n| Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft)        |\n| Total Bilirubin          | 0.51                     | mg/dl                    | 0.3 - 1.3                       |\n| Direct Bilirubin         | 0.11                     | mg/dl                    | 0.1 - 0.4                       |\n| Indirect Bilirubin       | 0.40                     | mg/dl                    | 0.20 - 0.90                     |\n| AST                      | 39                       | U/L                      | 12 - 38                         |\n| GGT                      | 13                       | U/L                      | 9 - 58                          |\n| ALP                      | 160                      | U/L                      | 50 - 116                        |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 31"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8f86d0bd-3e7b-4c45-987c-048550f695a1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "8f86d0bd-3e7b-4c45-987c-048550f695a1",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:28:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nTotal Protein\n5.5\ngm/dL\n6.7 - 8.6\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 04:41\nPatient Name\n: anonymous\nAge/Sex\n: 44 Yr/M\nAcceptance Date\n: 01-Jan-2023 04:42\nSample Type\n: Serum\nLab No.\n: 0056\nReporting Date\n: 04-Jan-2023 15:28\nReferred Doctor :\nPatient Type\n: OPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 32"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:89cec118-5b35-465c-95b3-d0fb6e1bdb30",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "89cec118-5b35-465c-95b3-d0fb6e1bdb30",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:51:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 13:00\nPatient Name\n: anonymous\nAge/Sex\n: 58 Yr/F\nAcceptance Date\n: 01-Jan-2023 17:29\nSample Type\n: Serum\nLab No.\n: 0147\nReporting Date\n: 02-Jan-2023 09:51\nReferred Doctor :\nPatient Type\n: IPD\nRft\n| Investigation   |   Result | Unit   | Biological Reference Interval   |\n|-----------------|----------|--------|---------------------------------|\n| Creatinine      |     1.18 | mg/dl  | 0.6 - 1.1                       |\n| Sodium          |   134    | mmol/L | 135 - 145                       |\n| Potassium       |     3.2  | mmol/L | 3.5 - 5                         |\n| Chloride        |   100    | mmol/L | 102 - 109                       |\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 33"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f0b1a9c1-8678-45dc-8894-4fb61616bc64",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "f0b1a9c1-8678-45dc-8894-4fb61616bc64",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-01T18:27:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRft\nInvestigation\nResult\nUnit\nBiological Reference Interval\nUric Acid\n6.7\nmg/dl\n3.6 - 7.7\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:30\nPatient Name\n: anonymous\nAge/Sex\n: 51 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:28\nSample Type\n: Serum\nLab No.\n: 0137\nReporting Date\n: 01-Jan-2023 18:27\nReferred Doctor :\nPatient Type\n: IPD\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 34"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4b5a8468-ab03-4616-bd70-126e25ef8a07",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "4b5a8468-ab03-4616-bd70-126e25ef8a07",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:49:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 18:17\nPatient Name\n: anonymous\nAge/Sex\n: 18 Yr/F\nAcceptance Date\n: 01-Jan-2023 18:50\nSample Type\n: Serum\nLab No.\n: 0172\nReporting Date\n: 02-Jan-2023 09:49\nReferred Doctor :\nPatient Type\n: OPD\nLiver Fuction Test (Lft)\n| Investigation      | Result   | Unit   | Biological Reference Interval   |\n|--------------------|----------|--------|---------------------------------|\n| Total Bilirubin    | 0.38     |        |                                 |\n| Direct Bilirubin   |          |        | 0.11                            |\n| Indirect Bilirubin |          |        | 0.27                            |\n| AST                |          |        | 185                             |\n| GGT                |          |        | 708                             |\n| ALP                |          |        | 254                             |\n| Total Protein      |          |        | 8.0                             |\n| Rft                | Rft      | Rft    | Rft                             |\n| Creatinine         |          |        | 0.53                            |\n| Sodium             |          |        | 141                             |\n| Potassium          |          |        | 4.32                            |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 35"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5f0db844-2e20-4fed-a1fa-c53b0013cc4b",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "5f0db844-2e20-4fed-a1fa-c53b0013cc4b",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:49:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nChloride\n105\nComments:\n********** END OF THE REPORT **********\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 18:17\nPatient Name\n: anonymous\nAge/Sex\n: 18 Yr/F\nAcceptance Date\n: 01-Jan-2023 18:50\nSample Type\n: Serum\nLab No.\n: 0172\nReporting Date\n: 02-Jan-2023 09:49\nReferred Doctor :\nPatient Type\n: OPD\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 36"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:81d419f4-45ef-45b5-916e-3ce8bb9480de",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "81d419f4-45ef-45b5-916e-3ce8bb9480de",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:38:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 18:19\nPatient Name\n: anonymous\nAge/Sex\n: 58 Yr/M\nAcceptance Date\n: 01-Jan-2023 23:45\nSample Type\n: Serum\nLab No.\n: 0201\nReporting Date\n: 02-Jan-2023 09:38\nReferred Doctor :\nPatient Type\n: IPD\n| Investigation            | Result                   | Unit                     | Biological Reference Interval   |\n|--------------------------|--------------------------|--------------------------|---------------------------------|\n| Calcium                  | 7.8                      | mg/dL                    | 08.7 - 10.4                     |\n| Ionized Calcium          | 1.07                     | mmol/L                   | 1.12 - 1.32                     |\n| Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft) | Liver Fuction Test (Lft)        |\n| Total Bilirubin          | 2.12                     | mg/dl                    | 0.3 - 1.3                       |\n| Direct Bilirubin         | 0.66                     | mg/dl                    | 0.1 - 0.4                       |\n| Indirect Bilirubin       | 1.46                     | mg/dl                    | 0.20 - 0.90                     |\n| AST                      | 132                      | U/L                      | 12 - 38                         |\n| GGT                      | 69                       | U/L                      | 9 - 58                          |\n| ALP                      | 115                      | U/L                      | 50 - 116                        |\n| Total Protein            | 6.1                      | gm/dL                    | 6.7 - 8.6                       |\n| Rft                      | Rft                      | Rft                      | Rft                             |\n| Creatinine               | 1.01                     | mg/dl                    | 0.9 - 1.3                       |\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 37"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6a0a1202-dee0-4bf5-a3c4-3662f66228d9",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "6a0a1202-dee0-4bf5-a3c4-3662f66228d9",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-02T09:38:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSodium\n139\nmmol/L\n135 - 145\nPotassium\n3.96\nmmol/L\n3.5 - 5\nChloride\n90\nmmol/L\n102 - 109\nComments:\nDepartment of Biochemistry\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 18:19\nPatient Name\n: anonymous\nAge/Sex\n: 58 Yr/M\nAcceptance Date\n: 01-Jan-2023 23:45\nSample Type\n: Serum\nLab No.\n: 0201\nReporting Date\n: 02-Jan-2023 09:38\nReferred Doctor :\nPatient Type\n: IPD\nComments:\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 38"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a28aee12-29fe-4b53-86c8-8163f5b6f325",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "a28aee12-29fe-4b53-86c8-8163f5b6f325",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "date": "2023-01-04T15:18:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:fe2d7359-e784-4d29-961f-be09b2cfff61"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBiochemistry\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 13:32\nPatient Name\n: anonymous\nAge/Sex\n: 56 Yr/M\nAcceptance Date\n: 01-Jan-2023 14:17\nSample Type\n: Serum\nLab No.\n: 0105\nReporting Date\n: 04-Jan-2023 15:18\nReferred Doctor :\nPatient Type\n: OPD\n| Investigation   | Result   | Unit   | Biological Reference Interval   |\n|-----------------|----------|--------|---------------------------------|\n| Sodium          | ***      | mmol/L | 135 - 145                       |\n| Potassium       | ***      | mmol/L | 3.5 - 5                         |\n| Chloride        | ***      | mmol/L | 102 - 109                       |\n| Phosphorous     | ***      | mg/dL  | 2.8 - 4.7                       |\nComments:\nHEMOLYSED SAMPLE\n********** END OF THE REPORT **********\nReference ranges are provided as per kit insert/TIEZ clinical chemistry and molecular diagnostics,6th Edition,2019.\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Biochemistry\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report19.pdf - Page 39"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bbf732f1-486d-455a-9f02-d9bb808ce4c4",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "bbf732f1-486d-455a-9f02-d9bb808ce4c4",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:5c0a6b45-5c9b-43d4-8dbf-75a9de76b480"
+        },
+        "issued": "2023-01-04T17:40:00Z",
+        "result": [
+          {
+            "reference": "urn:uuid:4cbbc4cf-a7ce-4026-a4fd-9d0f04b38e62"
+          },
+          {
+            "reference": "urn:uuid:90338e41-1686-4141-bd0e-3304b31d4034"
+          },
+          {
+            "reference": "urn:uuid:2b3fe91e-2c49-4c59-bc3c-e0ca9bbc6ea0"
+          },
+          {
+            "reference": "urn:uuid:51b4ed81-afd7-4ba4-8744-92c625d5bb45"
+          },
+          {
+            "reference": "urn:uuid:d62dfa77-d6df-4615-94ae-d31f7b2d49ad"
+          },
+          {
+            "reference": "urn:uuid:ed67bb72-e45a-4341-9f69-84599eb2c37b"
+          },
+          {
+            "reference": "urn:uuid:760151bc-fbe7-4dd3-b182-50d9fc58fec6"
+          },
+          {
+            "reference": "urn:uuid:db245a2b-be03-48c1-9ec4-68a9334aad1e"
+          },
+          {
+            "reference": "urn:uuid:439f7a92-9a1a-4002-864f-2847743f8571"
+          },
+          {
+            "reference": "urn:uuid:5178fadd-e842-4fa0-9342-90d363a3344d"
+          },
+          {
+            "reference": "urn:uuid:cf3c81f4-c2eb-42c7-8eff-4aba92b02a54"
+          },
+          {
+            "reference": "urn:uuid:dccdff96-0050-4362-b502-59fffbf31efe"
+          },
+          {
+            "reference": "urn:uuid:e5743831-04e6-47f6-a8f9-008a68f72a9b"
+          },
+          {
+            "reference": "urn:uuid:2ea81c61-6090-4588-9c5d-682a333b8c96"
+          },
+          {
+            "reference": "urn:uuid:e19c0015-0b30-4b93-956c-986ce86cd9c5"
+          },
+          {
+            "reference": "urn:uuid:18daa8be-60a3-43aa-8d5c-711644b109ee"
+          },
+          {
+            "reference": "urn:uuid:cbbf2af5-9bb2-4a15-8abb-b03d51c724b5"
+          },
+          {
+            "reference": "urn:uuid:c206c900-1f6f-4e1d-9738-c29079277e1c"
+          },
+          {
+            "reference": "urn:uuid:803615fe-470f-48c3-91b7-3659868fa967"
+          },
+          {
+            "reference": "urn:uuid:d7635160-cd8d-45bc-8a2c-b3c1ed0069ea"
+          },
+          {
+            "reference": "urn:uuid:8364a0fe-8306-42fe-aa47-673f47e5de7d"
+          },
+          {
+            "reference": "urn:uuid:c1e7161e-aa65-47c9-b914-641c9c043518"
+          },
+          {
+            "reference": "urn:uuid:5cf14269-fc66-450a-9968-c730a812f895"
+          },
+          {
+            "reference": "urn:uuid:a08e8a42-61ff-4c68-ab1a-b21f420617cb"
+          },
+          {
+            "reference": "urn:uuid:4af08bdc-f799-40a7-9a14-b225ad550afa"
+          },
+          {
+            "reference": "urn:uuid:f76c11d4-ca61-4a18-8250-9a890656e163"
+          },
+          {
+            "reference": "urn:uuid:aeb47b96-8a2f-4545-9ef4-11308c0ab4ee"
+          },
+          {
+            "reference": "urn:uuid:10983ee8-3b38-44cd-a7a8-1ca92be3a595"
+          },
+          {
+            "reference": "urn:uuid:f1242d6d-7d2d-4cea-a8e9-f7be3c848a45"
+          },
+          {
+            "reference": "urn:uuid:bdd52390-b866-49ce-8a48-6d2154411053"
+          }
+        ]
+      }
+    }
+  ]
+}

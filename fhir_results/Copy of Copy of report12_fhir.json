@@ -1,0 +1,1486 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "f0b3cbad-2948-402d-ad34-be26fcc2ce08"
+  },
+  "type": "document",
+  "timestamp": "2023-01-10T16:15:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:2a7479b5-4566-4061-93c6-36d6b087a61a",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "2a7479b5-4566-4061-93c6-36d6b087a61a",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-10T16:15:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "title": "Diagnostic Report - anonymous",
+        "section": [
+          {
+            "title": "Laboratory Results",
+            "code": {
+              "coding": [
+                {
+                  "code": "11502-2",
+                  "display": "Laboratory report"
+                }
+              ],
+              "text": "Laboratory report"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:10206ede-6a9f-4960-a37d-f57a9f34fb02"
+              },
+              {
+                "reference": "urn:uuid:d9fe49d6-1db2-4207-8d7e-35ce4901fcef"
+              },
+              {
+                "reference": "urn:uuid:d5a9a9fc-abf6-4b68-a32d-e831353364f6"
+              },
+              {
+                "reference": "urn:uuid:e9880fb8-75d1-48a1-8fa3-1b4a7adc2cd1"
+              },
+              {
+                "reference": "urn:uuid:445235e6-086b-4bd8-9635-a9c2f00de7dc"
+              },
+              {
+                "reference": "urn:uuid:edd0a141-6cd3-4e3b-a560-818747a79dd3"
+              },
+              {
+                "reference": "urn:uuid:3444e785-bba7-4d4c-ad46-03651b3d65c6"
+              },
+              {
+                "reference": "urn:uuid:76f7bed5-7e4a-40a3-ba4e-bb145fa7552f"
+              },
+              {
+                "reference": "urn:uuid:92a82438-76cb-450a-8a05-de4864eab302"
+              },
+              {
+                "reference": "urn:uuid:fbbe21b6-838a-4255-b2ff-623c7a0010b7"
+              },
+              {
+                "reference": "urn:uuid:70dfbf8c-ec6d-4ae2-861d-bdee20155129"
+              },
+              {
+                "reference": "urn:uuid:3fd1aa5d-4d6e-4267-9876-360434ecf182"
+              },
+              {
+                "reference": "urn:uuid:98f8530f-b011-477d-a6b0-0c4d1d8fa8e1"
+              },
+              {
+                "reference": "urn:uuid:23f7e4ff-8882-46f3-900b-926dc4848443"
+              },
+              {
+                "reference": "urn:uuid:3bc180e4-3f3c-494d-8523-8b160ea4f640"
+              },
+              {
+                "reference": "urn:uuid:6026153b-487d-4939-be7a-c56151e9183a"
+              },
+              {
+                "reference": "urn:uuid:2349a58a-975a-498c-9145-b10d975bc861"
+              },
+              {
+                "reference": "urn:uuid:c168706e-f0b3-4cf3-a252-75c03d16f4cb"
+              },
+              {
+                "reference": "urn:uuid:01d434b6-a0a7-4577-b5c3-1bd303e2ca97"
+              },
+              {
+                "reference": "urn:uuid:868a99c8-248e-44c7-b078-07c39b998092"
+              },
+              {
+                "reference": "urn:uuid:32d064d6-2482-4207-95cd-c1910be6c5ee"
+              },
+              {
+                "reference": "urn:uuid:002b29e3-aeff-421e-8bff-22ce15e36a27"
+              },
+              {
+                "reference": "urn:uuid:1972b16f-a124-4876-a49e-e8a5e1703e53"
+              },
+              {
+                "reference": "urn:uuid:ac410654-59ab-481a-88c0-417c34ea4703"
+              },
+              {
+                "reference": "urn:uuid:7936c12d-410b-47c2-a467-9ab90642e017"
+              },
+              {
+                "reference": "urn:uuid:a7c44f50-7fcd-4682-a182-9294e5071749"
+              },
+              {
+                "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+              },
+              {
+                "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+              },
+              {
+                "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+              },
+              {
+                "reference": "urn:uuid:8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16"
+              },
+              {
+                "reference": "urn:uuid:46ee1cff-c8c0-4d32-9799-1e769b2864a7"
+              },
+              {
+                "reference": "urn:uuid:db4572e7-6bd7-4833-ae9c-c6db9c863643"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "5b2cd651-bb4a-442a-a447-4a7c54260751",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "5e7662a6-89aa-42e5-85c3-87bdc590b2c9",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "19 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "female"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d9fe49d6-1db2-4207-8d7e-35ce4901fcef",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d9fe49d6-1db2-4207-8d7e-35ce4901fcef",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "777-3",
+              "display": "Platelet"
+            }
+          ],
+          "text": "Platelet"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 231.0,
+          "unit": "k/uL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d5a9a9fc-abf6-4b68-a32d-e831353364f6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d5a9a9fc-abf6-4b68-a32d-e831353364f6",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "737-7",
+              "display": "Lymphocyte"
+            }
+          ],
+          "text": "Lymphocyte"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 1.17,
+          "unit": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e9880fb8-75d1-48a1-8fa3-1b4a7adc2cd1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e9880fb8-75d1-48a1-8fa3-1b4a7adc2cd1",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "718-7",
+              "display": "Hemoglobin"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 11.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:445235e6-086b-4bd8-9635-a9c2f00de7dc",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "445235e6-086b-4bd8-9635-a9c2f00de7dc",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "33719-6",
+              "display": "Flow Cytometry"
+            }
+          ],
+          "text": "Flow Cytometry"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 11.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:edd0a141-6cd3-4e3b-a560-818747a79dd3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "edd0a141-6cd3-4e3b-a560-818747a79dd3",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "19151-0",
+              "display": "Specimen"
+            }
+          ],
+          "text": "Specimen"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 11.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3444e785-bba7-4d4c-ad46-03651b3d65c6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3444e785-bba7-4d4c-ad46-03651b3d65c6",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "11524-6",
+              "display": "Microscopic observation [Identifier] in Blood by Peripheral blood smear"
+            }
+          ],
+          "text": "Microscopic observation [Identifier] in Blood by Peripheral blood smear"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueString": "Department of Pathology And Lab Medicine"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:76f7bed5-7e4a-40a3-ba4e-bb145fa7552f",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "76f7bed5-7e4a-40a3-ba4e-bb145fa7552f",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "777-3",
+              "display": "Platelet"
+            }
+          ],
+          "text": "Platelet"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-05T23:42:00Z",
+        "valueQuantity": {
+          "value": 345.0,
+          "unit": "k/uL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:92a82438-76cb-450a-8a05-de4864eab302",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "92a82438-76cb-450a-8a05-de4864eab302",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "737-7",
+              "display": "Lymphocyte"
+            }
+          ],
+          "text": "Lymphocyte"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-05T23:42:00Z",
+        "valueQuantity": {
+          "value": 0.2,
+          "unit": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fbbe21b6-838a-4255-b2ff-623c7a0010b7",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "fbbe21b6-838a-4255-b2ff-623c7a0010b7",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "718-7",
+              "display": "Hemoglobin"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-05T23:42:00Z",
+        "valueQuantity": {
+          "value": 9.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:70dfbf8c-ec6d-4ae2-861d-bdee20155129",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "70dfbf8c-ec6d-4ae2-861d-bdee20155129",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "33719-6",
+              "display": "Flow Cytometry"
+            }
+          ],
+          "text": "Flow Cytometry"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-05T23:42:00Z",
+        "valueQuantity": {
+          "value": 9.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3fd1aa5d-4d6e-4267-9876-360434ecf182",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3fd1aa5d-4d6e-4267-9876-360434ecf182",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "19151-0",
+              "display": "Specimen"
+            }
+          ],
+          "text": "Specimen"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-05T23:42:00Z",
+        "valueQuantity": {
+          "value": 9.5,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:98f8530f-b011-477d-a6b0-0c4d1d8fa8e1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "98f8530f-b011-477d-a6b0-0c4d1d8fa8e1",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "11524-6",
+              "display": "Microscopic observation [Identifier] in Blood by Peripheral blood smear"
+            }
+          ],
+          "text": "Microscopic observation [Identifier] in Blood by Peripheral blood smear"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-05T23:42:00Z",
+        "valueString": "Department of Pathology And Lab Medicine"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:23f7e4ff-8882-46f3-900b-926dc4848443",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "23f7e4ff-8882-46f3-900b-926dc4848443",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "777-3",
+              "display": "Platelet"
+            }
+          ],
+          "text": "Platelet"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 289.0,
+          "unit": "k/uL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3bc180e4-3f3c-494d-8523-8b160ea4f640",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3bc180e4-3f3c-494d-8523-8b160ea4f640",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "737-7",
+              "display": "Lymphocyte"
+            }
+          ],
+          "text": "Lymphocyte"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 1.07,
+          "unit": "%"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6026153b-487d-4939-be7a-c56151e9183a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "6026153b-487d-4939-be7a-c56151e9183a",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "718-7",
+              "display": "Hemoglobin"
+            }
+          ],
+          "text": "Hemoglobin"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 8.2,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2349a58a-975a-498c-9145-b10d975bc861",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2349a58a-975a-498c-9145-b10d975bc861",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "33719-6",
+              "display": "Flow Cytometry"
+            }
+          ],
+          "text": "Flow Cytometry"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 8.2,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c168706e-f0b3-4cf3-a252-75c03d16f4cb",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c168706e-f0b3-4cf3-a252-75c03d16f4cb",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "19151-0",
+              "display": "Specimen"
+            }
+          ],
+          "text": "Specimen"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueQuantity": {
+          "value": 8.2,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:01d434b6-a0a7-4577-b5c3-1bd303e2ca97",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "01d434b6-a0a7-4577-b5c3-1bd303e2ca97",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "11524-6",
+              "display": "Microscopic observation [Identifier] in Blood by Peripheral blood smear"
+            }
+          ],
+          "text": "Microscopic observation [Identifier] in Blood by Peripheral blood smear"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-10T16:15:00Z",
+        "valueString": "Department of Pathology And Lab Medicine"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:868a99c8-248e-44c7-b078-07c39b998092",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "868a99c8-248e-44c7-b078-07c39b998092",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "5902-2",
+              "display": "Prothrombin Time"
+            }
+          ],
+          "text": "Prothrombin Time"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T15:14:00Z",
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "sec"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:32d064d6-2482-4207-95cd-c1910be6c5ee",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "32d064d6-2482-4207-95cd-c1910be6c5ee",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "14979-9",
+              "display": "Partial Thromboplastin Time"
+            }
+          ],
+          "text": "Partial Thromboplastin Time"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T15:14:00Z",
+        "valueQuantity": {
+          "value": 3.2,
+          "unit": "sec"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:002b29e3-aeff-421e-8bff-22ce15e36a27",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "002b29e3-aeff-421e-8bff-22ce15e36a27",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T15:14:00Z",
+        "valueQuantity": {
+          "value": 1.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1972b16f-a124-4876-a49e-e8a5e1703e53",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1972b16f-a124-4876-a49e-e8a5e1703e53",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "19151-0",
+              "display": "Specimen"
+            }
+          ],
+          "text": "Specimen"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T15:14:00Z",
+        "valueQuantity": {
+          "value": 3.2,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ac410654-59ab-481a-88c0-417c34ea4703",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ac410654-59ab-481a-88c0-417c34ea4703",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:db4572e7-6bd7-4833-ae9c-c6db9c863643"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "5902-2",
+              "display": "Prothrombin Time"
+            }
+          ],
+          "text": "Prothrombin Time"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T16:05:00Z",
+        "valueQuantity": {
+          "value": 3.2,
+          "unit": "sec"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7936c12d-410b-47c2-a467-9ab90642e017",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "7936c12d-410b-47c2-a467-9ab90642e017",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:db4572e7-6bd7-4833-ae9c-c6db9c863643"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "77202-0",
+              "display": "Comments"
+            }
+          ],
+          "text": "Comments"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T16:05:00Z",
+        "valueQuantity": {
+          "value": 2.0,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a7c44f50-7fcd-4682-a182-9294e5071749",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a7c44f50-7fcd-4682-a182-9294e5071749",
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "reference",
+                "valueReference": {
+                  "reference": "urn:uuid:db4572e7-6bd7-4833-ae9c-c6db9c863643"
+                }
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "19151-0",
+              "display": "Specimen"
+            }
+          ],
+          "text": "Specimen"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "effectiveDateTime": "2023-01-02T16:05:00Z",
+        "valueQuantity": {
+          "value": 3.2,
+          "unit": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:116c62e1-1bc9-4407-9ae5-0cd518b87117",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "116c62e1-1bc9-4407-9ae5-0cd518b87117",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-10T16:15:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nIntegrated: MI, M2. M3\nGeneral Hematology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:50\nPatient Name\n: anonymous\nAge/Sex\n: 19 Yr/F\nAcceptance Date\n: 01-Jan-2023 19:48\nSample Type\n: Edta Blood\nLab No.\n: 230101CB125\nReporting Date\n: 10-Jan-2023 16:15\nReferred Doctor :\nPatient Type\n: IPD\nComplete Blood Count (CBC)/ Hemogram\nSPECIMEN: EDTA anticoagulated whole blood\nMETHOD:\nElectrical impedance and flow cytometry\n| Test                                                    |   Result | Ref. Range and Unit   |\n|---------------------------------------------------------|----------|-----------------------|\n| Hemoglobin                                              |    11.5  | 12 - 15 g/dl          |\n| HCT                                                     |    36.5  | 36 - 46 %             |\n| RBC                                                     |     3.9  | 3.8 - 4.8 x10^6 /\u03bcL   |\n| MCV                                                     |    93.6  | 83 - 101 fL           |\n| MCH                                                     |    29.5  | 27 - 32 pg            |\n| MCHC                                                    |    31.5  | 31.5 - 34.5 g/dL      |\n| Red Cell Distribution Width (RDW CV)                    |    14.8  | 11.6 - 14.0 %         |\n| Total Leukocyte Count(TLC) DIFFERENTIAL LEUKOCYTE COUNT |    14.32 | 4 - 10 x10^3 /\u03bcL      |\n| Neutrophils                                             |    85.8  | 40 - 80 %             |\n| Lymphocytes                                             |     8.2  | 20 - 40 %             |\n| Monocytes                                               |     5.7  | 2 - 10 %              |\n| Eosinophils                                             |     0.2  | 01 - 06 %             |\n| Basophil                                                |     0.1  | 00 - 01 %             |\n| ABSOLUTE LEUKOCYTE COUNT Absolute Neutrophil Count      |    12.29 | 2 - 7 x10^3 /\u00b5L       |\n| Absolute Lymphocyte Count                               |     1.17 | 1 - 3 x10^3 /\u00b5L       |\n| Absolute Monocyte Count                                 |     0.82 | 0.2 - 1.0 x10^3 /\u00b5L   |\n| Absolute Eosinophil Count                               |     0.03 | 0.02 - 0.5 x10^3 /\u03bcL  |\n| Absolute Basophil Count                                 |     0.01 | 0.02 - 0.10 x10^3 /\u03bcL |\n| Platelet Count                                          |   231    | 150 - 410 x10^3 /\u03bcL   |\nComments on PBS :\nDepartment of Pathology And Lab Medicine\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report12.pdf - Page 1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3c215f6a-6259-4948-ac07-9eb0cb3e5a38",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "3c215f6a-6259-4948-ac07-9eb0cb3e5a38",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-05T23:42:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nIntegrated: MI, M2. M3\nGeneral Hematology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 13:03\nPatient Name\n: anonymous\nAge/Sex\n: 53 Yr/F\nAcceptance Date\n: 01-Jan-2023 19:47\nSample Type\n: Edta Blood\nLab No.\n: 230101CB121\nReporting Date\n: 05-Jan-2023 23:42\nReferred Doctor :\nPatient Type\n: IPD\nComplete Blood Count (CBC)/ Hemogram\n| SPECIMEN: EDTA anticoagulated whole blood         | METHOD:   | Electrical impedance and flow cytometry   |\n|---------------------------------------------------|-----------|-------------------------------------------|\n| Test                                              | Result    | Ref. Range and Unit                       |\n| Hemoglobin                                        | 9.5       | 12 - 15 g/dl                              |\n| HCT                                               | 28.6      | 36 - 46 %                                 |\n| RBC                                               | 3.49      | 3.8 - 4.8 x10^6 /\u03bcL                       |\n| MCV                                               | 81.9      | 83 - 101 fL                               |\n| MCH                                               | 27.2      | 27 - 32 pg                                |\n| MCHC                                              | 33.2      | 31.5 - 34.5 g/dL                          |\n| Red Cell Distribution Width (RDW CV)              | 17.2      | 11.6 - 14.0 %                             |\n| Total Leukocyte Count(TLC) DIFFERENTIAL LEUKOCYTE | 10.98     | 4 - 10 x10^3 /\u03bcL                          |\n| COUNT (DLC)                                       |           |                                           |\n| Neutrophils                                       | 81.4      | 40 - 80 %                                 |\n| Lymphocytes                                       | 16.4      | 20 - 40 %                                 |\n| Monocytes                                         | 2.0       | 2 - 10 %                                  |\n| Eosinophils                                       | 0.1       | 01 - 06 %                                 |\n| Basophil                                          | 0.1       | 00 - 01 %                                 |\n| ABSOLUTE LEUKOCYTE COUNT                          | 8.94      |                                           |\n| Absolute Neutrophil Count                         | 1.80      | 2 - 7 x10^3 /\u00b5L 1 - 3 x10^3 /\u00b5L           |\n| Absolute Lymphocyte Count Absolute Monocyte Count |           | 0.2 - 1.0 x10^3 /\u00b5L                       |\n| Absolute Eosinophil Count                         | 0.22      | 0.02 - 0.5 x10^3 /\u03bcL                      |\n| Absolute Basophil Count                           | 0.01 0.01 | 0.02 - 0.10 x10^3 /\u03bcL                     |\n| Platelet Count                                    | 345       | 150 - 410 x10^3 /\u03bcL                       |\nComments on PBS :\nDepartment of Pathology And Lab Medicine\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report12.pdf - Page 2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "a4f90c9f-c5c7-4bb9-987a-95c57b7ea76f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-10T16:15:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nIntegrated: MI, M2. M3\nGeneral Hematology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 13:00\nPatient Name\n: anonymous\nAge/Sex\n: 58 Yr/F\nAcceptance Date\n: 01-Jan-2023 17:01\nSample Type\n: Edta Blood\nLab No.\n: 230101CB110\nReporting Date\n: 10-Jan-2023 16:15\nReferred Doctor :\nPatient Type\n: IPD\nComplete Blood Count (CBC)/ Hemogram\n| SPECIMEN: EDTA anticoagulated whole blood               | METHOD:   | Electrical impedance and flow cytometry   |\n|---------------------------------------------------------|-----------|-------------------------------------------|\n| Test                                                    | Result    | Ref. Range and Unit                       |\n| Hemoglobin                                              | 8.2       | 12 - 15 g/dl                              |\n| HCT                                                     | 26.4      | 36 - 46 %                                 |\n| RBC                                                     | 3.39      | 3.8 - 4.8 x10^6 /\u03bcL                       |\n| MCV                                                     | 77.9      | 83 - 101 fL                               |\n| MCH                                                     | 24.2      | 27 - 32 pg                                |\n| MCHC                                                    | 31.1      | 31.5 - 34.5 g/dL                          |\n| Red Cell Distribution Width (RDW CV)                    | 16.3      | 11.6 - 14.0 %                             |\n| Total Leukocyte Count(TLC) DIFFERENTIAL LEUKOCYTE COUNT | 7.47      | 4 - 10 x10^3 /\u03bcL                          |\n| (DLC)                                                   |           |                                           |\n| Neutrophils                                             | 77.7      | 40 - 80 %                                 |\n| Lymphocytes                                             | 14.3      | 20 - 40 %                                 |\n| Monocytes                                               | 7.6       | 2 - 10 %                                  |\n| Eosinophils                                             | 0.4       | 01 - 06 %                                 |\n| Basophil                                                | 0.0       | 00 - 01 %                                 |\n| ABSOLUTE LEUKOCYTE COUNT                                |           |                                           |\n| Absolute Neutrophil Count                               | 5.80      | 2 - 7 x10^3 /\u00b5L                           |\n| Absolute Lymphocyte Count                               | 1.07      | 1 - 3 x10^3 /\u00b5L                           |\n| Absolute Monocyte Count                                 | 0.57      | 0.2 - 1.0 x10^3 /\u00b5L                       |\n| Absolute Eosinophil Count                               | 0.03      | 0.02 - 0.5 x10^3 /\u03bcL                      |\n| Absolute Basophil Count                                 | 0.00      | 0.02 - 0.10 x10^3 /\u03bcL                     |\n| Platelet Count                                          | 289       | 150 - 410 x10^3 /\u03bcL                       |\nComments on PBS :\nDepartment of Pathology And Lab Medicine\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report12.pdf - Page 3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "8c485fd4-d2c9-4e9c-89fa-87bff8c0fa16",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-02T15:14:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nIntegrated: MI, M2. M3\nGeneral Hematology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:57\nPatient Name\n: anonymous\nAge/Sex\n: 39 Yr/F\nAcceptance Date\n: 01-Jan-2023 14:48\nSample Type\n: 3.2 Citrated Plasma\nLab No.\n: 230101AP015\nReporting Date\n: 02-Jan-2023 15:14\nReferred Doctor :\nPatient Type\n: IPD\nActivated Partial Thromboplastin Time (APTT)\nSPECIMEN:\n3.2 % citrated plasma\nMETHOD:\nCoagulation, optical detection method\nCLINICAL DETAILS:\nTest\nResult\nRef. Range and Unit\nActivated Partial Thromboplastin Time (APTT)\n> 180\n23.2 - 32.4 \u00a0 sec\nTest repeated twice. Kindly correlate clinically\nComments:\n1.Prothrombin time is measure of the integrity of the extrinsic and common pathways of the coagulation cascade. PT is used for monitoring oral\u00a0 anticoagulation therapy, evaluation of liver function and coagulation\u00a0 disorders especially involving extrinsic pathway.\n2.Recommended therapeutic range: INR 2.0-3.0 - treatment of venous thrombosis and pulmonary embolism, prevention of systemic embolism, hypercoagulable state, atrial fibrillation, etc. INR 2.5-3.5 - mechanical prosthetic valves, systemic recurrent emboli etc.\n3.APTT \u00a0is measure of the intrinsic coagulation pathway as well as common pathway.\u00a0 APTT is widely used for monitoring unfractionated heparin therapy, however it is affected by number of variables not related to heparin. ********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nDepartment of Pathology And Lab Medicine\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report12.pdf - Page 4"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:46ee1cff-c8c0-4d32-9799-1e769b2864a7",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "46ee1cff-c8c0-4d32-9799-1e769b2864a7",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-06T09:54:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nInvestigation\nResult\nUnit\nRef. Range\nBlood Group\nB\nRH Type\nPositive\nNote: All Blood Groupings are screening tests only. Blood Transfusion should be done after through Blood group confirmation by cell and serum grouping and cross-matching by AHG to avoid untoward reaction.\nComments:\nDepartment of Transfusion Medicine And Blood Bank\nT M B B\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 11:17\nPatient Name\n: anonymous\nAge/Sex\n: 17 Yr/M\nAcceptance Date\n: 01-Jan-2023 13:58\nSample Type\n: Blood\nLab No.\n: 0101BG0010\nReporting Date\n: 06-Jan-2023 09:54\nReferred Doctor :\nPatient Type\n: IPD\nComments:\n********** END OF THE REPORT **********\nAll reports need clinical correlation. Kindly discuss if necessary. No part of the report can be reproduced without written permission of the department.\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nCDAC\nCOMPUTING",
+              "title": "Extracted text from Copy of Copy of report12.pdf - Page 5"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:db4572e7-6bd7-4833-ae9c-c6db9c863643",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "db4572e7-6bd7-4833-ae9c-c6db9c863643",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "date": "2023-01-02T16:05:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:5b2cd651-bb4a-442a-a447-4a7c54260751"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nIntegrated: MI, M2. M3\nGeneral Hematology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 01-Jan-2023 12:57\nPatient Name\n: anonymous\nAge/Sex\n: 39 Yr/F\nAcceptance Date\n: 01-Jan-2023 14:48\nSample Type\n: 3.2 Citrated Plasma\nLab No.\n: 230101PT026\nReporting Date\n: 02-Jan-2023 16:05\nReferred Doctor :\nPatient Type\n: IPD\nProthrombin Time (PT-INR)\nSPECIMEN:\n3.2 % citrated plasma\nMETHOD:\nCoagulation, optical detection method\nCLINICAL DETAILS:\nTest\nResult\nRef. Range and Unit\nProthrombin time (PT) International Normalised Ratio (INR)\n11.5\n09.6 - 12.2 \u00a0 sec\n1.2\nComments:\nProthrombin time is measure of the integrity of the extrinsic and common pathways of the coagulation cascade. PT is used for monitoring oral anticoagulation therapy, evaluation of liver function and coagulation\u00a0 disorders especially involving extrinsic pathway.\nRecommended therapeutic range: INR 2.0-3.0 - treatment of venous thrombosis and pulmonary embolism, prevention of systemic embolism, hypercoagulable state, atrial fibrillation, etc. INR 2.5-3.5 - mechanical prosthetic valves, systemic recurrent emboli etc.\nAPTT \u00a0is measure of the intrinsic coagulation pathway as well as common pathway.\u00a0 APTT is widely used for monitoring unfractionated heparin therapy, however it is affected by number of variables not related to heparin.\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nDepartment of Pathology And Lab Medicine\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report12.pdf - Page 6"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:10206ede-6a9f-4960-a37d-f57a9f34fb02",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "10206ede-6a9f-4960-a37d-f57a9f34fb02",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:5e7662a6-89aa-42e5-85c3-87bdc590b2c9"
+        },
+        "issued": "2023-01-10T16:15:00Z",
+        "result": [
+          {
+            "reference": "urn:uuid:d9fe49d6-1db2-4207-8d7e-35ce4901fcef"
+          },
+          {
+            "reference": "urn:uuid:d5a9a9fc-abf6-4b68-a32d-e831353364f6"
+          },
+          {
+            "reference": "urn:uuid:e9880fb8-75d1-48a1-8fa3-1b4a7adc2cd1"
+          },
+          {
+            "reference": "urn:uuid:445235e6-086b-4bd8-9635-a9c2f00de7dc"
+          },
+          {
+            "reference": "urn:uuid:edd0a141-6cd3-4e3b-a560-818747a79dd3"
+          },
+          {
+            "reference": "urn:uuid:3444e785-bba7-4d4c-ad46-03651b3d65c6"
+          },
+          {
+            "reference": "urn:uuid:76f7bed5-7e4a-40a3-ba4e-bb145fa7552f"
+          },
+          {
+            "reference": "urn:uuid:92a82438-76cb-450a-8a05-de4864eab302"
+          },
+          {
+            "reference": "urn:uuid:fbbe21b6-838a-4255-b2ff-623c7a0010b7"
+          },
+          {
+            "reference": "urn:uuid:70dfbf8c-ec6d-4ae2-861d-bdee20155129"
+          },
+          {
+            "reference": "urn:uuid:3fd1aa5d-4d6e-4267-9876-360434ecf182"
+          },
+          {
+            "reference": "urn:uuid:98f8530f-b011-477d-a6b0-0c4d1d8fa8e1"
+          },
+          {
+            "reference": "urn:uuid:23f7e4ff-8882-46f3-900b-926dc4848443"
+          },
+          {
+            "reference": "urn:uuid:3bc180e4-3f3c-494d-8523-8b160ea4f640"
+          },
+          {
+            "reference": "urn:uuid:6026153b-487d-4939-be7a-c56151e9183a"
+          },
+          {
+            "reference": "urn:uuid:2349a58a-975a-498c-9145-b10d975bc861"
+          },
+          {
+            "reference": "urn:uuid:c168706e-f0b3-4cf3-a252-75c03d16f4cb"
+          },
+          {
+            "reference": "urn:uuid:01d434b6-a0a7-4577-b5c3-1bd303e2ca97"
+          },
+          {
+            "reference": "urn:uuid:868a99c8-248e-44c7-b078-07c39b998092"
+          },
+          {
+            "reference": "urn:uuid:32d064d6-2482-4207-95cd-c1910be6c5ee"
+          },
+          {
+            "reference": "urn:uuid:002b29e3-aeff-421e-8bff-22ce15e36a27"
+          },
+          {
+            "reference": "urn:uuid:1972b16f-a124-4876-a49e-e8a5e1703e53"
+          },
+          {
+            "reference": "urn:uuid:ac410654-59ab-481a-88c0-417c34ea4703"
+          },
+          {
+            "reference": "urn:uuid:7936c12d-410b-47c2-a467-9ab90642e017"
+          },
+          {
+            "reference": "urn:uuid:a7c44f50-7fcd-4682-a182-9294e5071749"
+          }
+        ]
+      }
+    }
+  ]
+}

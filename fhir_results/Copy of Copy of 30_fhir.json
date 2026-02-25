@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "cb65c75c-600b-4a48-943d-6d1cd79b7c33"
+  },
+  "type": "document",
+  "timestamp": "2023-03-26T17:54:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:a3e759f5-fa5b-413f-a014-81f6cdca91db",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "a3e759f5-fa5b-413f-a014-81f6cdca91db",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:133469f4-7b29-4054-9e1c-cd4ba8fc1698"
+        },
+        "date": "2023-03-26T17:54:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:a98fc235-7d2d-48b6-8466-580ad861709f"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:848914e9-821a-47d5-a31c-cc2fa6816489"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a98fc235-7d2d-48b6-8466-580ad861709f",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "a98fc235-7d2d-48b6-8466-580ad861709f",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:133469f4-7b29-4054-9e1c-cd4ba8fc1698",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "133469f4-7b29-4054-9e1c-cd4ba8fc1698",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:848914e9-821a-47d5-a31c-cc2fa6816489",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "848914e9-821a-47d5-a31c-cc2fa6816489",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:133469f4-7b29-4054-9e1c-cd4ba8fc1698"
+        },
+        "date": "2023-03-26T17:54:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:a98fc235-7d2d-48b6-8466-580ad861709f"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:a98fc235-7d2d-48b6-8466-580ad861709f"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Pediatric Surgery\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                                    | Age/Gender: 7.9 Yr/M                 |\n|----------------------------------|----------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Pediatric Surgery (Ped Sx Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: Pedia Sx 3 C 4             | Room/Bed: 3 C 4 Ward/ 3 C 4 Pae4                   | Patient Category: Ayushman           |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                      | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                 | State/Country India                  |\n| D.O.A. : 26-Mar-2023 17:54       | D.O.D. : 04-Apr-2023                               | D.O. Print Report: 08-Feb-2026 15:28 |\nFINAL DIAGNOSIS:\nHIRSCHPRUNG DISEASE\nOPERATION PERFORMED:\nTRANSVERSE COLOSTOMY WITH RECTAL BIOPSY  On  28-Mar-2023\nOPERATIVE FINDINGS: OT NOTES:\nOPERATION PERFORMED: RIGHT TRANSVERSE COLOSTOMY   RECTAL BIOPSY\nSURGEON: DR SONALI       ASSISTANT: DR REVANTH       ANAESTHESIA: DR MUSSAVIR\nPROCEDURE:\nUNDER AAP, IN SUPINE POSITION, RIGHT UPPER TRANSVERSE INCION GIVEN AND INCISION DEEPENED BY LAYERS AND ENTERED INTO PERITONEAL CAVITY. RIGHT TRANSVERSE COLON IDENTIFIED AND BROUGHT OUT AS STOMA. FASCIAL FIXATION DONE WITH 3-0 PDS. SPUR CONSTRUCTION DONE AND STOMA MATURATION DONE WITH 4-0 PDS. PATIENT SHIFTED TO LITHOTOMY POSITION. FULL THICKNESS RECTAL BIOPSY TAKEN AND MUCOSAL DEFECT CLOSED WITH 2-0 PDS. HEMOSTASIS ACHIEVED. RECTAL PACK KEPT.\nCHIEF COMPLAINTS:\nABDOMINAL DISTENTION\nCONSTIPATION\nHISTORY OF PRESENT ILLNESS: ACCORDING TO PATIENT ATTENDER, PATIENT HAS H/O PASSING DELAYED MECONIUM AFTER BIRTH.\nHE HAS H/O OF CHRONIC CONSTIPATION RELIEVED WITH ENEMA SINCE BIRTH A/W ABDOMINAL DISTENTION SINCE BIRTH.\nEXAMINATION FINDINGS :\nGENERAL:\nPR: 95/M          TEMP: 98.2F\nRR: 24/MWEIGHT : 12.2 KG\nNo Pallor, No Cyanosis, No Clubbing, No Generalised LNE, No Generalised Edema\nCNS:  WNL                                               CVS: S1S2 HEARD\nRS: BL AIRENTRY PRESENT\nPA: DISTENDED, NO TENDERNESS PR FECAL STAIN PRESENT\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nINVESTIGATION DETAILS:\nRequisition Date\nTest Name\nParameter Name\nResult\nRef Range & Unit\n26-Mar-2023 18:12\nBLOOD GROUPING\nABO and RhD\nBlood Group\nB\n-\nNote\nRefer Reports*\n-\nRH Type\nPositive\n-\n*Refer Lab Reports for details.\nOTHER INVESTIGATIONS: 1.TAB CEFIXIME 80 MG PO BD X2 DAYS\n2.TAB PCM 250MG PO SOS\n3.KEEP LOCAL AREA CLEAN AND MOIST\n4.CONTINUE  STOMA CARE\n  APPLY ZINC OXIDE CREAM AROUND THE SURROUNDING SKIN OF STOMA\nHOSPITAL COURSE: PT ADMITTED WITH FEATURES SUGGESTIVE  OF HIRSCHPRUNG'S DISEASE. HE UNDERWENT RIGHT TRANSVERSE COLOSTOMY WITH RECTAL BIOPSY ON 28/3/23. POST OPERATIVE PERIOD WAS UNEVENTFUL. STOMA HEALTHY AND FUNCTIONAL. BIOPSY REPORT AWAITED. PATIENT IS HENCE BEING DISCHARGED WITH FOLLOWING ADVICE AND ASKED TO FOLLOW UP IN PAEDIATRIC SURGERY OPD WITH WITH BIOPSY REPORT\nCONDITION AT DISCHARGE: PATIENT IS HEMODYNAMICALLY STABLE. PASSED URINE STOOLS. TOLERATING ORALS. STOMA HEALTHY, FUNCTIONAL.\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 11-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE :\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of 30.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "e18d4ea0-2953-49f9-96e3-853d8750dd2c"
+  },
+  "type": "document",
+  "timestamp": "2023-04-02T03:51:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:f9de556c-ce63-4c31-8f4b-75e95e4952b5",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "f9de556c-ce63-4c31-8f4b-75e95e4952b5",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:20e60057-2a64-4a17-90f4-cfaccfd5d6c1"
+        },
+        "date": "2023-04-02T03:51:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:73890b5f-cff3-4ac0-b239-a34e4481ba87"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:7879593b-ee8f-4ae4-81a8-fbb031a1f2a9"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:73890b5f-cff3-4ac0-b239-a34e4481ba87",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "73890b5f-cff3-4ac0-b239-a34e4481ba87",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:20e60057-2a64-4a17-90f4-cfaccfd5d6c1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "20e60057-2a64-4a17-90f4-cfaccfd5d6c1",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7879593b-ee8f-4ae4-81a8-fbb031a1f2a9",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "7879593b-ee8f-4ae4-81a8-fbb031a1f2a9",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:20e60057-2a64-4a17-90f4-cfaccfd5d6c1"
+        },
+        "date": "2023-04-02T03:51:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:73890b5f-cff3-4ac0-b239-a34e4481ba87"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:73890b5f-cff3-4ac0-b239-a34e4481ba87"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Obstetrics And Gynaecology Discharge Summary\n| CR No.: anonymous                | Name: anonymous                                          | Age/Gender: 23.8 Yr/F                |\n|----------------------------------|----------------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Obstetrics And Gynaecology (Obs Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: 1 B 1 Female Ward          | Room/Bed: 1 B 1 Female Room/ 1 B 1 Bed 14                | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                            | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                       | State/Country India                  |\n| D.O.A. : 02-Apr-2023 03:51       | D.O.D. : 04-Apr-2023                                     | D.O. Print Report: 08-Feb-2026 15:07 |\nPROVISIONAL DIAGNOSIS:\n21 YR/PRIMI/41 WEEK POG/THROMBOCYTOPENIA(PLT-56K)\nFINAL DIAGNOSIS:\n21 YR/P1L1/POD 2 OF EMERGENCY LSCS I/V/O GRADE 2 MSL\nOPERATION PERFORMED:\nEMERGENCY LSCS I/V/O GRADE 2 MSL IN EARLY LABOUR On  02-Apr-2023\nSURGEONS: DR TULIKA\nASSISTANT SURGEONS/SENIOR RESIDENTS: DR CHETAN, DR ANUSHKA\nOPERATIVE FINDINGS: UNDER ADEQUATE SPINAL ANAESTHESIA, PFANNENSTIAL INSCISION GIVEN. ABDOMEN OPENED IN LAYERS LUS WAS IDENTIFIED, A SMALL NICK WAS GIVEN AT LUS AND EXTENDED BILATERALLY.LIQUOR WAS CLEAR AND ADEQUATE AMOUNT WAS NOTED.  TERM/ALIVE /MALE  BABY WEIGHING 3.315KG AT 5:44 PM ON 02/04/23  . BABY CRIED IMMEDIATELY AFTER BIRTH. PLACENTA AND MEMBRANES DELIVERED COMPLETELY. B/L TUBES AND OVARIES WERE NORMAL. INTRAOP BLOOD LOSS- 700 ML. BABY WAS BREASTFED WITHIN 1 HOUR AFTER DELIVERY\nCHIEF COMPLAINTS:\n21 YR/PRIMI/41 WEEK POG/THROMBOCYTOPENIA(PLT-56K) WITH CHIEF COMPLAIN OF PAIN IN ABDOMEN SINCE 1 AM  AND BLEEDING PV SINCE 10 AM OF 1.4.2023\nHISTORY OF PRESENT ILLNESS: 21 YR/PRIMI/41 WEEK POG/THROMBOCYTOPENIA(PLT-56K) WITH CHIEF COMPLAIN OF PAIN IN ABDOMEN SINCE 1 AM  AND BLEEDING PV SINCE 10 AM OF 1.4.2023.. ON CLINICAL EXAMINATION, SHE WAS VITALLY STABLE, PERCEIVEING FETAL MOVEMENTS WELL, HER NST WAS REACTIVE AT THE TIME OF ADMISSION.\nINVESTIGATION DETAILS:\n| Requisition Date   | Test Name                  | Parameter Name            | Result         | Ref Range & Unit      |\n|--------------------|----------------------------|---------------------------|----------------|-----------------------|\n| 03-Apr-2023 11:43  | COMPLETE BLOOD COUNT (CBC) | Comments on PBS           | Refer Reports* | -                     |\n|                    |                            | Absolute Basophil Count   | 0.01           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                    |                            | Absolute Eosinophil Count | 0.01           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                    |                            | Absolute Lymphocyte Count | 1.26           | 1 - 3 x10^3 /\u00b5L       |\n|                    |                            | Absolute Monocyte Count   | 1.14           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                    |                            | Absolute Neutrophil Count | 11.14          | 2 - 7 x10^3 /\u00b5L       |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBasophil 0.1 00 - 01 % Eosinophils 0.1 01 - 06 % HCT 35.1 36 - 46 % Hemoglobin 10.5 12 - 15 g/dl Lymphocites 9.3 20 - 40 % MCH 25.1 27 - 32 pg MCHC 29.9 31.5 - 34.5 g/dL MCV 83.8 83 - 101 fL Monocytes 8.4 2 - 10 % Neutrophils 82.1 40 - 80 % Platelet Count 120 150 - 410 x10^3 /\u03bcL RBC 4.19 3.8 - 4.8 x10^6 /\u03bcL Red Cell Distribution Width (RDW CV) 16.6 11.6 - 14.0 % Total Leukocyte Count(TLC) 13.56 4 - 10 x10^3 /\u03bcL 02-Apr-2023 16:44 Comments on PBS Refer Reports* -Absolute Basophil Count 0.01 0.02  - 0.10 x10^3 /\u03bcL Absolute Eosinophil Count 0.05 0.02 - 0.5 x10^3 /\u03bcL Absolute Lymphocyte Count 2.30 1 - 3 x10^3 /\u00b5L Absolute Monocyte Count 1.10 0.2 - 1.0 x10^3 /\u00b5L Absolute Neutrophil Count 10.36 2 - 7 x10^3 /\u00b5L Basophil 0.1 00 - 01 % Eosinophils 0.4 01 - 06 % HCT 40.5 36 - 46 % Hemoglobin 11.6 12 - 15 g/dl Lymphocites 16.6 20 - 40 % MCH 25.3 27 - 32 pg MCHC 28.6 31.5 - 34.5 g/dL MCV 88.4 83 - 101 fL Monocytes 8.0 2 - 10 % Neutrophils 74.9 40 - 80 % Platelet Count 75 150 - 410 x10^3 /\u03bcL RBC 4.58 3.8 - 4.8 x10^6 /\u03bcL Red Cell Distribution Width (RDW CV) 17.1 11.6 - 14.0 % Total Leukocyte Count(TLC) 13.82 4 - 10 x10^3 /\u03bcL 02-Apr-2023 04:05 ACTIVATED PARTIAL THROMBOPLASTIN TIME (APTT) APTT HEADER 23.0 23.2 - 32.4  sec APTT NOTE Refer Reports* -\nC-DAC: Centre for Development of Advanced Computing\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh,\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                             | clinical details                     | --             | -                     |\n|-----------------------------|--------------------------------------|----------------|-----------------------|\n| BLOOD GROUPING ABO and RhD  | Blood Group                          | A              | -                     |\n|                             | Note                                 | Refer Reports* | -                     |\n|                             | RH Type                              | Positive       | -                     |\n| COMPLETE BLOOD              | Comments on PBS                      | Refer Reports* | -                     |\n|                             | Absolute Basophil Count              | 0.01           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                             | Absolute Eosinophil Count            | 0.05           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                             | Absolute Lymphocyte Count            | 2.37           | 1 - 3 x10^3 /\u00b5L       |\n|                             | Absolute Monocyte Count              | 0.87           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                             | Absolute Neutrophil Count            | 10.11          | 2 - 7 x10^3 /\u00b5L       |\n|                             | Basophil                             | 0.1            | 00 - 01%              |\n|                             | Eosinophils                          | 0.4            | 01 - 06%              |\n|                             | HCT                                  | 38.1           | 36 - 46%              |\n|                             | Hemoglobin                           | 11.3           | 12 - 15 g/dl          |\n|                             | Lymphocites                          | 17.7           | 20 - 40%              |\n|                             | MCH                                  | 24.7           | 27 - 32 pg            |\n|                             | MCHC                                 | 29.7           | 31.5 - 34.5 g/dL      |\n|                             | MCV                                  | 83.2           | 83 - 101 fL           |\n|                             | Monocytes                            | 6.5            | 2 - 10%               |\n|                             | Neutrophils                          | 75.3           | 40 - 80%              |\n|                             | Platelet Count                       | 62             | 150 - 410 x10^3 /\u03bcL   |\n|                             | RBC                                  | 4.58           | 3.8 - 4.8 x10^6 /\u03bcL   |\n|                             | Red Cell Distribution Width (RDW CV) | 16.6           | 11.6 - 14.0%          |\n|                             | Total Leukocyte Count(TLC)           | 13.41          | 4 - 10 x10^3 /\u03bcL      |\n| HBsAg (ELISA)               | Interpretation                       | Non Reactive   | -                     |\n|                             | Result                               | Refer Reports* | -                     |\n| HCV Antibody (ELISA)        | Interpretation                       | Non Reactive   | -                     |\n|                             | Result                               | Refer Reports* | -                     |\n| LACTATE DEHYDROGENASE (LDH) | LDH                                  | 182            | 230 - 460 u/l         |\n| Liver Fuction Test          | (Lft)Albumin                         | 3.6            | 4.0 - 5.0 gm/dL       |\n|                             | ALP                                  | 389            | 44 - 107 U/L          |\n|                             | ALT                                  | 15             | 7 - 41 U/L            |\n|                             | AST                                  | 30             | 12 - 38 U/L           |\n|                             | Direct Bilirubin                     | 0.21           | 0.1 - 0.4 mg/dl       |\n|                             | globulin                             | 3.6            | 2.0 - 3.5 gm/dL       |\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                           | Indirect Bilirubin                   | 0.98   | 0.20 - 0.90 mg/dl   |\n|---------------------------|--------------------------------------|--------|---------------------|\n| PLATELET COUNT            | Total Protein Footer                 | 7.2    | 6.7 - 8.6 gm/dL -   |\n|                           | Comments on PBS                      | 62     | 150 - 410 x10^3/\u00b5L  |\n| PROTHROMBIN TIME (PT INR) | clinical details                     | --     | -                   |\n|                           | International Normalised Ratio (INR) | 0.9    | - 09.6 - 12.2 sec   |\n|                           | PT INR Header                        | 8.7    |                     |\n*Refer Lab Reports for details.\nOTHER INVESTIGATIONS: BLOOD GRP-A POSITIVE\nUSG(26/12/2022)-SINGLE LIVE INTRAUTERINE FETUS IN CEPHALIC PRESENTATION CORRESPONDING TO 28 WEEK 3DAY.USG EDD-\n17/3/2023\nHOSPITAL COURSE: 21 YR/PRIMI/41 WEEK POG/THROMBOCYTOPENIA(PLT-56K) WITH CHIEF COMPLAIN OF PAIN IN ABDOMEN SINCE 1 AM  AND BLEEDING PV SINCE 10 AM OF 1.4.2023.. ON CLINICAL EXAMINATION, SHE WAS VITALLY STABLE, PERCEIVEING FETAL MOVEMENTS WELL, HER NST WAS REACTIVE AT THE TIME OF ADMISSION.CONDITION AT ADMISSION-\nGENERAL EXAMINATION:\nPR: 78/MIN, BP: 110/70 MMHG, RR: 14/MIN, TEMP: AFEBRILE\nPALLOR/ ICTERUS/CYANOSIS/CLUBBING/ EDEMA- ABSENT\nSYSTEMIC EXAMINATION: CVS: S1 S2 , RS- B/L AIR ENTRY\nP/A- UTERUS 32 WEEK,CEPHALIC,FHR-138/MIN,SFH-33 CM\nP/S- OS OPEN. SHOW\nP/V- CERVIX SOFT, CENTRAL OS,IFL 50% EFFACED VERTEX PPT,MEMBRANE ,PELVIS ADEQUATE SHE WAS TRANSFUSED WITH 4 UNITS OF RDP AND CONSENT FOR INDUCTION OF LABOUR WAS TAKEN.. STRICT FETOMATERNAL SURVELLIENCE WAS DONE.POST INDUCTION WAS NON REACTIVE AND THE PATIENT WAS TAKEN FOR EMERGENCY LSCS I/V/O GRADE 2 MSL IN EARLY LABOUR.SHE DELIVERED A TERM ALIVE MALE WEIGHING 3.315KG AT 5:44 PM ON 02/04/23 BY VERTEX PRESENTATION. BABY CRIED IMMEDIATELY AFTER BIRTH.PLACENTA AND MEMBRANE DELIVERED COMPLETELY. , EPISIOTOMY WAS REPAIRED.  NO INTRAPARTUM COMPLICATIONS NOTED. MOTHER AND BABY PASSED STOOL AND URINE. BOTH MOTHER AND BABY\nARE FAIR AT PRESENT HENCE BEING DISCHARGED WITH ADVISE TO FOLLOWUP IN GYNEAC OPD.\nMODE OF DELIVERY: EMERGENCY LSCS I/V/O GRADE 2 MSL IN EARLY LABOUR\nDATE OF DELIVERY: 2/4/2023\nOUTCOME: A TERM ALIVE MALE WEIGHING 3.31KG AT 5:44 PM ON 02/04/23 BY VERTEX PRESENTATION\nDELIVERY DETAILS: PATIENT IN DORSAL LITHOTOMY POSITION. WITH GOOD UTERINE CONTRACTION.SHE DELIVERED A TERM ALIVE MALE WEIGHING  3.315KG AT 5:44 PM ON 02/04/23 BY VERTEX PRESENTATION.BABY CRIED IMMEDIATELY AT BIRTH. CORD CLAMPED AND CUT AND BABY HANDED OVER TO PEDIATRICIAN.  PLACENTA AND MEMBRANES DELIVERED OUT COMPLETELY. EPISIOTOMY WOUND WAS REPAIRED. NO INTRAPARTUM AND POSTPARTUM COMPLICATIONS NOTED. BABY WAS BREASTFED WITHIN 1 HR AFTER BIRTH .\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nCONDITION AT DISCHARGE: GENERAL EXAMINATION:\nPR: 78/MIN, BP: 110/70 MMHG, RR: 14/MIN, TEMP: AFEBRILE\nPALLOR/ ICTERUS/CYANOSIS/CLUBBING/ EDEMA- ABSENT\nSYSTEMIC EXAMINATION: CVS: S1 S2 , RS- B/L AIR ENTRY P/A- SOFT, NON TENDER, UTERUS CONTRACTED. L/E: NO ACTIVE BLEEDING, LOCHIA HEALTHY B/L BREASTS:  SOFT, NON TENDER STOOL AND URINE PASSED.\nADVICE ON DISCHARGE:\nFOR  MOTHER:\n\u2022HIGH PROTEIN DIET\n\u2022TAB. CEFIXIME 200 MG BD FOR 2 DAYS\n\u2022TAB. PANTOP 40MG OD ES FOR 2 DAYS\n\u2022TAB. PCM 500MG  PO TDS X 2 DAYS F/B SOS IF PAIN\n\u2022T. IRON   FOLIC ACID OD FOR 3 MONTHS\n\u2022T. CALCIUM   VITAMIN D BD FOR 6 MONTHS\n\u2022MAINTAIN PERINEAL HYGIENE\n\u2022PRACTICE KEGEL EXERCISES 2 SETS OF 25 EACH TWICE DAILY.\n\u2022SEXUAL ABSTINENCE FOR 6 WEEKS.\n\u2022AVOID SQUATTING, STRAINING, CROSSED LEG SITTING.\n\u2022HOME ISOLATION, WEAR MASK, SOCIAL DISTANCING, NO SOCIAL GATHERING, BE AT HOME.\nFOR BABY\nEXCLUSIVE BREASTFEEDING AND BURPING AFTER EACH FEED\nIMMUNISATION AS PER SCHEDULE\nCORD CARE/EYE CARE\nFOLLOW UP AS PER ADVICE OF PEDIATRICIAN\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 10-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : REVIEW IN GYNEC OPD AFTER 10 DAYS FOR SUTURE REMOVAL ON MONDAY/FRIDAY OR SOS IN CASE OF\nBLEEDING PV, SEVERE PAIN ABDOMEN, FOUL SMELLING DISCHARGE AND/OR FEVER, AND/OR BREAST PAIN.\nREVIEW IN AYUSH COVID-OPD I/C/O COLD ,COUGH, FEVER, BREATHING DIFFICULTY , BODY PAINS AND/OR DIARRHEA.\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of 4.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

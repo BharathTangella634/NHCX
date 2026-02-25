@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "f57c2b0d-d32b-4e5b-801a-7d1fbca9b4ee"
+  },
+  "type": "document",
+  "timestamp": "2023-03-17T19:38:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:de774bba-f04b-4e56-8c4b-60e627775695",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "de774bba-f04b-4e56-8c4b-60e627775695",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b8a5dab-9f28-4401-93ce-312557cc5c9a"
+        },
+        "date": "2023-03-17T19:38:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:b62807f4-abc0-41e7-8c64-381f53b70cda"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:959d236b-1f7f-41ec-a883-e905965cecb2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b62807f4-abc0-41e7-8c64-381f53b70cda",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "b62807f4-abc0-41e7-8c64-381f53b70cda",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4b8a5dab-9f28-4401-93ce-312557cc5c9a",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "4b8a5dab-9f28-4401-93ce-312557cc5c9a",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:959d236b-1f7f-41ec-a883-e905965cecb2",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "959d236b-1f7f-41ec-a883-e905965cecb2",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:4b8a5dab-9f28-4401-93ce-312557cc5c9a"
+        },
+        "date": "2023-03-17T19:38:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:b62807f4-abc0-41e7-8c64-381f53b70cda"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:b62807f4-abc0-41e7-8c64-381f53b70cda"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Orthopaedics\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                              | Age/Gender: 71.8 Yr/M                |\n|----------------------------------|----------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Orthopaedics (Ortho Unit 2) | Consultant/Faculty: anonymous        |\n| Ward: 2 A 3 Ward                 | Room/Bed: 2 A 3 Orthopaedics/ 2A3 Ortho 14   | Patient Category: Ayushman           |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                           | State/Country India                  |\n| D.O.A. : 17-Mar-2023 19:38       | D.O.D. : 08-Feb-2026                         | D.O. Print Report: 08-Feb-2026 15:38 |\nFINAL DIAGNOSIS:\nleft hip hemiarthroplasty o/c/o left neck of femur fracture with implant insitu with hip pain.\nOPERATION PERFORMED:\nIMPLANT REMOVAL   LEFT HIP CEMENT SPACE APPLICATION  On  31-Mar-2023\nSURGEONS: Dr Bikram Keshari Kar\nASSISTANT SURGEONS/SENIOR RESIDENTS: DR. ANUPAM , DR. SOMOK\nOPERATIVE FINDINGS: UNDER ALL APP, PATIENT IN RIGHT LATERAL POSITION , PAINTING AND DRAPING DONE . 12 CM INCISION ALONG PREVIOUS SCAR GIVEN SOUTH MOORE'S APPROACH USED . SUPERFICIAL DISSECTION DONE , HEMOSTATS ACHIEVED . IN DEEP DISSECTION PUS POCKET FOUND , PUS C/S SENT INTRAOPERATIVELY ALONG WITH RIM-- GRAM STAINING TO PATHOLOGY AND MICROBIOLOGY DEPARTMENT, TISSUE OBTAINED FOR FROZEN SECTION BIOPSY. PUS CELLS WITH PLENTY NEUTROPHILS FPUND IN R/M. PROSTHETIC HIP DISLOCATED. IMPLANT REMOVED ADEQUATE DEBRIDEMENT DONE OF ADJACENT TISSUE TILL FRESH TISSUE PLANES OBTAINED. METALLUSION ADVANCED TISSUE REMOVED. ACETABULAR CAVITY AND FEMORAL IM CANAL CURETTED WASH GIVEN WITH NS. CEMENT SPACER PREPARED USING TENS NAIL SIZE 3 WITH 40 GRAM BONE CEMENT 4 GM VANCOMYCIN IN PROPER CONTOUR. CEMENT SPACER IN SITU AND REDUCTION DONE. WOUND WASH GIVEN CLOSURE DONE OVER DRAIN,.\nCHIEF COMPLAINTS:\nPAIN AND DIFFICULTY IN WLKING SINCE 3 MONTHS ON LEFT HIP\nHISTORY OF PRESENT ILLNESS: Patient was apparently asymptomatic 3 months back following which patient complaints of pain, difficulty in walking and weight bearing. pain was insidious in onset gradually progressive aggravated with movement an weight bearing and relieved with rest. alleged history of self fall at home . k/c/o neck of femur fracture left side. patient was operated with hemiarthroplasty one year ago.\nEXAMINATION:\n02-Apr-2023\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nGeneral Physcial Examination\nLocal Examination\nleft hip\nskin -- surgical scar present for previous THR , swelling present , no scars fistula , draining sinus , tenderness present, active toe movement present. dpa and pta are palpable. range of motion at left hip is painful and restricted. rom at left knee and ankle normal.\nType\n80\nBlood Pressure\nSystolic\n130\nDiastolic\n90\nTemperature (in Fahrenheit)\nAfebrile\nClubbing\nNo\nJVP\nNormal\nPallor\nNo\nHydration\nNormal\nLymphadenopathy\nabsent\nEdema\nabsent\n80\nCyanosis\nabsent\nINVESTIGATION DETAILS:\nRequisition Date\nTest Name\nParameter Name\nResult\nRef Range & Unit\n02-Apr-2023 07:00\nCalcium\nCalcium\n8.0\n08.7 - 10.4 mg/dL\nElectrolyte\nChloride\n107\n102 - 109 mmol/L\nPotassium\n4.25\n3.5 - 5 mmol/L\nSodium\n138\n135 - 145 mmol/L\nIONISED CALCIUM\nIonized Calcium\n1.13\n1.12 - 1.32 mmol/L\nMagnesium\nMagnesium\n2.00\n1.7 - 2.7 mg/dl\n01-Apr-2023 08:24\nBacterial Culture\nColony Count\n--\n-\nComments\n--\n-\nCulture Method\nAerobic -\nCulture Result\n-1\n-\nCulture Result Positive\nGrowth of Enterococcus faecalis after 24 hrs of aerobic incubation - 24 hrs -\nIncubation Period\nInterpretation\nRefer Reports* -\nMicroscopy\n-1\n-\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nMicroscopy Result\n--\n-\nNote\n--\n-\nOther Culture\n--\n-\nResult\nRefer Reports*\n-\nSpecimen\nTissue\n-\n31-Mar-2023 11:14\nGram Stain\nImpression\n--\n-\nResult\nMany pus cells, no bacteria seen.\n-\nSpecimen\nSwab\n-\nPus Culture and\nSensitivity\nColony Count\n--\n-\nComments\n--\n-\nCulture Method\nAerobic\n-\nCulture Result\n-1\n-\nCulture Result Positive\nGrowth Of Enterococcus Faecalis\nAfter 24 Hrs Of Aerobic Incubation\n-\nIncubation Period\n24 Hrs\n-\nInterpretation\nRefer Reports*\n-\nMicroscopy\n-1\n-\nMicroscopy Result\n--\n-\nNote\n--\n-\nOther Culture\n--\n-\nResult\nRefer Reports*\n-\nSpecimen\nPus\n-\n31-Mar-2023 08:08\nCOMPLETE BLOOD\nCOUNT (CBC)\nComments on PBS\nRefer Reports*\n-\nAbsolute Basophil Count\n0.01\n0.02 - 0.10 x10^3 /\u03bcL\nAbsolute Eosinophil Count\n0.08\n0.02 - 0.5 x10^3 /\u03bcL\nAbsolute Lymphocyte Count\n0.99\n1 - 3 x10^3 /\u00b5L\nAbsolute Monocyte Count\n0.31\n0.2 - 1.0 x10^3 /\u00b5L\nAbsolute Neutrophil Count\n1.29\n2 - 7 x10^3 /\u00b5L\nBasophil\n0.4\n00 - 01 %\nEosinophils\n3.0\n01 - 06 %\nHCT\n31.9\n40 - 50 %\nHemoglobin\n9.7\n13 - 17 g/dl\nLymphocites\n36.9\n20 - 40 %\nMCH\n28.7\n27 - 32 pg\nMCHC\n30.4\n31.5 - 34.5 g/dL\nMCV\n94.4\n83 - 101 fL\nMonocytes\n11.6\n2 - 10 %\nNeutrophils\n48.1\n40 - 80 %\nPlatelet Count\n74\n150 - 410 x10^3 /\u03bcL\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                   |                            | RBC                                  | 3.38           | 4.5 - 5.5 x10^6 /\u03bcL   |\n|-------------------|----------------------------|--------------------------------------|----------------|-----------------------|\n|                   |                            | Red Cell Distribution Width (RDW CV) | 16.0           | 11.6 - 14.0%          |\n|                   |                            | Total Leukocyte Count(TLC)           | 2.68           | 4 - 10 x10^3 /\u03bcL      |\n| 31-Mar-2023 00:44 |                            | Comments on PBS                      | Refer Reports* | -                     |\n|                   |                            | Absolute Basophil Count              | 0.00           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                   |                            | Absolute Eosinophil Count            | 0.08           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                   |                            | Absolute Lymphocyte Count            | 1.14           | 1 - 3 x10^3 /\u00b5L       |\n|                   |                            | Absolute Monocyte Count              | 0.13           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                   |                            | Absolute Neutrophil Count            | 1.17           | 2 - 7 x10^3 /\u00b5L       |\n|                   |                            | Basophil                             | 0.0            | 00 - 01%              |\n|                   |                            | Eosinophils                          | 3.2            | 01 - 06%              |\n|                   |                            | HCT                                  | 30.5           | 40 - 50%              |\n|                   |                            | Hemoglobin                           | 9.4            | 13 - 17 g/dl          |\n|                   |                            | Lymphocites                          | 45.2           | 20 - 40%              |\n|                   |                            | MCH                                  | 28.7           | 27 - 32 pg            |\n|                   |                            | MCHC                                 | 30.8           | 31.5 - 34.5 g/dL      |\n|                   |                            | MCV                                  | 93.3           | 83 - 101 fL           |\n|                   |                            | Monocytes                            | 5.2            | 2 - 10%               |\n|                   |                            | Neutrophils                          | 46.4           | 40 - 80%              |\n|                   |                            | Platelet Count                       | 66             | 150 - 410 x10^3 /\u03bcL   |\n|                   |                            | RBC                                  | 3.27           | 4.5 - 5.5 x10^6 /\u03bcL   |\n|                   |                            | Red Cell Distribution Width (RDW CV) | 15.9           | 11.6 - 14.0%          |\n|                   |                            | Total Leukocyte Count(TLC)           | 2.52           | 4 - 10 x10^3 /\u03bcL      |\n| 27-Mar-2023 22:05 | Rft                        | Chloride                             | 108            | 102 - 109 mmol/L      |\n|                   |                            | Creatinine                           | 1.11           | 0.9 - 1.3 mg/dl       |\n|                   |                            | Potassium                            | 3.84           | 3.5 - 5 mmol/L        |\n|                   |                            | Sodium                               | 139            | 135 - 145 mmol/L      |\n|                   |                            | Urea                                 | 25             | 15.0 - 39.0 mg/dl     |\n| 23-Mar-2023 07:21 | COMPLETE BLOOD COUNT (CBC) | Comments on PBS                      | Refer Reports* | -                     |\n|                   |                            | Absolute Basophil Count              | 0.01           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                   |                            | Absolute Eosinophil Count            | 0.16           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                   |                            | Absolute Lymphocyte Count            | 1.23           | 1 - 3 x10^3 /\u00b5L       |\n|                   |                            | Absolute Monocyte Count              | 0.38           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                   |                            | Absolute Neutrophil Count            | 1.84           | 2 - 7 x10^3 /\u00b5L       |\n|                   |                            | Basophil                             | 0.3            | 00 - 01%              |\n|                   |                            | Eosinophils                          | 4.4            | 01 - 06%              |\n|                   |                            | HCT                                  | 36.7           | 40 - 50%              |\n|                   |                            | Hemoglobin                           | 10.7           | 13 - 17 g/dl          |\nC-DAC: Centre for Development of Advanced Computing\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh,\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nLymphocites 34.0 20 - 40 % MCH 28.0 27 - 32 pg MCHC 29.2 31.5 - 34.5 g/dL MCV 96.1 83 - 101 fL Monocytes 10.5 2 - 10 % Neutrophils 50.8 40 - 80 % Platelet Count 110 150 - 410 x10^3 /\u03bcL RBC 3.82 4.5 - 5.5 x10^6 /\u03bcL Red Cell Distribution Width (RDW CV) 17.5 11.6 - 14.0 % Total Leukocyte Count(TLC) 3.62 4 - 10 x10^3 /\u03bcL 22-Mar-2023 11:16 Comments on PBS Refer Reports* -Absolute Basophil Count 0.01 0.02 - 0.10 x10^3 /\u03bcL Absolute Eosinophil Count 0.13 0.02 - 0.5 x10^3 /\u03bcL Absolute Lymphocyte Count 1.20 1 - 3 x10^3 /\u00b5L Absolute Monocyte Count 0.40 0.2 - 1.0 x10^3 /\u00b5L Absolute Neutrophil Count 1.58 2 - 7 x10^3 /\u00b5L Basophil 0.3 00 - 01 % Eosinophils 3.9 01 - 06 % HCT 33.7 40 - 50 % Hemoglobin 9.9 13 - 17 g/dl Lymphocites 36.1 20 - 40 % MCH 28.4 27 - 32 pg MCHC 29.4 31.5 - 34.5 g/dL MCV 96.8 83 - 101 fL Monocytes 12.0 2 - 10 % Neutrophils 47.7 40 - 80 % Platelet Count 65 150 - 410 x10^3 /\u03bcL RBC 3.48 4.5 - 5.5 x10^6 /\u03bcL Red Cell Distribution Width (RDW CV) 17.9 11.6 - 14.0 % Total Leukocyte Count(TLC) 3.32 4 - 10 x10^3 /\u03bcL Rft Chloride 109 102 - 109 mmol/L Creatinine 1.11 0.9 - 1.3 mg/dl Potassium 3.30 3.5 - 5 mmol/L Sodium 139 135 - 145 mmol/L Urea 23 15.0 - 39.0 mg/dl 18-Mar-2023 08:55 ACTIVATED PARTIAL THROMBOPLASTIN TIME (APTT) APTT HEADER 25.2 23.2 - 32.4  sec\nAPTT NOTE\nRefer Reports*\n-\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                                 | clinical details                     | --             | -                     |\n|---------------------------------|--------------------------------------|----------------|-----------------------|\n| BLOOD GROUPING                  | Blood Group                          | O              | -                     |\n| ABO and RhD                     | ABO and RhD                          | ABO and RhD    | ABO and RhD           |\n|                                 | Note                                 | Refer Reports* | -                     |\n|                                 | RH Type                              | Positive       | -                     |\n| COMPLETE BLOOD                  | Comments on PBS                      | Refer Reports* | -                     |\n|                                 | Absolute Basophil Count              | 0.02           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                                 | Absolute Eosinophil Count            | 0.16           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                                 | Absolute Lymphocyte Count            | 1.39           | 1 - 3 x10^3 /\u00b5L       |\n|                                 | Absolute Monocyte Count              | 0.37           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                                 | Absolute Neutrophil Count            | 1.93           | 2 - 7 x10^3 /\u00b5L       |\n|                                 | Basophil                             | 0.5            | 00 - 01%              |\n|                                 | Eosinophils                          | 4.1            | 01 - 06%              |\n|                                 | HCT                                  | 36.4           | 40 - 50%              |\n|                                 | Hemoglobin                           | 11.0           | 13 - 17 g/dl          |\n|                                 | Lymphocites                          | 35.9           | 20 - 40%              |\n|                                 | MCH                                  | 28.9           | 27 - 32 pg            |\n|                                 | MCHC                                 | 30.2           | 31.5 - 34.5 g/dL      |\n|                                 | MCV                                  | 95.8           | 83 - 101 fL           |\n|                                 | Monocytes                            | 9.6            | 2 - 10%               |\n|                                 | Neutrophils                          | 49.9           | 40 - 80%              |\n|                                 | Platelet Count                       | 75             | 150 - 410 x10^3 /\u03bcL   |\n|                                 | RBC                                  | 3.80           | 4.5 - 5.5 x10^6 /\u03bcL   |\n|                                 | Red Cell Distribution Width (RDW CV) | 18.0           | 11.6 - 14.0%          |\n|                                 | Total Leukocyte Count(TLC)           | 3.87           | 4 - 10 x10^3 /\u03bcL      |\n| ERYTHROCYTE                     | ESR                                  | Refer Reports* | -                     |\n| RATE (ESR)                      | RATE (ESR)                           | RATE (ESR)     | RATE (ESR)            |\n| HBsAg (ELISA)                   | Interpretation                       | Non Reactive   | -                     |\n|                                 | Result                               | Refer Reports* | -                     |\n| HCV Antibody (ELISA)            | Interpretation                       | Non Reactive   | -                     |\n|                                 | Result                               | Refer Reports* | -                     |\n| Liver Fuction Test (Lft)Albumin | Liver Fuction Test (Lft)Albumin      | 3.0            | 4.0 - 5.0 gm/dL       |\n|                                 | ALP                                  | 121            | 50 - 116 U/L          |\n|                                 | ALT                                  | 18             | 7 - 41 U/L            |\n|                                 | AST                                  | 42             | 12 - 38 U/L           |\n|                                 | Direct Bilirubin                     | 0.54           | 0.1 - 0.4 mg/dl       |\n|                                 | globulin                             | 4.4            | 2.0 - 3.5 gm/dL       |\n|                                 | Indirect Bilirubin                   | 1.06           | 0.20 - 0.90 mg/dl     |\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                           | Total Bilirubin Total Protein        | 1.60 7.4       | 0.3 - 1.3 mg/dl 6.7 - 8.6 gm/dL   |\n|---------------------------|--------------------------------------|----------------|-----------------------------------|\n| PROTHROMBIN TIME (PT INR) | clinical details                     | --             | -                                 |\n|                           | International Normalised Ratio (INR) | 1.2            | -                                 |\n|                           | PT INR Header                        | 12.1           | 09.6 - 12.2 sec                   |\n|                           | PT INR Note                          | Refer Reports* | -                                 |\n| Rft                       | Chloride                             | 108            | 102 - 109 mmol/L                  |\n|                           | Creatinine                           | 1.22           | 0.9 - 1.3 mg/dl                   |\n|                           | Potassium                            | 3.92           | 3.5 - 5 mmol/L                    |\n|                           | Sodium                               | 139            | 135 - 145 mmol/L                  |\n|                           | Urea                                 | 20             | 15.0 - 39.0 mg/dl                 |\n*Refer Lab Reports for details.\nOTHER INVESTIGATIONS: INJ CEFUROXIME 1.5GM IV BD\nINJ AMIKACIN 500MG BD\nInj PCM 1GM IV TDS\nTAB. PANTOP 40 MG OD\nTAB. CALCIUM  VIT D3 OD TAB\nTAB. MVBC OD TAB .\nVIT C 500 MG TDS\nINJ. TRANEXA 500 MG IV BD\nTAB. AMLODIPINE 5 MG OD\nTAB THYROXINE 50 mcg OD\nTAB S-ADENOSY L METHIONINE DISULPHATE TOSYLATE OD.\nSACHET MESOSALAZINE IN 1 GLASS OF WATER.\nCONDITION AT DISCHARGE: patient is hemiodynamically stable pod 2 dressing done. wound is dry and healthy.\nADVICE ON DISCHARGE:\nTAB. CEFUROXIME 500 MG BD X 5 DAYS\nTAB. ULTRACET 1 TAB BD X 7 DAYS.\nTAB. PANTOP 40 MG OD X 7 DAYS\nTAB. CALCIUM  VIT D3 OD TABX 15 DAYS\nTAB. MVBC OD TAB X 15 DAYS\nTAB. VIT C 500 MG TDS X 15 DAYS\nTAB. AMLODIPINE 5 MG OD\nTAB THYROXINE 50 mcg OD\nTAN IFA\nTAB S-ADENOSY L METHIONINE DISULPHATE TOSYLATE OD.\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nFOLLOW UP ON : 15-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : REVIEW IN ORTHO OPD ON 15 APRIL 2023\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of 45.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

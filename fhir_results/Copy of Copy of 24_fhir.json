@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "cb43712b-029d-41f1-960e-e0de6e444988"
+  },
+  "type": "document",
+  "timestamp": "2023-03-29T11:28:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:3a531a60-7b0a-43c1-bc4a-7b5b4b4b21df",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "3a531a60-7b0a-43c1-bc4a-7b5b4b4b21df",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:9baa21f6-1634-4278-a7cd-1878f82b912d"
+        },
+        "date": "2023-03-29T11:28:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:b145a696-fe59-475c-8933-7bbd7105c34a"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:db57d879-7981-41a9-8781-0a27542c77e9"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b145a696-fe59-475c-8933-7bbd7105c34a",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "b145a696-fe59-475c-8933-7bbd7105c34a",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9baa21f6-1634-4278-a7cd-1878f82b912d",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "9baa21f6-1634-4278-a7cd-1878f82b912d",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:db57d879-7981-41a9-8781-0a27542c77e9",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "db57d879-7981-41a9-8781-0a27542c77e9",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:9baa21f6-1634-4278-a7cd-1878f82b912d"
+        },
+        "date": "2023-03-29T11:28:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:b145a696-fe59-475c-8933-7bbd7105c34a"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:b145a696-fe59-475c-8933-7bbd7105c34a"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of General Medicine\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                                    | Age/Gender: 87.9 Yr/F                |\n|----------------------------------|----------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: General Medicine (Gen Med Unit 3) | Consultant/Faculty: anonymous        |\n| Ward: 2 D 3 Female Medicine Ward | Room/Bed: 2 D 3 Fem Med Ward/ 2 A 2 Fem 18         | Patient Category: General            |\n| Discharge Type: On request       | Father/Spouse Name: anonymous                      | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                 | State/Country India                  |\n| D.O.A. : 29-Mar-2023 11:28       | D.O.D. : 01-Apr-2023                               | D.O. Print Report: 08-Feb-2026 15:24 |\nFINAL DIAGNOSIS:\nPANCYTOPENIA -B12 DEFICIENCY\nIRON DEFICIENCY\nCHIEF COMPLAINTS:\nGENERALIZED WEAKNESS SINCE 30 DAYS\nHISTORY OF PRESENT ILLNESS: Patient was apparently alright 30 days back when she c/o yellowish discoloration of eyes and whole body. It started with face and gradually progressed to whole body\nIt was a/w yellowish discoloration urine\nNo history of itching, pale stools\nNo history of abdomen distension\nNo history of malena\nNo history of hematamesis.\nC/o pain in b/l ul and LL for 30 days, dull aching type, pain increase at night and pain reduces during day\nPain increases on walking, pain starts as she walks 10m and because of pain she stops\nA/w generalized weakness for 30 days, exertional palpitation\nH/o fever for 2 days a/w chills which decreased on medication ,no burning micturation No h/o t2dm, hypertension, seizures, tb\nINVESTIGATION DETAILS:\n| Requisition Date   | Test Name       | Parameter Name   |   Result | Ref Range & Unit   |\n|--------------------|-----------------|------------------|----------|--------------------|\n| 03-Apr-2023 22:38  | Calcium         | Calcium          |     8.7  | -                  |\n|                    | IONISED CALCIUM | Ionized Calcium  |     1.16 | 1.12 - 1.32 mmol/L |\n|                    | Magnesium       | Magnesium        |     1.18 | 1.7 - 2.7 mg/dl    |\n|                    | PHOSPHOROUS     | Phosphorous      |     3.39 | -                  |\n|                    | Rft             | Chloride         |    94    | 102 - 109 mmol/L   |\n|                    |                 | Creatinine       |     1.11 | 0.6 - 1.1 mg/dl    |\n|                    |                 | Potassium        |     5.49 | 3.5 - 5 mmol/L     |\n|                    |                 | Sodium           |   126    | 135 - 145 mmol/L   |\n|                    |                 | Urea             |    15    | 15.0 - 39.0 mg/dl  |\n| 02-Apr-2023 22:27  | Calcium         | Calcium          |     8.6  | -                  |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nIONISED CALCIUM Ionized Calcium 1.15 1.12 - 1.32 mmol/L Magnesium Magnesium 1.64 1.7 - 2.7 mg/dl PHOSPHOROUS Phosphorous 3.65 -Rft Chloride 96 102 - 109 mmol/L Creatinine 1.00 0.6 - 1.1 mg/dl Potassium 5.93 3.5 - 5 mmol/L Sodium 130 135 - 145 mmol/L Urea 16 15.0 - 39.0 mg/dl 02-Apr-2023 16:22 Calcium Calcium 8.2  mg/dl -Magnesium Magnesium 1.73 1.7 - 2.7 mg/dl PHOSPHOROUS Phosphorous 3.79  mg/dl -Rft Chloride 90 102 - 109 mmol/L Creatinine 1.08 0.6 - 1.1 mg/dl Potassium 5.01 3.5 - 5 mmol/L Sodium 121 135 - 145 mmol/L Urea 18 15.0 - 39.0 mg/dl 01-Apr-2023 01:13 COMPLETE BLOOD COUNT (CBC) Comments on PBS Refer Reports* -Absolute Basophil Count 0.02 0.02  - 0.10 x10^3 /\u03bcL Absolute Eosinophil Count 0.13 0.02 - 0.5 x10^3 /\u03bcL Absolute Lymphocyte Count 0.68 1 - 3 x10^3 /\u00b5L Absolute Monocyte Count 0.68 0.2 - 1.0 x10^3 /\u00b5L Absolute Neutrophil Count 5.82 2 - 7 x10^3 /\u00b5L Basophil 0.3 00 - 01 % Eosinophils 1.8 01 - 06 % HCT 26.1 36 - 46 % Hemoglobin 8.4 12 - 15 g/dl Lymphocites 9.3 20 - 40 % MCH 27.4 27 - 32 pg MCHC 32.2 31.5 - 34.5 g/dL MCV 85.0 83 - 101 fL Monocytes 9.3 2 - 10 % Neutrophils 79.3 40 - 80 % Platelet Count 164 150 - 410 x10^3 /\u03bcL RBC 3.07 3.8 - 4.8 x10^6 /\u03bcL Red Cell Distribution Width (RDW CV) 14.3 11.6 - 14.0 % Total Leukocyte Count(TLC) 7.33 4 - 10 x10^3 /\u03bcL FERRITIN Ferritin 133.0 10 - 150 ng/ml LACTATE LDH 203 230 - 460 u/l\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDEHYDROGENASE\n|                   | (LDH) PERIPHERAL BLOOD                       |                             |                |                      |\n|-------------------|----------------------------------------------|-----------------------------|----------------|----------------------|\n|                   | SMEAR                                        | Peripheral Blood Smear Test | Refer Reports* | -                    |\n|                   | EXAMINATION                                  | EXAMINATION                 | EXAMINATION    |                      |\n|                   | RETICULOCYTE COUNT                           | Footer                      | Refer Reports* | -                    |\n|                   |                                              | RC Header                   | Refer Reports* | -                    |\n|                   |                                              | Reticulocyte Count          | 1.40           | 0.5 - 2.5 %          |\n|                   | TIBC                                         | TIBC                        | 241            | 251 - 406 microgm/dL |\n|                   |                                              | Vitamin B12                 | 426            | 211 - 911 pg/ml      |\n|                   | VITAMIN B12                                  | Vitamin D                   | 9.70           | 30 - 100 ng/ml       |\n|                   | VITAMIN D                                    |                             |                |                      |\n| 31-Mar-2023 23:05 | Calcium                                      | Calcium                     | 7.9            | -                    |\n|                   | IONISED CALCIUM                              | Ionized Calcium             | 1.07           | 1.12 - 1.32 mmol/L   |\n|                   | Magnesium                                    | Magnesium                   | 2.12           | 1.7 - 2.7 mg/dl      |\n|                   | PHOSPHOROUS                                  | Phosphorous                 | 3.62           | -                    |\n|                   |                                              | Chloride                    | 90             | 102 - 109 mmol/L     |\n|                   | Rft                                          | Creatinine                  | 1.08           | 0.9 - 1.3 mg/dl      |\n|                   |                                              | Potassium                   | 4.98           | 3.5 - 5 mmol/L       |\n|                   |                                              | Sodium                      | &lt;120**      | 135 - 145 mmol/L     |\n|                   |                                              | Urea                        | 27             | 15.0 - 39.0 mg/dl    |\n| 31-Mar-2023 00:07 | CA125                                        | CA 125                      | 2.5            | < 30.2 U/ml          |\n| 30-Mar-2023 16:00 | Calcium                                      | Calcium                     | 9.3            | -                    |\n|                   | IONISED CALCIUM                              | Ionized Calcium             | 1.23           | 1.12 - 1.32 mmol/L   |\n|                   | Magnesium                                    | Magnesium                   | 1.43           | 1.7 - 2.7 mg/dl      |\n|                   | PHOSPHOROUS                                  | Phosphorous                 | 4.51           | -                    |\n|                   | Rft                                          | Chloride                    | 82             | 102 - 109 mmol/L     |\n|                   |                                              | Creatinine                  | 1.66           | 0.6 - 1.1 mg/dl      |\n|                   |                                              | Potassium                   | 5.46           | 3.5 - 5 mmol/L       |\n|                   |                                              | Sodium                      | LESS THAN 120  | 135 - 145 mmol/L     |\n|                   |                                              | Urea                        | 31             | 15.0 - 39.0 mg/dl    |\n| 29-Mar-2023 22:37 | ACTIVATED PARTIAL THROMBOPLASTIN TIME (APTT) | APTT HEADER                 | 20.5           | 23.2 - 32.4 sec      |\n|                   |                                              | APTT NOTE                   | Refer Reports* | -                    |\n|                   |                                              | clinical details            | --             | -                    |\n|                   | COMPLETE BLOOD COUNT (CBC)                   | Comments on PBS             | Refer Reports* | -                    |\n|                   |                                              | Absolute Basophil Count     | 0.02           | 0.02 - 0.10 x10^3    |\n|                   |                                              | Absolute Eosinophil Count   | 0.07           | 0.02 - 0.5 x10^3 /\u03bcL |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                   |                                                  | Absolute Lymphocyte Count            | 1.90           | 1 - 3 x10^3 /\u00b5L     |\n|-------------------|--------------------------------------------------|--------------------------------------|----------------|---------------------|\n|                   |                                                  | Absolute Monocyte Count              | 0.09           | 0.2 - 1.0 x10^3 /\u00b5L |\n|                   |                                                  | Absolute Neutrophil Count            | 4.76           | 2 - 7 x10^3 /\u00b5L     |\n|                   |                                                  | Basophil                             | 0.3            | 00 - 01%            |\n|                   |                                                  | Eosinophils                          | 1.0            | 01 - 06%            |\n|                   |                                                  | HCT                                  | 27.5           | 36 - 46%            |\n|                   |                                                  | Hemoglobin                           | 9.2            | 12 - 15 g/dl        |\n|                   |                                                  | Lymphocites                          | 27.8           | 20 - 40%            |\n|                   |                                                  | MCH                                  | 27.7           | 27 - 32 pg          |\n|                   |                                                  | MCHC                                 | 33.5           | 31.5 - 34.5 g/dL    |\n|                   |                                                  | MCV                                  | 82.8           | 83 - 101 fL         |\n|                   |                                                  | Monocytes                            | 1.3            | 2 - 10%             |\n|                   |                                                  | Neutrophils                          | 69.6           | 40 - 80%            |\n|                   |                                                  | Platelet Count                       | 229            | 150 - 410 x10^3 /\u03bcL |\n|                   |                                                  | RBC                                  | 3.32           | 3.8 - 4.8 x10^6 /\u03bcL |\n|                   |                                                  | Red Cell Distribution Width (RDW CV) | 13.8           | 11.6 - 14.0%        |\n|                   |                                                  | Total Leukocyte Count(TLC)           | 6.84           | 4 - 10 x10^3 /\u03bcL    |\n|                   | ERYTHROCYTE SEDIMENTATION RATE (ESR) PROTHROMBIN | ESR                                  | Refer Reports* | -                   |\n|                   | TIME (PT INR)                                    | clinical details                     | --             | -                   |\n|                   |                                                  | International Normalised Ratio (INR) | 1.0            | -                   |\n|                   |                                                  | PT INR Header                        | 9.8            | 09.6 - 12.2 sec     |\n|                   |                                                  | PT INR Note                          | Refer Reports* | -                   |\n| 29-Mar-2023 22:35 | GLYCOSYLATED HAEMOGLOBIN (HbA1c)                 | Result                               | Refer Reports* | -                   |\n|                   |                                                  | Hba1c                                | 6.1            | < 5.7 %             |\n| 29-Mar-2023 22:28 | URINE ROUTINE AND MICROSCOPIC EXAMINATION (R/M)  | Appearance                           | CLEAR          | -                   |\n|                   |                                                  | Bilirubin                            | NOT DETECTED   | -                   |\n|                   |                                                  | Casts                                | NOT DETECTED   | -                   |\n|                   |                                                  | Colour                               | PALE YELLOW    | -                   |\n|                   |                                                  | Comments                             | Refer Reports* | -                   |\n|                   |                                                  | Crystals                             | NOT DETECTED   | -                   |\n|                   |                                                  | Epithelial Cells                     | NOT DETECTED   | 0 - 5 / hpf         |\n|                   |                                                  | Glucose                              | NOT DETECTED   | -                   |\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                   |                           | Ketones            | NOT DETECTED      | -                  |\n|-------------------|---------------------------|--------------------|-------------------|--------------------|\n|                   |                           | Nitrite            | NEGATIVE          | -                  |\n|                   |                           | Others             | BACTERIA DETECTED | -                  |\n|                   |                           | Protein            | NOT DETECTED      | -                  |\n|                   |                           | Pus cells          | 5-10              | -                  |\n|                   |                           | RBC                | 10-20             | -                  |\n|                   |                           | Reaction pH        | 6.0               | 5 - 7 .            |\n|                   |                           | Specific Gravity   | 1.020             | 1.003 - 1.035 .    |\n|                   |                           | Urobilinogen       | NORMAL            | -                  |\n| 29-Mar-2023 22:23 | AMYLASE                   | Amylase            | 39                | 20 - 96 u/l        |\n|                   | Calcium                   | Calcium            | 10.4              | -                  |\n|                   | HBsAg (Rapid test)        | Interpretation     | Negative          | -                  |\n|                   |                           | Result             | Refer Reports*    | -                  |\n|                   | HCV Antibody (Rapid test) | Interpretation     | Negative          | -                  |\n|                   |                           | Result             | Refer Reports*    | -                  |\n|                   | IONISED CALCIUM           | Ionized Calcium    | 1.39              | 1.12 - 1.32 mmol/L |\n|                   | LIPASE                    | Lipase             | 20                | 3 - 43 U/L         |\n|                   | Magnesium                 | Magnesium          | 1.26              | 1.7 - 2.7 mg/dl    |\n|                   | PHOSPHOROUS               | Phosphorous        | 2.90              | -                  |\n| 29-Mar-2023 16:19 | Liver Fuction Test        | (Lft)Albumin       | 3.5               | 4.0 - 5.0 gm/dL    |\n|                   |                           | ALP                | 58 U/L            | -                  |\n|                   |                           | ALT                | 16                | 7 - 41 U/L         |\n|                   |                           | AST                | 23                | 12 - 38 U/L        |\n|                   |                           | Direct Bilirubin   | 0.08              | 0.1 - 0.4 mg/dl    |\n|                   |                           | globulin           | 2.2               | 2.0 - 3.5 gm/dL    |\n|                   |                           | Indirect Bilirubin | 0.33              | 0.20 - 0.90 mg/dl  |\n|                   |                           | Total Bilirubin    | 0.41              | 0.3 - 1.3 mg/dl    |\n|                   |                           | Total Protein      | 5.7               | 6.7 - 8.6 gm/dL    |\n|                   | Rft                       | Chloride           | LESS THAN 80      | 102 - 109 mmol/L   |\n|                   |                           | Creatinine         | 1.02              | 0.6 - 1.1 mg/dl    |\n|                   |                           | Potassium          | 4.70              | 3.5 - 5 mmol/L     |\n|                   |                           | Sodium             | LESS THAN 120     | 135 - 145 mmol/L   |\n|                   |                           | Urea               | 18                | 15.0 - 39.0 mg/dl  |\n*Refer Lab Reports for details.\nTREATMENT GIVEN:\nINJ ELDERVET ; 1 AMP ; OD; (25-Mar-2023 to 01-Apr-2023).\nTAB METHYLCOBALAMINE ; 1500MCG; OD; (29-Mar-2023 to 05-Apr-2023).\nTAB IFA; 1 TAB; TDS; (25-Mar-2023 to 29-Mar-2023).\nHOSPITAL COURSE: PATIENT PRESENTED WITH ABOVE MENTIONED COMPLAINTS,ON ROUTINE INVESTIGATIONS H.B -4.2,TLC3.65,PLT-105,B12-113, TOTAL BILURUBIN -4.11 AND DIRECT BILURUBIN -0.57 .SHE WAS TREATED FOR B12 DEFICIENCY INDUCED\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nPANCYTOPENIA WITH INJ ELDEERVIT AND TAB METHYLCOBALAMINE AND IRON PROFILE SHOWED IDA AND IFA WAS ADDED. AFTER 7 DAYS ELDERVIT ,HB -5.0,TCL-2.71,PLC-75 ,TOTAL BILURUBIN -1.35,RETIC COUNT -18.40(RPI-3.5),LDH >1200.HEMATOLOGY OPINION WAS SOUGHT AND ADVISE FOLLOWED. BONE  MARROW BIOPSY APPOINTMENT WAS TAKEN BUT PATIENT ATTENDER DIDN'T GIVE CONSENT AND REQUESTING FOR DISCHARGE AND BEING DISCHARGED.\nCONDITION AT DISCHARGE: STABLE ADVICE ON DISCHARGE:\nINJ ELDERVET ;  1AMP; OD; X 2 days.\nINJ ELDERVIT; 1AMP; OD; X 4 days.\nTAB METHYLCOBALAMINE; 1500MCG; OD; X 30 days.\nTAB IFA; 1TAB; BD; X 30 days.\nIF INADEQUATE RESPONSE AT 2WEEKS ,PLAN FOR BONE MARROW BIOPSY\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 08-Feb-2026\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : FOLLOW UP AT GENERAL MEDICINE OPD AFTER 2 WEEKS WITH CBC LFT RFT RECTIC COUNT ,DIRECT COOMBS\nTEST ,LDH REPORT\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.",
+              "title": "Extracted text from Copy of Copy of 24.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

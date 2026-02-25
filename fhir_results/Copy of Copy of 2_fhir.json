@@ -1,0 +1,134 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "419bac5b-9811-4122-be19-863144ee751f"
+  },
+  "type": "document",
+  "timestamp": "2023-04-03T11:23:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:16a70a97-c171-40ed-b233-c024c0bf7498",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "16a70a97-c171-40ed-b233-c024c0bf7498",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:e762a8a4-f79c-40ff-ae48-1572c0125a78"
+        },
+        "date": "2023-04-03T11:23:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:4f50fdd5-e190-49ec-a44f-185cad4bb76b"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:10d0ddea-eb89-4a78-a1f1-fc9eb7b48c34"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4f50fdd5-e190-49ec-a44f-185cad4bb76b",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "4f50fdd5-e190-49ec-a44f-185cad4bb76b",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e762a8a4-f79c-40ff-ae48-1572c0125a78",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "e762a8a4-f79c-40ff-ae48-1572c0125a78",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "4 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:10d0ddea-eb89-4a78-a1f1-fc9eb7b48c34",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "10d0ddea-eb89-4a78-a1f1-fc9eb7b48c34",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:e762a8a4-f79c-40ff-ae48-1572c0125a78"
+        },
+        "date": "2023-04-03T11:23:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:4f50fdd5-e190-49ec-a44f-185cad4bb76b"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:4f50fdd5-e190-49ec-a44f-185cad4bb76b"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Pulmonary Medicine And Tb Discharge Summary\n| CR No.: anonymous                | Name: anonymous                                             | Age/Gender: 80.2 Yr/M                |\n|----------------------------------|-------------------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Pulmonary Medicine And Tb (Pul Med Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: 2 D 2 Ward                 | Room/Bed: 2 D 2 Ward/ 2d2 17                                | Patient Category: Ayushman           |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                               | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                          | State/Country India                  |\n| D.O.A. : 03-Apr-2023 11:23       | D.O.D. : 04-Apr-2023                                        | D.O. Print Report: 08-Feb-2026 15:06 |\nFINAL DIAGNOSIS:\nADENOCARCINOMA LUNG ( STAGE 4)\nSYSTEMIC HYPERTENISON\nDIABETES MELLITUS\nHISTORY OF PRESENT ILLNESS: PATIENT IS A F/C/O ADENOCARCINOMA OF LUNG STAGE 4 ADMITTED FOR 1 ST MAINTENACE CYCLE.\nINVESTIGATION DETAILS:\n| Requisition Date   | Test Name                  | Parameter Name            | Result         | Ref Range & Unit      |\n|--------------------|----------------------------|---------------------------|----------------|-----------------------|\n| 03-Apr-2023 13:40  | Calcium                    | Calcium                   | 9.2            | 08.7 - 10.4 mg/dL     |\n|                    | COMPLETE BLOOD COUNT (CBC) | Comments on PBS           | Refer Reports* | -                     |\n|                    |                            | Absolute Basophil Count   | 0.02           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                    |                            | Absolute Eosinophil Count | 0.64           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                    |                            | Absolute Lymphocyte Count | 1.62           | 1 - 3 x10^3 /\u00b5L       |\n|                    |                            | Absolute Monocyte Count   | 0.77           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                    |                            | Absolute Neutrophil Count | 3.59           | 2 - 7 x10^3 /\u00b5L       |\n|                    |                            | Basophil                  | 0.3            | 00 - 01%              |\n|                    |                            | Eosinophils               | 9.6            | 01 - 06%              |\n|                    |                            | HCT                       | 44.6           | 40 - 50%              |\n|                    |                            | Hemoglobin                | 13.1           | 13 - 17 g/dl          |\n|                    |                            | Lymphocites               | 24.4           | 20 - 40%              |\n|                    |                            | MCH                       | 27.3           | 27 - 32 pg            |\n|                    |                            | MCHC                      | 29.4           | 31.5 - 34.5 g/dL      |\n|                    |                            | MCV                       | 92.9           | 83 - 101 fL           |\n|                    |                            | Monocytes                 | 11.6           | 2 - 10%               |\n|                    |                            | Neutrophils               | 54.1           | 40 - 80%              |\n|                    |                            | Platelet Count            | 211            | 150 - 410 x10^3 /\u03bcL   |\n|                    |                            | RBC                       | 4.80           | 4.5 - 5.5 x10^6 /\u03bcL   |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                                 | Red Cell Distribution Width (RDW CV)   |   18.8 |\n|---------------------------------|----------------------------------------|--------|\n|                                 | Total Leukocyte Count(TLC)             |   6.64 |\n| IONISED CALCIUM                 | Ionized Calcium                        |   1.18 |\n| Liver Fuction Test (Lft)Albumin | Liver Fuction Test (Lft)Albumin        |   4.1  |\n|                                 | ALP                                    | 146    |\n|                                 | ALT                                    |  23    |\n|                                 | AST                                    |  27    |\n|                                 | Direct Bilirubin                       |   0.04 |\n|                                 | globulin                               |   3.7  |\n|                                 | Indirect Bilirubin                     |   0.47 |\n|                                 | Total Bilirubin                        |   0.51 |\n|                                 | Total Protein                          |   7.8  |\n| Magnesium                       | Magnesium                              |   2.09 |\n| PHOSPHOROUS                     | Phosphorous                            |   3.3  |\n| Rft                             | Chloride                               | 104    |\n|                                 | Creatinine                             |   0.92 |\n|                                 | Potassium                              |   4.76 |\n|                                 | Sodium                                 | 137    |\n|                                 | Urea                                   |  23    |\n*Refer Lab Reports for details.\nTREATMENT GIVEN:\nINJ. PARACETAMOL 150MG/ML, 2ML; 500 Mg; TDS; (07-Jul-2023 to 18-Jul-2023).\nTAB METFORMIN ; 500MH; BD; (03-Apr-2023 to 05-Apr-2023).\nTAB GLIMEPRIDE; 1MG; OD; (03-Apr-2023 to 05-Apr-2023).\nTAB CARVEDILOL; 3.125MG; BD; (03-Apr-2023 to 05-Apr-2023).\nINJ PEMETREXED; 750MG; OD; (03-Apr-2023 to 03-Apr-2023).\nTAB GEFITINIB; 250MG; OD; (04-Apr-2023 to 06-Apr-2023).\nINJ ZOLEDRONIC ACID; 4MG ; OD; (04-Apr-2023 to 04-Apr-2023).\nTAB TELMESARTAN; 40MG; OD; (03-Apr-2023 to 05-Apr-2023).\nHOSPITAL COURSE: PATIENT WAS ADMITTED FOR 1ST MAINTENACE CYCLE OF PEMETREXED .GIVEN ON 4/4/2023\nCONDITION AT DISCHARGE: STABLE\nADVICE ON DISCHARGE:\nTAB FOLIC ACID; 2.5MG; OD; X 21 days.\nTAB DEXAMETHASONE ; 4MG; BD; X 4 days.\nTAB RANTAC ; 150MG; OD; X 4 days.\nTAB GEFITINB; 250MG; OD; X 21 days.\nTAB METFORMIN; 500MG; BD; X 21 days.\nTAB GLIMEPRIDE; 1MG; OD; X 21 days.\nTAB CARVEDILOL; 3.125MG; BD; X 21 days.\nTAB TELMESARTAN ; 40MG; OD; X 21 days.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n11.6 - 14.0 %\n4 - 10 x10^3 /\u03bcL 1.12 - 1.32 mmol/L 4.0 - 5.0 gm/dL 50 - 116 U/L 7 - 41 U/L 12 - 38 U/L 0.1 - 0.4 mg/dl 2.0 - 3.5 gm/dL 0.20 - 0.90 mg/dl 0.3 - 1.3 mg/dl 6.7 - 8.6 gm/dL 1.7 - 2.7 mg/dl 2.8 - 4.7 mg/dL 102 - 109 mmol/L 0.9 - 1.3 mg/dl 3.5 - 5 mmol/L 135 - 145 mmol/L 15.0 - 39.0 mg/dl\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 26-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : TO FOLLOW UP IN PULMONARY OPD AFTER 8 DAYS FOR MID CYCLE EVALAUTION.\nTO REIVEW IN PULMONARY OPD AFTER 21 DAYS FOR 2ND MAINTENACE.\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous",
+              "title": "Extracted text from Copy of Copy of 2.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

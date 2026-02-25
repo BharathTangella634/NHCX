@@ -19,6 +19,9 @@ import os
 from enum import Enum
 from typing import List, Optional, Dict, Any
 from datetime import datetime
+from .logger import get_logger
+
+logger = get_logger(__name__)
 
 class Vocab(Enum):
     """
@@ -91,7 +94,7 @@ def load_loinc_map():
                 'unit': str(row['Units of Measure']).strip() if pd.notna(row['Units of Measure']) else ""
             }
     except Exception as e:
-        print(f"Error loading LOINC mapping: {e}")
+        logger.error(f"Error loading LOINC mapping: {e}")
 
 load_loinc_map()
 

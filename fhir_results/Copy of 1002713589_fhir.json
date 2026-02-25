@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "2aa5ddfd-284b-463b-a846-91d9385b7f1a"
+  },
+  "type": "document",
+  "timestamp": "2026-02-25T14:09:26Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:71cfe21b-5414-4f29-9f32-e5ef066f6db9",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "71cfe21b-5414-4f29-9f32-e5ef066f6db9",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:fa87ebdf-8c20-46dd-bee6-ebbafda3218d"
+        },
+        "date": "2026-02-25T14:09:26Z",
+        "author": [
+          {
+            "reference": "urn:uuid:144566c1-9b1f-4590-a81d-af7d0bab5933"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:8096093f-58ea-43a1-bcff-9c58851a4bec"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:144566c1-9b1f-4590-a81d-af7d0bab5933",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "144566c1-9b1f-4590-a81d-af7d0bab5933",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fa87ebdf-8c20-46dd-bee6-ebbafda3218d",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "fa87ebdf-8c20-46dd-bee6-ebbafda3218d",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8096093f-58ea-43a1-bcff-9c58851a4bec",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "8096093f-58ea-43a1-bcff-9c58851a4bec",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:fa87ebdf-8c20-46dd-bee6-ebbafda3218d"
+        },
+        "date": "2026-02-25T14:09:26Z",
+        "author": [
+          {
+            "reference": "urn:uuid:144566c1-9b1f-4590-a81d-af7d0bab5933"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:144566c1-9b1f-4590-a81d-af7d0bab5933"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSRI LAI(SHMI NARAYANA INSTITUTE OF MEDICAT SCIENCES\nOSUDU, AGARAil VILLAGE, VILLIANUR COiIMUNE,  KUDAPAKKAII POST, PUDUGHERRY  - 605 502.\nDEPARTNIENT  OF GENERAL MEDICINE DISCHARGE  SUMMARY\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n| NAME    | :                                  | UHID :   |\n|---------|------------------------------------|----------|\n| AGE/SEX | :                                  | IPNO :   |\n| ADDRESS | : 44,ELLAIAMMAN KOVIL ST VANARAPET |          |\nD.O.A  I 11/1212021\nDIAGNOSIS:\nACUTE  PULMONARY  EDEMA.(RESOLVED)\n CKD underMHD@ R(FEMORAL)\nTYPE 2 DM\nANEMIA  OF CHRONIC  DISEASE\nCHIEF COMPLAINTS:\n62 yrs old female k/c/o T2DM, SHTN,CKD Came with the complaints  of breathlessness since yesterday  night\nHISTORY OF PRESENTING  ILLNESS:\nPatient  was  apparently normal  until yesterday,  aftemoon  she had undergone  AV Fistula operation in left upper limb, later at night she had sudden onset breathlessness more  on lying down, and increasing on softing  position\nNo h/o cough,  cold ,  fever\nNo c/o chest pain, palpitation,  giddiness\nNo h/o vomiting, abdominal  pain  , urinary  complaints\nPAST HISTORY\nK/C/o T2DM and H1-N since 7 yrs Diabetic on inj MIXTARD 8-0-8 HTN on T. NILASDIA  lOmg l-l-l\nPERSONAL HISTORY:\nMixed diet Nonnal Bladder &Bowel hablts. Normal sleep pattern\nON EXAMINATION:\nGeneral Examination\nPatient  was conscious, oriented Pallor (+)  ,  pedal  edema (+) No /icterus / clubbing/ cyanosis/  lymphadenopathy\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nD.O.D :21 11212024\n\nVITALS:\nPR: 100/min\nRR: l8breaths/min\nBP:120/70mmHg\nSpO2:  98%at RA\nS/E:\nCVS\nRS\nP/A\n: Sl,S2 (+)\n: B/L NVBS(+)\n:Soft  ,non  tender\nCNS\n:NFND\nINVESTIGATIONS:\nABG (141t2124)pH- 7.37 PCo2-27  .7 mmHg PO2- l22mmHg\nHco3-15.8 mmol/L\nBlood group( l4l l2124)- \"O\" Positive\nBlood culture  and sensitivity-(  I 4l1Zl24)No growth  after 48 hours  of incubation\n| Serology   | l4//12t24     |\n|------------|---------------|\n| HIV        | Non- reactive |\n| HBsAg      | Negative      |\n| HCV        | Non- reactive |\n| Urine routine    | t5lt2l21   |\n|------------------|------------|\n| Urine albumin    | 2+         |\n| Urine sugar      | l+         |\n| Pus cells        | 5-6        |\n| Epithelial cells | 3-4        |\n\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSRI LAI$HMI  NARAYANA  INSTITUTE OF MEDICAT  SCIENCES\nOSUDU, AGARAi' VILLAGE, VILLIANUR COMItUNE,  KUDAPAKKATT  POST, PUOUCHERRY'605  5II2.\n| CBC:   | t1n2t21        | t9/t2t2t   |\n|--------|----------------|------------|\n| HI]    | 6.zgldL        | 7.0        |\n| RBC    | 2.13x l0^6/mm3 | 2.50       |\n| PCV    | 17 .9Yo        | 20.3       |\n| MCV    | 84tL           | 8l .2      |\n| MCH    | 28.9pg         | 28.1       |\n| MCHC   | 34.4g/dL       | 34.7       |\n| PLI'   | 309x l0^3/mm3  | 347        |\n| \\\\ u(' | 5.89x l0^3/mm3 | I 3.84     |\n| N      | 5.20Yo         | 55.9       |\n| l_     | 88.6           | 25.7       |\n| M      | 9.1            | l6.l       |\n| B      | 0.4            | 0.6        |\n| E      | 0.3            | 2.1        |\n| RP2        | t1n2t21   | 15t12t21   | 16fizt21              | t9/l2t24   |\n|------------|-----------|------------|-----------------------|------------|\n| Urea       | 78.9me/dL |            | 73.0mg/dL             | 60.9 mg/dl |\n| Creatinine | 6.l7mfldL |            | 7.25mgldL             | 5.26 mf,dL |\n| Sodium     |           | 134 mmol/L | l36mmol/L             | 138 mmol/L |\n| Potassium  |           | >6.0mmol/L | >6.0mmol/L 4.7 mmolil | 4.5mmol/L  |\n| Chloride   |           | l05mmol/L  | l06mmol/L             | l0l mmol/L |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\n2D ECHO(19.r2.24):\n(N) LVSF EF=58% LA DILATED NO RWMA GOOD I LVDD(E/e'=l1.5) MILD AR(AR.P  HT 8O9MS) MILDTR (PASP.3IMMHG) MODERATE  MR POSTERIOR  _MITRAL  ANNULAR  CALCIFICATION NO CLOT /PE/PAH\nCONDITION AT THE TIME OF DISCIIARGE: VITALS:\nPR  -  92bpm BP- 150/90mmHg SpO2 -97%@RA RR- I 8/min\nS/E:\nCVS\nRS\nP/A\n: Sl 52+\n: BiL NVBS\n: Soft non tender\n: NFND\nCNS\nCOURSE IN THE HOSPITAL:\nPatient initially admitted  under surgery  for AV Fistula, surgery  done(13/12124)  and later on same day Night she developed sudden onset breathlessness and she was taken over by Medicine for Acute Pulmonary  edema. Patient was sta(ed on Inj. Lasix IV 20mg BD and was given other supportive  medication.  On 14112124,  Right femoral vein is cannulated with HD Catheter. Hyperkalaemia  ,  correction  given. 3 sessions of HD done  @16112124  and 20112124.  lNlO Anemia(Hb-6.2  g/dl)-l PRBC transfusion  done along with HD(18/12124). 2D Echo done, Cardio opinion obtained-advised T.Ecosprin  AV 75120 OD,T.Concor 2.5mg OD. Patient  is now symptomatically  better and hemodynamically  stable and hence being discharged with the following  advice.\n\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSRI TAKSHMI NARAYANA INSTITUTE  (}F  MEDICAT  SCIENCES\nOSUDU, AGARAM VILLAGE, VILLIAilUR COilMUNE, KUDAPAKKAiT  POST, PUDUCHERRY'  605 5It2.\nADVICE ON DISCHARGE\nFRD/SRD/  DIABETIC  DIET\n| s.No   | MEDICATION     | DOSAGE       | }I              | A               |                 | BEFORE FOOD   | AFTER FOOD   | No. Of Days   |\n|--------|----------------|--------------|-----------------|-----------------|-----------------|---------------|--------------|---------------|\n| I      | T.NICARDIA     | l0mg         | I               | I               | I               |               |              | To continue   |\n| 2      | T.ECOSPIRIN AV | (7st20)      | 0               | I               | 0               |               |              | To continue   |\n| J      | T.CONCOR       | 2.5mg        | I               | 0               | 0               |               |              | To continue   |\n| .l     | INJ. F-PO      | 10.000 units | Weeklv once s/c | Weeklv once s/c | Weeklv once s/c |               |              | To continue   |\n| 5      | T.AMARYL       | lmg          | I               | 0               | I               |               |              | To continue   |\nREVIEW IN NEPHROLOGY OPD IT SOS\nNEXT HD @23n2.t24\nREVIEW IN MEDICINE  OPD WITH FBS,PPBS REPORTS.\nIn case of Emergency contact in the following  numbers\nEmergency No:\n(8.00AM  To 4.00PM)\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of 1002713589.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

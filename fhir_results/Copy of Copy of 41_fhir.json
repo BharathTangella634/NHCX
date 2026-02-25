@@ -1,0 +1,134 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "aa79fb2c-e5d1-40c9-b189-1b7ff490ac8c"
+  },
+  "type": "document",
+  "timestamp": "2023-03-21T10:37:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:bb89e17b-2999-4983-a6f0-4a2484d8260b",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "bb89e17b-2999-4983-a6f0-4a2484d8260b",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:e29f3f54-c19a-41fc-b811-6e7dbc1307c8"
+        },
+        "date": "2023-03-21T10:37:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:946688e5-c847-4f8f-8f87-a64f1ce64747"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:93801cd3-631d-451e-8f2a-3e9813d3d672"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:946688e5-c847-4f8f-8f87-a64f1ce64747",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "946688e5-c847-4f8f-8f87-a64f1ce64747",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e29f3f54-c19a-41fc-b811-6e7dbc1307c8",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "e29f3f54-c19a-41fc-b811-6e7dbc1307c8",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "2 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:93801cd3-631d-451e-8f2a-3e9813d3d672",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "93801cd3-631d-451e-8f2a-3e9813d3d672",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:e29f3f54-c19a-41fc-b811-6e7dbc1307c8"
+        },
+        "date": "2023-03-21T10:37:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:946688e5-c847-4f8f-8f87-a64f1ce64747"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:946688e5-c847-4f8f-8f87-a64f1ce64747"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Pediatric Surgery\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                                    | Age/Gender: 9.6 Yr/M                 |\n|----------------------------------|----------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Pediatric Surgery (Ped Sx Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: Pedia Sx 3 C 4             | Room/Bed: 3 C 4 Ward/ 3 C 4 Pae 24                 | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                      | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                 | State/Country India                  |\n| D.O.A. : 21-Mar-2023 10:37       | D.O.D. : 03-Apr-2023                               | D.O. Print Report: 08-Feb-2026 15:35 |\nFINAL DIAGNOSIS:\nO/C/O PROXIMAL PENILE HYPOSPADIAS WITH UC FISTULA\nOPERATION PERFORMED:\nSTAGE 2 URETHROPLASTY WITH UC FISTULA REPAIR  On  23-Mar-2023\nOPERATIVE FINDINGS: OPERATION DETAILS: Stage 2 URETHROPLASTY WITH UC FISTULA REPAIR\nDATE: 23/3/23\nSURGEON: Dr. Borkar, Dr. Revanth, DR MURTY\nANAESTHESIOLOGIST: Dr MAYANK\nPROCEDURE:\n\u2022Under GA, AAP, Supine position, PPD done\n\u2022GlaNS Stitch taken with  3 0 vicryl\n\u2022No.8  IFT introduced to bladder\n\u2022Periurethral perimeatal u shaped given, penile skin degloved laterally and inferiorly\n\u2022Between dartus fascia and bucks fascia neourethra created with 6 0 PDS with intermittent sutures and glans wing raised\nUC FISTLA REPAIR DONE WITH 6-0 PDS SUTURE\n\u2022Glans stitch taken with 5 o PDS, tunica vaginalis flap taken from rt testis and placed on suture line\n\u2022Penile skin suturedin 2 layers with 6 0 PDS and 6 0 Monocryl subcuticular\n\u2022Hemostasis acheived\n\u2022Sterile dressing done,\nCHIEF COMPLAINTS:\nPASSING URINE UNDER PENIS\nHISTORY OF PRESENT ILLNESS: aS PER HISTORY GIVEN BY PATIENT ATTENDERS, PATIENT HAD ABDOMINAL URACHAL OPENING SINCE BIRTH FOR WHICH HE HAD 2 SURGERIES IN DKS IN 2019. CHORDEE SURGERY  WITH NESBIT PROCEDURE IN 2021. THEIRSCH DUPLEY SURGERY IN 2021 FOLLOWING WHICH HE UNDERWENT STAGE I URETHROPLASTY IN 2022 IN AIIMS. CURRENTLY ADMITTED FOR STAGE 2 URETHROPLASTY.\nEXAMINATION FINDINGS :\nGENERAL:\nPR: 82/M                          TEMP: 98.2F\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nRR: 24/M               WEIGHT : 17.5 KG\nNo Pallor, No Cyanosis, No Clubbing, No Generalised LNE, No Generalised Edema\nCNS:  WNL                                               CVS: S1S2 HEARD\nRS: BL AIRENTRY PRESENT\nPA: SOFT NON TENDER\nL/E: PROXIMAL PENILE MEATUS. UC FISTULA\nHOSPITAL COURSE: O/C/O PROXIMAL PENILE HYPOSPADIASIS PRESENTED WITH UC FISTULA. UNDERWENT STAGE 2 URETHROPLASTY ON 23/3/23. POST OP PERIOD WAS UNEVENTFUL, WOUND HEALTHY, HENCE BEING DISCHARGED WITH FOLLOWING ADVICE. CONDITION AT DISCHARGE: HAEMODYNAMICALLY STABLE. PASSING URINE AND STOOL. GOOD STREAM  . WOUND HEALTHY ADVICE ON DISCHARGE:\nSYP IBULGESIC PLUS 3.5 ML PO TDS CONTINUE BETADINE SYRINGING. SITZ BATH WITH LUKEWARM WATER TDS\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 10-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE :\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.",
+              "title": "Extracted text from Copy of Copy of 41.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

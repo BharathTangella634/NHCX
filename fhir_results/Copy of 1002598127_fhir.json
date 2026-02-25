@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "9ef2c405-1281-4ee0-a90c-5633e9603989"
+  },
+  "type": "document",
+  "timestamp": "2026-02-25T14:04:36Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:84d5ddfb-acb1-4b22-9a29-7cb9563ceee2",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "84d5ddfb-acb1-4b22-9a29-7cb9563ceee2",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:8379db6e-4ca3-4bbe-bd7b-a8a0d33f7943"
+        },
+        "date": "2026-02-25T14:04:36Z",
+        "author": [
+          {
+            "reference": "urn:uuid:6d3ae558-8504-4c4a-828e-f89ea90ebcc4"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:9a5f4b2d-d4ae-4b40-abc6-e1dfe94e9139"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6d3ae558-8504-4c4a-828e-f89ea90ebcc4",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "6d3ae558-8504-4c4a-828e-f89ea90ebcc4",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8379db6e-4ca3-4bbe-bd7b-a8a0d33f7943",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "8379db6e-4ca3-4bbe-bd7b-a8a0d33f7943",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9a5f4b2d-d4ae-4b40-abc6-e1dfe94e9139",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "9a5f4b2d-d4ae-4b40-abc6-e1dfe94e9139",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:8379db6e-4ca3-4bbe-bd7b-a8a0d33f7943"
+        },
+        "date": "2026-02-25T14:04:36Z",
+        "author": [
+          {
+            "reference": "urn:uuid:6d3ae558-8504-4c4a-828e-f89ea90ebcc4"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:6d3ae558-8504-4c4a-828e-f89ea90ebcc4"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSRI LAKSHMI NARAYANA INSTITUTE OF MEDICAL SCIENCES\nOSUDU, AGARAM VILLAGE, VILLIANUR COMMUNE, KUDAPAKKAM POST, PUDUCHERRY - 605 502.\nDEPARTMENT OF GENERAL MEDICINE DISCHARGE SUMMARY AT REQUEST\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n| NAME    | MR.                                               | UHID   |\n|---------|---------------------------------------------------|--------|\n| AGE/SEX |                                                   | IP NO  |\n| ADDRESS | 2, MARIYAMMAN KOVIL ST, BEEMARAO NAGAR, VILLIANUR |        |\nD.O.A: 06/12/2024\nDIAGNOSIS:\nBILATERAL PNEUMONIA\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nD.O.D: 09/12/24\nCHRONIC LIVER DISEASE WITH ASCITES\nOLD HEMORRHAGIC CVA\nS HTN\nCHIEF COMPLAINTS:\nC/O fever \u00d7 2days, C/O loose stools \u00d7 1day. C/o altered sensorium \u00d7 1day,\nHISTORY OF PRESENTING ILLNESS:\nPatient was apparently normal 2days back after which he developed\nC/O loose stools-3 episodes ,semi solid ,not blood stained,\nC/O fever ,intermittent in nature associated with chills and rigor relieved on medication \u00d7 2days,\nC/o shortness of breath+\nC/o dry cough+\nNO H/O burning micturition,\nNO H/O Vomiting ,chest pain, palpitation,\n\nPAST HISTORY:\nK/c/o chronic alcoholic \u00d7 30 years- Last binge before 3 month back, K/c/o chronic smokerx30 years, P/H/O admission @slims 22/08/24 to 31/08/24Old hemorrhagic CVA -2\u00b0 hepatic coagulpathy , Chronic liver disease ADS/HTN,\nK/C/O HYPERTENSION \u00d7 10 years on T.AMLONG, K/C/O CLD ( ethanol related).\nPERSONAL HISTORY:\nMixed diet, Normal sleep pattern, Normal bladder habits,\nON EXAMINATION:\nGeneral Examination -\nPatient is conscious, not oriented /confused icterus+,\nPedal edemat,\nB/L LL Pigmentation present,\nNo pallor, clubbing,cyanosis, lymphadenopathy,\nVITALS:\nPR -74 beats/min BP- 140/70 mmhg Sp02-96%@4LO2\nS/E:\nCVS: S1S2(+), no murmur\nRS\n: B/L basal crepts+\nP/A : Soft, distended, fluid thrill+, tenderness@ RIF & Epigastric,\nCNS :E4 V1 M6 ,B/L ERTL, Confused ,fine minimal tremors +\n\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSRI LAKSHMI NARAYANA INSTITUTE OF MEDICAL SCIENCES\nOSUDU, AGARAM VILLAGE, VILLIANUR COMMUNE, KUDAPAKKAM POST, PUDUCHERRY - 605 502.\nINVESTIGATIONS:\n| CBC   | 06/12/24      |\n|-------|---------------|\n| RBC   | 4.31Million/c |\n| HB    | 14.6 gms%     |\n| PLT   | 213 10\u00d73/mcgL |\n| WBC   | 16.41         |\n| NEU   | 72.6%         |\n| LYM   | 11.0%         |\n| MON   | 11.9%         |\n| EOS   | 4.1%          |\n| BAS   | 0.4%          |\n| RFT        | 06/12/2024   | 07/12/24   |\n|------------|--------------|------------|\n| Urea       | 27.7 mg/d1   | 19.9mg/dl  |\n| Creatinine | 0.90 mg/dl   | 0.78mg/dl  |\n| S.ELECTROLYTES   | 06/12/2024   | 07/12/2024   |\n|------------------|--------------|--------------|\n| Sodium           | 132mmol/L    | 136mmol/L    |\n| Potassium        | 4.2mmol/L    | 4.1mmol/L    |\n| Chloride         | 98 mmol/L    | 101mmol/L    |\nPT-INR(07/12/24):\nTEST- 22.0\nCONTROL-11.6\nINR-1.96\n\n| LFT              | 06/12/2024   |\n|------------------|--------------|\n| ALT              | 22.7U/L      |\n| AST              | 44.8U/L      |\n| ALP              | 74U/L        |\n| BILIRUBIN DIRECT | 1.50mg/dl    |\n| BILIRUBIN TOTAL  | 3.90mg/dl    |\n| ALBUMIN          | 2.39 g/dl    |\n| TOTAL PROTEIN    | 7.09g/dl     |\nUSG ABDOMEN ( 23/10/24 )\nLiver : normal, 13.4 cm\nGB : normal\nPancreas : Normal\nKidney: normal\nSpleen : Appears prominent, 12.3CM in size\nBladder: minimally distended\nProstate : appears normal in size\nRt iliac fosa:Appendux Is not visualised, no evidence of mass formation / abscess . Moderate left pleural effusion\nImpression:\n\u2022Prominent spleen\n\u2022Moderate left pleural effusion\nHRCT -THORAX :\nMild to moderate left pleural effusion.\nSubsegmental collapse and atelectatic strands seen in basal segments of left lung\n\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSRI LAKSHMI NARAYANA INSTITUTE OF MEDICAL SCIENCES\nOSUDU, AGARAM VILLAGE, VILLIANUR COMMUNE, KUDAPAKKAM POST, PUDUCHERRY - 605 502.\nupper lobe and most of the lower lobe.\n\u00b7Multiple small mediastinal nodes noted with some of them with calcifications, largest measuring ~ 19 x 15 mm in the pretracheal region.\nMild cardiomegaly. Main pulmonary artery measures 27mm, is not dilated.\nAtheromatous wall calcifications seen in aortic arch and its branches.\nECHO REPORT :\nLA dilated\n(N) LVSF | EF- 65% | Grade 1 LVDD\nNo RWMA\nHeavily calcified mitral leaflet\nPosterior mitral annular calcification\nMild AS (25/13mmHg)\nTrivial MR | Trivial TR\nPASP- 16mmHg\nIVC- Normally collapsing\nCONDITION AT THE TIME OF DISCHARGE:\nVITALS:\nPR - 80 beats / min BP- 110/70 mmHg Sp02 -96% at RA\nCVS : S1S2(+),No murmur\nRS : Bilateral basal crepts+\nP/A : Soft, distended\nCNS : E4 V5 M6\nCOURSE IN HOSPITAL:\nPatient came with above mentioned complaints and routine investigations were done and treated with oxygen support for 2 days and gradually tappered and stopped. IV antibiotics Piptaz inj ciprofloxacin given for 4 days. Nebulizations I/v/o sever PNEUMONIA given. ECG showed T wave inversion in V2 ,V3 ,cardiology opinion obtained and advised to continue the same treatment. Further supportive treatment given and respiratory medicine opinion obtained and adviced for US guided pleural aspiration for diagnostic purpose but patient and patient attender requesting for discharge hence being DISCHARGED AT REQUEST with the following advice.\n\nADVICE ON DISCHARGE:\n|    | S.NO. Name of the drug                | Dosage   | M   | A   | N    | B/F   | A/F   | No. Of days   |\n|----|---------------------------------------|----------|-----|-----|------|-------|-------|---------------|\n|    | T.COPROFLOXACIN                       | 500mg    | 1   |     | 1    |       |       | 3 days        |\n|    | T.AZITHRO                             | 500mg    | 1   |     | 0    |       |       | 3 days        |\n|    | T.PANTOP                              | 40mg     | 1   | 0   | 0    |       |       | 3 days        |\n| 4. | T.MONTEK AB                           |          | 0   | 0   | 1    |       |       | 5 days        |\n|    | T.ALDACTONE                           | 50mg     | 1   |     |      |       |       | To continue   |\n| 6  | Syp.LACTULOSE                         |          | -   | -   | 10ml |       |       | 3 days        |\n| 7. | T.UDILIV                              | 300mg    | 1   | 0   | 1    |       |       | To continue   |\n|    | High Resource Protein powder in water |          | 1   | 1   | 1    |       |       | 1 month       |\n\u00b7REVIEW in Medicine OPD SOS/ after 1 week. IN CASE OF EMERGENCY CONTACT THE FOLLOWING NUMBERS\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nEMERGENCY NO- 0413- 2299200 ( 8:00 AM TO 4:00 PM)",
+              "title": "Extracted text from Copy of 1002598127.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "497df214-e2f7-4649-9bc1-afb5bd7c4472"
+  },
+  "type": "document",
+  "timestamp": "2026-02-25T14:14:12Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:f6e4c267-d748-49d4-a757-ec48558a31ef",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "f6e4c267-d748-49d4-a757-ec48558a31ef",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:ee01aab1-434e-454a-81d9-c92c08035fc0"
+        },
+        "date": "2026-02-25T14:14:12Z",
+        "author": [
+          {
+            "reference": "urn:uuid:72ea7933-1fb2-4be0-95f9-6d686421539b"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:e8c5e0ac-cdd8-4f31-ae16-d8cd0bf9356e"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:72ea7933-1fb2-4be0-95f9-6d686421539b",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "72ea7933-1fb2-4be0-95f9-6d686421539b",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ee01aab1-434e-454a-81d9-c92c08035fc0",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "ee01aab1-434e-454a-81d9-c92c08035fc0",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e8c5e0ac-cdd8-4f31-ae16-d8cd0bf9356e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "e8c5e0ac-cdd8-4f31-ae16-d8cd0bf9356e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:ee01aab1-434e-454a-81d9-c92c08035fc0"
+        },
+        "date": "2026-02-25T14:14:12Z",
+        "author": [
+          {
+            "reference": "urn:uuid:72ea7933-1fb2-4be0-95f9-6d686421539b"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:72ea7933-1fb2-4be0-95f9-6d686421539b"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nBRIEF HISTORY:\nSRI VENKATESHWARAA  MEDICAL COLLEGE HOSPITAL & RESEARCH CENTRE- 605102\nDEPARTMENT  OF GENERAL  SURGERY\nUNtT CHTEF  Vt:\nDISCHARGE  SUMMARY\n| AGE/ GENDER:   |                                                         |            |\n|----------------|---------------------------------------------------------|------------|\n|                | CHOLELITH IASIS                                         |            |\n|                | I LAPAROSCOpTC CHOLECYSTECTOMy UNDER GA                 | PROCEDURE: |\n|                | TYPE 2 DIABETES MELLITUS SYSTEMIC HYPERTENSION          |            |\n| CONSUTTANTS    | DR. (DMS & PROFESSOR) DR, (ASSOCIATE PROFESSOR) DR. SR) |            |\nC/O UPPER ABDOMINAL  PAIN ON AND OFF X 4 MONTHS, INSIDIOUS IN ONsET, GRADUALLY PROGRESSIVE  IN COURSE, DULL  ACHING TYPE, NO AGGRAVATING  AND RELIEVING  FACTORS\nH/O VOMtTtNG  -  1 EptSODE  CONTATNS  FOOD PARTICLE.\nNO H/O FEVER\nNO H/O CONSTTPATTON/LOOSE  STOOTS\nNO H/O HEARTBURN/DYSPEPSIA\nNO H/O HEMATEMESIS/M  ELENA\nNO H/O SIMILAR  COMPLAINTS  IN THE PAST\nPAST  HISTORY:\nK/C/OTYPE 2 DM AND SYSTEMIC  HYPERTENSION  X 20 YEARS ON REGULAR  MEDICATION\nN/K/C/O TUBERCULOSIS,  BRONCHIAL ASTHMA, SEIZURE  DISORDER  & THYROID DISORDERS\nPHYSICAt  EXAMINATION:  CONSCTOUS, ORtENTED, AFEBRtLE.\nVITAI-S: PR:98  BPM BP: t_40l70  MM HG TEMp:  98.5 F RR: 20 CyCLES  /MtN\nSYSTEMIC EXAMINATION:\nCVS:  S1,S2 +, NO MURMURS\nRS: B/L AIR ENTRY  +, NO ADDED SOUNDS\nCNS: NO FOCAL NEUROLOGTCAL DEFtCtT.\nPER ABDOMEN:\nINSPECTION:\nUMBILICUS  IN MIDLINE\nABDOMEN DISTEN  DED\nALL QUADRANTS  MOVES EQUALLY  WITH RESPIRATION\nNO VISIBLE  GASTRIC/INTESTINAL  PERISTALSIS\nNO VISIBLE  MASS\nNO SIN US, DILATED  VEINS\nB/L H ERN IAL ORIFICE  FREE\nPALPATION:\nSOFT\nNO WARMTH\nTENDERNESS  + OVER RIGHT HYPOCHONDRIUM\nNO G UARDING/RIGIDITY\nNO PALPABTE MASS\nNO RENAL ANGLE TENDERNESS\n\nPERCUSSION:\nTYMPANIC  NOTE  PRESENT\nAUSCUTTATION:\nBOWEL  SOUNDS+\nINVEST|GAT|ONS:  AS ENCTOSED\nOPERATIVE  PROCEO\n,^  ii,Tl,ilTi'^'+',:T['#:..i,,ifl,\"W!!:,_fi1,:litii,:!l,^*Y,!liffr,iTlJ[iHi]:;:;[,\"hTiJi,, ffi;?lfiili?ini'^fif  llj$y A_LoNc  rHE;N;;^,i\"^  ili,ii*, urE, RrGHr  HypocHorvon,-,v  aroruc $,ilffi $r#siT,,;il:;\"*'#:tr$lid#r:;l,'#iru:f+$#ri:#ilnm,:\"r+'*. SKELEToNzED  cYsrrc DUcr AND  tts''t o^r'*v  u's;;;;;;'i;'11;iPrlsLoNs REtEAsED  cALoTs TRTANGLE GALLBLADDER  FOSSA |NTOTO.  HEMosTATsts a.HTFT/Er\\  -^, , \",  ^ ^:,]f  IOOLTED AND DTSSECTED  FROM  THE I GALLBLADDER  FossA rNroro.  rrrolioii,,  oii,ffi;::Ti#' clrP  APPLTED  AND  DrssEcrED  FRoM  rHE :r]I-l9t HPE. srERtLE  DREsstNG  DoNE. \\DDER  EXTRACTED,  poRrclosuRE DoNE.  spEcrMEN\nCOURSE  IN HOSPITA|.  :\nPATIENT  WAS ADMITTED  WITH THE ABOVE  MENTIONED  COMPLA ii!!ity^i,l?'l'J,\",'#J,?3y:-:fo\",,'',o'\"  'o'ii*i'iliii$iiJj::j l^ulJ,':;;:il;ii,:,,1,:3,\"#, \"\"\" \"e'^ie'vil;fi;;i'Tli#i?  flHiiil[[li\":9y''i'-'l u''*  oifi*'\"'i'\"'o\"^o'.o'o CHANGES  cARDToLoGY  oPrN'oN  was  osra,,ui;  i;.;;;;r;;\":.'-:y9-t9ct oPrNIoN  wAs soucHr  rN vrEW  oF x RAy DoNE PAc  wAs orrarNe o  .'-epqRor;;ffiffi;'#i:+::,ll)::t^19R suRGERy.2  uNrrs  pRBc  rRANsFUsroN  wAs pERroDs  wERE  rr rur*rrrl-.  oo]tRoscoPlc cHoLEcysrEcroMy v :y::elr,.,,',;i;;;;;T#,'ii-XL#m:#ru*\"f  :ru\" f #ili*i:\":ii.{f IMPROVED  SYMPTOMATICALLY. 'rN'., OO''E\",S  ,,i,i O-*fiiIO'D WITH  FOLLOWING  MEDICAL  ADVICE,\nTREATMENT:\nr tV FLUIDS\nO INJ.  METRO 5OOMG IV TDS\nr tNJ.  TAXTM  1G lV BD\n. INJ.  TRAMADOL  50 MG IM BD\no tNJ.  VOVERON  50 MG tM BD\nr tNJ,  RANTAC  50 MG tV BD\nr rNJ.  H TNSUTATARD  O_O_8  U S/C\no tNJ. HyDROCORT  1OO  MG tV OD\no tNJ.  H ACTRAp|D  8_8_6  U S/C\no TAB.  METFORMTN  5OO  MG 1_O-1\no TAB.  ENALApRtL  5 MG O_O-1\no TAB. AMLONG  10 MG 1_O_O\ne NEB DUOLIN  e8Fl\no Syp.  SUCRALFATE  10Mt_1OML_lOMl\no NEB  FORACORTO.5  MG  e12H\nCONDITION  AT DISCHARGE:\n.CONSCIOUS, ORIENTED,  AFEBRILE,  HYDRATION.  FAtR VlTAtS: PR:68  BpM Rp. 1. ut':  110/60  MM HG\nsvsrrr,lic  rxiia\"rrrrarrorv,\nCVS:  51,  52 +,  NO MURMURS\nLOCAI.  EXAMINATION  : WOUN'  ;EALTHY  , SUTURES  INTACT\nRSr  B/t AIR  ENTRv+  No anrrF^ c^, ,,\nper  neDor\"r-i;,  ;ol;r;\"-Tir  r\"#X;wE L  souN  Ds  +\nCNS:  No FocAI  NEURoLoGICAT  DEFicIT\nTEMP;  AFEBRTLE\nRR: 18 CYCLES  /MtN\nSPO2:  98 % AT RA\n\nFOTLOW  UP:\no TAB TAXTM  O 2OO MG 1-O-1  X5 DAYS\n_-.\na\no TAB.NEUROBION  FORTE 1_O_O  Xl WEEK\no TAB. GANATON  TOTAL  1_O_1  X5DAYS\no TAB.GLyCoMET  Gp 1_O_1 TO CoNT|NUE(3O  MINS BEFoRE FOOD)\no TAB.ENAIApR|L  5MG O_O_1  TO CONTTNUE\no TAB.AMLONG  10MG 1-O_0  X TO CONTTNUE\n. SYP.SUCRAF|L  t0ML-1OML_1OML\nr Syp. DtGtRAFT  1OML_O:10ML\n-. MDt FoRACoRT 2oOMG  2PUFFS  BD VtA SPACER\n. REVIEW  AFTER'1.W!!K lN GENERAL  SURGER y  Vt opD  oN 28/72/2024\nE REVIEW  AFTER  2 WEEKS  IN PUTMONARY  MEDICIN;  OPD WITH  MDI INHALER\n. REVIEW  AFTER  2 WEEK IN GENERAL  MEDICINE  OP'WITH FBS AND PPBS REPORT\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nJR\n.\nUNIT CHIEF",
+              "title": "Extracted text from Copy of 1002699990.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

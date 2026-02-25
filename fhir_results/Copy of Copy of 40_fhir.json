@@ -1,0 +1,134 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "111bd7d8-f00a-46ad-a310-6f40d5ec3b00"
+  },
+  "type": "document",
+  "timestamp": "2023-03-21T12:36:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:905a5d97-4fce-4f04-9a9b-f89d09da0bb2",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "905a5d97-4fce-4f04-9a9b-f89d09da0bb2",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:dd04eaa7-8be1-4683-8f12-ec1421dfe7ab"
+        },
+        "date": "2023-03-21T12:36:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:4f055183-3f59-4d1e-881b-85a8c866add6"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:94375294-0252-4487-8ff1-a104c3ced878"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4f055183-3f59-4d1e-881b-85a8c866add6",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "4f055183-3f59-4d1e-881b-85a8c866add6",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dd04eaa7-8be1-4683-8f12-ec1421dfe7ab",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "dd04eaa7-8be1-4683-8f12-ec1421dfe7ab",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "1 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:94375294-0252-4487-8ff1-a104c3ced878",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "94375294-0252-4487-8ff1-a104c3ced878",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:dd04eaa7-8be1-4683-8f12-ec1421dfe7ab"
+        },
+        "date": "2023-03-21T12:36:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:4f055183-3f59-4d1e-881b-85a8c866add6"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:4f055183-3f59-4d1e-881b-85a8c866add6"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Pediatric Surgery\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                                    | Age/Gender: 5.7 Yr/M                 |\n|----------------------------------|----------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Pediatric Surgery (Ped Sx Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: Pedia Sx 3 C 4             | Room/Bed: 3 C 4 Ward/ 3 C 4 Pae 2                  | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                      | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                 | State/Country India                  |\n| D.O.A. : 21-Mar-2023 12:36       | D.O.D. : 08-Feb-2026                               | D.O. Print Report: 08-Feb-2026 15:34 |\nFINAL DIAGNOSIS:\nMIDPENILE HYPOSPADIAS\nOPERATION PERFORMED:\nREDO STAGE 1 URETHROPLASTY WITH GRAFTING On  30-Mar-2023\nSURGEONS: Dr Charu Tiwari\nOPERATIVE FINDINGS: AFTER ALL PREOPERATIVE PREPARATION, UNDER GA, IN SUPINE POSITION, AN INCISION GIVEN FROM GLANS TO\nURETHRAL OPENING.\nREMOVED EXCESSIVE SCAR TISSUE.\nA 1X1 CM PREPUCIAL SKIN WAS TAKEN FROM DISTAL ASPECT AS GRAFT.\nGRAFT WAS PUT OVER THE RAW AREA WHERE SCAR TISSUE WAS EXCISED. GRAFT FIXED WITH PDS 6-0 SUTURE.\nDORSAL SKIN CLOSED WITH 6-0 MONOCRYL SUTURE.\n8F FOLEYS CATHETER INTRODUCED\nDRESSING DONE.\nCHIEF COMPLAINTS:\nK/C/O MIDPENILE HYPOSPADIAS WITH STAGE 1 URETHROPLASTY\nADMITTED FOR STAGE 2 URETHROPLASTY\nHISTORY OF PRESENT ILLNESS: AS PER HISTORY GIVEN BY PATIENT ATTENDERS, PATIENT HAD C/O PASSING URINE FROM UNDER THE PENIS SINCE BIRTH FOR WHICH PATIENT WAS OPERATED - STAGE 1 URETHROPLASTY - ON 02/09/21. PRESENTLY CAME FOR STAGE 2 URETHROPLASTY.\nGENERAL:\nPR: 94/M           TEMP: 98.2F\nRR: 24/MWEIGHT : 11.4 KG\nNo Pallor, No Cyanosis, No Clubbing, No Generalised LNE, No Generalised Edema\nCNS:  WNL                                               CVS: S1S2 HEARD\nRS: BL AIRENTRY PRESENT\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nPA: SOFT NON TENDER\nLOCAL: GLANS GROOVE DEEP, URETHRAL PLATE WIDE, NO CHORDEE. MID PENIS MEATUS SEEN. B/L TESTES PRESENT. HOSPITAL COURSE: PATIENT IS DIAGNOSED CASE OF MIDPENILE HYPOSPADIAS, UNDERWENT STAGE 1 URETHROPLASTY ON 07/09/21. CURRENTLY ADMITTED FOR STAGE 2 URETHROPLASTY, UNDERWENT REDO STAGE 1 URETHROPLASTY WITH GRAFTING ON 30/03/23. POST OP PERIOD WAS UNEVENTFUL, PATIENT RECOVERED WELL, HENCE IS BEING DISCHARGED WITH FOLLOWING ADVICE. CONDITION AT DISCHARGE: PATIENT IS HEMODYNAMICALLY STABLE. PASSED URINE STOOLS. TOLERATING ORALS\nADVICE ON DISCHARGE:\nCIPLOX DROPS L/A BD TAB CYCLENORM E 0.01 MG PO HS SYP LACTULOSE 10 ML PO HS TAB TROPEN 2.2 MG PO TDS SYP IBUGESIC 2.5 ML PO BD\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 17-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE :\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of 40.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

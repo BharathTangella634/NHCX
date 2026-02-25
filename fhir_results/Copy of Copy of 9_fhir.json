@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "f38df977-64d2-47f2-b2a1-14f92d1a064b"
+  },
+  "type": "document",
+  "timestamp": "2023-04-01T13:52:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:d65dd088-9785-4b81-b94a-933c0646b401",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "d65dd088-9785-4b81-b94a-933c0646b401",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:58993256-c64b-4b85-a1e4-844a15b8341c"
+        },
+        "date": "2023-04-01T13:52:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:212319f0-a289-4e0c-94c8-2f07133b7a38"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:578a65c6-7dc6-4ad8-89e5-da9b4818d7d3"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:212319f0-a289-4e0c-94c8-2f07133b7a38",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "212319f0-a289-4e0c-94c8-2f07133b7a38",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:58993256-c64b-4b85-a1e4-844a15b8341c",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "58993256-c64b-4b85-a1e4-844a15b8341c",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:578a65c6-7dc6-4ad8-89e5-da9b4818d7d3",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "578a65c6-7dc6-4ad8-89e5-da9b4818d7d3",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:58993256-c64b-4b85-a1e4-844a15b8341c"
+        },
+        "date": "2023-04-01T13:52:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:212319f0-a289-4e0c-94c8-2f07133b7a38"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:212319f0-a289-4e0c-94c8-2f07133b7a38"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Ophthalmology Discharge Summary\n| CR No.: anonymous                | Name: anonymous                                 | Age/Gender: 61.0 Yr/F                |\n|----------------------------------|-------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Ophthalmology (Ophthal Unit 3) | Consultant/Faculty: anonymous        |\n| Ward: 3C3 Ophthal ward           | Room/Bed: 3 C 3 General/ 3 C 3 Gen 1            | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                   | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                              | State/Country India                  |\n| D.O.A. : 01-Apr-2023 13:52       | D.O.D. : 04-Apr-2023                            | D.O. Print Report: 08-Feb-2026 15:11 |\nFINAL DIAGNOSIS:\nLE NS II   CC\nOPERATION PERFORMED:\nLE PHACO   PCIOL UNDER LA On  03-Apr-2023\nSURGEONS: Dr Lubna Khan\nCHIEF COMPLAINTS:\nDIMINUTION OF VISION IN LE X 5-6 MONTHS\nHISTORY OF PRESENT ILLNESS: PATIENT WAS APPARENTLY ALRIGHT 5-6 MONTHS BACK THEN SHE DEVELOPED DIMINUTION OF VISION  IN BE WHICH WAS INSIDIOUS IN ONSET AND GRADUALLY PROGRESSIVE, PAINLESS, NOT ASSOCIATED WITH  OCASSIONAL ITCHING , NO H/O REDNESS/WATERING  ANY OTHER OCULAR COMPLAINTS. NO H/O OCULAR TRAUMA OR SURGERY. H/O DM / HTN X 17 YEARS ON REGULAR MEDICATIONS\nEXAMINATION:\n03-Apr-2023\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nGeneral Physcial Examination\nLocal Examination\nRespiration Rate (/min)\nTemperature (in Fahrenheit)\nOTHER INVESTIGATIONS: HIV/ HBSAG/ HCV - NR\nHBA1C ( 01/04/2023) - 7.2 %\nENDO CLEARANCE GIVEN\nHOSPITAL COURSE: TAB CIPLOX 500 MG HS AND EM TAB PANTOP 40 MG HS AND EM TAB ALPRAX 0.25 MG HS\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nRIGHT EYEVISION - 6/9 EYELIDS - NORMAL CONJUNCTIVA- GRADE I PTERYGIUM CORNEA - BRIGHT AC-  ND/Q PUPIL/IRIS- RTL LENS-  CC FUNDUS- MEDIA HAZY D/T CATARACT DICS - MARGINS NORMAL, CDR 0.3 ; 1, FR  , BV NORMAL SYRINGING- PATENT\nGAT - 10 MMHG\nLEFT EYE VISION - 6/24 EYELIDS - NORMAL CONJUNCTIVA- CLEAR CORNEA - BRIGHT AC- ND/Q PUPIL/IRIS- RTL LENS- NS II   CC FUNDUS-MEDIA HAZY, OD NORMAL SIZE SHAPE AND COLOUR, MARGINS NORMAL, CDR 0.3 ; 1, FR  , BV NORMAL SYRINGING- PATENT\nGAT- 10 MMHG\n88\n20\n88\nType\nAfebrile\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nLOCALLY LEFT EYE E/D MOXIFLOX 0.5 % 1 DROP EVERY 2 HOURLY E/D TROPAC P AND FLUR 1 DROP EVERY 10 MINS TILL FULL DILATATION ON  /4/23 FROM 7:00 AM CONDITION AT DISCHARGE: HEMODYNAMICALLY STABLE\nADVICE ON DISCHARGE:\nMAINTAIN EYE HYGIENE WEAR BLACK GOGGLES T. CIPLOX 500MG 1 TAB BD X 3 DAYS T. PANTOP 40MG OD (BBF) X 3 DAYS T.PCM 500MG 1 TAB BD X 3 DAYS T. SUPRADYN OD X 10 DAYS\nLOCALLY  LEFT  EYE: E/D PREDFORTE 1 DROP  6 TIMES/DAY E/D MOXIFLOXACIN  0.5% 1 DROP  4 TIMES/DAY E/D REFRESH GEL 1 DROP 4 TIMES/DAY E/D TROPAC 1 DROP HS\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 12-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : FOLLOW UP VISIT:  REVIEW IN EYE OPD ON   12/04/23 AT 9 AM WITH DISCHARGE CARD AND MEDICATIONS.\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.",
+              "title": "Extracted text from Copy of Copy of 9.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

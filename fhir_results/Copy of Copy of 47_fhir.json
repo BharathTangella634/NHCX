@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "b299bac5-91c9-4f7e-bb4d-6c706bc6b1e0"
+  },
+  "type": "document",
+  "timestamp": "2023-03-14T18:40:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:35d6f85b-e61c-408a-b816-76f43449de75",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "35d6f85b-e61c-408a-b816-76f43449de75",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:181546e7-8d53-44c8-ba77-dfec5ea9823e"
+        },
+        "date": "2023-03-14T18:40:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:dedd7a0b-afe8-456c-b27f-955b883ff6c3"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:e4235026-3262-47b1-8e8e-b935394cf6a1"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dedd7a0b-afe8-456c-b27f-955b883ff6c3",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "dedd7a0b-afe8-456c-b27f-955b883ff6c3",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:181546e7-8d53-44c8-ba77-dfec5ea9823e",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "181546e7-8d53-44c8-ba77-dfec5ea9823e",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e4235026-3262-47b1-8e8e-b935394cf6a1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "e4235026-3262-47b1-8e8e-b935394cf6a1",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:181546e7-8d53-44c8-ba77-dfec5ea9823e"
+        },
+        "date": "2023-03-14T18:40:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:dedd7a0b-afe8-456c-b27f-955b883ff6c3"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:dedd7a0b-afe8-456c-b27f-955b883ff6c3"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Neuro Surgery\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                             | Age/Gender: 48.0 Yr/M                |\n|----------------------------------|---------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Neuro Surgery (Ns Unit 1)  | Consultant/Faculty: anonymous        |\n| Ward: 3 B 2 Neuro Surgery Ward   | Room/Bed: 3 B 2 Neuro Surgery/ 3 B 2 N S 12 | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous               | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                          | State/Country India                  |\n| D.O.A. : 14-Mar-2023 18:40       | D.O.D. : 04-Apr-2023                        | D.O. Print Report: 08-Feb-2026 15:39 |\nFINAL DIAGNOSIS:\nAcquired defect of skull;\nRemarks: PREVIOUSLY OPERATED CASE OF LEFT DECOMPRESSIVE CRANIECTOMY WITH SKULL DEEFCT\nOPERATION PERFORMED:\nAUTOLOGOUS BONE FLAP CRANIOPLASTY DONE UNDER  On  03-Apr-2023\nSURGEONS: Dr Binoy Kumar Singh\nOPERATIVE FINDINGS: ABDOMINAL INCISION REEXPLORED AND BONE FLAP RETRIEVED. CRANIAL END REEXPLORED, SUBCUTANEOUS FLAP DISSECTED FROM DURA/ PERICRANIUM GRAFT. BONE FLAP FIXED WITH 4 MINI PLATES AND 8 SCREWS (TITANIUM, MRI COMPATIBLE JAYON). INCISION CLOSED IN LAYERS.\nHISTORY OF PRESENT ILLNESS: A/H/O INJURY OVER HEAD 6 MONTHS BACK MANAGED BY DECOMPRESSION CRANIECTOMY WITH ABDOMINAL FLAP PLACEMENT IN OUTSIDE HOSPITAL (PREVIOUS DOCUMENTS NOT AVAILABLE)\nPAST HISTORY : K/C HYPERTENSION SINCE 8 YEARS ON MEDICATIONS\nCNS EXAMINATION: - CONSCIOUS ORIENTED TO TIME, PLACE AND PERSON. OBEYS VERBAL COMMANDS, GCS- E4V5M6 PUPIL- B/L SYMMETRICAL AND REACTING TO LIGHT.\nCRANIAL NERVES EXAMINATION: - EXAMINATION IS WITHIN NORMAL LIMITS\nMOTOR - BULK - NO WASTING OR ANY FASCICULATION, TONE - NORMAL IN BOTH UPPER AND LOWER LIMB, POWER - UPPER LIMB SHOULDER - ABD/ADD - RT- 5/5, LT- 5/5, ELBOW - FLEXION/ EXTENSION - RT - 5/5, LT- 5/5, WRIST- RT -5/5, LT-5/5 ,LOWER LIMB - HIP - FLEXION/ EXTENSION - RT- 5/5, LT- 5/5, KNEE- FLEXION/ EXTENSION - RT - 5/5, LT- 5/5, ANKLE - DF/PF - RT- 5/5, LT- 5/5, EHL-RT-5/5, LT-5/5, DTR-RT- 2 , LT-2 .\nPLANTAR- B/L FLEXOR\nSPEECH - CLEAR AND FLUENT\nMEMORY - INTACT\nINVESTIGATION DETAILS:\n| Requisition Date                                                                                 | Test Name                                                                                        | Parameter Name                                                                                   | Result                                                                                           | Ref Range & Unit                                                                                 |\n|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|\n| 17-Mar-2023 01:29                                                                                | GLYCOSYLATED HAEMOGLOBIN (HbA1c)                                                                 | Result                                                                                           | Refer Reports*                                                                                   | -                                                                                                |\n|                                                                                                  |                                                                                                  | Hba1c                                                                                            | 5.8                                                                                              | < 5.7 %                                                                                          |\n| *Refer Lab Reports for details. OTHER INVESTIGATIONS: PRE OP NCCT HEAD S/O LEFT FTP SKULL DEFECT | *Refer Lab Reports for details. OTHER INVESTIGATIONS: PRE OP NCCT HEAD S/O LEFT FTP SKULL DEFECT | *Refer Lab Reports for details. OTHER INVESTIGATIONS: PRE OP NCCT HEAD S/O LEFT FTP SKULL DEFECT | *Refer Lab Reports for details. OTHER INVESTIGATIONS: PRE OP NCCT HEAD S/O LEFT FTP SKULL DEFECT | *Refer Lab Reports for details. OTHER INVESTIGATIONS: PRE OP NCCT HEAD S/O LEFT FTP SKULL DEFECT |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nHOSPITAL COURSE: PATIENT GOT ADMITTED WITH ABOVE MENTIONED COMPLAINTS ALL RELEVANT INVESTIGATIONS WERE DONE AND DAIGNOSED AS A CASE OF PREVIOUSLY OPERATED CASE OF LEFT DECOMPRESSIVE CRANIECTOMY WITH SKULL DEEFCT. THE PATIENT UNDERWENT AUTOLOGOUS BONE FLAP CRANIOPLASTY DONE UNDER GA ON 3/4/23. POST OPERATIVE PERIOD WAS UNEVENTFUL. NO NEW NEUROLOGICAL DEFICITS NOTED. OVERTIME PATIENT GENERAL CONDITION IMPROVED. PATIENT IS DISCHARGED WITH STABLE VITALS AND SENSORIUM.\nCONDITION AT DISCHARGE: PATIENT CONSCIOUS, ORIENTED WITH ALL STABLE VITALS, GCS- 15/15. POWER - B/L UPPER LIMB AND LOWER LIMB - 5/5\nWOUND - HEALTHY, SUTURE IN SITU\nADVICE ON DISCHARGE:\n\u2022DAILY BATH, MAINTAIN HYGIENE\n\u2022TAB PCM 650MG SOS\n\u2022TAB PANTOP 40 MG OD FOR 5 DAYS\n\u2022TAB AMLODIPINE 5 MG OD TO CONTINUE\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS : IN CASE OF ANY EMERGENCY LIKE HEADACHE, WOUND INFECTION/ DISCHARGE, WEAKNESS REVIEW IN EMERGENCY TRAUMA OR IN NEUROSURGERY OPD.\nFOLLOW UP ON : 11-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : REVIEW AFTER ONE WEEK IN NEUROSURGERY OPD AND SUTURE TO BE REMOVED ON 11/4/23.\nSummary Prepared By anonymous\nSummary Approved By anonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.",
+              "title": "Extracted text from Copy of Copy of 47.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "df883b9a-e4b0-4215-9c99-1e0db01902be"
+  },
+  "type": "document",
+  "timestamp": "2022-01-17T15:25:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:38a8aa41-9380-4b46-8b22-00846aa73f03",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "38a8aa41-9380-4b46-8b22-00846aa73f03",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:f8e58e65-060f-4cfd-8288-10d851204337"
+        },
+        "date": "2022-01-17T15:25:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:2d86ea69-fb87-45d4-a32d-e3041ccbfe5c"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:da0492fa-df78-4149-b0b2-44e2204b91bd"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2d86ea69-fb87-45d4-a32d-e3041ccbfe5c",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2d86ea69-fb87-45d4-a32d-e3041ccbfe5c",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f8e58e65-060f-4cfd-8288-10d851204337",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "f8e58e65-060f-4cfd-8288-10d851204337",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:da0492fa-df78-4149-b0b2-44e2204b91bd",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "da0492fa-df78-4149-b0b2-44e2204b91bd",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:f8e58e65-060f-4cfd-8288-10d851204337"
+        },
+        "date": "2022-01-17T15:25:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:2d86ea69-fb87-45d4-a32d-e3041ccbfe5c"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:2d86ea69-fb87-45d4-a32d-e3041ccbfe5c"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "E-BUSHRUT\nIntegrated: MI, M2, M3\nC-DAC: Centre for Development of Advanced Computing\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13. COAC\nDepartment of General Medicine Discharge Summary\n| CR No.: anonymous                | Name: anonymous                                    | Age/Gender: 38 Yr/M                  |\n|----------------------------------|----------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: General Medicine (Gen Med Unit 1) | Consultant: anonymous                |\n| Ward: General                    | Room/Bed: Cubicle 02/ Cubicle02 11                 | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                      | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                 | State/Country India                  |\n| D.O.A. : 17-Jan-2022 15:25       | D.O.D. : 25-Feb-2025                               | D.O. Print Report: 09-Feb-2026 11:16 |\nOPERATION PERFORMED:\nAbdominoperineal Pullthrough On 05-Feb-2025\nSURGEONS: AFREEN BEGUM H ITAGI\nANEURYSM REPAIR(THREE SHARED ROOM)*GRAFT On 12-Oct-2022\nASSISTANT SURGEONS/SENIOR RESIDENTS: xccvb cvbcv\nCHIEF COMPLAINTS:\nsada d a\nColostomy\nyt\nsf\nfd\nHISTORY OF PRESENT ILLNESS: vv gg jjcds\nCHRONIC DISEASES:\nfgbdf From .\nOTHER INVESTIGATIONS: testtttttttttscacavdsscasccsa\nHOSPITAL COURSE: hosp testghrtggdvshghfhtf\nCONDITION AT DISCHARGE: hgddcs\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 20-Jan-2026\nFOLLOW UP CONSULTANT : anonymous\nFOLLOW UP ADVICE :\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of 104.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

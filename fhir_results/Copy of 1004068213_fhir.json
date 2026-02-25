@@ -1,0 +1,1004 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:6728373a-426c-4f7f-94a2-140b0805c6d3",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "6728373a-426c-4f7f-94a2-140b0805c6d3",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/OPConsultRecord"
+          ]
+        },
+        "language": "en-IN",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">EMR REPORT</div>"
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11488-4",
+              "display": "Consult note"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "date": "2025-02-05T12:50:00+05:30",
+        "author": [
+          {
+            "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+          }
+        ],
+        "title": "EMR Report",
+        "custodian": {
+          "reference": "urn:uuid:8a6d6f2e-4b7c-4e8a-8e8e-8e8e8e8e8e8e"
+        },
+        "section": [
+          {
+            "title": "Chief Complaints",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "46239-0",
+                  "display": "Chief complaint reported"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:a1b2c3d4-e5f6-7890-1234-567890abcdef"
+              },
+              {
+                "reference": "urn:uuid:b2c3d4e5-f6a7-8901-2345-67890abcdef0"
+              }
+            ]
+          },
+          {
+            "title": "Medical History",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11348-0",
+                  "display": "History of Past illness"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:c3d4e5f6-a7b8-9012-3456-7890abcdef01"
+              }
+            ]
+          },
+          {
+            "title": "Physical Examination",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "29545-1",
+                  "display": "Physical findings"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:d4e5f6a7-b8c9-0123-4567-890abcdef012"
+              },
+              {
+                "reference": "urn:uuid:e5f6a7b8-c9d0-1234-5678-90abcdef0123"
+              },
+              {
+                "reference": "urn:uuid:f6a7b8c9-d0e1-2345-6789-0abcdef01234"
+              },
+              {
+                "reference": "urn:uuid:a7b8c9d0-e1f2-3456-7890-bcdef0123456"
+              },
+              {
+                "reference": "urn:uuid:b8c9d0e1-f2a3-4567-8901-cdef01234567"
+              }
+            ]
+          },
+          {
+            "title": "Investigation Results",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "30954-2",
+                  "display": "Relevant diagnostic tests/laboratory data"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:c9d0e1f2-a3b4-5678-9012-def012345678"
+              },
+              {
+                "reference": "urn:uuid:d0e1f2a3-b4c5-6789-0123-ef0123456789"
+              }
+            ]
+          },
+          {
+            "title": "Diagnosis",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "29308-4",
+                  "display": "Diagnosis"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:c3d4e5f6-a7b8-9012-3456-7890abcdef01"
+              }
+            ]
+          },
+          {
+            "title": "Medications",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "10160-0",
+                  "display": "History of Medication use"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:f2a3b4c5-d6e7-8901-2345-1234567890ab"
+              }
+            ]
+          },
+          {
+            "title": "Plan of Treatment and Investigations",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "18776-5",
+                  "display": "Plan of care note"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>--1 SESSION HEMODIALYSIS WITH 1 UNIT BLOOD TRANSFUSION AFTER REPORTS.</p><p>--REPEAT ABG CM AFTER HD.</p><p>--REVIEW WITREPORTS IN THE EVENING WITH UNIT 1.</p></div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:e1f2a3b4-c5d6-7890-1234-01234567890a"
+              },
+              {
+                "reference": "urn:uuid:f2a3b4c5-d6e7-8901-2345-01234567890b"
+              },
+              {
+                "reference": "urn:uuid:a3b4c5d6-e7f8-9012-3456-7890abcdef12"
+              },
+              {
+                "reference": "urn:uuid:b4c5d6e7-f8a9-0123-4567-890abcdef123"
+              },
+              {
+                "reference": "urn:uuid:c5d6e7f8-a9b0-1234-5678-90abcdef1234"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "9c2c78f1-8f36-4ab9-9133-35f949a21226",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "MR",
+                  "display": "Medical record number"
+                }
+              ]
+            },
+            "system": "https://www.nazarethshillong.in/mrn",
+            "value": "683108"
+          }
+        ],
+        "name": [
+          {
+            "text": "JIRANG IOSOHKSANG"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "9366168481",
+            "use": "mobile"
+          }
+        ],
+        "address": [
+          {
+            "text": "JIRANG IOSOHKSANG,RI BHOI"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Practitioner"
+          ]
+        },
+        "name": [
+          {
+            "text": "Dr. EMC"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8a6d6f2e-4b7c-4e8a-8e8e-8e8e8e8e8e8e",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "8a6d6f2e-4b7c-4e8a-8e8e-8e8e8e8e8e8e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Organization"
+          ]
+        },
+        "name": "Nazareth Hospital",
+        "address": [
+          {
+            "line": [
+              "Laitumkhrah"
+            ],
+            "city": "Shillong",
+            "state": "Meghalaya"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "506e71f5-14f7-48f8-b3d5-a34f41ddf31c",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Encounter"
+          ]
+        },
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+            }
+          }
+        ],
+        "period": {
+          "start": "2025-02-05T12:50:00+05:30"
+        },
+        "serviceProvider": {
+          "reference": "urn:uuid:8a6d6f2e-4b7c-4e8a-8e8e-8e8e8e8e8e8e"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Condition"
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Generalised weakness"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "onsetPeriod": {
+          "end": "2025-02-05"
+        },
+        "recordedDate": "2025-02-05"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Condition"
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "encounter-diagnosis",
+                "display": "Encounter Diagnosis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Chest fullness"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "onsetPeriod": {
+          "end": "2025-02-05"
+        },
+        "recordedDate": "2025-02-05"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Condition"
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category",
+                "code": "problem-list-item",
+                "display": "Problem List Item"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Bilateral obstructive uropathy"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "recordedDate": "2025-02-05"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d4e5f6a7-b8c9-0123-4567-890abcdef012",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d4e5f6a7-b8c9-0123-4567-890abcdef012",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam",
+                "display": "Exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Pallor"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05T12:50:00+05:30",
+        "valueString": "Present"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e5f6a7b8-c9d0-1234-5678-90abcdef0123",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e5f6a7b8-c9d0-1234-5678-90abcdef0123",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam",
+                "display": "Exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Chest"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05T12:50:00+05:30",
+        "valueString": "Clear"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f6a7b8c9-d0e1-2345-6789-0abcdef01234",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f6a7b8c9-d0e1-2345-6789-0abcdef01234",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam",
+                "display": "Exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Cardiovascular"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05T12:50:00+05:30",
+        "valueString": "S1,S2+"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a7b8c9d0-e1f2-3456-7890-bcdef0123456",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a7b8c9d0-e1f2-3456-7890-bcdef0123456",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam",
+                "display": "Exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Per Abdomen"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05T12:50:00+05:30",
+        "valueString": "Soft"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b8c9d0e1-f2a3-4567-8901-cdef01234567",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b8c9d0e1-f2a3-4567-8901-cdef01234567",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam",
+                "display": "Exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Central Nervous System"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05T12:50:00+05:30",
+        "valueString": "Conscious, Oriented"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c9d0e1f2-a3b4-5678-9012-def012345678",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c9d0e1f2-a3b4-5678-9012-def012345678",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "24336-0",
+              "display": "Gas panel - Arterial blood"
+            }
+          ],
+          "text": "ABG"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05",
+        "interpretation": [
+          {
+            "text": "Metabolic Acidosis"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d0e1f2a3-b4c5-6789-0123-ef0123456789",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d0e1f2a3-b4c5-6789-0123-ef0123456789",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Hb"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "effectiveDateTime": "2025-02-05",
+        "valueQuantity": {
+          "value": 5,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e1f2a3b4-c5d6-7890-1234-01234567890a",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "e1f2a3b4-c5d6-7890-1234-01234567890a",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ServiceRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "363679005",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "CHEST PA VIEW (X RAY)"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "authoredOn": "2025-02-05T12:50:00+05:30",
+        "requester": {
+          "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f2a3b4c5-d6e7-8901-2345-01234567890b",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "f2a3b4c5-d6e7-8901-2345-01234567890b",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ServiceRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "302294003",
+                "display": "Cardiology"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "ECG WITH LONG LEAD"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "authoredOn": "2025-02-05T12:50:00+05:30",
+        "requester": {
+          "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a3b4c5d6-e7f8-9012-3456-7890abcdef12",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "a3b4c5d6-e7f8-9012-3456-7890abcdef12",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ServiceRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "386637004",
+                "display": "Dialysis"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Hemodialysis"
+        },
+        "quantityQuantity": {
+          "value": 1,
+          "unit": "session"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "authoredOn": "2025-02-05T12:50:00+05:30",
+        "requester": {
+          "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b4c5d6e7-f8a9-0123-4567-890abcdef123",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "b4c5d6e7-f8a9-0123-4567-890abcdef123",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ServiceRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "410141009",
+                "display": "Transfusion"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "text": "Blood Transfusion"
+        },
+        "quantityQuantity": {
+          "value": 1,
+          "unit": "unit"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "authoredOn": "2025-02-05T12:50:00+05:30",
+        "requester": {
+          "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f2a3b4c5-d6e7-8901-2345-1234567890ab",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "f2a3b4c5-d6e7-8901-2345-1234567890ab",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/MedicationRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "text": "Injection Sodium Bicarbonate"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "authoredOn": "2025-02-05T12:50:00+05:30",
+        "requester": {
+          "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+        },
+        "dosageInstruction": [
+          {
+            "sequence": 1,
+            "text": "50CC, IV, SLOWLY OVER 10MIN, STAT",
+            "timing": {
+              "repeat": {
+                "count": 1
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "47625008",
+                  "display": "Intravenous route"
+                }
+              ]
+            },
+            "doseAndRate": [
+              {
+                "doseQuantity": {
+                  "value": 50,
+                  "unit": "mL",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mL"
+                },
+                "rateRatio": {
+                  "numerator": {
+                    "value": 50,
+                    "system": "http://unitsofmeasure.org",
+                    "code": "mL"
+                  },
+                  "denominator": {
+                    "value": 10,
+                    "system": "http://unitsofmeasure.org",
+                    "code": "min"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "sequence": 2,
+            "text": "25CC, 8TH HOURLY",
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 8,
+                "periodUnit": "h"
+              }
+            },
+            "doseAndRate": [
+              {
+                "doseQuantity": {
+                  "value": 25,
+                  "unit": "mL",
+                  "system": "http://unitsofmeasure.org",
+                  "code": "mL"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c5d6e7f8-a9b0-1234-5678-90abcdef1234",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "c5d6e7f8-a9b0-1234-5678-90abcdef1234",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ServiceRequest"
+          ]
+        },
+        "status": "active",
+        "intent": "order",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "108252007",
+                "display": "Laboratory procedure"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "24336-0",
+              "display": "Gas panel - Arterial blood"
+            }
+          ],
+          "text": "Repeat ABG CM after HD"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c2c78f1-8f36-4ab9-9133-35f949a21226"
+        },
+        "encounter": {
+          "reference": "urn:uuid:506e71f5-14f7-48f8-b3d5-a34f41ddf31c"
+        },
+        "authoredOn": "2025-02-05T12:50:00+05:30",
+        "requester": {
+          "reference": "urn:uuid:6e5e8e8e-8a0c-4c6e-8d8a-6b8c8d8c8d8c"
+        }
+      }
+    }
+  ]
+}

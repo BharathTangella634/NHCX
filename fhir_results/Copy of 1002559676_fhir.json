@@ -1,0 +1,965 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "1e3f8b96-1234-5678-90ab-cdef12345678",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Patient details not available in the source document.</div>"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2a4b8f0a-9876-5432-1fed-cba987654321",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2a4b8f0a-9876-5432-1fed-cba987654321",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Organization"
+          ]
+        },
+        "name": "IHI Imphal",
+        "telecom": [
+          {
+            "system": "email",
+            "value": "ihi.imphal@rediffmail.com",
+            "use": "work"
+          },
+          {
+            "system": "phone",
+            "value": "+919612329675",
+            "use": "work"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3b5c9e1b-1122-3344-5566-77889900aabb",
+      "resource": {
+        "resourceType": "Location",
+        "id": "3b5c9e1b-1122-3344-5566-77889900aabb",
+        "status": "active",
+        "name": "ICCU",
+        "description": "Intensive Cardiac Care Unit",
+        "mode": "kind",
+        "physicalType": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/location-physical-type",
+              "code": "wa",
+              "display": "Ward"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4c6d0f2c-aabb-ccdd-eeff-112233445566",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "4c6d0f2c-aabb-ccdd-eeff-112233445566",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Encounter"
+          ]
+        },
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "IMP",
+          "display": "inpatient encounter"
+        },
+        "subject": {
+          "reference": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678"
+        },
+        "period": {
+          "start": "2024-12-02"
+        },
+        "location": [
+          {
+            "location": {
+              "reference": "urn:uuid:3b5c9e1b-1122-3344-5566-77889900aabb",
+              "display": "ICCU"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5d7e1a3d-abcd-ef01-2345-6789abcdef01",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "5d7e1a3d-abcd-ef01-2345-6789abcdef01",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "RAD",
+                "display": "Radiology"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "34533-3",
+              "display": "Echocardiogram.doppler.color Study"
+            }
+          ],
+          "text": "ECHO CARDIOGRAPHY REPORT"
+        },
+        "subject": {
+          "reference": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678"
+        },
+        "encounter": {
+          "reference": "urn:uuid:4c6d0f2c-aabb-ccdd-eeff-112233445566"
+        },
+        "effectiveDateTime": "2024-12-02",
+        "issued": "2024-12-02T15:30:00+05:30",
+        "performer": [
+          {
+            "reference": "urn:uuid:2a4b8f0a-9876-5432-1fed-cba987654321"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:6e8f2b4e-bcde-f012-3456-7890bcdef012"
+          },
+          {
+            "reference": "urn:uuid:7f9a3c5f-cdef-0123-4567-8901cdef0123"
+          },
+          {
+            "reference": "urn:uuid:8a0b4d6a-def0-1234-5678-9012def01234"
+          },
+          {
+            "reference": "urn:uuid:9b1c5e7b-ef01-2345-6789-0123ef012345"
+          }
+        ],
+        "conclusion": "Mild mitral regurgitation and mild tricuspid regurgitation observed. Aortic and pulmonary valves appear functionally normal.",
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "62390008",
+                "display": "Mild mitral regurgitation"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "111303004",
+                "display": "Mild tricuspid regurgitation"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6e8f2b4e-bcde-f012-3456-7890bcdef012",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "6e8f2b4e-bcde-f012-3456-7890bcdef012",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29548-5",
+              "display": "Mitral valve regurgitation"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678"
+        },
+        "encounter": {
+          "reference": "urn:uuid:4c6d0f2c-aabb-ccdd-eeff-112233445566"
+        },
+        "effectiveDateTime": "2024-12-02",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "62390008",
+              "display": "Mild mitral regurgitation"
+            }
+          ],
+          "text": "Mild"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7f9a3c5f-cdef-0123-4567-8901cdef0123",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "7f9a3c5f-cdef-0123-4567-8901cdef0123",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29551-9",
+              "display": "Tricuspid valve regurgitation"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678"
+        },
+        "encounter": {
+          "reference": "urn:uuid:4c6d0f2c-aabb-ccdd-eeff-112233445566"
+        },
+        "effectiveDateTime": "2024-12-02",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "111303004",
+              "display": "Mild tricuspid regurgitation"
+            }
+          ],
+          "text": "Mild"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8a0b4d6a-def0-1234-5678-9012def01234",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "8a0b4d6a-def0-1234-5678-9012def01234",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29550-1",
+              "display": "Pulmonary valve regurgitation"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678"
+        },
+        "encounter": {
+          "reference": "urn:uuid:4c6d0f2c-aabb-ccdd-eeff-112233445566"
+        },
+        "effectiveDateTime": "2024-12-02",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "268962002",
+              "display": "No pulmonary regurgitation"
+            }
+          ],
+          "text": "Absent"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9b1c5e7b-ef01-2345-6789-0123ef012345",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9b1c5e7b-ef01-2345-6789-0123ef012345",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "imaging",
+                "display": "Imaging"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29546-9",
+              "display": "Aortic valve regurgitation"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:1e3f8b96-1234-5678-90ab-cdef12345678"
+        },
+        "encounter": {
+          "reference": "urn:uuid:4c6d0f2c-aabb-ccdd-eeff-112233445566"
+        },
+        "effectiveDateTime": "2024-12-02",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "268958009",
+              "display": "No aortic regurgitation"
+            }
+          ],
+          "text": "Absent"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "7c7b049e-71cf-4a49-8b43-424f5a34241c",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7f3b8f2d-f3a0-4a8b-9e4a-9b8f2d7f3a0a",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "7f3b8f2d-f3a0-4a8b-9e4a-9b8f2d7f3a0a",
+        "identifier": [
+          {
+            "system": "http://example.org/mnhcr",
+            "value": "MNHCR/NO/151/NH/2016"
+          }
+        ],
+        "name": "IMPHAL HEART INSTITUTE",
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+91-9612329675",
+            "use": "work"
+          },
+          {
+            "system": "email",
+            "value": "ihi.imphal@rediffmail.com",
+            "use": "work"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d1d36d3c-9418-4903-b26a-8671752b914a",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "d1d36d3c-9418-4903-b26a-8671752b914a",
+        "qualification": [
+          {
+            "code": {
+              "text": "Consultant Cardiology"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4a6f8b9e-7c1a-4d2b-9e8a-7f6d5c4b3a2e",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "4a6f8b9e-7c1a-4d2b-9e8a-7f6d5c4b3a2e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "24322-2",
+              "display": "Echocardiogram"
+            }
+          ],
+          "text": "Echocardiogram Report"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "performer": [
+          {
+            "reference": "urn:uuid:7f3b8f2d-f3a0-4a8b-9e4a-9b8f2d7f3a0a"
+          },
+          {
+            "reference": "urn:uuid:d1d36d3c-9418-4903-b26a-8671752b914a"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:e1f3a2b1-9c8d-4e7f-8a6b-5c4d3e2f1a0b"
+          },
+          {
+            "reference": "urn:uuid:b2c1d3e2-8b7c-4d6e-9f5a-4b3c2d1e0f9a"
+          },
+          {
+            "reference": "urn:uuid:c3d2e1f0-7a6b-4c5d-8e4f-3a2b1c0d9f8a"
+          },
+          {
+            "reference": "urn:uuid:d4e3f2a1-695a-4b4c-7d3e-291a0b9c8d7a"
+          },
+          {
+            "reference": "urn:uuid:e5f4a3b2-5849-4a3b-6c2d-1809f8a7c6d9"
+          },
+          {
+            "reference": "urn:uuid:f6a5b4c3-4738-492a-5b1c-07f8e7b6d5c8"
+          },
+          {
+            "reference": "urn:uuid:a7b6c5d4-3627-4819-4a0b-f6e7d6c5b4d7"
+          },
+          {
+            "reference": "urn:uuid:f01a3d93-3d07-422f-98c5-97e3f4368b6b"
+          },
+          {
+            "reference": "urn:uuid:3b5f8c67-8742-4f36-96b4-219e8324f9e1"
+          },
+          {
+            "reference": "urn:uuid:a6e2e5c8-1a89-4b8c-8c76-5d45e4a3b2a1"
+          },
+          {
+            "reference": "urn:uuid:d9c8b7a6-5e4d-3c2b-1a9f-8e7d6c5b4a3e"
+          },
+          {
+            "reference": "urn:uuid:c1a2b3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6"
+          },
+          {
+            "reference": "urn:uuid:12345678-abcd-efab-cdef-1234567890ab"
+          }
+        ],
+        "conclusion": "Apex / akinetic, LVEF- 45%. Mild MR / TR. No PAH. Normal RV systolic function. No clot/veg/PE seen.",
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "251174002",
+                "display": "Apical akinesis"
+              }
+            ],
+            "text": "Apex / akinetic"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "40966000",
+                "display": "Mitral valve regurgitation"
+              }
+            ],
+            "text": "Mild MR"
+          },
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "61073003",
+                "display": "Tricuspid valve regurgitation"
+              }
+            ],
+            "text": "Mild TR"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e1f3a2b1-9c8d-4e7f-8a6b-5c4d3e2f1a0b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e1f3a2b1-9c8d-4e7f-8a6b-5c4d3e2f1a0b",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18118-4",
+              "display": "Aortic root - Diameter"
+            }
+          ],
+          "text": "Aorta"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 29,
+          "unit": "mm",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 20,
+              "unit": "mm"
+            },
+            "high": {
+              "value": 34,
+              "unit": "mm"
+            },
+            "text": "(20-34mm) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b2c1d3e2-8b7c-4d6e-9f5a-4b3c2d1e0f9a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b2c1d3e2-8b7c-4d6e-9f5a-4b3c2d1e0f9a",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18115-0",
+              "display": "Left atrium - Systolic dimension"
+            }
+          ],
+          "text": "LAes"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 35,
+          "unit": "mm",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 19,
+              "unit": "mm"
+            },
+            "high": {
+              "value": 40,
+              "unit": "mm"
+            },
+            "text": "(19-40mm) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c3d2e1f0-7a6b-4c5d-8e4f-3a2b1c0d9f8a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c3d2e1f0-7a6b-4c5d-8e4f-3a2b1c0d9f8a",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18131-7",
+              "display": "Left ventricle - Diastolic dimension"
+            }
+          ],
+          "text": "LVed"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 46,
+          "unit": "mm",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 37,
+              "unit": "mm"
+            },
+            "high": {
+              "value": 56,
+              "unit": "mm"
+            },
+            "text": "(37-56mm) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d4e3f2a1-695a-4b4c-7d3e-291a0b9c8d7a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d4e3f2a1-695a-4b4c-7d3e-291a0b9c8d7a",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18133-3",
+              "display": "Left ventricle - Systolic dimension"
+            }
+          ],
+          "text": "LVes"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 36,
+          "unit": "mm",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 22,
+              "unit": "mm"
+            },
+            "high": {
+              "value": 40,
+              "unit": "mm"
+            },
+            "text": "(22-40mm) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e5f4a3b2-5849-4a3b-6c2d-1809f8a7c6d9",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e5f4a3b2-5849-4a3b-6c2d-1809f8a7c6d9",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18128-3",
+              "display": "Interventricular septum - Diastolic thickness"
+            }
+          ],
+          "text": "IVS(ed)"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 10,
+          "unit": "mm",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 6,
+              "unit": "mm"
+            },
+            "high": {
+              "value": 11,
+              "unit": "mm"
+            },
+            "text": "(06-11mm) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f6a5b4c3-4738-492a-5b1c-07f8e7b6d5c8",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f6a5b4c3-4738-492a-5b1c-07f8e7b6d5c8",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18137-4",
+              "display": "Left ventricle posterior wall - Diastolic thickness"
+            }
+          ],
+          "text": "PW(ed)"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 9,
+          "unit": "mm",
+          "system": "http://unitsofmeasure.org",
+          "code": "mm"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 6,
+              "unit": "mm"
+            },
+            "high": {
+              "value": 11,
+              "unit": "mm"
+            },
+            "text": "(06-11mm) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a7b6c5d4-3627-4819-4a0b-f6e7d6c5b4d7",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a7b6c5d4-3627-4819-4a0b-f6e7d6c5b4d7",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18090-5",
+              "display": "Ejection fraction"
+            }
+          ],
+          "text": "LVEF"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueQuantity": {
+          "value": 45,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "L",
+                "display": "Low"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {
+              "value": 54,
+              "unit": "%"
+            },
+            "high": {
+              "value": 76,
+              "unit": "%"
+            },
+            "text": "(54%-76%) Normal Range"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f01a3d93-3d07-422f-98c5-97e3f4368b6b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f01a3d93-3d07-422f-98c5-97e3f4368b6b",
+        "status": "final",
+        "code": {
+          "text": "LV Contraction"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueCodeableConcept": {
+          "text": "Reduced"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3b5f8c67-8742-4f36-96b4-219e8324f9e1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3b5f8c67-8742-4f36-96b4-219e8324f9e1",
+        "status": "final",
+        "code": {
+          "text": "Regional wall motion abnormality"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueCodeableConcept": {
+          "text": "Present"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a6e2e5c8-1a89-4b8c-8c76-5d45e4a3b2a1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a6e2e5c8-1a89-4b8c-8c76-5d45e4a3b2a1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "40966000",
+              "display": "Mitral valve regurgitation"
+            }
+          ],
+          "text": "Mild MR"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "255604002",
+                "display": "Mild"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d9c8b7a6-5e4d-3c2b-1a9f-8e7d6c5b4a3e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d9c8b7a6-5e4d-3c2b-1a9f-8e7d6c5b4a3e",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "61073003",
+              "display": "Tricuspid valve regurgitation"
+            }
+          ],
+          "text": "Mild TR"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "255604002",
+                "display": "Mild"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c1a2b3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c1a2b3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
+        "status": "final",
+        "code": {
+          "text": "RV systolic function"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "169213009",
+              "display": "Normal"
+            }
+          ],
+          "text": "Normal"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:12345678-abcd-efab-cdef-1234567890ab",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "12345678-abcd-efab-cdef-1234567890ab",
+        "status": "final",
+        "code": {
+          "text": "Clot/veg/PE"
+        },
+        "subject": {
+          "reference": "urn:uuid:7c7b049e-71cf-4a49-8b43-424f5a34241c"
+        },
+        "valueBoolean": false
+      }
+    }
+  ]
+}

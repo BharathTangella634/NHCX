@@ -1,0 +1,134 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "e6ea9e97-608e-4dbd-8f26-63882f84f2a3"
+  },
+  "type": "document",
+  "timestamp": "2023-01-24T13:05:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:9a509cf5-7e8c-4da9-b515-2a2602e3223a",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "9a509cf5-7e8c-4da9-b515-2a2602e3223a",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:0b2228af-2bb6-4668-a0cf-e1183ea3702b"
+        },
+        "date": "2023-01-24T13:05:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:00ce756a-8477-48f5-9601-430de51a56d0"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:9f0ba3e5-16a5-4e86-aec7-c07f12006992"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:00ce756a-8477-48f5-9601-430de51a56d0",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "00ce756a-8477-48f5-9601-430de51a56d0",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0b2228af-2bb6-4668-a0cf-e1183ea3702b",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "0b2228af-2bb6-4668-a0cf-e1183ea3702b",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "25 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "female"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9f0ba3e5-16a5-4e86-aec7-c07f12006992",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "9f0ba3e5-16a5-4e86-aec7-c07f12006992",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:0b2228af-2bb6-4668-a0cf-e1183ea3702b"
+        },
+        "date": "2023-01-24T13:05:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:00ce756a-8477-48f5-9601-430de51a56d0"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:00ce756a-8477-48f5-9601-430de51a56d0"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "sharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nCytology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No\n: -\nSample No. : -\nCollection Date\n: 19-Jan-2023 15:10\nPatient Name\n: anonymous\nAge/Sex\n: 25 Yr/F\nAcceptance Date\n: 19-Jan-2023 16:13\nSample Type\n: Lbc\nLab No.\n: 23LB0275\nReporting Date\n: 24-Jan-2023 13:05\nReferred Doctor :\nPatient Type\n: OPD\nLIQUID BASED CYTOLOGY - GYNAEC CERVICAL CYTOLOGY\nSPECIMEN TYPE: Liquid based preparation (The 2014 Bethesda System)\nCLINICAL HISTORY:Secondary infertility P/S- \u00a0 Cervix deviated to right, bleeding through os\nGROSS DESCRIPTION: One \u00a0prepared slides\nSPECIMEN ADEQUACY:\nSatisfactory for evaluation; endocervical/transformation zone component present\nGENERAL CATEGORISATION:\nNegative for intraepithelial lesion or malignancy\nINTERPRETATION /RESULT:\nInflammatory smear with Shift in flora suggestive of bacterial vaginosis.\nNote :\nComments:\nCerviacal cytology is a screening test primarily for squamous cancer and its precursors and has associated false nagative and false positive results. Follow up of unexplained clinical signs and symptoms are recommanded to minimize false nagative result. 1.\nLiquid Based Cytology is validated for screening for epithelial cell abnormalities of cervix only and not inflammatory lesions. 2.\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Pathology And Lab Medicine\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nsharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nCytology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 20-Jan-2023 13:08\nPatient Name\n: anonymous\nAge/Sex\n: 40 Yr/M\nAcceptance Date\n: 20-Jan-2023 13:15\nSample Type\n: Fnac\nLab No.\n: 23FN0081\nReporting Date\n: 25-Jan-2023 16:11\nReferred Doctor :\nPatient Type\n: OPD\nFine Needle Aspiration Cytology (FNAC)\nSPECIMEN:FNAC from infra orbital swelling\nCLINICAL DETAILS: Complaint of right infra orbital swelling since 6 months, gradually increasing in size not associated with pain.On examination- Right sided infraorbital swelling 1.5x1.5cm, firm, mobile, non tender.\nGROSS DESCRIPTION:Aspirate was blood mixed.\nMICROSCOPIC DESCRIPTION:FNA smears show\u00a0\u00a0numerous nucleated and anucleated squamous cells on a haemorrhagic background.\nIMPRESSION: FNAC from infra orbital swelling Epidermal Inclusion Cyst.\nNote:\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nRevalidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Pathology And Lab Medicine\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nsharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nCytology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 19-Jan-2023 15:00\nPatient Name\n: anonymous\nAge/Sex\n: 47 Yr/F\nAcceptance Date\n: 19-Jan-2023 16:12\nSample Type\n: Lbc\nLab No.\n: 23LB0272\nReporting Date\n: 24-Jan-2023 12:59\nReferred Doctor :\nPatient Type\n: OPD\nLIQUID BASED CYTOLOGY - GYNAEC CERVICAL CYTOLOGY\nSPECIMEN TYPE: Liquid based preparation (The 2014 Bethesda System)\nCLINICAL HISTORY:\u00a0 cervix atrophied, something coming out of vagina\nGROSS DESCRIPTION: One prepared slide\nSPECIMEN ADEQUACY:\nSatisfactory for evaluation; endocervical/transformation zone component present\nGENERAL CATEGORISATION:\nNegative for intraepithelial lesion or malignancy\nINTERPRETATION/RESULT:\nNegative for intraepithelial lesion or malignancy with scant cellularity .\nNote :\nComments:\nCerviacal cytology is a screening test primarily for squamous cancer and its precursors and has associated false nagative and false positive results. Follow up of unexplained clinical signs and symptoms are recommanded to minimize false nagative result. 1.\nLiquid Based Cytology is validated for screening for epithelial cell abnormalities of cervix only and not inflammatory lesions. 2.\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\n91-0120-3063311-13.\nDepartment of Pathology And Lab Medicine\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nsharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n91-0120-3063311-13.\nDepartment of Pathology And Lab Medicine\nCytology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 19-Jan-2023 15:26\nPatient Name\n: anonymous\nAge/Sex\n: 47 Yr/F\nAcceptance Date\n: 19-Jan-2023 16:13\nSample Type\n: Lbc\nLab No.\n: 23LB0276\nReporting Date\n: 24-Jan-2023 13:07\nReferred Doctor :\nPatient Type\n: OPD\nLIQUID BASED CYTOLOGY - GYNAEC CERVICAL CYTOLOGY\nSPECIMEN TYPE: Liquid based preparation (The 2014 Bethesda System)\nCLINICAL HISTORY: Complian of lower abdominal pain with irregular menses P/S- Cervix and vagina healthy, watery white discharge present\nGROSS DESCRIPTION: One \u00a0prepared slides\nSPECIMEN ADEQUACY:\nSatisfactory for evaluation; endocervical/transformation zone component present\nGENERAL CATEGORISATION:\nNegative for intraepithelial lesion or malignancy\nINTERPRETATION /RESULT:\nInflammatory smear with Shift in flora suggestive of bacterial vaginosis.\nNote :Repeat smear after inflammation subsides.\nComments:\nCerviacal cytology is a screening test primarily for squamous cancer and its precursors and has associated false nagative and false positive results. Follow up of unexplained clinical signs and symptoms are recommanded to minimize false nagative result. 1.\nLiquid Based Cytology is validated for screening for epithelial cell abnormalities of cervix only and not inflammatory lesions. 2.\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nThis is computer generated report. Signature not required\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nsharar\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, shiman\nIntegrated: MI, M2. M3\nC-DAC: Centre for Development of Advanced Computing\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nCytology\nABHA NO : -\nABHA ADDRESS\n: -\nCR No : -\nSample No. : -\nCollection Date\n: 19-Jan-2023 22:40\nPatient Name\n: anonymous\nAge/Sex\n: 63 Yr/F\nAcceptance Date\n: 20-Jan-2023 15:48\nSample Type\n: Peritoneal\nLab No.\n: 23EC0111\nReporting Date\n: 24-Jan-2023 09:34\nReferred Doctor :\nPatient Type\n: IPD\nExfoliative Cytology\n91-0120-3063311-13.\nDepartment of Pathology And Lab Medicine\nSPECIMEN:Peritoneal fluid for cytology\nCLINICAL DETAILS: Known case of inferior wall MI, Currently presented with generalised body swelling and shortness of breath since fifteen days, On examination abdomen was distended. Echocardiography showed Concentric LVH with LVEF-55-60%\nGROSS DESCRIPTION:Volume- 3ml, Colour- pale yellow, appearance-clear, Clot- absent\nMICROSCOPIC DESCRIPTION:Cytocentrifuge smears are scantly cellular show scattered mature lymphocytes. No atypical cells seen.\nIMPRESSION:\nPeritoneal fluid for cytology\nNegative for malignancy - The International System For Reporting of Serous Fluid cytology - Category II\nNote:Cell block is under process, if any additional finding seen, an addendum report will follow\n********** END OF THE REPORT **********\nValidated By:\nanonymous\nRevalidated By:\nanonymous\nThis is computer generated report. Signature not required\nCDAC\nCOMPUTING\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of report31.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

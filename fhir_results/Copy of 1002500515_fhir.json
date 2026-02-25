@@ -1,0 +1,1708 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "01c40b84-4869-425f-b5b4-f3a74c0b4c73",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://healthid.ndhm.gov.in",
+            "value": "sample-patient-id"
+          }
+        ],
+        "name": [
+          {
+            "text": "XXXXXX"
+          }
+        ],
+        "gender": "unknown",
+        "birthDate": "1994-10-30"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b5b24f5a-5d07-4e78-b68a-0c7f7e91404c",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "b5b24f5a-5d07-4e78-b68a-0c7f7e91404c",
+        "name": "CHANDICARH MEDICAL LABORATORY",
+        "address": [
+          {
+            "line": [
+              "Hamirpur Road (Near Baba Bal JI Gate)",
+              "Kotla Kalan"
+            ],
+            "city": "UNA",
+            "district": "UNA",
+            "state": "Himachal Pradesh",
+            "postalCode": "174303"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0142345b-773a-48d6-a979-3733c70c0c7a",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "0142345b-773a-48d6-a979-3733c70c0c7a",
+        "name": [
+          {
+            "text": "G.S. Rana"
+          }
+        ],
+        "qualification": [
+          {
+            "code": {
+              "text": "BMLT (Lab. Tech.)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6c9b4f0e-b7d6-4e5a-8b8b-8a1a8c7e9a0e",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "6c9b4f0e-b7d6-4e5a-8b8b-8a1a8c7e9a0e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Specimen"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "SH 03"
+          }
+        ],
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "119297000",
+              "display": "Blood specimen"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3b22b10a-319b-44a0-a0a4-311a21e4222f",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "3b22b10a-319b-44a0-a0a4-311a21e4222f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "LAB",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "57021-8",
+              "display": "CBC with Auto Differential panel - Blood"
+            }
+          ],
+          "text": "WB-CBC+DIFF"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "issued": "2024-10-30T09:07:00+05:30",
+        "performer": [
+          {
+            "reference": "urn:uuid:b5b24f5a-5d07-4e78-b68a-0c7f7e91404c"
+          }
+        ],
+        "resultsInterpreter": [
+          {
+            "reference": "urn:uuid:0142345b-773a-48d6-a979-3733c70c0c7a"
+          }
+        ],
+        "specimen": [
+          {
+            "reference": "urn:uuid:6c9b4f0e-b7d6-4e5a-8b8b-8a1a8c7e9a0e"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:7c7c3d7c-8e8e-4c4c-8c8c-3d7c8e8e4c4c"
+          },
+          {
+            "reference": "urn:uuid:1a1a1a1a-1b1b-1c1c-1d1d-1e1e1e1e1e1e"
+          },
+          {
+            "reference": "urn:uuid:2b2b2b2b-2c2c-2d2d-2e2e-2f2f2f2f2f2f"
+          },
+          {
+            "reference": "urn:uuid:3c3c3c3c-3d3d-3e3e-3f3f-3a3a3a3a3a3a"
+          },
+          {
+            "reference": "urn:uuid:4d4d4d4d-4e4e-4f4f-4a4a-4b4b4b4b4b4b"
+          },
+          {
+            "reference": "urn:uuid:5e5e5e5e-5f5f-5a5a-5b5b-5c5c5c5c5c5c"
+          },
+          {
+            "reference": "urn:uuid:6f6f6f6f-6a6a-6b6b-6c6c-6d6d6d6d6d6d"
+          },
+          {
+            "reference": "urn:uuid:7a7a7a7a-7b7b-7c7c-7d7d-7e7e7e7e7e7e"
+          },
+          {
+            "reference": "urn:uuid:8b8b8b8b-8c8c-8d8d-8e8e-8f8f8f8f8f8f"
+          },
+          {
+            "reference": "urn:uuid:9c9c9c9c-9d9d-9e9e-9f9f-9a9a9a9a9a9a"
+          },
+          {
+            "reference": "urn:uuid:a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6"
+          },
+          {
+            "reference": "urn:uuid:b2c3d4e5-f6a7-b8c9-d0e1-f2a3b4c5d6e7"
+          },
+          {
+            "reference": "urn:uuid:c3d4e5f6-a7b8-c9d0-e1f2-a3b4c5d6e7f8"
+          },
+          {
+            "reference": "urn:uuid:d4e5f6a7-b8c9-d0e1-f2a3-b4c5d6e7f8a9"
+          },
+          {
+            "reference": "urn:uuid:e5f6a7b8-c9d0-e1f2-a3b4-c5d6e7f8a9b0"
+          },
+          {
+            "reference": "urn:uuid:f6a7b8c9-d0e1-f2a3-b4c5-d6e7f8a9b0c1"
+          },
+          {
+            "reference": "urn:uuid:a7b8c9d0-e1f2-a3b4-c5d6-e7f8a9b0c1d2"
+          },
+          {
+            "reference": "urn:uuid:b8c9d0e1-f2a3-b4c5-d6e7-f8a9b0c1d2e3"
+          },
+          {
+            "reference": "urn:uuid:c9d0e1f2-a3b4-c5d6-e7f8-a9b0c1d2e3f4"
+          },
+          {
+            "reference": "urn:uuid:d0e1f2a3-b4c5-d6e7-f8a9-b0c1d2e3f4a5"
+          },
+          {
+            "reference": "urn:uuid:e1f2a3b4-c5d6-e7f8-a9b0-c1d2e3f4a5b6"
+          },
+          {
+            "reference": "urn:uuid:f2a3b4c5-d6e7-f8a9-b0c1-d2e3f4a5b6c7"
+          },
+          {
+            "reference": "urn:uuid:a3b4c5d6-e7f8-a9b0-c1d2-e3f4a5b6c7d8"
+          },
+          {
+            "reference": "urn:uuid:b4c5d6e7-f8a9-b0c1-d2e3-f4a5b6c7d8e9"
+          },
+          {
+            "reference": "urn:uuid:c5d6e7f8-a9b0-c1d2-e3f4-a5b6c7d8e9f0"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7c7c3d7c-8e8e-4c4c-8c8c-3d7c8e8e4c4c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "7c7c3d7c-8e8e-4c4c-8c8c-3d7c8e8e4c4c",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6690-2",
+              "display": "Leukocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "WBC"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 5.03,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 4
+            },
+            "high": {
+              "value": 10
+            },
+            "text": "4.00 - 10.00 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1a1a1a1a-1b1b-1c1c-1d1d-1e1e1e1e1e1e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1a1a1a1a-1b1b-1c1c-1d1d-1e1e1e1e1e1e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "751-8",
+              "display": "Neutrophils [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Neut#"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 2.88,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 2
+            },
+            "high": {
+              "value": 7
+            },
+            "text": "2.00 - 7.00 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2b2b2b2b-2c2c-2d2d-2e2e-2f2f2f2f2f2f",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "2b2b2b2b-2c2c-2d2d-2e2e-2f2f2f2f2f2f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "736-9",
+              "display": "Lymphocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Lym#"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 1.77,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.8
+            },
+            "high": {
+              "value": 4
+            },
+            "text": "0.80 - 4.00 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3c3c3c3c-3d3d-3e3e-3f3f-3a3a3a3a3a3a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3c3c3c3c-3d3d-3e3e-3f3f-3a3a3a3a3a3a",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "742-7",
+              "display": "Monocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Mon#"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 0.38,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.12
+            },
+            "high": {
+              "value": 1.2
+            },
+            "text": "0.12 - 1.20 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4d4d4d4d-4e4e-4f4f-4a4a-4b4b4b4b4b4b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4d4d4d4d-4e4e-4f4f-4a4a-4b4b4b4b4b4b",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "713-8",
+              "display": "Eosinophils [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Eos#"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 0.02,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.02
+            },
+            "high": {
+              "value": 0.5
+            },
+            "text": "0.02 - 0.50 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5e5e5e5e-5f5f-5a5a-5b5b-5c5c5c5c5c5c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "5e5e5e5e-5f5f-5a5a-5b5b-5c5c5c5c5c5c",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "706-2",
+              "display": "Basophils [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "Bas#"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 0,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0
+            },
+            "high": {
+              "value": 0.1
+            },
+            "text": "0.00 - 0.10 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6f6f6f6f-6a6a-6b6b-6c6c-6d6d6d6d6d6d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "6f6f6f6f-6a6a-6b6b-6c6c-6d6d6d6d6d6d",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "770-8",
+              "display": "Neutrophils/100 leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Neu%"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 57.1,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 50
+            },
+            "high": {
+              "value": 70
+            },
+            "text": "50.0 - 70.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7a7a7a7a-7b7b-7c7c-7d7d-7e7e7e7e7e7e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "7a7a7a7a-7b7b-7c7c-7d7d-7e7e7e7e7e7e",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "731-0",
+              "display": "Lymphocytes/100 leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Lym%"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 35.2,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 20
+            },
+            "high": {
+              "value": 40
+            },
+            "text": "20.0 - 40.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8b8b8b8b-8c8c-8d8d-8e8e-8f8f8f8f8f8f",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "8b8b8b8b-8c8c-8d8d-8e8e-8f8f8f8f8f8f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "741-9",
+              "display": "Monocytes/100 leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Mon%"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 7.2,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 3
+            },
+            "high": {
+              "value": 12
+            },
+            "text": "3.0 - 12.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9c9c9c9c-9d9d-9e9e-9f9f-9a9a9a9a9a9a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9c9c9c9c-9d9d-9e9e-9f9f-9a9a9a9a9a9a",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "711-2",
+              "display": "Eosinophils/100 leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Eos%"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 0.5,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.5
+            },
+            "high": {
+              "value": 5
+            },
+            "text": "0.5 - 5.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "704-7",
+              "display": "Basophils/100 leukocytes in Blood by Automated count"
+            }
+          ],
+          "text": "Bas%"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 0,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0
+            },
+            "high": {
+              "value": 1
+            },
+            "text": "0.0 - 1.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b2c3d4e5-f6a7-b8c9-d0e1-f2a3b4c5d6e7",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b2c3d4e5-f6a7-b8c9-d0e1-f2a3b4c5d6e7",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "789-8",
+              "display": "Erythrocytes [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "RBC"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 4.17,
+          "unit": "10*6/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*6/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 4
+            },
+            "high": {
+              "value": 6.2
+            },
+            "text": "4.00 - 6.20 10*6/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c3d4e5f6-a7b8-c9d0-e1f2-a3b4c5d6e7f8",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c3d4e5f6-a7b8-c9d0-e1f2-a3b4c5d6e7f8",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "718-7",
+              "display": "Hemoglobin [Mass/volume] in Blood"
+            }
+          ],
+          "text": "HGB"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 11,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "L",
+                "display": "Low"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {
+              "value": 12
+            },
+            "high": {
+              "value": 16
+            },
+            "text": "12.0 - 16.0 g/dL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d4e5f6a7-b8c9-d0e1-f2a3-b4c5d6e7f8a9",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d4e5f6a7-b8c9-d0e1-f2a3-b4c5d6e7f8a9",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "4544-3",
+              "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "HCT"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 36.2,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "L",
+                "display": "Low"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {
+              "value": 40
+            },
+            "high": {
+              "value": 54
+            },
+            "text": "40.0 - 54.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e5f6a7b8-c9d0-e1f2-a3b4-c5d6e7f8a9b0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e5f6a7b8-c9d0-e1f2-a3b4-c5d6e7f8a9b0",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "787-2",
+              "display": "MCV [Entitic volume] by Automated count"
+            }
+          ],
+          "text": "MCV"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 86.9,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 80
+            },
+            "high": {
+              "value": 100
+            },
+            "text": "80.0 - 100.0 fL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f6a7b8c9-d0e1-f2a3-b4c5-d6e7f8a9b0c1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f6a7b8c9-d0e1-f2a3-b4c5-d6e7f8a9b0c1",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "785-6",
+              "display": "MCH [Entitic mass] by Automated count"
+            }
+          ],
+          "text": "MCH"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 27.3,
+          "unit": "pg",
+          "system": "http://unitsofmeasure.org",
+          "code": "pg"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 27
+            },
+            "high": {
+              "value": 34
+            },
+            "text": "27.0 - 34.0 pg"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a7b8c9d0-e1f2-a3b4-c5d6-e7f8a9b0c1d2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a7b8c9d0-e1f2-a3b4-c5d6-e7f8a9b0c1d2",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "786-4",
+              "display": "MCHC [Mass/volume] by Automated count"
+            }
+          ],
+          "text": "MCHC"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 31.4,
+          "unit": "g/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dL"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "L",
+                "display": "Low"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {
+              "value": 32
+            },
+            "high": {
+              "value": 36
+            },
+            "text": "32.0 - 36.0 g/dL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b8c9d0e1-f2a3-b4c5-d6e7-f8a9b0c1d2e3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b8c9d0e1-f2a3-b4c5-d6e7-f8a9b0c1d2e3",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "788-0",
+              "display": "RDW [Entitic volume] by Automated count"
+            }
+          ],
+          "text": "RDW-CV"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 15.6,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 11
+            },
+            "high": {
+              "value": 16
+            },
+            "text": "11.0 - 16.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c9d0e1f2-a3b4-c5d6-e7f8-a9b0c1d2e3f4",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c9d0e1f2-a3b4-c5d6-e7f8-a9b0c1d2e3f4",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "21000-5",
+              "display": "RDW-SD"
+            }
+          ],
+          "text": "RDW-SD"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 50.1,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 35
+            },
+            "high": {
+              "value": 56
+            },
+            "text": "35.0 - 56.0 fL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d0e1f2a3-b4c5-d6e7-f8a9-b0c1d2e3f4a5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d0e1f2a3-b4c5-d6e7-f8a9-b0c1d2e3f4a5",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "777-3",
+              "display": "Platelets [#/volume] in Blood by Automated count"
+            }
+          ],
+          "text": "PLT"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 132,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 100
+            },
+            "high": {
+              "value": 400
+            },
+            "text": "100 - 400 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e1f2a3b4-c5d6-e7f8-a9b0-c1d2e3f4a5b6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e1f2a3b4-c5d6-e7f8-a9b0-c1d2e3f4a5b6",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32623-1",
+              "display": "Platelet mean volume [Entitic volume] in Blood by Automated count"
+            }
+          ],
+          "text": "MPV"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 9.5,
+          "unit": "fL",
+          "system": "http://unitsofmeasure.org",
+          "code": "fL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 6.5
+            },
+            "high": {
+              "value": 12
+            },
+            "text": "6.5 - 12.0 fL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f2a3b4c5-d6e7-f8a9-b0c1-d2e3f4a5b6c7",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "f2a3b4c5-d6e7-f8a9-b0c1-d2e3f4a5b6c7",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "32207-3",
+              "display": "Platelet distribution width [Entitic volume] in Blood by Automated count"
+            }
+          ],
+          "text": "PDW"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 15.8,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 9
+            },
+            "high": {
+              "value": 17
+            },
+            "text": "9.0 - 17.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a3b4c5d6-e7f8-a9b0-c1d2-e3f4a5b6c7d8",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a3b4c5d6-e7f8-a9b0-c1d2-e3f4a5b6c7d8",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "13056-5",
+              "display": "Plateletcrit [Volume Fraction] of Blood by Automated count"
+            }
+          ],
+          "text": "PCT"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 0.126,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 0.108
+            },
+            "high": {
+              "value": 0.282
+            },
+            "text": "0.108 - 0.282 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b4c5d6e7-f8a9-b0c1-d2e3-f4a5b6c7d8e9",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b4c5d6e7-f8a9-b0c1-d2e3-f4a5b6c7d8e9",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "51590-0",
+              "display": "Platelet large cell count"
+            }
+          ],
+          "text": "P-LCC"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 31,
+          "unit": "10*3/uL",
+          "system": "http://unitsofmeasure.org",
+          "code": "10*3/uL"
+        },
+        "referenceRange": [
+          {
+            "high": {
+              "value": 80
+            },
+            "text": "< 80 10*3/uL"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c5d6e7f8-a9b0-c1d2-e3f4-a5b6c7d8e9f0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c5d6e7f8-a9b0-c1d2-e3f4-a5b6c7d8e9f0",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Observation"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "34538-8",
+              "display": "Platelet large cell ratio"
+            }
+          ],
+          "text": "P-LCR"
+        },
+        "subject": {
+          "reference": "urn:uuid:01c40b84-4869-425f-b5b4-f3a74c0b4c73"
+        },
+        "effectiveDateTime": "2024-10-30T09:07:00+05:30",
+        "valueQuantity": {
+          "value": 23.7,
+          "unit": "%",
+          "system": "http://unitsofmeasure.org",
+          "code": "%"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 11
+            },
+            "high": {
+              "value": 45
+            },
+            "text": "11.0 - 45.0 %"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:642d9931-5bee-4876-a079-0b79339e388f",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "642d9931-5bee-4876-a079-0b79339e388f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportRecord"
+          ],
+          "lastUpdated": "2024-10-30T14:30:00Z"
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:9c1a5330-a81d-4870-9b4e-e0d463d19459"
+        },
+        "date": "2024-10-30T14:30:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:9e9a48d8-04f7-4a0e-923f-e8b8398e2289"
+          }
+        ],
+        "title": "Biochemistry Report",
+        "custodian": {
+          "reference": "urn:uuid:9e9a48d8-04f7-4a0e-923f-e8b8398e2289"
+        },
+        "section": [
+          {
+            "title": "Laboratory Report",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11502-2",
+                  "display": "Laboratory report"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:8b3e83b4-e3c3-4c07-b645-5d9c7c0b02ac"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9c1a5330-a81d-4870-9b4e-e0d463d19459",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "9c1a5330-a81d-4870-9b4e-e0d463d19459",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Patient"
+          ]
+        },
+        "identifier": [
+          {
+            "type": {
+              "text": "Medical Record Number"
+            },
+            "system": "https://mandigarhlab.example.in",
+            "value": "D/1181"
+          }
+        ],
+        "name": [
+          {
+            "prefix": [
+              "Mr"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "8994"
+          }
+        ],
+        "gender": "unknown",
+        "birthDate": "2017-10-30",
+        "address": [
+          {
+            "city": "Bangana",
+            "district": "Una",
+            "state": "Himachal Pradesh"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9e9a48d8-04f7-4a0e-923f-e8b8398e2289",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "9e9a48d8-04f7-4a0e-923f-e8b8398e2289",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Organization"
+          ]
+        },
+        "name": "MANDIGARH MEDICAL LABORATORY",
+        "address": [
+          {
+            "line": [
+              "Hamirpur Road (Near Baba Bal Ji Gate)",
+              "Kotla Kalan"
+            ],
+            "district": "UNA",
+            "state": "Himachal Pradesh",
+            "postalCode": "174303"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8b3e83b4-e3c3-4c07-b645-5d9c7c0b02ac",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "8b3e83b4-e3c3-4c07-b645-5d9c7c0b02ac",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DiagnosticReportLab"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "LAB",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "24323-8",
+              "display": "Renal function panel"
+            }
+          ],
+          "text": "RENAL FUNCTION TEST"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c1a5330-a81d-4870-9b4e-e0d463d19459"
+        },
+        "effectiveDateTime": "2024-10-30",
+        "issued": "2024-10-30T14:30:00Z",
+        "performer": [
+          {
+            "reference": "urn:uuid:9e9a48d8-04f7-4a0e-923f-e8b8398e2289"
+          }
+        ],
+        "specimen": [
+          {
+            "reference": "urn:uuid:8c2c77d5-d059-4598-a83d-6b5d25e0a0d4"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:4a9c513e-3f65-4f05-a0c4-9a05b38a74e1"
+          },
+          {
+            "reference": "urn:uuid:3f8e567a-1c8a-4c25-b4c6-2c5e5e3a8b2f"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8c2c77d5-d059-4598-a83d-6b5d25e0a0d4",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "8c2c77d5-d059-4598-a83d-6b5d25e0a0d4",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/Specimen"
+          ]
+        },
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "119297000",
+              "display": "Blood specimen"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:9c1a5330-a81d-4870-9b4e-e0d463d19459"
+        },
+        "collection": {
+          "collectedDateTime": "2024-10-30"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4a9c513e-3f65-4f05-a0c4-9a05b38a74e1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4a9c513e-3f65-4f05-a0c4-9a05b38a74e1",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ObservationLabResult"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "14937-3",
+              "display": "Urea [Mass/volume] in Serum or Plasma"
+            }
+          ],
+          "text": "B. Urea"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c1a5330-a81d-4870-9b4e-e0d463d19459"
+        },
+        "effectiveDateTime": "2024-10-30",
+        "valueQuantity": {
+          "value": 273.6,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "H",
+                "display": "High"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {
+              "value": 13,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "high": {
+              "value": 45,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3f8e567a-1c8a-4c25-b4c6-2c5e5e3a8b2f",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3f8e567a-1c8a-4c25-b4c6-2c5e5e3a8b2f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/ObservationLabResult"
+          ]
+        },
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "6299-2",
+              "display": "Urea nitrogen [Mass/volume] in Blood"
+            }
+          ],
+          "text": "BUN"
+        },
+        "subject": {
+          "reference": "urn:uuid:9c1a5330-a81d-4870-9b4e-e0d463d19459"
+        },
+        "effectiveDateTime": "2024-10-30",
+        "valueQuantity": {
+          "value": 127.8,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "H",
+                "display": "High"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": {
+              "value": 7.0,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "high": {
+              "value": 20.0,
+              "unit": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

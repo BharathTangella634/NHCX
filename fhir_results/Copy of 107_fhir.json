@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "a24e3ff0-e21c-4074-8188-7207d18c67f2"
+  },
+  "type": "document",
+  "timestamp": "2021-03-16T13:05:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:b26c3a3d-e4ec-4331-a274-2b4d99f980bc",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "b26c3a3d-e4ec-4331-a274-2b4d99f980bc",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:d2a3943c-545d-4622-b962-25fa18947378"
+        },
+        "date": "2021-03-16T13:05:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:46c34bba-c902-496d-9583-2722ce2093e2"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:0085eddc-3c2c-412d-927d-1a9c6211f6ef"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:46c34bba-c902-496d-9583-2722ce2093e2",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "46c34bba-c902-496d-9583-2722ce2093e2",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d2a3943c-545d-4622-b962-25fa18947378",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "d2a3943c-545d-4622-b962-25fa18947378",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0085eddc-3c2c-412d-927d-1a9c6211f6ef",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "0085eddc-3c2c-412d-927d-1a9c6211f6ef",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:d2a3943c-545d-4622-b962-25fa18947378"
+        },
+        "date": "2021-03-16T13:05:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:46c34bba-c902-496d-9583-2722ce2093e2"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:46c34bba-c902-496d-9583-2722ce2093e2"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "E-BUSHRUT\nIntegrated: MI, M2, M3\nC-DAC: Centre for Development of Advanced Computing\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13. COAC\nDepartment of General Surgery Death Summary\n| CR No.: anonymous          | Name: anonymous                               | Age/Gender: 79 Yr/M                  |\n|----------------------------|-----------------------------------------------|--------------------------------------|\n| Admission No.: anonymous   | Department Unit: General Surgery (G S Unit 1) | Consultant: anonymous                |\n| Ward: General              | Room/Bed: Cubicle 04/ Cub04 101               | Patient Category: General            |\n| Discharge Type: Death      | Father/Spouse Name: anonymous                 | Occupation:                          |\n| Contact No.: anonymous     | Address: anonymous                            | State/Country India                  |\n| D.O.A. : 16-Mar-2021 13:05 | D.O.D. : 12-Jun-2025                          | D.O. Print Report: 09-Feb-2026 11:18 |\nOPERATION PERFORMED:\nABG ELECTROLYTES On 05-May-2021\nCHIEF COMPLAINTS:\nFever\nConstipation\nCold injury\nCollapse\nHeadache cold\nCommon cold\nMeasles dsdfsd\nColicky pain cqscws\nwesdddddas gdfgd\nHISTORY OF PRESENT ILLNESS: dwqd\nPersonal History\nSmoking yes\nDietary Vegetarian\nEXAMINATION:\n05-May-2021\nGeneral Physical Examination\nWeight (in kg)\n56\nHeight (in cm)\n156\nBMI (in kg/m2)\n23.01\nOTHER INVESTIGATIONS: rgr\nCASE SUMMARY: The format of a patient case report encompasses the following five sections: an abstract, an introduction and objective that contain a literature review, a description of the case report, a discussion that includes a detailed explanation of the literature review, a summary of the case, and a conclusion. The abstract of a patient case report should succinctly include the four sections of the main text of the report. The introduction section should provide the subject, purpose, and merit of the case report. It must explain why the case report is novel or merits review, and it should include a comprehensive literature review that corroborates the author's claims. The case presentation section should describe the case in chronological order and in enough detail for the reader to establish his or her own conclusions about the case's validity. The discussion section is the most important section of the case\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nE-BUSHRUT\nIntegrated: MI, M2, M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nreport. It ought to evaluate the patient case for accuracy, validity, and uniqueness; compare and contrast the case report with the published literature; derive new knowledge; summarize the essential features of the report; and draw recommendations. The conclusion section should be brief and provide a conclusion with evidence-based recommendations and applicability to practice.\nHOSPITAL COURSE: Hospital Course\nCONDITION AT DISCHARGE: Condition At Discharge\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nCAUSE OF DEATH : fdvbgfd\nDATE OF DEATH : 12-Jun-2025\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13. COAC",
+              "title": "Extracted text from Copy of 107.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "46ca7093-db6d-43cf-86b9-74ea2ac87c0d"
+  },
+  "type": "document",
+  "timestamp": "2023-03-16T12:09:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:895a78e2-85d9-47e5-8186-3c464e51b25b",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "895a78e2-85d9-47e5-8186-3c464e51b25b",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:3413222a-3f12-431c-9157-b579a33c0736"
+        },
+        "date": "2023-03-16T12:09:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:c52a7114-f55e-4dad-a854-9a7e8e2ec853"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:d4c8a995-1383-440f-b4e4-62e1d885058b"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c52a7114-f55e-4dad-a854-9a7e8e2ec853",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "c52a7114-f55e-4dad-a854-9a7e8e2ec853",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3413222a-3f12-431c-9157-b579a33c0736",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "3413222a-3f12-431c-9157-b579a33c0736",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d4c8a995-1383-440f-b4e4-62e1d885058b",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d4c8a995-1383-440f-b4e4-62e1d885058b",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:3413222a-3f12-431c-9157-b579a33c0736"
+        },
+        "date": "2023-03-16T12:09:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:c52a7114-f55e-4dad-a854-9a7e8e2ec853"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:c52a7114-f55e-4dad-a854-9a7e8e2ec853"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Burns And Plastic Surgery Discharge Summary\n| CR No.: anonymous                | Name: anonymous                                                     | Age/Gender: 57.0 Yr/M                |\n|----------------------------------|---------------------------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Burns And Plastic Surgery (Plastic Surgery Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: 2 B 2 Plastic Surgery      | Room/Bed: 2 B 2/ 2B2 Gen 6                                          | Patient Category: Ayushman           |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                                       | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                                                  | State/Country India                  |\n| D.O.A. : 16-Mar-2023 12:09       | D.O.D. : 30-Mar-2023                                                | D.O. Print Report: 08-Feb-2026 15:41 |\nFINAL DIAGNOSIS:\nPost traumatic chronic ulcer (Left foot)\nOPERATION PERFORMED:\nSplit Thickness Skin Graft On  23-Mar-2023\nCHIEF COMPLAINTS:\nNon healing wound over Left foot x 4 yrs\nHISTORY OF PRESENT ILLNESS: Alleged history of accidental fall from the train while getting down and sustained injury to left foot 18 yrs back. Patient received initial treatment in Government Hospital ,Champa. Debridement and STSG was done for Left foot soft tissue defect.  Patient developed small ulcer over the left foot 4 years back.\nLOCAL EXAMINATION OF Left foot- 4cmX 2cm ulcer present over the plantar aspect 6 cm proximal to the base of great toe, pale granulation tissue present. No purulent discharge from the ulcer. Well settled skin graft over the dorsum of left foot. NPWT was provided for the left foot chronic ulcer.\nINVESTIGATION DETAILS:\n| Requisition Date   | Test Name                                    | Parameter Name            | Result         | Ref Range & Unit      |\n|--------------------|----------------------------------------------|---------------------------|----------------|-----------------------|\n| 16-Mar-2023 13:24  | ACTIVATED PARTIAL THROMBOPLASTIN TIME (APTT) | APTT HEADER               | 23.7           | 23.2 - 32.4 sec       |\n|                    |                                              | APTT NOTE                 | Refer Reports* | -                     |\n|                    |                                              | clinical details          | --             | -                     |\n|                    | COMPLETE BLOOD COUNT (CBC)                   | Comments on PBS           | Refer Reports* | -                     |\n|                    |                                              | Absolute Basophil Count   | 0.03           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                    |                                              | Absolute Eosinophil Count | 0.28           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                    |                                              | Absolute Lymphocyte Count | 1.86           | 1 - 3 x10^3 /\u00b5L       |\n|                    |                                              | Absolute Monocyte Count   | 0.74           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                    |                                              | Absolute Neutrophil Count | 5.62           | 2 - 7 x10^3 /\u00b5L       |\n|                    |                                              | Basophil                  | 0.4            | 00 - 01%              |\n|                    |                                              | Eosinophils               | 3.3            | 01 - 06%              |\n|                    |                                              | HCT                       | 37.9           | 40 - 50%              |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                                 | Hemoglobin                           | 11.8           | 13 - 17 g/dl        |\n|---------------------------------|--------------------------------------|----------------|---------------------|\n|                                 | Lymphocites                          | 21.8           | 20 - 40%            |\n|                                 | MCH                                  | 28.1           | 27 - 32 pg          |\n|                                 | MCHC                                 | 31.1           | 31.5 - 34.5 g/dL    |\n|                                 | MCV                                  | 90.2           | 83 - 101 fL         |\n|                                 | Monocytes                            | 8.7            | 2 - 10%             |\n|                                 | Neutrophils                          | 65.8           | 40 - 80%            |\n|                                 | Platelet Count                       | 279            | 150 - 410 x10^3 /\u03bcL |\n|                                 | RBC                                  | 4.20           | 4.5 - 5.5 x10^6 /\u03bcL |\n|                                 | Red Cell Distribution Width (RDW CV) | 13.7           | 11.6 - 14.0%        |\n|                                 | Total Leukocyte Count(TLC)           | 8.53           | 4 - 10 x10^3 /\u03bcL    |\n| Liver Fuction Test (Lft)Albumin | Liver Fuction Test (Lft)Albumin      | 3.9            | 4.0 - 5.0 gm/dL     |\n|                                 | ALP                                  | 89             | 50 - 116 U/L        |\n|                                 | ALT                                  | 18             | 7 - 41 U/L          |\n|                                 | AST                                  | 41             | 12 - 38 U/L         |\n|                                 | Direct Bilirubin                     | 0.20           | 0.1 - 0.4 mg/dl     |\n|                                 | globulin                             | 3.8            | 2.0 - 3.5 gm/dL     |\n|                                 | Indirect Bilirubin                   | 0.62           | 0.20 - 0.90 mg/dl   |\n|                                 | Total Bilirubin                      | 0.82           | 0.3 - 1.3 mg/dl     |\n|                                 | Total Protein                        | 7.7            | 6.7 - 8.6 gm/dL     |\n| PROTHROMBIN TIME (PT INR)       | clinical details                     | --             | -                   |\n|                                 | International Normalised Ratio (INR) | 1.0            | -                   |\n|                                 | PT INR Header                        | 9.9            | 09.6 - 12.2 sec     |\n|                                 | PT INR Note                          | Refer Reports* | -                   |\n| Rft                             | Chloride                             | 106            | 102 - 109 mmol/L    |\n|                                 | Creatinine                           | 1.01           | 0.9 - 1.3 mg/dl     |\n|                                 | Potassium                            | 3.89           | 3.5 - 5 mmol/L      |\n|                                 | Sodium                               | 137            | 135 - 145 mmol/L    |\n|                                 | Urea                                 | 33             | 15.0 - 39.0 mg/dl   |\n*Refer Lab Reports for details.\nCONDITION AT DISCHARGE: graft uptake good. donor are dressing insitu.\nADVICE ON DISCHARGE:\nHIGH PROTEIN DIET TAB AUGMENTIN 625MG TDS X 2 DAYS TAB PANTOP 40MG OD BBF X 2 DAYS TAB MULTIVITAMIN -B COMPLEX OD X 7 DAYS TAB VITAMIN -C 500MG OD X 7 DAYS\nTAB PARACETAMOL 650MG SOS FOR PAIN\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nALTERNATE DAY CLEANING OF WOUND WITH SPIRIT FOLLOWED BY APPLICATION OF PARAFFIN GAUZE DRESSING\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 08-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE :\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\nC-DAC: Centre for Development of Advanced Computing\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh,",
+              "title": "Extracted text from Copy of Copy of 50.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

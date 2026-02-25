@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "3b0fead3-ca6f-4aff-8eb0-2fdfb268edcd"
+  },
+  "type": "document",
+  "timestamp": "2023-03-06T12:53:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:c98195ff-6ba6-443d-b991-8f24f8773000",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "c98195ff-6ba6-443d-b991-8f24f8773000",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:66ae7896-caab-4039-90e3-a675ede55aa0"
+        },
+        "date": "2023-03-06T12:53:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:7da5b6dc-d587-402f-9140-4fa78e435a67"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:3fb88906-4103-48a0-9e67-1ba01f32319f"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7da5b6dc-d587-402f-9140-4fa78e435a67",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "7da5b6dc-d587-402f-9140-4fa78e435a67",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:66ae7896-caab-4039-90e3-a675ede55aa0",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "66ae7896-caab-4039-90e3-a675ede55aa0",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3fb88906-4103-48a0-9e67-1ba01f32319f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "3fb88906-4103-48a0-9e67-1ba01f32319f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:66ae7896-caab-4039-90e3-a675ede55aa0"
+        },
+        "date": "2023-03-06T12:53:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:7da5b6dc-d587-402f-9140-4fa78e435a67"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:7da5b6dc-d587-402f-9140-4fa78e435a67"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Radiodiagnosis\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                          | Age/Gender: 42.1 Yr/M                |\n|----------------------------------|------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Radiodiagnosis (Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: 2 B 4 Ward                 | Room/Bed: 2 B 4 Radiology/ 2 B 4 RAD 1   | Patient Category: Ayushman           |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous            | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                       | State/Country India                  |\n| D.O.A. : 06-Mar-2023 12:53       | D.O.D. : 08-Feb-2026                     | D.O. Print Report: 08-Feb-2026 15:47 |\nFINAL DIAGNOSIS:\nDural arteriovenous fistula;\nSite: Head;\nOPERATION PERFORMED:\nEndovascular embolization of Dural AV Fistula On  28-Mar-2023\nSURGEONS: Dr Nihar Vijay Kathrani\nOPERATIVE FINDINGS: Embolization of the DAVF done. Kindly refer DSA report for same.\nCHIEF COMPLAINTS:\nDimunition of vision and gradualy progressive with incomplete opening of eye for past 2 months\nHISTORY OF PRESENT ILLNESS: Decrease in vision which is insidious in onset and gradually progressive ,complaints of incomplete opening of eyes since 2 months\nOTHER INVESTIGATIONS: Total bilirubin -0.81\nAST-47U/L\nALT -75 U/L\nAlbumin -3.8gm/dl\nALP-114 U/L\nHBS antigen -Negative\nAPTT - 22 sec\nPT-9.5 sec\nHCV antibody-Negative\nTREATMENT GIVEN:\nTab haloperidol; 2.5MG; OD; (30-Mar-2023 to 31-Mar-2023).\nHOSPITAL COURSE: Patient underwent embolization of the DAVF on 27/03/2023.\nPost embolixation patient started to have restlessness, helucinations and disorientaion, for which psychiatry opinion was taken and patient was prescribed Haloperidole for the same.\nCONDITION AT DISCHARGE: No fresh complaints .Patient clinically stable.\nADVICE ON DISCHARGE:\nTab Aspirin; 75; OD; X 90 days.\nTab Haloperidole; 2.5; OD; X 14 days.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n3. Tab Zolpidem; 10; OD; X 14 days.\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS : Review in Psyciatry OPD after 2 weeks.\nReview after 3 months in Radiology OPD.\nFOLLOW UP ON : 15-Jun-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : Bring the previous documents and discharge summary during further visits .\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous",
+              "title": "Extracted text from Copy of Copy of 58.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

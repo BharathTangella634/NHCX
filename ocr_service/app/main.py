@@ -6,19 +6,22 @@ import argparse
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.ocr_engine import extract_text_from_pdf, classify_document
-from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
+from utils.gemini_fhir_converter import convert_to_fhir_with_gemini
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 def process_pdf(pdf_path, output_dir=None, md_dir=None):
     try:
         filename = os.path.basename(pdf_path)
-        print(f"Processing {filename}...")
+        logger.info(f"Processing {filename}...")
         
         # Perform OCR
         extracted_text = extract_text_from_pdf(pdf_path)
 
         # Classify Document
         doc_type = classify_document(extracted_text)
-        print(f"Document classified as: {doc_type}")
+        logger.info(f"Document classified as: {doc_type}")
 
         # Save intermediate Markdown if requested
         if md_dir:
@@ -27,13 +30,10 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
             md_path = os.path.join(md_dir, f"{os.path.splitext(filename)[0]}.md")
             with open(md_path, "w") as f:
                 f.write(extracted_text)
-            print(f"Saved intermediate markdown to {md_path}")
+            logger.info(f"Saved intermediate markdown to {md_path}")
 
-        # Convert to FHIR
-        if doc_type == "discharge_summary":
-            fhir_json = convert_discharge_summary_to_fhir(extracted_text, filename)
-        else:
-            fhir_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
+        # Convert to FHIR using Gemini
+        fhir_json = convert_to_fhir_with_gemini(extracted_text, filename)
 
         # Save result
         if output_dir:
@@ -42,13 +42,13 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
             output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_fhir.json")
             with open(output_path, "w") as f:
                 f.write(fhir_json)
-            print(f"Successfully processed {filename} and saved to {output_path}")
+            logger.info(f"Successfully processed {filename} and saved to {output_path}")
         else:
-            print(f"Successfully processed {filename}. Result:")
+            logger.info(f"Successfully processed {filename}. Result:")
             print(fhir_json)
 
     except Exception as e:
-        print(f"Error processing {pdf_path}: {e}")
+        logger.exception(f"Error processing {pdf_path}: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
@@ -65,7 +65,7 @@ def main():
             if file.lower().endswith(".pdf"):
                 process_pdf(os.path.join(args.input, file), args.output_dir, args.md_dir)
     else:
-        print(f"Error: {args.input} is not a valid file or directory")
+        logger.error(f"Error: {args.input} is not a valid file or directory")
         sys.exit(1)
 
 if __name__ == "__main__":

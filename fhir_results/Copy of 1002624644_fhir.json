@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "d75fae33-d8e5-4de8-bd3a-21aafe052550"
+  },
+  "type": "document",
+  "timestamp": "2026-02-25T14:10:42Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:a1a596af-02bc-42b5-96a0-41823933b50e",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "a1a596af-02bc-42b5-96a0-41823933b50e",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:479d6e36-729a-4ce2-a27a-6eb14d37e194"
+        },
+        "date": "2026-02-25T14:10:42Z",
+        "author": [
+          {
+            "reference": "urn:uuid:2398e996-2cd8-4e46-9fa8-47e5bc885bc1"
+          }
+        ],
+        "title": "Discharge Summary - c/o.",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:b5a75713-6909-4651-b4db-e45b3117a719"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2398e996-2cd8-4e46-9fa8-47e5bc885bc1",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2398e996-2cd8-4e46-9fa8-47e5bc885bc1",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:479d6e36-729a-4ce2-a27a-6eb14d37e194",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "479d6e36-729a-4ce2-a27a-6eb14d37e194",
+        "name": [
+          {
+            "text": "c/o."
+          }
+        ],
+        "gender": "male"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b5a75713-6909-4651-b4db-e45b3117a719",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "b5a75713-6909-4651-b4db-e45b3117a719",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:479d6e36-729a-4ce2-a27a-6eb14d37e194"
+        },
+        "date": "2026-02-25T14:10:42Z",
+        "author": [
+          {
+            "reference": "urn:uuid:2398e996-2cd8-4e46-9fa8-47e5bc885bc1"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:2398e996-2cd8-4e46-9fa8-47e5bc885bc1"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "-\nDISCHARGE SUMMARY\nMODE OF DISCHARGE: Normal\nDate of Admission & Time 08/12/2024 9:29 pm\nMRD No.\nIPD No.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nPatient Name c/o.\nAddress\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nSHANGLEM MORUNG, TIZIT\nContact No\nCLINICAL HISTORY:\nYELLOWISH DISCOLOURATION OF THE SKIN X 1 WEEK GEN. WEAKNESS X 1 WEEK\nCLINICAL FINDINGS:\nCONSCIOUS AND ORIENTED TO TIME, PLACE AND PERSON CVS/CNS/CHEST- WNL PA-SOFT BP-110/80 MMHG PR-65/MIN TEMP-97F SPOZ-99%\nINVESTIGATIONS:\nENCLOSED\nCOURSE OF STAY:\nFINAL DIAGNOSIS:\nALCOHOLIC HEPATITIS | ACUTE KIDNEY INJURY\nTREATMENT ADMINISTERED AT HOSPITAL: CONSERVATIVE\nADVICE AT DISCHARGE:\nDischarge No.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\u2192\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDate of Discharge & Time 19/12/2024 3:01 pn\nSex M\nAge.\nWARD: NON AC CABIN\nBed No. 202 NON AC\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDR. ALONG CY (ONB MEDICINE)\n\nCAP. RECLAIM AG TWICE DAILY\nTAB. PREDNISOLONE 40MG ONCE DAILY X 3 DAYS\nTAB. MYOFATIGE ONE TAB TWICE DAILY\nF/B 30MG ONCE DAILY X3 DAYS\nF/B 20MG ONCE DAILY X3 DAYS\nF/B 10MG ONCE DAILY X3 DAYS\nF/B 5 MG ONCE DAILY X3 DAYS\nOXALGIN LA TWICE DAILY\nCAP. SOMPRAZ-D ONCE DAILY BEFORE BREAKFAST\nSYP. LACTULOSE 30ML TWICE DAILY (MORNING AND NOON)\nTAB. NEUROGAB NT ONCE DAILY X AT BEDTIME(7PM)\nTAB. OFLOMAC OZ TWICE DAILY X5 DAYS\nREVIEW AFTER 2 WEEKS\nDR.\n...\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nHIADICAT\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of 1002624644.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
