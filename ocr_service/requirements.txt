@@ -3,3 +3,5 @@ pdf2image
 fhir.resources
 pillow
 docling
+pandas
+openpyxl

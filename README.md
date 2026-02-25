@@ -46,4 +46,4 @@ This project provides a tool for processing PDF files into ABDM-compliant FHIR f
 
 ### Reference Tables
 LOINC mappings and other FHIR-related lookup tables are stored in the `reference/` directory.
-- `reference/loinc_mapping.csv`: Maps test names found in reports to their respective LOINC codes, display names, and units.
+- `reference/LOINC-codes.xlsx`: Maps test names found in reports to their respective LOINC codes, display names, and units.
