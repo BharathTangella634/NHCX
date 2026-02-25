@@ -377,7 +377,7 @@ def text_to_abdm_fhir(text, original_filename="document.pdf"):
 
     # Assemble the Bundle in order
     entries.append(create_bundle_entry(composition))
-    entries.append(BundleEntry(resource=organization, fullUrl=f"urn:uuid:{organization_id}"))
+    entries.append(BundleEntry(resource = organization, fullUrl=f"urn:uuid:{organization_id}"))
     entries.append(patient_entry)
     for obs in observation_resources:
         entries.append(create_bundle_entry(obs))
