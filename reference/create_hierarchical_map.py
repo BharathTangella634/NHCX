@@ -69,7 +69,7 @@ def extract_structure(data, key_name=None):
             return [extract_structure(data[0], key_name)]
     else:
         # Rules for literal values based on prompt
-        if key_name in ['profile', 'system', 'code', 'language']:
+        if key_name in ['profile', 'system', 'code', 'language', 'resourceType', 'type']:
             return data
         
         if is_uuid(data):
@@ -82,23 +82,25 @@ def extract_structure(data, key_name=None):
         return type(data).__name__
 
 def main():
-    input_file = "Bundle-DiagnosticReport-Lab-example-03.json"
-    output_file = "diagnostic_report_map.json"
+    files = [
+        ("Bundle-DiagnosticReport-Lab-example-03.json", "diagnostic_report_map.json"),
+        ("Bundle-DischargeSummary-example-04.json", "discharge_summary_map.json")
+    ]
     
-    try:
-        with open(input_file, 'r') as f:
-            data = json.load(f)
+    for input_file, output_file in files:
+        try:
+            with open(input_file, 'r') as f:
+                data = json.load(f)
+                
+            structure = extract_structure(data)
             
-        structure = extract_structure(data)
-        
-        with open(output_file, 'w') as f:
-            json.dump(structure, f, indent=2)
+            with open(output_file, 'w') as f:
+                json.dump(structure, f, indent=2)
+                
+            print(f"Hierarchical map successfully created and saved to {output_file}")
             
-        print(f"Hierarchical map successfully created and saved to {output_file}")
-        
-    except Exception as e:
-        print(f"Error: {e}")
-        sys.exit(1)
+        except Exception as e:
+            print(f"Error processing {input_file}: {e}")
 
 if __name__ == "__main__":
     main()

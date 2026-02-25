@@ -1,518 +1,242 @@
-from fhir.resources.bundle import Bundle, BundleEntry
-from fhir.resources.documentreference import DocumentReference
-from fhir.resources.attachment import Attachment
-from fhir.resources.patient import Patient
-from fhir.resources.observation import Observation
-from fhir.resources.diagnosticreport import DiagnosticReport
-from fhir.resources.composition import Composition, CompositionSection
-from fhir.resources.identifier import Identifier
-from fhir.resources.quantity import Quantity
-from fhir.resources.codeableconcept import CodeableConcept
-from fhir.resources.coding import Coding
-from fhir.resources.reference import Reference
-from fhir.resources.extension import Extension
-import base64
-import uuid
+import os
+import json
 import re
 import pandas as pd
-import os
-from enum import Enum
-from typing import List, Optional, Dict, Any
-from datetime import datetime
+from dotenv import load_dotenv
+from typing import Dict, List, Union
+from google.cloud import aiplatform
+
+load_dotenv()
+from google.protobuf import json_format
+from google.protobuf.struct_pb2 import Value
 from .logger import get_logger
 
 logger = get_logger(__name__)
 
-class Vocab(Enum):
-    """
-    https://build.fhir.org/terminologies-systems.html
-    """
-    SNOMEDCT_US = "http://snomed.info/sct"
-    RXNORM = "http://www.nlm.nih.gov/research/umls/rxnorm"
-    LOINC = "http://loinc.org"
-    LNC = "http://loinc.org"
-    CPT = "http://www.ama-assn.org/go/cpt"
-    MEDRT = "http://va.gov/terminology/medrt"
-    NDFRT = "http://hl7.org/fhir/ndfrt"
-    NDC = "http://hl7.org/fhir/sid/ndc"
-    CVX = "http://hl7.org/fhir/sid/cvx"
-    ICD9 = "http://terminology.hl7.org/CodeSystem/icd9"
-    ICD10 = "http://hl7.org/fhir/sid/icd-10"
-    UMLS = "http://terminology.hl7.org/CodeSystem/umls"
-    UCUM = "http://unitsofmeasure.org"
+LOINC_MAPPING = {}
 
-def create_coding(system: str, code: str, display: str = None) -> Coding:
-    kwargs = {"code": code}
-    if display:
-        kwargs["display"] = display
-    if system and system not in ["http://loinc.org", "http://unitsofmeasure.org"]:
-        kwargs["system"] = system
-    return Coding(**kwargs)
-
-def create_codeable_concept(system: str, code: str, display: str = None, text: str = None) -> CodeableConcept:
-    coding = create_coding(system, code, display)
-    return CodeableConcept(coding=[coding], text=text or display)
-
-def create_reference(resource_type: str, resource_id: str) -> Reference:
-    return Reference(reference=f"urn:uuid:{resource_id}")
-
-def create_bundle_entry(resource: Any) -> BundleEntry:
-    """Creates a BundleEntry with urn:uuid fullUrl."""
-    return BundleEntry(
-        resource=resource,
-        fullUrl=f"urn:uuid:{resource.id}"
-    )
-
-FHIR_DERIVATION_REF_URL = "http://hl7.org/fhir/StructureDefinition/derivation-reference"
-
-def create_derivation_extension(doc_ref_id: str) -> Extension:
-    """
-    Creates a simple derivation extension linking back to the DocumentReference.
-    """
-    return Extension(
-        url=FHIR_DERIVATION_REF_URL,
-        extension=[
-            Extension(url="reference", valueReference=create_reference("DocumentReference", doc_ref_id))
-        ]
-    )
-
-# Load LOINC mappings from reference table
-LOINC_MAP = {}
-REFERENCE_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '..', 'reference', 'LOINC-codes.xlsx')
-
-def load_loinc_map():
-    global LOINC_MAP
-    if not os.path.exists(REFERENCE_FILE):
+def load_loinc_mapping():
+    global LOINC_MAPPING
+    if LOINC_MAPPING:
         return
+    
     try:
-        df = pd.read_excel(REFERENCE_FILE, header=12)
-        for _, row in df.dropna(subset=['Result Test Name', 'Result LOINC Code']).iterrows():
-            test_name = str(row['Result Test Name']).strip()
-            LOINC_MAP[test_name] = {
-                'code': str(row['Result LOINC Code']).strip(),
-                'display': test_name,
-                'unit': str(row['Units of Measure']).strip() if pd.notna(row['Units of Measure']) else ""
-            }
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        loinc_file = os.path.join(base_dir, 'reference', 'LOINC-codes.xlsx')
+        if not os.path.exists(loinc_file):
+            logger.warning(f"LOINC reference file not found at {loinc_file}")
+            return
+            
+        df = pd.read_excel(loinc_file, header=12)
+        mapping = {}
+        
+        if 'Result Test Name' in df.columns and 'Result LOINC Code' in df.columns:
+            for _, row in df.dropna(subset=['Result Test Name', 'Result LOINC Code']).iterrows():
+                test_name = str(row['Result Test Name']).strip().lower()
+                loinc_code = str(row['Result LOINC Code']).strip()
+                if len(test_name) > 3 and loinc_code:
+                    mapping[test_name] = loinc_code
+                    
+        if 'Order Test Name' in df.columns and 'Result LOINC Code' in df.columns:
+            for _, row in df.dropna(subset=['Order Test Name', 'Result LOINC Code']).iterrows():
+                test_name = str(row['Order Test Name']).strip().lower()
+                loinc_code = str(row['Result LOINC Code']).strip()
+                if len(test_name) > 3 and loinc_code:
+                    mapping[test_name] = loinc_code
+                    
+        LOINC_MAPPING.update(mapping)
+        logger.info(f"Loaded {len(LOINC_MAPPING)} LOINC codes from reference.")
     except Exception as e:
-        logger.error(f"Error loading LOINC mapping: {e}")
+        logger.error(f"Failed to load LOINC mapping: {e}")
 
-load_loinc_map()
-
-def parse_extracted_text(text):
+def regex_nlp_extract(text: str, doc_type: str = None) -> dict:
     """
-    Simple parser to extract some key fields from the OCR text.
-    In a real-world scenario, this would be much more sophisticated or use an LLM.
+    Leverages Regex and basic NLP to identify right items from the OCR text
+    that match common FHIR Map entities.
     """
-    data = {
-        "patient_name": "anonymous",
-        "age": None,
-        "gender": None,
-        "observations": [],
-        "timestamp": None
-    }
-
-    # Extract Patient Name
-    name_match = re.search(r"Patient Name\s*[:\-]?\s*(.*)", text, re.IGNORECASE)
-    if name_match:
-        data["patient_name"] = name_match.group(1).strip()
-
-    # Extract Age/Sex
-    age_sex_match = re.search(r"Age/Sex\s*[:\-]?\s*(\d+)\s*(Yr|Mth|Day)?/([MF])", text, re.IGNORECASE)
-    if age_sex_match:
-        data["age"] = f"{age_sex_match.group(1)} {age_sex_match.group(2) if age_sex_match.group(2) else 'Yr'}"
-        data["gender"] = "male" if age_sex_match.group(3).upper() == 'M' else "female"
-    else:
-        # Fallback for just age
-        age_match = re.search(r"Age\s*[:\-]?\s*(\d+)\s*(Yr|Mth|Day)?", text, re.IGNORECASE)
-        if age_match:
-            data["age"] = f"{age_match.group(1)} {age_match.group(2) if age_match.group(2) else 'Yr'}"
-        # Fallback for just sex
-        sex_match = re.search(r"Sex\s*[:\-]?\s*([MF])", text, re.IGNORECASE)
-        if sex_match:
-            data["gender"] = "male" if sex_match.group(1).upper() == 'M' else "female"
-
-    # Extract Timestamp (using Reporting Date if available, otherwise Collection Date)
-    timestamp_match = re.search(r"Reporting Date\s*[:\-]?\s*(\d{2}-[a-zA-Z]{3}-\d{4}\s+\d{2}:\d{2})", text, re.IGNORECASE)
-    if not timestamp_match:
-        timestamp_match = re.search(r"Collection Date\s*[:\-]?\s*(\d{2}-[a-zA-Z]{3}-\d{4}\s+\d{2}:\d{2})", text, re.IGNORECASE)
+    extracted = {}
     
-    if timestamp_match:
-        try:
-            dt = datetime.strptime(timestamp_match.group(1), "%d-%b-%Y %H:%M")
-            data["timestamp"] = dt.strftime('%Y-%m-%dT%H:%M:%SZ')
-        except ValueError:
-            pass
+    # Dates: YYYY-MM-DD or DD/MM/YYYY or DD-MM-YYYY
+    dates = re.findall(r'\b(\d{2}[/-]\d{2}[/-]\d{4}|\d{4}[/-]\d{2}[/-]\d{2})\b', text)
+    if dates:
+        extracted["Potential Dates"] = list(set(dates))
+        
+    # Phone Numbers (Indian format as example)
+    phones = re.findall(r'\b(?:\+91[-\s]?)?[6789]\d{9}\b', text)
+    if phones:
+        extracted["Potential Phone Numbers"] = list(set(phones))
+        
+    # Gender
+    gender_match = re.search(r'\b(?:Gender|Sex)[\s\.:#-]+(Male|Female|Other|M|F|O)\b', text, re.IGNORECASE)
+    if gender_match:
+        extracted["Potential Gender"] = gender_match.group(1)
+        
+    # Age
+    age_match = re.search(r'\b(\d{1,3})\s*(?:years?|yrs?|Y/O)\b', text, re.IGNORECASE)
+    if age_match:
+        extracted["Potential Age"] = age_match.group(1)
+        
+    # Identifiers (like UUIDs or standard alphanum IDs)
+    uuids = re.findall(r'\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b', text, re.IGNORECASE)
+    if uuids:
+        extracted["Potential UUIDs"] = list(set(uuids))
+        
+    # Registration / Patient ID / Ref
+    id_match = re.findall(r'\b(?:ID|No|Number|Reg|MRN|Ref)[\s\.:#-]+([A-Z0-9]{3,})\b', text, re.IGNORECASE)
+    if id_match:
+        extracted["Potential Identifiers"] = list(set(id_match))
+        
+    # Blood Group / Rh
+    blood_group = re.search(r'\b(A|B|AB|O)[\s\-]*(Pos|Neg|\+|\-)\b', text, re.IGNORECASE)
+    if blood_group:
+        extracted["Potential Blood Group"] = f"{blood_group.group(1)} {blood_group.group(2)}"
+        
+    # Emails
+    emails = re.findall(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', text)
+    if emails:
+        extracted["Potential Emails"] = list(set(emails))
+        
+    # PIN Codes (India - 6 digits)
+    pincodes = re.findall(r'\b[1-9][0-9]{5}\b', text)
+    if pincodes:
+        extracted["Potential PIN Codes"] = list(set(pincodes))
+        
+    # Doctor Names
+    doctors = re.findall(r'\b(?:Dr\.|Dr|Doctor)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})\b', text)
+    if doctors:
+        extracted["Potential Doctor Names"] = list(set(["Dr. " + d.strip() for d in doctors]))
+
+    # Vitals
+    vitals = {}
     
-    # If still no timestamp, look for any date-time like pattern as a fallback
-    if not data["timestamp"]:
-        date_pattern = re.search(r"(\d{2}-[a-zA-Z]{3}-\d{4}\s+\d{2}:\d{2})", text)
-        if date_pattern:
-            try:
-                dt = datetime.strptime(date_pattern.group(1), "%d-%b-%Y %H:%M")
-                data["timestamp"] = dt.strftime('%Y-%m-%dT%H:%M:%SZ')
-            except ValueError:
-                pass
+    # Blood Pressure (e.g., 120/80)
+    bp_match = re.search(r'\b(?:BP|Blood Pressure)[\s\.:#-]*(\d{2,3}\s*/\s*\d{2,3})\s*(?:mmHg)?\b', text, re.IGNORECASE)
+    if not bp_match:
+        bp_match = re.search(r'\b(\d{2,3}\s*/\s*\d{2,3})\s*mmHg\b', text, re.IGNORECASE)
+    if bp_match:
+        vitals["Blood Pressure"] = bp_match.group(1).replace(" ", "")
 
-    # Extract Lab Results (simplified regex for the table-like structure)
-    # Using the reference table for lookups
-    lines = text.split('\n')
-    
-    # Track which tests we've already found to avoid duplicates from different pages if not needed
-    # But for multiple pages, we might want all of them.
-    
-    for test_name, mapping in LOINC_MAP.items():
-        # Only look for specific tests defined in the reference table
-        if test_name in ["Consult Note", "Laboratory report", "Patient Name", "Age", "Gender", "ABHA ID", "Date"]:
-            continue
+    # Heart Rate / Pulse
+    hr_match = re.search(r'\b(?:HR|Pulse|PR)[\s\.:#-]*(\d{2,3})\s*(?:bpm|beats/min)?\b', text, re.IGNORECASE)
+    if hr_match:
+        vitals["Heart Rate"] = hr_match.group(1)
 
-        for idx, line in enumerate(lines):
-            # Look for the test name in the line. Use regex for word boundaries to avoid partial matches.
-            if re.search(r'\b' + re.escape(test_name) + r'\b', line, re.IGNORECASE):
-                # Try to find a numeric value in the SAME line or within the next few lines (handles section-style layouts)
-                search_window = [line]
-                # Look ahead up to 5 lines to catch patterns like:
-                #   Test Name\nResult\n<value>\nRef Range ...
-                for k in range(1, 6):
-                    if idx + k < len(lines):
-                        search_window.append(lines[idx + k])
-                joined = "\n".join(search_window)
+    # Temperature
+    temp_match = re.search(r'\b(?:Temp|Temperature)[\s\.:#-]*(\d{2,3}(?:\.\d+)?)\s*(F|C|°F|°C)\b', text, re.IGNORECASE)
+    if temp_match:
+        vitals["Temperature"] = f"{temp_match.group(1)} {temp_match.group(2)}"
 
-                value = None
-                # Special handling for APTT-like tests to avoid picking '3.2 %' from SPECIMEN line
-                aptt_like = test_name.lower() in [
-                    "aptt", "activated partial thromboplastin time", "activated partial thromboplastin time (aptt)"
-                ]
-                if aptt_like:
-                    # Prefer a number that follows the word 'Result'
-                    m = re.search(r"Result[\s:\-]*.*?(\d+\.\d+|\d+)", joined, re.IGNORECASE | re.DOTALL)
-                    if m:
-                        value = m.group(1)
-                    else:
-                        # Otherwise, pick the first number not immediately followed by % and not on a SPECIMEN line
-                        for l in search_window:
-                            if re.search(r"SPECIMEN", l, re.IGNORECASE):
-                                continue
-                            m2 = re.search(r"\b(\d+(?:\.\d+)?)\b(?!\s*%)", l)
-                            if m2:
-                                value = m2.group(1)
-                                break
-                else:
-                    m = re.search(r"(\d+\.\d+|\d+)", joined)
-                    if m:
-                        value = m.group(1)
+    # SpO2
+    spo2_match = re.search(r'\b(?:SpO2|Oxygen|O2)[\s\.:#-]*(\d{2,3})\s*%\b', text, re.IGNORECASE)
+    if spo2_match:
+        vitals["SpO2"] = spo2_match.group(1) + "%"
+        
+    # Weight
+    weight_match = re.search(r'\b(?:Weight|Wt)[\s\.:#-]*(\d{1,3}(?:\.\d+)?)\s*(kg|lbs)\b', text, re.IGNORECASE)
+    if weight_match:
+        vitals["Weight"] = f"{weight_match.group(1)} {weight_match.group(2)}"
+        
+    # Height
+    height_match = re.search(r'\b(?:Height|Ht)[\s\.:#-]*(\d{1,3}(?:\.\d+)?)\s*(cm|inch|ft|in)\b', text, re.IGNORECASE)
+    if height_match:
+        vitals["Height"] = f"{height_match.group(1)} {height_match.group(2)}"
 
-                if value is not None:
-                    # Use UCUM unit from mapping when available; else try to glean 'sec'/'s' from the nearby text
-                    unit = mapping['unit'] if mapping.get('unit') else None
-                    if not unit:
-                        unit_match = re.search(r"\b(sec|s|seconds)\b", joined, re.IGNORECASE)
-                        if unit_match:
-                            unit = 's'
-                    data["observations"].append({
-                        "code": mapping['code'],
-                        "display": mapping['display'],
-                        "value": float(value),
-                        "unit": unit or "g/dL"
-                    })
-                    break # Found the result for this test in/near this line
+    if vitals:
+        extracted["Potential Vitals"] = vitals
+        
+    if doc_type == "diagnostic_report":
+        load_loinc_mapping()
+        if LOINC_MAPPING:
+            text_lower = text.lower()
+            matched_loincs = {}
+            # Quick substring search, then regex boundary to confirm
+            for test_name, loinc_code in LOINC_MAPPING.items():
+                if test_name in text_lower:
+                    try:
+                        if re.search(rf'\b{re.escape(test_name)}\b', text_lower):
+                            matched_loincs[test_name.title()] = loinc_code
+                    except Exception:
+                        pass
+            if matched_loincs:
+                extracted["Potential LOINC Tests"] = matched_loincs
                 
-    # Extract Comments on PBS
-    pbs_match = re.search(r"Comments on PBS\s*[:\-]?\s*(.*)", text, re.IGNORECASE)
-    if pbs_match:
-        data["pbs_comments"] = pbs_match.group(1).strip()
-    
-    # Extract Impression
-    impression_match = re.search(r"Impression\s*[:\-]?\s*(.*)", text, re.IGNORECASE)
-    if impression_match:
-        data["impression"] = impression_match.group(1).strip()
+    return extracted
 
-    return data
+def resolve_endpoint_name(project: str, location: str, endpoint_id_or_name: str) -> str:
+    s = endpoint_id_or_name.strip()
+    if s.startswith("projects/") and "/endpoints/" in s:
+        return s
+    return f"projects/{project}/locations/{location}/endpoints/{s}"
 
-def bundle_to_json(bundle: Bundle) -> str:
-    import json
-    bundle_dict = json.loads(bundle.json(exclude_none=True))
+def predict_custom_trained_model_sample(
+    project: str,
+    endpoint_id: str,
+    instances: Union[Dict, List[Dict]],
+    location: str = os.getenv("VERTEX_LOCATION", "asia-northeast1"),
+    parameters: dict = None,
+):
+    """
+    Calls the Vertex AI deployed model endpoint for Qwen prediction.
+    """
+    aiplatform.init(project=project, location=location)
     
-    def decode_attachments(obj):
+    instances = instances if isinstance(instances, list) else [instances]
+    
+    endpoint_name = resolve_endpoint_name(project, location, endpoint_id)
+    endpoint = aiplatform.Endpoint(endpoint_name=endpoint_name)
+    
+    response = endpoint.predict(instances=instances, parameters=parameters)
+    return response.predictions
+
+def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> tuple:
+    """
+    Builds the FHIR JSON purely using regex and the provided map templates.
+    Returns a tuple of (fhir_json_str, extracted_items_dict)
+    """
+    # Use regex/NLP to extract basic items
+    extracted_items = regex_nlp_extract(text, doc_type)
+    
+    # Take the primary template (first map file)
+    primary_map_file = map_files[0]
+    try:
+        with open(primary_map_file, "r") as f:
+            template = json.load(f)
+    except Exception as e:
+        logger.error(f"Error reading map file {primary_map_file}: {e}")
+        template = {}
+        
+    def fill_template(obj):
         if isinstance(obj, dict):
-            if obj.get('resourceType') == 'DocumentReference' and 'content' in obj:
-                for c in obj['content']:
-                    if 'attachment' in c and 'data' in c['attachment']:
-                        try:
-                            import base64
-                            decoded = base64.b64decode(c['attachment']['data']).decode('utf-8')
-                            c['attachment']['data'] = decoded
-                        except:
-                            pass
-            for v in obj.values():
-                decode_attachments(v)
+            return {k: fill_template(v) for k, v in obj.items()}
         elif isinstance(obj, list):
-            for item in obj:
-                decode_attachments(item)
-                
-    decode_attachments(bundle_dict)
-    import json
-    return json.dumps(bundle_dict, indent=2)
+            return [fill_template(item) for item in obj]
+        elif isinstance(obj, str):
+            # Replace basic placeholders if we have extracted data
+            if "<UUID>" in obj and "Potential UUIDs" in extracted_items and extracted_items["Potential UUIDs"]:
+                return extracted_items["Potential UUIDs"][0]
+            if "DATE_FORMAT" in obj and "Potential Dates" in extracted_items and extracted_items["Potential Dates"]:
+                return extracted_items["Potential Dates"][0]
+            if obj == "str" and "Potential Identifiers" in extracted_items and extracted_items["Potential Identifiers"]:
+                return extracted_items["Potential Identifiers"][0]
+            return obj
+        return obj
+
+    filled_template = fill_template(template)
+    
+    return json.dumps(filled_template, indent=2), extracted_items
 
 def convert_diagnostic_report_to_fhir(text, original_filename="document.pdf"):
-    """
-    Wraps extracted text into an ABDM-compliant FHIR Bundle with structured resources.
-    Creates a separate DocumentReference for each page identified by <!-- PAGE_BREAK -->.
-    Ensures multiple occurrences of the same test (e.g. Hemoglobin on every page) are captured.
-    """
-    # Split text by page break marker
-    pages = [p.strip() for p in text.split("<!-- PAGE_BREAK -->") if p.strip()]
+    logger.info(f"Converting Diagnostic Report to FHIR via Regex/Template for {original_filename}")
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    map_files = [os.path.join(base_dir, 'reference', 'diagnostic_report_map.json')]
     
-    # Use the full text for patient and overall data extraction
-    # (Patient details usually appear on the first page or are consistent throughout)
-    full_parsed_data = parse_extracted_text(text)
-    
-    # Ensure we have a valid timestamp for the Bundle
-    if not full_parsed_data.get("timestamp"):
-        full_parsed_data["timestamp"] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
-        
-    entries = []
-    
-    # Generate UUIDs for all resources beforehand for linking
-    composition_id = str(uuid.uuid4())
-    patient_id = str(uuid.uuid4())
-    diagnostic_report_id = str(uuid.uuid4())
-
-    # 0. Organization Resource
-    organization_id = str(uuid.uuid4())
-    organization = {
-        "resourceType": "Organization",
-        "id": organization_id,
-        "identifier": [{"system": "https://www.abdm.gov.in/organization", "value": "NHCX-HACKATHON"}],
-        "name": "NHCX-HACKATHON"
-    }
-    
-    # 1. Patient Resource
-    patient_args = {
-        "id": patient_id,
-        "name": [{"text": full_parsed_data["patient_name"]}],
-        "gender": full_parsed_data["gender"] if full_parsed_data["gender"] else "unknown"
-    }
-    
-    if full_parsed_data.get("age"):
-        patient_args["extension"] = [
-            {
-                "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
-                "valueString": full_parsed_data["age"]
-            }
-        ]
-
-    patient = Patient(**patient_args)
-    patient_entry = create_bundle_entry(patient)
-
-    # 2 & 3. Process each page for Observations and DocumentReferences
-    observation_resources = []
-    observation_refs = []
-    doc_ref_resources = []
-    doc_ref_mapping = LOINC_MAP.get("Consult Note", {"code": "11488-4", "display": "Consult Note"})
-    
-    for i, page_content in enumerate(pages):
-        page_data = parse_extracted_text(page_content)
-        page_timestamp = page_data.get("timestamp") or full_parsed_data["timestamp"]
-        
-        # Create DocumentReference for this page
-        current_doc_id = str(uuid.uuid4())
-        # Encode this page's extracted text as base64 per ABDM DocumentReference profile (attachment.data min=1)
-        attachment = Attachment(
-            contentType="text/plain",
-            title=f"Extracted text from {original_filename} - Page {i+1}",
-            data=base64.b64encode(page_content.encode("utf-8")).decode("utf-8")
-        )
-        
-        doc_ref = DocumentReference(
-            id=current_doc_id,
-            meta={"profile": ["https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"]},
-            status="current",
-            docStatus="final",
-            type=create_codeable_concept(Vocab.LOINC.value, doc_ref_mapping["code"], doc_ref_mapping["display"]),
-            subject=create_reference("Patient", patient.id),
-            date=page_timestamp,
-            author=[create_reference("Organization", organization_id)],
-            custodian=create_reference("Organization", organization_id),
-            content=[{"attachment": attachment}]
-        )
-        doc_ref_resources.append(doc_ref)
-        
-        # Create Observations from this page
-        for obs_data in page_data["observations"]:
-            obs = Observation(
-                id=str(uuid.uuid4()),
-                status="final",
-                code=create_codeable_concept(Vocab.LOINC.value, obs_data["code"], obs_data["display"]),
-                subject=create_reference("Patient", patient.id),
-                effectiveDateTime=page_timestamp, # Use the page-specific timestamp
-                valueQuantity=Quantity(value=obs_data["value"], unit=obs_data["unit"]),
-                extension=[create_derivation_extension(current_doc_id)] # Link to THIS page's DocumentReference
-            )
-            observation_resources.append(obs)
-            observation_refs.append(create_reference("Observation", obs.id))
-            
-        # Add PBS Comments as an Observation if available ON THIS PAGE
-        if page_data.get("pbs_comments"):
-            pbs_obs = Observation(
-                id=str(uuid.uuid4()),
-                status="final",
-                code=create_codeable_concept(Vocab.LOINC.value, "11524-6", "Microscopic observation [Identifier] in Blood by Peripheral blood smear"),
-                subject=create_reference("Patient", patient.id),
-                effectiveDateTime=page_timestamp,
-                valueString=page_data["pbs_comments"],
-                extension=[create_derivation_extension(current_doc_id)]
-            )
-            observation_resources.append(pbs_obs)
-            observation_refs.append(create_reference("Observation", pbs_obs.id))
-
-    # 4. DiagnosticReport
-    report_mapping = LOINC_MAP.get("Laboratory report", {"code": "11502-2", "display": "Laboratory report"})
-    report_args = {
-        "id": diagnostic_report_id,
-        "status": "final",
-        "code": create_codeable_concept(Vocab.LOINC.value, report_mapping["code"], report_mapping["display"]),
-        "subject": create_reference("Patient", patient.id),
-        "issued": full_parsed_data["timestamp"],
-        "result": observation_refs
-    }
-    
-    if full_parsed_data.get("impression"):
-        report_args["conclusion"] = full_parsed_data["impression"]
-        
-    report = DiagnosticReport(**report_args)
-
-    # 5. Composition (MUST be the first entry)
-    bundle_timestamp = full_parsed_data["timestamp"]
-    
-    composition = Composition.model_construct(
-        id=composition_id,
-        status="final",
-        type=create_codeable_concept(Vocab.LOINC.value, report_mapping["code"], report_mapping["display"]),
-        subject=create_reference("Patient", patient.id),
-        date=bundle_timestamp,
-        author=[create_reference("Organization", organization_id)],
-        title=f"Diagnostic Report - {full_parsed_data['patient_name']}",
-        section=[
-            CompositionSection(
-                title="Laboratory Results",
-                code=create_codeable_concept(Vocab.LOINC.value, report_mapping["code"], report_mapping["display"]),
-                entry=([create_reference("DiagnosticReport", report.id)] + 
-                       observation_refs + 
-                       [create_reference("DocumentReference", dr.id) for dr in doc_ref_resources])
-            )
-        ]
-    )
-
-    # Assemble the Bundle in order
-    entries.append(create_bundle_entry(composition))
-    entries.append(BundleEntry(resource = organization, fullUrl=f"urn:uuid:{organization_id}"))
-    entries.append(patient_entry)
-    for obs in observation_resources:
-        entries.append(create_bundle_entry(obs))
-    for dr in doc_ref_resources:
-        entries.append(create_bundle_entry(dr))
-    entries.append(create_bundle_entry(report))
-
-    # Create Bundle
-    bundle = Bundle(
-        type="document",
-        timestamp=bundle_timestamp,
-        identifier=Identifier(system="https://www.abdm.gov.in/bundle", value=str(uuid.uuid4())),
-        entry=entries
-    )
-
-    return bundle_to_json(bundle)
+    return generate_fhir_from_llm(text, map_files, doc_type="diagnostic_report")
 
 def convert_discharge_summary_to_fhir(text, original_filename="document.pdf"):
-    """
-    Wraps extracted text into an ABDM-compliant FHIR Bundle for a Discharge Summary.
-    """
-    pages = [p.strip() for p in text.split("<!-- PAGE_BREAK -->") if p.strip()]
-    full_parsed_data = parse_extracted_text(text)
+    logger.info(f"Converting Discharge Summary to FHIR via Regex/Template for {original_filename}")
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    map_files = [
+        os.path.join(base_dir, 'reference', 'discharge_summary_map.json')
+    ]
     
-    if not full_parsed_data.get("timestamp"):
-        full_parsed_data["timestamp"] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
-        
-    entries = []
-    
-    composition_id = str(uuid.uuid4())
-    patient_id = str(uuid.uuid4())
-    organization_id = str(uuid.uuid4())
-    
-    organization = {
-        "resourceType": "Organization",
-        "id": organization_id,
-        "identifier": [{"system": "https://www.abdm.gov.in/organization", "value": "NHCX-HACKATHON"}],
-        "name": "NHCX-HACKATHON"
-    }
-    
-    patient_args = {
-        "id": patient_id,
-        "name": [{"text": full_parsed_data["patient_name"]}],
-        "gender": full_parsed_data["gender"] if full_parsed_data["gender"] else "unknown"
-    }
-    if full_parsed_data.get("age"):
-        patient_args["extension"] = [
-            {"url": "http://hl7.org/fhir/StructureDefinition/patient-age", "valueString": full_parsed_data["age"]}
-        ]
-    patient = Patient(**patient_args)
-    patient_entry = create_bundle_entry(patient)
-
-    doc_ref_resources = []
-    # LOINC for Discharge Summary
-    doc_ref_code = "18842-5"
-    doc_ref_display = "Discharge Summary"
-    
-    combined_text = "\n\n".join(pages)
-    current_doc_id = str(uuid.uuid4())
-    attachment = Attachment(
-        contentType="text/plain",
-        title=f"Extracted text from {original_filename}",
-        data=base64.b64encode(combined_text.encode("utf-8")).decode("utf-8")
-    )
-    doc_ref = DocumentReference(
-        id=current_doc_id,
-        meta={"profile": ["https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"]},
-        status="current",
-        docStatus="final",
-        type=create_codeable_concept(Vocab.LOINC.value, doc_ref_code, doc_ref_display),
-        subject=create_reference("Patient", patient.id),
-        date=full_parsed_data["timestamp"],
-        author=[create_reference("Organization", organization_id)],
-        custodian=create_reference("Organization", organization_id),
-        content=[{"attachment": attachment}]
-    )
-    doc_ref_resources.append(doc_ref)
-
-    bundle_timestamp = full_parsed_data["timestamp"]
-    composition = Composition.model_construct(
-        id=composition_id,
-        status="final",
-        type=create_codeable_concept(Vocab.LOINC.value, doc_ref_code, doc_ref_display),
-        subject=create_reference("Patient", patient.id),
-        date=bundle_timestamp,
-        author=[create_reference("Organization", organization_id)],
-        title=f"Discharge Summary - {full_parsed_data['patient_name']}",
-        section=[
-            CompositionSection(
-                title="Document References",
-                code=create_codeable_concept(Vocab.LOINC.value, doc_ref_code, doc_ref_display),
-                entry=[create_reference("DocumentReference", dr.id) for dr in doc_ref_resources]
-            )
-        ]
-    )
-
-    entries.append(create_bundle_entry(composition))
-    entries.append(BundleEntry(resource = organization, fullUrl=f"urn:uuid:{organization_id}"))
-    entries.append(patient_entry)
-    for dr in doc_ref_resources:
-        entries.append(create_bundle_entry(dr))
-
-    bundle = Bundle(
-        type="document",
-        timestamp=bundle_timestamp,
-        identifier=Identifier(system="https://www.abdm.gov.in/bundle", value=str(uuid.uuid4())),
-        entry=entries
-    )
-
-    return bundle_to_json(bundle)
+    return generate_fhir_from_llm(text, map_files, doc_type="discharge_summary")

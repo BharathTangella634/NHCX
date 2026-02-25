@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "tanuh-bcd-questionnaire",
+  "private_key_id": "21d84a21928fbceed62fbf7464b1421eaf1d01b2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD7m+8IgbMtEcAt\nZlFBNOWfBJzNWbVKTvsWVN5Md58cgaS7J8TnXV4JG8OkO1tK2Wl1yTku45FyAWPW\nlMufDYT9EgAb4A5MlHLbbEG2cHBtNiXADKUEHHmxCF72SUwNY/jl7L1z69+DbeuF\nAcuRA1uE1+0nojaHz2xIzx3AynkYXS3w4hOOAbTwt8aRfQUzSrKYZCLZ1m+wAqnL\nN62KCev8gfybkrlv1trKbdINurZmKz8AhpZbTjIUJsnYBdjXRnsaRLB54Tpl1hLi\neGmahi1hqamcyyGW0FCE7iWoQadklZet5SkCavUy5aYuZJKtfQuPDPU7WNWSLls4\nCExDQMHJAgMBAAECggEADEWgRIVy9E1L1ssJRolqc7WZYkiwV3X/uCieiRNCjvTh\n0IERkQlUR1Rz1+RPQRjWlHiikd9mni1kLbinL9RMer1whOuKNwD8kyg2Ekxsp17/\nO11ChS9QXiqe2xtbGsIYBzrjSK6mAbaQSLX8NE/6HEId3pOCXmBnEywK8vbNLjtw\nesHhbzpWhdyfTQAIAwsepJgX2Hg3kSkUrZjpTS0ETyrjoU/R4SSgfuCyTg90sdWJ\nPCayavPoYhxOmZIw8EOOzjHl0yKWp04C7idJ2dcu7vr6BevBDS6hlmEbOHcjfJLH\nVRQJXfsI1GVlNiJDfjfdFrZyav2cae7TTU8sbM3YgQKBgQD929xA9kk1xzxzetdB\nIchtFBcvzbatlchMZ5q9GiPIHPpScHEOKwPT3tLCnGnlUIkhmDuAmTdT+/4PJl0B\nSGS/5Y6umfk4VsQF9ppA1Gb6MfYwKd7f16jJXpJ6cCjgQiiCA5KHe5IWmUuq4XYb\nBbAl8XiJ07sraQiimj3wE50soQKBgQD9uzc4p9YmKzEmgon5exgFOrihyyDBoblv\ny4UASZd0i/FRA9ABIC8JXNWMuBedH92xy3J7iZn77O/FJ7mzHzMsv/eOtL765krv\nE1Veitqz/n6Tho/rBFXghtkeOBuqNLRzQlbrhrwiHpGk1/cv0X9Y+cH6mzriYPMB\nw/6EtlMcKQKBgEZexvx/CSZON3SvjbHxYnTSR+cpeEVAKwj7A0r+TwLu/XkS0FQk\nGmiF8RifcT9vBsR4Ra5NSqgOR4v9j3SGk98aDGZcKliyvJ4GkRX9ixo59Uu+n5if\nWJuRirtEEiCwVjhMMzc5SvLWxcH1w96TwhOSj15tggnzkMA6T4cYeM5hAoGBALfO\ni+5rB2OXHn/7SOCGH5yKMX5jnFMpSSCHms3ege1YA3ThAioOmoR5z+mk4tZcY0mN\nTF3aDMbHmdqFMK1mCLh+SGQE4+T2N4qBwvI+PLjvv9o3PMLP3TZN+bM+iiv/CkoE\n4Nq2PEurQW7dVKA7b7mRFMjq8vlTqja5OQQC4KohAoGBANDhNRNBWwZJI0t1jcXS\nZiaqaoLTD3NMXYWORE4pfUPVGgQUoJ2uYJ2swRxmNNWpo4e+N3sonDkxzFOlOEx+\neBo6ftCXZzPY3Rfy4hts4YIlkbgEsqm3ndVS+71q7LqHI1tMVsFGXKdiuTec5x48\n+DNakBHBHWru8csh0h7Bf1bL\n-----END PRIVATE KEY-----\n",
+  "client_email": "my-nhcx-model-account@tanuh-bcd-questionnaire.iam.gserviceaccount.com",
+  "client_id": "109899905876920137237",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-nhcx-model-account%40tanuh-bcd-questionnaire.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

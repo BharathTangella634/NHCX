@@ -34,9 +34,9 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
 
         # Convert to FHIR
         if doc_type == "discharge_summary":
-            fhir_json = convert_discharge_summary_to_fhir(extracted_text, filename)
+            fhir_json, regex_data = convert_discharge_summary_to_fhir(extracted_text, filename)
         else:
-            fhir_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
+            fhir_json, regex_data = convert_diagnostic_report_to_fhir(extracted_text, filename)
 
         # Save result
         if output_dir:
@@ -46,9 +46,19 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
             with open(output_path, "w") as f:
                 f.write(fhir_json)
             logger.info(f"Successfully processed {filename} and saved to {output_path}")
+            
+            # Save Regex output separately
+            regex_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_regex.json")
+            import json
+            with open(regex_output_path, "w") as f:
+                json.dump(regex_data, f, indent=2)
+            logger.info(f"Saved Regex extraction for {filename} to {regex_output_path}")
         else:
             logger.info(f"Successfully processed {filename}. Result:")
             print(fhir_json)
+            print("Regex Extracted Data:")
+            import json
+            print(json.dumps(regex_data, indent=2))
 
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")

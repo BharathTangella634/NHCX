@@ -1,5 +1,5 @@
 {
-  "resourceType": "str",
+  "resourceType": "Bundle",
   "id": "str",
   "meta": {
     "versionId": "str",
@@ -19,13 +19,13 @@
     "system": "http://hip.in",
     "value": "<UUID>"
   },
-  "type": "str",
+  "type": "document",
   "timestamp": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>",
   "entry": [
     {
       "fullUrl": "<UUID>",
       "resource": {
-        "resourceType": "str",
+        "resourceType": "DocumentReference",
         "id": "<UUID>",
         "meta": {
           "profile": [
@@ -90,7 +90,7 @@
             "entry": [
               {
                 "reference": "<UUID>",
-                "type": "str"
+                "type": "DiagnosticReport"
               }
             ]
           }
