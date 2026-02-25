@@ -6,7 +6,7 @@ import argparse
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.ocr_engine import extract_text_from_pdf, classify_document
-from utils.gemini_fhir_converter import convert_to_fhir_with_gemini
+from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -32,8 +32,11 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
                 f.write(extracted_text)
             logger.info(f"Saved intermediate markdown to {md_path}")
 
-        # Convert to FHIR using Gemini
-        fhir_json = convert_to_fhir_with_gemini(extracted_text, filename)
+        # Convert to FHIR
+        if doc_type == "discharge_summary":
+            fhir_json = convert_discharge_summary_to_fhir(extracted_text, filename)
+        else:
+            fhir_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
 
         # Save result
         if output_dir:

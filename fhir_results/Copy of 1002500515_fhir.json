@@ -1,0 +1,206 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "d2d2ae41-4b55-444f-83eb-c39ffe6911a8"
+  },
+  "type": "document",
+  "timestamp": "2026-02-25T18:06:04Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:3f160728-0ec7-4420-8470-d9a5c4130f16",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "3f160728-0ec7-4420-8470-d9a5c4130f16",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:7cb0beee-45fc-4f19-be8d-b5ca8035baf4"
+        },
+        "date": "2026-02-25T18:06:04Z",
+        "author": [
+          {
+            "reference": "urn:uuid:1ef6bd6b-31c9-4def-a07a-573aaa2d5d72"
+          }
+        ],
+        "title": "Diagnostic Report - MR.",
+        "section": [
+          {
+            "title": "Laboratory Results",
+            "code": {
+              "coding": [
+                {
+                  "code": "11502-2",
+                  "display": "Laboratory report"
+                }
+              ],
+              "text": "Laboratory report"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:5a4d50ba-6c21-4a8a-be83-0ff09cf8b421"
+              },
+              {
+                "reference": "urn:uuid:92838a8d-f1ae-42e9-80bb-00d44386f7b3"
+              },
+              {
+                "reference": "urn:uuid:eafb3e8c-a9ff-4cef-b36f-3a00d77640f2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1ef6bd6b-31c9-4def-a07a-573aaa2d5d72",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "1ef6bd6b-31c9-4def-a07a-573aaa2d5d72",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7cb0beee-45fc-4f19-be8d-b5ca8035baf4",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "7cb0beee-45fc-4f19-be8d-b5ca8035baf4",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "7 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "MR."
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:92838a8d-f1ae-42e9-80bb-00d44386f7b3",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "92838a8d-f1ae-42e9-80bb-00d44386f7b3",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:7cb0beee-45fc-4f19-be8d-b5ca8035baf4"
+        },
+        "date": "2026-02-25T18:06:04Z",
+        "author": [
+          {
+            "reference": "urn:uuid:1ef6bd6b-31c9-4def-a07a-573aaa2d5d72"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:1ef6bd6b-31c9-4def-a07a-573aaa2d5d72"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "CHANDICARH MEDICAL LABORATORY\n(Fully Automated Clinical Laboratory) Hamirpur Road (Near Baba Bal JI Gate), Kotla Kalan, Teh. & Distt. UNA, Himachal Pradesh-174 303\nMob. :X\nX\n<74180\nXX\nSunday:- 08:30 a.m. to 01:00 p.m.\nG.S. Rana Lab. Tech. (BMLT)\n| First Name: Sample ID. Dpt.:   | XXXXXX SH 03   | Last Name: Patient Type: Time of Anatyais:   | 30/10/2024 09:07   |             | Gender: Pabient ID: Mode:   | Xia Age: X WB-CBC+DIFF   | X rears   |\n|--------------------------------|----------------|----------------------------------------------|--------------------|-------------|-----------------------------|--------------------------|-----------|\n|                                | Parameter      | Result                                       | Unit               | Ref. Ranges | Ref. Ranges                 |                          |           |\n|                                | WBC            | 5.03                                         | 10*3/uL            |             | 4.00 - 10.00                |                          |           |\n| PN0                            | Neul           | 2.88                                         | 10*3/uL            | 2.00        | - 7.00                      | WBC Message              |           |\n|                                | Lymll          | 1.77                                         | 10~3/UL            | 0.80        | 4.00                        |                          |           |\n|                                | Montl          | 0.38                                         | 10^3/uL            | 0.12        | 1.20                        |                          |           |\n|                                | Eostl          | 0.02                                         | 10^3/UL            | 0.02 -      | 0.50                        |                          |           |\n|                                | Bas#           | 0.00                                         | 1043/uL            | 0.00        | 0.10                        |                          |           |\n|                                | Neu%           | 57.1                                         |                    | 50.0        | 70.0                        |                          |           |\n|                                | Lym%           | 35.2                                         |                    | 20.0        | 40.0                        |                          |           |\n|                                | Mon%           | 7.2                                          |                    | 3.0         | 12.0                        |                          |           |\n|                                | Eos%           | 0.5                                          |                    | 0.5         | 5.0                         |                          |           |\n|                                | Bas%           | D.0                                          |                    | 0.0         | 1.0                         |                          |           |\n|                                | RBC            | 4.17                                         | R8288\u00b0 *6/uL       | 4.00        | - 6.20                      |                          |           |\n|                                | HGB            | 11                                           |                    | 12.0        | 16.0                        |                          |           |\n| 14                             | HCT            | 36.2                                         |                    | 40.0        | 54.0                        | RBC Message              |           |\n| 15                             | MCV            | 86.9                                         |                    | 80.0        | 100.0                       |                          |           |\n| 16                             | MCH            | 27.3                                         |                    | 27.0        | 34.0                        |                          |           |\n|                                | MCHC           | 31.4                                         |                    | 32.0        | 36.0                        |                          |           |\n|                                | RDW-CV         | 15.6                                         |                    | 11.0 -      | 16.0-                       |                          |           |\n|                                | RDW-SD         | 50.1                                         |                    | 35.0 -      | 56.0                        |                          |           |\n|                                | PLT            | 132                                          | 10^3/uL            | 100 - 400   |                             |                          |           |\n|                                | MPV            | 9.5                                          |                    |             | 6.5 - 12.0                  |                          |           |\n|                                | PDW            | 15.8                                         |                    |             | 9.0 - 17.0                  |                          |           |\n|                                | PCT            | 0.126                                        | %                  | 0.108 -     | 0.282                       |                          |           |\n|                                | P-LCC          | 31                                           | 10^3/uL            |             | 80                          | PLT Message              |           |\n|                                | P-LCR          | 23.7 0.00                                    | 10\u00b09/L             |             | 11.0 - 45.0                 |                          |           |\n| 27                             | *ALY# *ALY%    | 0,000                                        |                    |             |                             |                          |           |\n| 28                             |                | 0.01                                         | 10SL               |             |                             |                          |           |\n| 29                             | *LIC#          | 0.001                                        |                    |             |                             |                          |           |\n| 30                             | *LIC%          |                                              | 10\u00b09L              |             |                             |                          |           |\n|                                | \"Blast#        | 0.00                                         | 10\u00b09/L             |             |                             |                          |           |\n| 31                             | *Blas1%        | 0.000 0.00                                   |                    |             |                             |                          |           |\n| 32 33                          | *NRBC# *NRBC%  | 0.000                                        |                    |             |                             |                          |           |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nWBC\nPLT",
+              "title": "Extracted text from Copy of 1002500515.pdf - Page 1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:eafb3e8c-a9ff-4cef-b36f-3a00d77640f2",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "eafb3e8c-a9ff-4cef-b36f-3a00d77640f2",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "11488-4",
+              "display": "Consult Note"
+            }
+          ],
+          "text": "Consult Note"
+        },
+        "subject": {
+          "reference": "urn:uuid:7cb0beee-45fc-4f19-be8d-b5ca8035baf4"
+        },
+        "date": "2026-02-25T18:06:04Z",
+        "author": [
+          {
+            "reference": "urn:uuid:1ef6bd6b-31c9-4def-a07a-573aaa2d5d72"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:1ef6bd6b-31c9-4def-a07a-573aaa2d5d72"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "MANDIGARH MEDICAL LABORATORY\n(Fully Automated Clinical Laboratory)\nHamirpur Road (Near Baba Bal Ji Gate), Kotla Kalan, Teh. & Distt. UNA, Himachal Pradesh-174 303\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nMob. : 0\nTimings:- 08:00 a.m. to 07:00 p.m.\nSunday:- 08:30 a.m. to 01:00 p.m.\nech. (BMLT)\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nPatient Name : MR.\nAge\n:7\nArea/Locality : Bangana (Una) H.P.\nRef. Doctor : Of Self\nGender :\nPatient ID\n:\nD/1181\nSample Date: 30-10-2024\nReport Date : 30-10-2024\nPatient's Ph. :\n8994\nBIOCHEMISTRY\n| INVESTIGATION       | RESULT   | UNIT   | BIOLOGICAL REFERENCE RANGE   |\n|---------------------|----------|--------|------------------------------|\n| RENAL FUNCTION TEST |          |        |                              |\n| B. Urea             | 273.6    | mg/di  | 13 - 45                      |\n| BUN                 | 127.8    | mg/di  | 7.0 - 20.0                   |\nsupplied along with the test kit, may be varies from kit to kit. **End of Report*\u00b7\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of 1002500515.pdf - Page 2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5a4d50ba-6c21-4a8a-be83-0ff09cf8b421",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "5a4d50ba-6c21-4a8a-be83-0ff09cf8b421",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "code": "11502-2",
+              "display": "Laboratory report"
+            }
+          ],
+          "text": "Laboratory report"
+        },
+        "subject": {
+          "reference": "urn:uuid:7cb0beee-45fc-4f19-be8d-b5ca8035baf4"
+        },
+        "issued": "2026-02-25T18:06:04Z",
+        "result": []
+      }
+    }
+  ]
+}
