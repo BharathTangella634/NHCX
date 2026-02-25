@@ -1,0 +1,388 @@
+{
+  "resourceType": "str",
+  "id": "str",
+  "meta": {
+    "versionId": "str",
+    "lastUpdated": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>",
+    "profile": [
+      "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentBundle"
+    ],
+    "security": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+        "code": "V",
+        "display": "str"
+      }
+    ]
+  },
+  "identifier": {
+    "system": "http://hip.in",
+    "value": "<UUID>"
+  },
+  "type": "str",
+  "timestamp": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>",
+  "entry": [
+    {
+      "fullUrl": "<UUID>",
+      "resource": {
+        "resourceType": "str",
+        "id": "<UUID>",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "language": "en-IN",
+        "text": {
+          "status": "str",
+          "div": "str"
+        },
+        "status": "str",
+        "type": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "373942005",
+              "display": "str"
+            }
+          ],
+          "text": "str"
+        },
+        "subject": {
+          "reference": "<UUID>",
+          "display": "str"
+        },
+        "encounter": {
+          "reference": "<UUID>",
+          "display": "str"
+        },
+        "date": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>",
+        "author": [
+          {
+            "reference": "<UUID>",
+            "display": "str"
+          }
+        ],
+        "title": "str",
+        "confidentiality": "str",
+        "custodian": {
+          "reference": "<UUID>",
+          "display": "str"
+        },
+        "section": [
+          {
+            "title": "str",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "373942005",
+                  "display": "str"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "<UUID>",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://xyz.com/lab/reports",
+            "value": "str"
+          }
+        ],
+        "name": [
+          {
+            "text": "str"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "str",
+            "use": "str"
+          }
+        ],
+        "gender": "str",
+        "birthDate": "<DATE_FORMAT: YYYY-MM-DD>",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "IMP",
+          "display": "str"
+        },
+        "period": {
+          "start": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>",
+          "end": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>"
+        },
+        "hospitalization": {
+          "dischargeDisposition": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/discharge-disposition",
+                "code": "home",
+                "display": "str"
+              }
+            ],
+            "text": "str"
+          }
+        },
+        "serviceCategory": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "408443003",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "serviceType": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "11429006",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "appointmentType": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "185389009",
+              "display": "str"
+            }
+          ]
+        },
+        "reasonReference": [
+          {
+            "reference": "<UUID>",
+            "display": "str"
+          }
+        ],
+        "description": "str",
+        "start": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ssZ>",
+        "end": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ssZ>",
+        "created": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss.sss+zz:zz>",
+        "participant": [
+          {
+            "actor": {
+              "reference": "<UUID>",
+              "display": "str"
+            },
+            "status": "str"
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "str"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "232717009",
+              "display": "str"
+            }
+          ],
+          "text": "str"
+        },
+        "receivedTime": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ssZ>",
+        "collection": {
+          "collectedDateTime": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ssZ>"
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "736368003",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "issued": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss+zz:zz>",
+        "performer": [
+          {
+            "reference": "<UUID>",
+            "display": "str"
+          }
+        ],
+        "resultsInterpreter": [
+          {
+            "reference": "<UUID>",
+            "display": "str"
+          }
+        ],
+        "specimen": [
+          {
+            "reference": "<UUID>",
+            "display": "str"
+          }
+        ],
+        "result": [
+          {
+            "reference": "<UUID>",
+            "display": "str"
+          }
+        ],
+        "conclusion": "str",
+        "conclusionCode": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439953004",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "presentedForm": [
+          {
+            "contentType": "str",
+            "language": "en-IN",
+            "data": "str",
+            "title": "str"
+          }
+        ],
+        "effectiveDateTime": "<DATE_FORMAT: YYYY-MM-DD>",
+        "valueQuantity": {
+          "value": "int",
+          "unit": "str",
+          "system": "http://snomed.info/sct",
+          "code": "258797006"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": "int",
+              "unit": "str",
+              "system": "http://snomed.info/sct",
+              "code": "258797006"
+            }
+          }
+        ],
+        "performedDateTime": "<DATE_FORMAT: YYYY-MM-DD>",
+        "complication": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "131148009",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "intent": "str",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "765082007",
+              "display": "str"
+            }
+          ]
+        },
+        "authoredOn": "<DATE_FORMAT: YYYY-MM-DD>",
+        "requester": {
+          "reference": "<UUID>",
+          "display": "str"
+        },
+        "dosageInstruction": [
+          {
+            "text": "str",
+            "additionalInstruction": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "311504000",
+                    "display": "str"
+                  }
+                ]
+              }
+            ],
+            "timing": {
+              "repeat": {
+                "frequency": "int",
+                "period": "int",
+                "periodUnit": "str"
+              }
+            },
+            "route": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "26643006",
+                  "display": "str"
+                }
+              ]
+            },
+            "method": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "421521009",
+                  "display": "str"
+                }
+              ]
+            }
+          }
+        ],
+        "activity": [
+          {
+            "outcomeReference": [
+              {
+                "reference": "<UUID>",
+                "display": "str"
+              }
+            ]
+          }
+        ],
+        "docStatus": "str",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "str",
+              "language": "en-IN",
+              "data": "str",
+              "title": "str",
+              "creation": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss+zz:zz>"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "signature": {
+    "type": [
+      {
+        "system": "urn:iso-astm:E1762-95:2013",
+        "code": "1.2.840.10065.1.12.1.1",
+        "display": "str"
+      }
+    ],
+    "when": "<DATE_FORMAT: YYYY-MM-DDThh:mm:ss+zz:zz>",
+    "who": {
+      "reference": "<UUID>",
+      "display": "str"
+    },
+    "sigFormat": "str",
+    "data": "str"
+  }
+}
