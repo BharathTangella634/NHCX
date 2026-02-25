@@ -5,8 +5,8 @@ import argparse
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from utils.ocr_engine import extract_text_from_pdf
-from utils.fhir_converter import text_to_abdm_fhir
+from utils.ocr_engine import extract_text_from_pdf, classify_document
+from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
 
 def process_pdf(pdf_path, output_dir=None, md_dir=None):
     try:
@@ -15,6 +15,10 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
         
         # Perform OCR
         extracted_text = extract_text_from_pdf(pdf_path)
+
+        # Classify Document
+        doc_type = classify_document(extracted_text)
+        print(f"Document classified as: {doc_type}")
 
         # Save intermediate Markdown if requested
         if md_dir:
@@ -26,7 +30,10 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
             print(f"Saved intermediate markdown to {md_path}")
 
         # Convert to FHIR
-        fhir_json = text_to_abdm_fhir(extracted_text, filename)
+        if doc_type == "discharge_summary":
+            fhir_json = convert_discharge_summary_to_fhir(extracted_text, filename)
+        else:
+            fhir_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
 
         # Save result
         if output_dir:

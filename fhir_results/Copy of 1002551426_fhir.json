@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "bad291db-f833-4bef-8d85-f7c08727e0c6"
+  },
+  "type": "document",
+  "timestamp": "2026-02-25T14:02:14Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:ddf6daf9-6a4c-49cd-84c5-3c655c3ead89",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "ddf6daf9-6a4c-49cd-84c5-3c655c3ead89",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:151af1e3-8b46-4aa9-9f2c-9db40e27355f"
+        },
+        "date": "2026-02-25T14:02:14Z",
+        "author": [
+          {
+            "reference": "urn:uuid:3ed5fcae-f2df-4f95-b08f-74664c380926"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:c5104d8c-fe9e-4f66-9072-b1daa6003177"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3ed5fcae-f2df-4f95-b08f-74664c380926",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "3ed5fcae-f2df-4f95-b08f-74664c380926",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:151af1e3-8b46-4aa9-9f2c-9db40e27355f",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "151af1e3-8b46-4aa9-9f2c-9db40e27355f",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c5104d8c-fe9e-4f66-9072-b1daa6003177",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "c5104d8c-fe9e-4f66-9072-b1daa6003177",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:151af1e3-8b46-4aa9-9f2c-9db40e27355f"
+        },
+        "date": "2026-02-25T14:02:14Z",
+        "author": [
+          {
+            "reference": "urn:uuid:3ed5fcae-f2df-4f95-b08f-74664c380926"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:3ed5fcae-f2df-4f95-b08f-74664c380926"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDISCHARGE SUMMARY\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nDATE: 03/12/2024\nReg.No: XX 0\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nMobile\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nConsultant: Dr.X\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nOPNo:901\nName\nID\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nAddress\nChief Complaint\nPatient came for regular hemodialysis\nC/O Breathless\nC/O Several episodes of vomiting\nC/O Mild swelling over legs\nVitals\nTemperature (F): 99.5\nBP(mmHg) : 160/90\nPulse Rate (permin): 103\nSpo2(%atRA): 92\nGeneral Examination\nPatient conscious/oriented/afebrile\nDiagnosis\nCKD stage IV on MHD\nTreatment Advised\n1.DIALYSIS CHARGES\nTreatment Completed\n1.DIALYSIS CHARGES\nRespiratory Rate(bpm)123:20\nTreatment Notes\nPatient came for dialysis, Dialysis on flow, No complaints\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nGender\nF\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nAuthorized Signature",
+              "title": "Extracted text from Copy of 1002551426.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

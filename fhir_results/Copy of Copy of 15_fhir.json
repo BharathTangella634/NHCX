@@ -1,0 +1,134 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "ff72f5f1-e6bc-4d4a-93e8-fabc48987cf2"
+  },
+  "type": "document",
+  "timestamp": "2023-03-31T13:07:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:ea15c100-7a60-438a-9b21-85330cec78f6",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "ea15c100-7a60-438a-9b21-85330cec78f6",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:542cf310-79bc-41bc-bbf9-24b138e2f32b"
+        },
+        "date": "2023-03-31T13:07:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:934a833d-dbff-460f-8d24-2e3d787e3f22"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:fe71e009-e4f1-4872-adb1-3938d89dad5f"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:934a833d-dbff-460f-8d24-2e3d787e3f22",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "934a833d-dbff-460f-8d24-2e3d787e3f22",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:542cf310-79bc-41bc-bbf9-24b138e2f32b",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "542cf310-79bc-41bc-bbf9-24b138e2f32b",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-age",
+            "valueString": "34 Yr"
+          }
+        ],
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fe71e009-e4f1-4872-adb1-3938d89dad5f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "fe71e009-e4f1-4872-adb1-3938d89dad5f",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:542cf310-79bc-41bc-bbf9-24b138e2f32b"
+        },
+        "date": "2023-03-31T13:07:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:934a833d-dbff-460f-8d24-2e3d787e3f22"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:934a833d-dbff-460f-8d24-2e3d787e3f22"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Obstetrics And Gynaecology Discharge Summary\n| CR No.: anonymous                | Name: anonymous                                          | Age/Gender: 31.1 Yr/F                |\n|----------------------------------|----------------------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Obstetrics And Gynaecology (Obs Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: 1 B 1 Female Ward          | Room/Bed: 1 B 1 Female Room/ 1 B 1 Bed 13                | Patient Category: Ayushman           |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                            | Occupation: House Wife               |\n| Contact No.: anonymous           | Address: anonymous                                       | State/Country India                  |\n| D.O.A. : 31-Mar-2023 13:07       | D.O.D. : 04-Apr-2023                                     | D.O. Print Report: 08-Feb-2026 15:16 |\nPROVISIONAL DIAGNOSIS:\n30 YR/G3P2L2/37 4 WK POG/VD F/B LSCS 3.5YR BACK/RH -VE PREG/ANTI D TAKEN AT 29 WK\nPOG/HYPOTHYROIDISM/POLYHYDRAMNIOS(AFI31.8cm) ADMITTED FOR SAFE CONFINEMENT PERCEIVING FETAL MOVEMENTS WELL. 30 YR/G3L3/POD 3 OF EL-LSCS TVO PREVIOUS CS NOT WILLING FOR TOLAC\nOPERATION PERFORMED:\nELECTIVE LSCS I/V/O PREVIOUS CS NOT WILLING FOR TOLAC B/L TUBAL LIGATION On  01-Apr-2023\nSURGEONS: Dr Jyotsna\nASSISTANT SURGEONS/SENIOR RESIDENTS: DR POLARICA\nOPERATIVE FINDINGS: UNDER ADEQUATE SPINAL ANAESTHESIA, PFANNENSTIAL INSCISION GIVEN. ABDOMEN OPENED IN LAYERS LUS WAS IDENTIFIED, A SMALL NICK WAS GIVEN AT LUS AND EXTENDED BILATERALLY.AMNIOTIC FLUID DRAINED OF 1500ml- CLEAR. TERM/ALIVE /MALE  BABY OF 2.895 KG DELIVERED BY VERTEX PRESENTATION ON 1/4/23 AT 10:41 AM . BABY CRIED IMMEDIATELY AFTER BIRTH. PLACENTA AND MEMBRANES DELIVERED COMPLETELY.B/L TUBAL LIGATION WAS DONE WITH MODIFIED POMEROYS METHOD WITH CATGUT.ADEQUATE HEMOSTASIS ACHIEVED. INTRAOP BLOOD LOSS- 500ML, URINE OUTPUT- 100ML. BABY WAS  BREASTFED WITHIN 1 HOUR AFTER DELIVERY\nCHIEF COMPLAINTS:\n30 YR/G3P2L2/37 4 WK POG/VD F/B LSCS 3.5YR BACK/RH -VE PREG/ANTI D TAKEN AT 29 WK\nPOG/HYPOTHYROIDISM/POLYHYDRAMNIOS(AFI31.8cm) ADMITTED FOR SAFE CONFINEMENT PERCEIVING FETAL MOVEMENTS WELL HISTORY OF PRESENT ILLNESS: 30 YR/G3P2L2/37 4 WK POG/VD F/B LSCS 3.5YR BACK/RH -VE PREG/ANTI D TAKEN AT 29 WK POG/HYPOTHYROIDISM/POLYHYDRAMNIOS(AFI31.8cm) ADMITTED FOR SAFE CONFINEMENT PERCEIVING FETAL MOVEMENTS WELL.ON CLINICAL EXAMINATION, SHE WAS VITALLY STABLE, PERCEIVEING FETAL MOVEMENTS WELL, HER NST WAS REACTIVE AT THE TIME OF ADMISSION.\nINVESTIGATION DETAILS:\n| Requisition Date   | Test Name                  | Parameter Name            | Result         | Ref Range & Unit      |\n|--------------------|----------------------------|---------------------------|----------------|-----------------------|\n| 02-Apr-2023 00:06  | COMPLETE BLOOD COUNT (CBC) | Comments on PBS           | Refer Reports* | -                     |\n|                    |                            | Absolute Basophil Count   | 0.04           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                    |                            | Absolute Eosinophil Count | 0.02           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                    |                            | Absolute Lymphocyte Count | 2.07           | 1 - 3 x10^3 /\u00b5L       |\n|                    |                            | Absolute Monocyte Count   | 1.01           | 0.2 - 1.0 x10^3 /\u00b5L   |\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                   |                                              | Absolute Neutrophil Count            | 16.74          | 2 - 7 x10^3 /\u00b5L       |\n|-------------------|----------------------------------------------|--------------------------------------|----------------|-----------------------|\n|                   |                                              | Basophil                             | 0.2            | 00 - 01%              |\n|                   |                                              | Eosinophils                          | 0.1            | 01 - 06%              |\n|                   |                                              | HCT                                  | 35.5           | 36 - 46%              |\n|                   |                                              | Hemoglobin                           | 11.2           | 12 - 15 g/dl          |\n|                   |                                              | Lymphocites                          | 10.4           | 20 - 40%              |\n|                   |                                              | MCH                                  | 30.1           | 27 - 32 pg            |\n|                   |                                              | MCHC                                 | 31.5           | 31.5 - 34.5 g/dL      |\n|                   |                                              | MCV                                  | 95.4           | 83 - 101 fL           |\n|                   |                                              | Monocytes                            | 5.1            | 2 - 10%               |\n|                   |                                              | Neutrophils                          | 84.2           | 40 - 80%              |\n|                   |                                              | Platelet Count                       | 263            | 150 - 410 x10^3 /\u03bcL   |\n|                   |                                              | RBC                                  | 3.72           | 3.8 - 4.8 x10^6 /\u03bcL   |\n|                   |                                              | Red Cell Distribution Width (RDW CV) | 13.5           | 11.6 - 14.0%          |\n|                   |                                              | Total Leukocyte Count(TLC)           | 19.88          | 4 - 10 x10^3 /\u03bcL      |\n| 31-Mar-2023 18:02 | ACTIVATED PARTIAL THROMBOPLASTIN TIME (APTT) | APTT HEADER                          | 25.1           | 23.2 - 32.4 sec       |\n|                   |                                              | APTT NOTE                            | Refer Reports* | -                     |\n|                   |                                              | clinical details                     | --             | -                     |\n|                   | COMPLETE BLOOD COUNT (CBC)                   | Comments on PBS                      | Refer Reports* | -                     |\n|                   |                                              | Absolute Basophil Count              | 0.05           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                   |                                              | Absolute Eosinophil Count            | 0.19           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                   |                                              | Absolute Lymphocyte Count            | 3.22           | 1 - 3 x10^3 /\u00b5L       |\n|                   |                                              | Absolute Monocyte Count              | 0.69           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                   |                                              | Absolute Neutrophil Count            | 9.69           | 2 - 7 x10^3 /\u00b5L       |\n|                   |                                              | Basophil                             | 0.4            | 00 - 01%              |\n|                   |                                              | Eosinophils                          | 1.4            | 01 - 06%              |\n|                   |                                              | HCT                                  | 37.3           | 36 - 46%              |\n|                   |                                              | Hemoglobin                           | 11.9           | 12 - 15 g/dl          |\n|                   |                                              | Lymphocites                          | 23.3           | 20 - 40%              |\n|                   |                                              | MCH                                  | 30.3           | 27 - 32 pg            |\n|                   |                                              | MCHC                                 | 31.9           | 31.5 - 34.5 g/dL      |\n|                   |                                              | MCV                                  | 94.9           | 83 - 101 fL           |\n|                   |                                              | Monocytes                            | 5.0            | 2 - 10%               |\n|                   |                                              | Neutrophils                          | 69.9           | 40 - 80%              |\n|                   |                                              | Platelet Count                       | 241            | 150 - 410 x10^3 /\u03bcL   |\n|                   |                                              | RBC                                  | 3.93           | 3.8 - 4.8 x10^6 /\u03bcL   |\nC-DAC: Centre for Development of Advanced Computing\nC-56/1, Sector-62, Noida - 201307, Uttar Pradesh,\n91-0120-3063311-13.\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                           | Red Cell Distribution Width (RDW CV) Total Leukocyte Count(TLC)   | 13.6 13.84     | 11.6 - 14.0% 4 - 10 x10^3 /\u03bcL   |\n|---------------------------|-------------------------------------------------------------------|----------------|---------------------------------|\n| PROTHROMBIN TIME (PT INR) | clinical details                                                  | --             | -                               |\n|                           | International Normalised Ratio (INR)                              | 1.1            | -                               |\n|                           | PT INR Header                                                     | 10.2           | 09.6 - 12.2 sec                 |\n|                           | PT INR Note                                                       | Refer Reports* | -                               |\n*Refer Lab Reports for details.\nOTHER INVESTIGATIONS: BLOOD GRP- O NEGATIVE\nOBSTETRIC SONOGRAPHY  DOPPLER  (15/3/23):\nLIVE INTRAUTERINE GESTATION WITH GESTATIONAL AGE 34 WEEKS 4 DAYS. EFW-2484 GM/ PLACENTA ANTERIOR GRADE 3/CEPHALIC PRESENTATION, NORMAL FETAL GROWTH AS PER GESTATION. LIQUOR  ADEQUATE/ SINGLE LOOP OF CORD IS SEEN NEAR NECK AT TIME OF EXAMINATION/ NORMAL DOPPLER STUDY\nHOSPITAL COURSE: 30 YR/G3P2L2/37 4 WK POG/VD F/B LSCS 3.5YR BACK/RH -VE PREG/ANTI D TAKEN AT 29 WK\nPOG/HYPOTHYROIDISM/POLYHYDRAMNIOS(AFI31.8cm) ADMITTED FOR SAFE CONFINEMENT PERCEIVING FETAL MOVEMENTS WELL.ON CLINICAL EXAMINATION, SHE WAS VITALLY STABLE, PERCEIVEING FETAL MOVEMENTS WELL, HER NST WAS REACTIVE AT THE TIME OF ADMISSION.\nCONDITION AT ADMISSION-\nGENERAL EXAMINATION:\nPR: 78/MIN, BP: 110/70 MMHG, RR: 14/MIN, TEMP: AFEBRILE\nPALLOR/ ICTERUS/CYANOSIS/CLUBBING/ EDEMA- ABSENT\nSYSTEMIC EXAMINATION: CVS: S1 S2 , RS- B/L AIR ENTRY\nP/A- UTERUS 36 WEEK SIZE,CEPHALIC,RELAXED,SFH-35cm,FHR-142bpm\nP/S- OS OPEN. FRANK LEAK PRESENT\nP/V- CERVIX SOFT POSTERIOR IFC,EARLY EFFACED HEAD FLOATING\n30 YR/G3P2L2/37 4 WK POG/VD F/B LSCS 3.5YR BACK/RH -VE PREG/ANTI D TAKEN AT 29 WK\nPOG/HYPOTHYROIDISM/POLYHYDRAMNIOS(AFI31.8cm) ADMITTED FOR SAFE CONFINEMENT  ON CLINICAL EXAMINATION  SHE WAS NOT IN LABOR AND WAS VITALLY STABLE  AND HER NST WAS REACTIVE AT THE TIME OF ADMISSION . STRICT FETOMATERNAL SURVEILLANCE WAS DONE. ALL THE NECESSARY INVESTIGATIONS WERE DONE. . SHE WAS PLANNED FOR ELECTIVE LSCS I/V/O OF PREVIOUS CS NOT WILLING FOR TOLAC. WHERE SHE DELIVERED A  TERM /ALIVE /MALE BABY  OF 2.895 KG BY VERTEX PRESENTATION ON 1/4/23 AT 10:41 AM . BABY  CRIED IMMEDIATELY AFTER BIRTH. NO INTRAOP AND POSTOP COMPLICATIONS NOTED. MOTHER AND BABY PASSED URINE AND STOOL. ON POD3 CHECK DRESSING WAS DONE AND SUTURE SITE WAS HEALTHY. CONDITION OF MOTHER AND BABY WAS FAIR AT THE TIME OF DISCHARGE\nCONDITION AT DISCHARGE: GENERAL EXAMINATION:\nPR: 78/MIN, BP: 110/70 MMHG, RR: 14/MIN, TEMP: AFEBRILE\nPALLOR/ ICTERUS/CYANOSIS/CLUBBING/ EDEMA- ABSENT\nSYSTEMIC EXAMINATION: CVS: S1 S2 , RS- B/L AIR ENTRY\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nP/A-UTERUS W/C L/E: NO ACTIVE BLEEDING, LOCHIA HEALTHY B/L BREASTS:  SOFT, NON TENDER STOOL AND URINE PASSED.\nADVICE ON DISCHARGE:\nFOR  MOTHER:\n\u2022HIGH PROTEIN DIET\n\u2022TAB. CEFIXIME 200 MG BD FOR 3DAYS\n\u2022TAB. PANTOP 40MG OD ES FOR 3 DAYS\n\u2022TAB. PCM 500MG  PO TDS X 3DAYS F/B SOS IF PAIN\n\u2022T. IRON   FOLIC ACID OD FOR 3 MONTHS\n\u2022T. CALCIUM   VITAMIN D BD FOR 6 MONTHS\n\u2022MAINTAIN PERINEAL HYGIENE\n\u2022PRACTICE KEGEL EXERCISES 2 SETS OF 25 EACH TWICE DAILY.\n\u2022SEXUAL ABSTINENCE FOR 6 WEEKS.\n\u2022HOME ISOLATION, WEAR MASK, SOCIAL DISTANCING, NO SOCIAL GATHERING, BE AT HOME.\nFOR BABY\n1) EXCLUSIVE BREASTFEEDING AND BURPING AFTER EACH FEED 2) IMMUNISATION AS PER SCHEDULE 3) CORD CARE/EYE CARE\nFOLLOW UP AS PER ADVICE OF PEDIATRICIAN\nDISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 19-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE : REVIEW IN GYNEC OPD AFTER 7 DAYS ON MONDAY/WEDNESDAY FOR SUTURE REMOVAL OR SOS IN CASE OF\nBLEEDING PV, SEVERE PAIN ABDOMEN, FOUL SMELLING DISCHARGE AND/OR FEVER, AND/OR BREAST PAIN.\nREVIEW IN AYUSH COVID-OPD I/C/O COLD ,COUGH, FEVER, BREATHING DIFFICULTY , BODY PAINS AND/OR DIARRHEA.\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->",
+              "title": "Extracted text from Copy of Copy of 15.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

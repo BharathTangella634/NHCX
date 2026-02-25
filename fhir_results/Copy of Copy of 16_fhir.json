@@ -1,0 +1,128 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "system": "https://www.abdm.gov.in/bundle",
+    "value": "e4cad0d9-d1ab-4382-967b-c37f4ab1b417"
+  },
+  "type": "document",
+  "timestamp": "2023-03-31T10:53:00Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:9e483334-78ee-4041-b0f9-37699efe2ef7",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "9e483334-78ee-4041-b0f9-37699efe2ef7",
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:68a56e36-8645-439f-b691-c006aa0896f6"
+        },
+        "date": "2023-03-31T10:53:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:26969967-998c-475c-b545-3a1a2d0edd7e"
+          }
+        ],
+        "title": "Discharge Summary - anonymous",
+        "section": [
+          {
+            "title": "Document References",
+            "code": {
+              "coding": [
+                {
+                  "code": "18842-5",
+                  "display": "Discharge Summary"
+                }
+              ],
+              "text": "Discharge Summary"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:63bf0460-f9c2-45f1-a3d5-79bf4140b1e9"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:26969967-998c-475c-b545-3a1a2d0edd7e",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "26969967-998c-475c-b545-3a1a2d0edd7e",
+        "identifier": [
+          {
+            "system": "https://www.abdm.gov.in/organization",
+            "value": "NHCX-HACKATHON"
+          }
+        ],
+        "name": "NHCX-HACKATHON"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:68a56e36-8645-439f-b691-c006aa0896f6",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "68a56e36-8645-439f-b691-c006aa0896f6",
+        "name": [
+          {
+            "text": "anonymous"
+          }
+        ],
+        "gender": "unknown"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:63bf0460-f9c2-45f1-a3d5-79bf4140b1e9",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "63bf0460-f9c2-45f1-a3d5-79bf4140b1e9",
+        "meta": {
+          "profile": [
+            "https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"
+          ]
+        },
+        "status": "current",
+        "docStatus": "final",
+        "type": {
+          "coding": [
+            {
+              "code": "18842-5",
+              "display": "Discharge Summary"
+            }
+          ],
+          "text": "Discharge Summary"
+        },
+        "subject": {
+          "reference": "urn:uuid:68a56e36-8645-439f-b691-c006aa0896f6"
+        },
+        "date": "2023-03-31T10:53:00Z",
+        "author": [
+          {
+            "reference": "urn:uuid:26969967-998c-475c-b545-3a1a2d0edd7e"
+          }
+        ],
+        "custodian": {
+          "reference": "urn:uuid:26969967-998c-475c-b545-3a1a2d0edd7e"
+        },
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain",
+              "data": "Moan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\nDepartment of Orthopaedics\nDischarge Summary\n| CR No.: anonymous                | Name: anonymous                              | Age/Gender: 63.6 Yr/M                |\n|----------------------------------|----------------------------------------------|--------------------------------------|\n| Admission No.: anonymous         | Department Unit: Orthopaedics (Ortho Unit 1) | Consultant/Faculty: anonymous        |\n| Ward: 2 A 3 Ward                 | Room/Bed: 2 A 3 Orthopaedics/ 2A3 Ortho 16   | Patient Category: General            |\n| Discharge Type: Normal Discharge | Father/Spouse Name: anonymous                | Occupation:                          |\n| Contact No.: anonymous           | Address: anonymous                           | State/Country India                  |\n| D.O.A. : 31-Mar-2023 10:53       | D.O.D. : 03-Apr-2023                         | D.O. Print Report: 08-Feb-2026 15:16 |\nOPERATION PERFORMED:\nBIPOLAR HEMIARTHROPLASTY LEFT HIP WITH ADDUCTOR TENOTOMY AND IT BAND RELEASE On  01-Apr-2023\nSURGEONS: Dr Alok Chandra Agrawal, Dr Alok Rai\nASSISTANT SURGEONS/SENIOR RESIDENTS: DR. ANKIT , DR. BHASKAR , DR. SUHAS\nOPERATIVE FINDINGS: UNDER SPINAL ANESTHESIA PATIENT POSITIONED RIGHT LATERAL , PARTS PREPARED, PAINTED , DRAPED STERILE. THROUGH MODIFIED HARDINGE APPROACH 20 CM INCISION PLACED OVER LATERAL ASPECT CENTERING GREATER TROCHANTER . TFL CUT , GLUTEUS MEDIUS REFLECTED (ANTERIORLY 2/3) ALONG THE BONY FLAP. GLUTEUS MINIMUS AND CAPSULE WAS CUT, HIP DISLOCATED ANTERIORLY , NECK CUT TAKEN , FEMORAL HEAD EXTRACTED (DIAMETER 95 MM) WASH GIVEN , ANTERIOR CAPSULE RELEASE DONE, ILIOPSOAS RELEASE , FEMORAL ENCHROAHING DONE AND SIZE 3 STEM PUT , TRIAL REDUCTION DONE, SINCE THERE WAS TIGHTNESS OF HIP IN EXTENSION , ILIOTIBIAL BAND WAS RELEASED AT MULTIPLE POSITION. ROM SATISFACTORY , HENCE FINAL IMPLANTATION DONE WITH HA COATED UNCEMENTED STEM SIZE 3 , HEAD 28 MM , CUP -- 45 MM ,WASH GIVEN AND WOUND CLOSED IN LAYERS ONCE NEGATIVE SUCTION DRAIN DRESSING DONE.\nCHIEF COMPLAINTS:\nPAIN IN LEFT HIP AND THIGH FOR 1 MONTH\nHISTORY OF PRESENT ILLNESS: PATIENT WAS APPARENTLY ASYMPTOMATIC 1 MONTH BACK WHEN HE DEVELOPED PAIN IN WALKING IN LEFT LOWER LEG DUE TO SELF FALL SO PATIENT WENT TO LOCAL HOSPITAL FOR TREATMENT, BUT PAIN AND DEFORMITY IS PERSISTENT SO THE PATIENT HAS COME TO AIIMS FOR FURTHER MANAGEMENT.\nNO H/O TRAUMA OF HEAD/ CHEST/ABDOMEN\nNO H/O ENT BLEED\nNO H/O LOSS OF CONSCIOUSNESS , VOMITING\nH/O HEMIPARESIS 5 YEARS BACK\nK/C/O HTN FOR 1 YEAR\nH/O SURGERY OF RIGHT LOWER LIMB 8 YEARS BACK.\nEXAMINATION:\n03-Apr-2023\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\nGeneral Physcial Examination\nLocal Examination\nLEFT LOWER LIMB\nSKIN - INTACT; NO SWELLING ;\nTENDERNESS PRESENT ON\nLATERAL ASPECT OF LEFT THIGH\n; LEFT HIP ROM CANNOT BE\nELICITED DUE TO PAIN. ROM IS\nNORMAL AT LEFT KNEE AND\nLEFT ANKLE. ; DPA AND PTA\nPALPABLE ; ACTIVE TOE\nMOVEMENT PRESENT\nType\nSensorium\nNormal\n78\nBlood Pressure\nSystolic\n150\nDiastolic\n80\nTemperature (in Fahrenheit)\nAfebrile\nClubbing\nNo\nJVP\nNormal\nPallor\nNo\nHydration\nNormal\nLymphadenopathy\nABSENT\nEdema\nABSENT\n78\nCyanosis\nABSENT\nINVESTIGATION DETAILS:\nRequisition Date\nTest Name\nParameter Name\nResult\nRef Range & Unit\n02-Apr-2023 11:20\nCOMPLETE BLOOD\nCOUNT (CBC)\nComments on PBS\nRefer Reports*\n-\nAbsolute Basophil Count\n0.01\n0.02 - 0.10 x10^3 /\u03bcL\nAbsolute Eosinophil Count\n0.00\n0.02 - 0.5 x10^3 /\u03bcL\nAbsolute Lymphocyte Count\n0.73\n1 - 3 x10^3 /\u00b5L\nAbsolute Monocyte Count\n0.74\n0.2 - 1.0 x10^3 /\u00b5L\nAbsolute Neutrophil Count\n12.82\n2 - 7 x10^3 /\u00b5L\nBasophil\n0.1\n00 - 01 %\nEosinophils\n0.0\n01 - 06 %\nHCT\n36.3\n40 - 50 %\nHemoglobin\n10.9\n13 - 17 g/dl\nLymphocites\n5.1\n20 - 40 %\nMCH\n26.5\n27 - 32 pg\nMCHC\n30.0\n31.5 - 34.5 g/dL\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                   |                                              | MCV                                  | 88.3           | 83 - 101 fL           |\n|-------------------|----------------------------------------------|--------------------------------------|----------------|-----------------------|\n|                   |                                              | Monocytes                            | 5.2            | 2 - 10%               |\n|                   |                                              | Neutrophils                          | 89.6           | 40 - 80%              |\n|                   |                                              | Platelet Count                       | 177            | 150 - 410 x10^3 /\u03bcL   |\n|                   |                                              | RBC                                  | 4.11           | 4.5 - 5.5 x10^6 /\u03bcL   |\n|                   |                                              | Red Cell Distribution Width (RDW CV) | 13.5           | 11.6 - 14.0%          |\n|                   |                                              | Total Leukocyte Count(TLC)           | 14.30          | 4 - 10 x10^3 /\u03bcL      |\n|                   | Rft                                          | Chloride                             | 104            | 102 - 109 mmol/L      |\n|                   |                                              | Creatinine                           | 1.38           | 0.9 - 1.3 mg/dl       |\n|                   |                                              | Potassium                            | 4.29           | 3.5 - 5 mmol/L        |\n|                   |                                              | Sodium                               | 138            | 135 - 145 mmol/L      |\n|                   |                                              | Urea                                 | 32             | 15.0 - 39.0 mg/dl     |\n| 31-Mar-2023 22:44 | ACTIVATED PARTIAL THROMBOPLASTIN TIME (APTT) | APTT HEADER                          | 21.3           | 23.2 - 32.4 sec       |\n|                   |                                              | APTT NOTE                            | Refer Reports* | -                     |\n|                   |                                              | clinical details                     | --             | -                     |\n|                   | BLOOD GROUPING ABO and RhD                   | Blood Group                          | AB             | -                     |\n|                   |                                              | Note                                 | Refer Reports* | -                     |\n|                   |                                              | RH Type                              | Positive       | -                     |\n|                   | COMPLETE BLOOD COUNT (CBC)                   | Comments on PBS                      | Refer Reports* | -                     |\n|                   |                                              | Absolute Basophil Count              | 0.02           | 0.02 - 0.10 x10^3 /\u03bcL |\n|                   |                                              | Absolute Eosinophil Count            | 0.14           | 0.02 - 0.5 x10^3 /\u03bcL  |\n|                   |                                              | Absolute Lymphocyte Count            | 3.14           | 1 - 3 x10^3 /\u00b5L       |\n|                   |                                              | Absolute Monocyte Count              | 0.88           | 0.2 - 1.0 x10^3 /\u00b5L   |\n|                   |                                              | Absolute Neutrophil Count            | 5.23           | 2 - 7 x10^3 /\u00b5L       |\n|                   |                                              | Basophil                             | 0.2            | 00 - 01%              |\n|                   |                                              | Eosinophils                          | 1.5            | 01 - 06%              |\n|                   |                                              | HCT                                  | 37.5           | 40 - 50%              |\n|                   |                                              | Hemoglobin                           | 11.3           | 13 - 17 g/dl          |\n|                   |                                              | Lymphocites                          | 33.4           | 20 - 40%              |\n|                   |                                              | MCH                                  | 25.6           | 27 - 32 pg            |\n|                   |                                              | MCHC                                 | 30.1           | 31.5 - 34.5 g/dL      |\n|                   |                                              | MCV                                  | 84.8           | 83 - 101 fL           |\n|                   |                                              | Monocytes                            | 9.4            | 2 - 10%               |\n|                   |                                              | Neutrophils                          | 55.5           | 40 - 80%              |\n|                   |                                              | Platelet Count                       | 261            | 150 - 410 x10^3 /\u03bcL   |\n|                   |                                              | RBC                                  | 4.42           | 4.5 - 5.5 x10^6 /\u03bcL   |\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n\nMoan\nE-BUSHRUT\nIntegrated: MI. M2. M3\nC-DAC: Centre for Development of Advanced Computing C-56/1, Sector-62, Noida - 201307, Uttar Pradesh, 91-0120-3063311-13.\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n<!-- \ud83d\uddbc\ufe0f\u274c Image not available. Please use `PdfPipelineOptions(generate_picture_images=True)` -->\n|                           | Red Cell Distribution Width (RDW CV)   | 13.1           | 11.6 - 14.0%      |\n|---------------------------|----------------------------------------|----------------|-------------------|\n|                           | Total Leukocyte Count(TLC)             | 9.41           | 4 - 10 x10^3 /\u03bcL  |\n| Liver Fuction Test        | (Lft)Albumin                           | 3.8            | 4.0 - 5.0 gm/dL   |\n|                           | ALP                                    | 92             | 50 - 116 U/L      |\n|                           | ALT                                    | 39             | 7 - 41 U/L        |\n|                           | AST                                    | 33             | 12 - 38 U/L       |\n|                           | Direct Bilirubin                       | 0.05           | 0.1 - 0.4 mg/dl   |\n|                           | globulin                               | 3.7            | 2.0 - 3.5 gm/dL   |\n|                           | Indirect Bilirubin                     | 0.26           | 0.20 - 0.90 mg/dl |\n|                           | Total Bilirubin                        | 0.31           | 0.3 - 1.3 mg/dl   |\n|                           | Total Protein                          | 7.5            | 6.7 - 8.6 gm/dL   |\n| PROTHROMBIN TIME (PT INR) | clinical details                       | --             | -                 |\n|                           | International Normalised Ratio (INR)   | 0.9            | -                 |\n|                           | PT INR Header                          | 9.1            | 09.6 - 12.2 sec   |\n|                           | PT INR Note                            | Refer Reports* | -                 |\n| Rft                       | Chloride                               | 102            | 102 - 109 mmol/L  |\n|                           | Creatinine                             | 1.02           | 0.9 - 1.3 mg/dl   |\n|                           | Potassium                              | 4.24           | 3.5 - 5 mmol/L    |\n|                           | Sodium                                 | 134            | 135 - 145 mmol/L  |\n|                           | Urea                                   | 26             | 15.0 - 39.0 mg/dl |\n*Refer Lab Reports for details.\nOTHER INVESTIGATIONS: INJ. PIPTAZ 4.5 GM IV BD\nINJ AMIKACIN 500MG BD\nInj PCM 1GM IV TDS\nTAB. PANTOP 40 MG OD\nTAB. CALCIUM  VIT D3 OD TAB\nTAB. MVBC OD TAB .\nVIT C 500 MG TDS\nTAB AMLODIPINE  5 MG   atenolol 50 mg OD\nCONDITION AT DISCHARGE: PATIENT IS HEMODYNAMICALLY STABLE ; POD 2 DRESSING DONE ; WOUND IS DRY AND HEALTHY DISCHARGE BY : anonymous\nDISCHARGE REMARKS :\nFOLLOW UP ON : 20-Apr-2023\nFOLLOW UP CONSULTANT / FACULTY : anonymous\nFOLLOW UP ADVICE :\nSummary Prepared By\nSummary Approved By\nSummary Prepared By\nSummary Approved By\nanonymous\nanonymous",
+              "title": "Extracted text from Copy of Copy of 16.pdf"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

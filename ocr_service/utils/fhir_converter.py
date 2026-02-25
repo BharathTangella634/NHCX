@@ -225,7 +225,32 @@ def parse_extracted_text(text):
 
     return data
 
-def text_to_abdm_fhir(text, original_filename="document.pdf"):
+def bundle_to_json(bundle: Bundle) -> str:
+    import json
+    bundle_dict = json.loads(bundle.json(exclude_none=True))
+    
+    def decode_attachments(obj):
+        if isinstance(obj, dict):
+            if obj.get('resourceType') == 'DocumentReference' and 'content' in obj:
+                for c in obj['content']:
+                    if 'attachment' in c and 'data' in c['attachment']:
+                        try:
+                            import base64
+                            decoded = base64.b64decode(c['attachment']['data']).decode('utf-8')
+                            c['attachment']['data'] = decoded
+                        except:
+                            pass
+            for v in obj.values():
+                decode_attachments(v)
+        elif isinstance(obj, list):
+            for item in obj:
+                decode_attachments(item)
+                
+    decode_attachments(bundle_dict)
+    import json
+    return json.dumps(bundle_dict, indent=2)
+
+def convert_diagnostic_report_to_fhir(text, original_filename="document.pdf"):
     """
     Wraps extracted text into an ABDM-compliant FHIR Bundle with structured resources.
     Creates a separate DocumentReference for each page identified by <!-- PAGE_BREAK -->.
@@ -393,4 +418,98 @@ def text_to_abdm_fhir(text, original_filename="document.pdf"):
         entry=entries
     )
 
-    return bundle.json(indent=2)
+    return bundle_to_json(bundle)
+
+def convert_discharge_summary_to_fhir(text, original_filename="document.pdf"):
+    """
+    Wraps extracted text into an ABDM-compliant FHIR Bundle for a Discharge Summary.
+    """
+    pages = [p.strip() for p in text.split("<!-- PAGE_BREAK -->") if p.strip()]
+    full_parsed_data = parse_extracted_text(text)
+    
+    if not full_parsed_data.get("timestamp"):
+        full_parsed_data["timestamp"] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+        
+    entries = []
+    
+    composition_id = str(uuid.uuid4())
+    patient_id = str(uuid.uuid4())
+    organization_id = str(uuid.uuid4())
+    
+    organization = {
+        "resourceType": "Organization",
+        "id": organization_id,
+        "identifier": [{"system": "https://www.abdm.gov.in/organization", "value": "NHCX-HACKATHON"}],
+        "name": "NHCX-HACKATHON"
+    }
+    
+    patient_args = {
+        "id": patient_id,
+        "name": [{"text": full_parsed_data["patient_name"]}],
+        "gender": full_parsed_data["gender"] if full_parsed_data["gender"] else "unknown"
+    }
+    if full_parsed_data.get("age"):
+        patient_args["extension"] = [
+            {"url": "http://hl7.org/fhir/StructureDefinition/patient-age", "valueString": full_parsed_data["age"]}
+        ]
+    patient = Patient(**patient_args)
+    patient_entry = create_bundle_entry(patient)
+
+    doc_ref_resources = []
+    # LOINC for Discharge Summary
+    doc_ref_code = "18842-5"
+    doc_ref_display = "Discharge Summary"
+    
+    combined_text = "\n\n".join(pages)
+    current_doc_id = str(uuid.uuid4())
+    attachment = Attachment(
+        contentType="text/plain",
+        title=f"Extracted text from {original_filename}",
+        data=base64.b64encode(combined_text.encode("utf-8")).decode("utf-8")
+    )
+    doc_ref = DocumentReference(
+        id=current_doc_id,
+        meta={"profile": ["https://nrces.in/ndhm/fhir/r4/StructureDefinition/DocumentReference"]},
+        status="current",
+        docStatus="final",
+        type=create_codeable_concept(Vocab.LOINC.value, doc_ref_code, doc_ref_display),
+        subject=create_reference("Patient", patient.id),
+        date=full_parsed_data["timestamp"],
+        author=[create_reference("Organization", organization_id)],
+        custodian=create_reference("Organization", organization_id),
+        content=[{"attachment": attachment}]
+    )
+    doc_ref_resources.append(doc_ref)
+
+    bundle_timestamp = full_parsed_data["timestamp"]
+    composition = Composition.model_construct(
+        id=composition_id,
+        status="final",
+        type=create_codeable_concept(Vocab.LOINC.value, doc_ref_code, doc_ref_display),
+        subject=create_reference("Patient", patient.id),
+        date=bundle_timestamp,
+        author=[create_reference("Organization", organization_id)],
+        title=f"Discharge Summary - {full_parsed_data['patient_name']}",
+        section=[
+            CompositionSection(
+                title="Document References",
+                code=create_codeable_concept(Vocab.LOINC.value, doc_ref_code, doc_ref_display),
+                entry=[create_reference("DocumentReference", dr.id) for dr in doc_ref_resources]
+            )
+        ]
+    )
+
+    entries.append(create_bundle_entry(composition))
+    entries.append(BundleEntry(resource = organization, fullUrl=f"urn:uuid:{organization_id}"))
+    entries.append(patient_entry)
+    for dr in doc_ref_resources:
+        entries.append(create_bundle_entry(dr))
+
+    bundle = Bundle(
+        type="document",
+        timestamp=bundle_timestamp,
+        identifier=Identifier(system="https://www.abdm.gov.in/bundle", value=str(uuid.uuid4())),
+        entry=entries
+    )
+
+    return bundle_to_json(bundle)
