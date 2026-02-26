@@ -4,7 +4,7 @@ import re
 import pandas as pd
 from dotenv import load_dotenv
 from typing import Dict, List, Union
-from google.cloud import aiplatform
+from google import genai
 
 load_dotenv()
 from google.protobuf import json_format
@@ -162,35 +162,10 @@ def regex_nlp_extract(text: str, doc_type: str = None) -> dict:
                 
     return extracted
 
-def resolve_endpoint_name(project: str, location: str, endpoint_id_or_name: str) -> str:
-    s = endpoint_id_or_name.strip()
-    if s.startswith("projects/") and "/endpoints/" in s:
-        return s
-    return f"projects/{project}/locations/{location}/endpoints/{s}"
-
-def predict_custom_trained_model_sample(
-    project: str,
-    endpoint_id: str,
-    instances: Union[Dict, List[Dict]],
-    location: str = os.getenv("VERTEX_LOCATION", "asia-northeast1"),
-    parameters: dict = None,
-):
-    """
-    Calls the Vertex AI deployed model endpoint for Qwen prediction.
-    """
-    aiplatform.init(project=project, location=location)
-    
-    instances = instances if isinstance(instances, list) else [instances]
-    
-    endpoint_name = resolve_endpoint_name(project, location, endpoint_id)
-    endpoint = aiplatform.Endpoint(endpoint_name=endpoint_name)
-    
-    response = endpoint.predict(instances=instances, parameters=parameters)
-    return response.predictions
 
 def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> tuple:
     """
-    Builds the FHIR JSON using the Vertex AI deployed model or falls back to regex.
+    Builds the FHIR JSON using the Gemini API or falls back to regex.
     Returns a tuple of (fhir_json_str, extracted_items_dict)
     """
     # Use regex/NLP to extract basic items
@@ -207,52 +182,35 @@ def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> 
         
     prompt = f"Convert the following medical document to a FHIR JSON of type {doc_type} using this template structure:\n\nTemplate:\n{json.dumps(template, indent=2)}\n\nMedical Document Text:\n{text}"
 
-    instance = {
-        "@requestFormat": "chatCompletions",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        "max_tokens": 1000
-    }
-
     llm_json_str = None
     try:
-        project = os.getenv("VERTEX_PROJECT")
-        endpoint_id = os.getenv("VERTEX_ENDPOINT")
-        
-        if project and endpoint_id:
-            predictions = predict_custom_trained_model_sample(
-                project=project,
-                endpoint_id=endpoint_id,
-                instances=[instance]
+        api_key = os.getenv("GEMINI_API_KEY")
+        if api_key:
+            client = genai.Client(api_key=api_key)
+            response = client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=prompt
             )
             
-            if predictions:
-                if isinstance(predictions, dict) and "choices" in predictions:
-                    choices = predictions.get("choices", [])
-                    if choices and "message" in choices[0] and "content" in choices[0]["message"]:
-                        fhir_json_str = choices[0]["message"]["content"]
-                    else:
-                        fhir_json_str = str(predictions)
-                else:
-                    # Fallback for old list format
-                    prediction_content = predictions[0] if isinstance(predictions, list) else predictions
-                    fhir_json_str = str(prediction_content)
-                    if isinstance(prediction_content, dict) and "content" in prediction_content:
-                        fhir_json_str = prediction_content["content"]
+            fhir_json_str = response.text
+            
+            # Extract JSON if it's wrapped in markdown
+            json_match = re.search(r'```(?:json)?\n(.*?)\n```', fhir_json_str, re.DOTALL)
+            if json_match:
+                fhir_json_str = json_match.group(1).strip()
                 
-                # Extract JSON if it's wrapped in markdown
-                json_match = re.search(r'```(?:json)?\n(.*?)\n```', fhir_json_str, re.DOTALL)
-                if json_match:
-                    fhir_json_str = json_match.group(1).strip()
-                    
-                llm_json_str = fhir_json_str
+            llm_json_str = fhir_json_str
     except Exception as e:
         import traceback
-        logger.error(f"LLM generation failed, falling back to regex: {e}\n{traceback.format_exc()}")
+        error_msg = str(e)
+        if "API keys are not supported by this API" in error_msg or "Expected OAuth2 access token" in error_msg:
+            logger.error(
+                "Gemini API Error: The provided GEMINI_API_KEY is not valid for Google AI Studio. "
+                "It appears to be an OAuth token or GCP key. Please generate a valid Gemini API Key "
+                "(starts with 'AIza') from https://aistudio.google.com/app/apikey"
+            )
+        else:
+            logger.error(f"LLM generation failed, falling back to regex: {e}\n{traceback.format_exc()}")
 
     def fill_template(obj):
         if isinstance(obj, dict):
