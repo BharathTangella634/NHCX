@@ -190,7 +190,7 @@ def predict_custom_trained_model_sample(
 
 def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> tuple:
     """
-    Builds the FHIR JSON purely using regex and the provided map templates.
+    Builds the FHIR JSON using the Vertex AI deployed model or falls back to regex.
     Returns a tuple of (fhir_json_str, extracted_items_dict)
     """
     # Use regex/NLP to extract basic items
@@ -205,6 +205,55 @@ def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> 
         logger.error(f"Error reading map file {primary_map_file}: {e}")
         template = {}
         
+    prompt = f"Convert the following medical document to a FHIR JSON of type {doc_type} using this template structure:\n\nTemplate:\n{json.dumps(template, indent=2)}\n\nMedical Document Text:\n{text}"
+
+    instance = {
+        "@requestFormat": "chatCompletions",
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        "max_tokens": 1000
+    }
+
+    llm_json_str = None
+    try:
+        project = os.getenv("VERTEX_PROJECT")
+        endpoint_id = os.getenv("VERTEX_ENDPOINT")
+        
+        if project and endpoint_id:
+            predictions = predict_custom_trained_model_sample(
+                project=project,
+                endpoint_id=endpoint_id,
+                instances=[instance]
+            )
+            
+            if predictions:
+                if isinstance(predictions, dict) and "choices" in predictions:
+                    choices = predictions.get("choices", [])
+                    if choices and "message" in choices[0] and "content" in choices[0]["message"]:
+                        fhir_json_str = choices[0]["message"]["content"]
+                    else:
+                        fhir_json_str = str(predictions)
+                else:
+                    # Fallback for old list format
+                    prediction_content = predictions[0] if isinstance(predictions, list) else predictions
+                    fhir_json_str = str(prediction_content)
+                    if isinstance(prediction_content, dict) and "content" in prediction_content:
+                        fhir_json_str = prediction_content["content"]
+                
+                # Extract JSON if it's wrapped in markdown
+                json_match = re.search(r'```(?:json)?\n(.*?)\n```', fhir_json_str, re.DOTALL)
+                if json_match:
+                    fhir_json_str = json_match.group(1).strip()
+                    
+                llm_json_str = fhir_json_str
+    except Exception as e:
+        import traceback
+        logger.error(f"LLM generation failed, falling back to regex: {e}\n{traceback.format_exc()}")
+
     def fill_template(obj):
         if isinstance(obj, dict):
             return {k: fill_template(v) for k, v in obj.items()}
@@ -222,8 +271,13 @@ def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> 
         return obj
 
     filled_template = fill_template(template)
+    regex_json_str = json.dumps(filled_template, indent=2)
     
-    return json.dumps(filled_template, indent=2), extracted_items
+    # If LLM succeeded, return LLM JSON as primary, but also provide it as the third element for saving separately
+    if llm_json_str:
+        return llm_json_str, extracted_items, llm_json_str
+    
+    return regex_json_str, extracted_items, None
 
 def convert_diagnostic_report_to_fhir(text, original_filename="document.pdf"):
     logger.info(f"Converting Diagnostic Report to FHIR via Regex/Template for {original_filename}")

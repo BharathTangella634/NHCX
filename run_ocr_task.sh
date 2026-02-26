@@ -15,12 +15,12 @@ fi
 echo "Running OCR service on $PDF_PATH..."
 python3 ocr_service/app/main.py "$PDF_PATH" --output_dir "$OUTPUT_DIR" --md_dir "markdown_results"
 
-# Verify output
+# Verify output (using wildcard to match doc type like diagnostic_report)
 FILENAME=$(basename "$PDF_PATH")
-OUTPUT_FILE="${OUTPUT_DIR}/${FILENAME%.pdf}_fhir.json"
+BASE_FILENAME="${FILENAME%.pdf}"
 
-if [ -f "$OUTPUT_FILE" ]; then
-    echo "Successfully generated FHIR JSON: $OUTPUT_FILE"
+if ls "${OUTPUT_DIR}/${BASE_FILENAME}"*_fhir.json 1> /dev/null 2>&1; then
+    echo "Successfully generated FHIR JSON."
 else
     echo "Failed to generate FHIR JSON."
     exit 1

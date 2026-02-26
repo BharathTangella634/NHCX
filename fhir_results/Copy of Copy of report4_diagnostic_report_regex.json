@@ -1,0 +1,48 @@
+{
+  "Potential Age": "54",
+  "Potential Identifiers": [
+    "Sample",
+    "230102RT002",
+    "230102CB035",
+    "230101CB067",
+    "ABHA",
+    "230102PT004",
+    "230101CB123",
+    "230102CB031",
+    "230101CB105",
+    "230101CB088",
+    "230102AP003",
+    "230101CB086",
+    "230102PT007",
+    "230102CB030",
+    "230103CB242",
+    "230101CB054",
+    "Range",
+    "230101CB106",
+    "230102CB022",
+    "230102CB029",
+    "230101CB050",
+    "230101CB087",
+    "230102CB034",
+    "Collection",
+    "230102CB165",
+    "230101CB052",
+    "230102CB041",
+    "230102AP010",
+    "230101CB141"
+  ],
+  "Potential PIN Codes": [
+    "201307"
+  ],
+  "Potential LOINC Tests": {
+    "Platelet": "777-3",
+    "Lymphocyte": "737-7",
+    "Prothrombin Time": "5902-2",
+    "Partial Thromboplastin Time": "14979-9",
+    "Hemoglobin": "718-7",
+    "Comments": "77202-0",
+    "Flow Cytometry": "33719-6",
+    "Specimen": "19151-0",
+    "Platelets": "777-3"
+  }
+}

@@ -22,33 +22,41 @@ def process_pdf(pdf_path, output_dir=None, md_dir=None):
         # Classify Document
         doc_type = classify_document(extracted_text)
         logger.info(f"Document classified as: {doc_type}")
+        print(f"Document classified as: {doc_type}")
 
         # Save intermediate Markdown if requested
         if md_dir:
             if not os.path.exists(md_dir):
                 os.makedirs(md_dir)
-            md_path = os.path.join(md_dir, f"{os.path.splitext(filename)[0]}.md")
+            md_path = os.path.join(md_dir, f"{os.path.splitext(filename)[0]}_{doc_type}.md")
             with open(md_path, "w") as f:
                 f.write(extracted_text)
             logger.info(f"Saved intermediate markdown to {md_path}")
 
         # Convert to FHIR
         if doc_type == "discharge_summary":
-            fhir_json, regex_data = convert_discharge_summary_to_fhir(extracted_text, filename)
+            fhir_json, regex_data, llm_json = convert_discharge_summary_to_fhir(extracted_text, filename)
         else:
-            fhir_json, regex_data = convert_diagnostic_report_to_fhir(extracted_text, filename)
+            fhir_json, regex_data, llm_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
 
         # Save result
         if output_dir:
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
-            output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_fhir.json")
+            output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_fhir.json")
             with open(output_path, "w") as f:
                 f.write(fhir_json)
             logger.info(f"Successfully processed {filename} and saved to {output_path}")
             
+            # Save LLM output separately if generated
+            if llm_json:
+                llm_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_llm.json")
+                with open(llm_output_path, "w") as f:
+                    f.write(llm_json)
+                logger.info(f"Saved LLM generated FHIR JSON for {filename} to {llm_output_path}")
+
             # Save Regex output separately
-            regex_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_regex.json")
+            regex_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_regex.json")
             import json
             with open(regex_output_path, "w") as f:
                 json.dump(regex_data, f, indent=2)
