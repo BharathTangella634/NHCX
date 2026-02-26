@@ -50,3 +50,16 @@ echo "Apache reverse proxy setup complete for ${DOMAIN}."
 echo "- Frontend: http://${DOMAIN}/"
 echo "- PDF2FHIRJSON: http://${DOMAIN}/pdf2fhir"
 echo "- PDF2NHCXJSON: http://${DOMAIN}/pdf2nhcx"
+
+echo "Installing Certbot for Let's Encrypt (if not already installed)..."
+sudo apt-get update
+sudo apt-get install -y certbot python3-certbot-apache
+
+echo "Requesting and configuring SSL certificate with Let's Encrypt..."
+# Note: You can change the email address admin@\${DOMAIN} to your actual email
+sudo certbot --apache -d \${DOMAIN} --non-interactive --agree-tos -m admin@\${DOMAIN} --redirect
+
+echo "SSL configuration complete. Your site is now accessible via HTTPS!"
+echo "- Frontend: https://${DOMAIN}/"
+echo "- PDF2FHIRJSON: https://${DOMAIN}/pdf2fhir"
+echo "- PDF2NHCXJSON: https://${DOMAIN}/pdf2nhcx"
