@@ -2,7 +2,7 @@
 
 # Configuration
 DOMAIN="nhcxhackathon.tanuh.ai"
-FRONTEND_PORT="8080"
+FRONTEND_PORT="80"
 PDF2FHIRJSON_PORT="8000" # Update with actual port if different
 PDF2NHCXJSON_PORT="8001" # Update with actual port if different
 
@@ -63,7 +63,7 @@ sudo apt-get install -y certbot python3-certbot-apache
 
 echo "Requesting and configuring SSL certificate with Let's Encrypt..."
 # Note: You can change the email address admin@\${DOMAIN} to your actual email
-sudo certbot --apache -d \${DOMAIN} --non-interactive --agree-tos -m ashwin.rajkumar@tanuh.ai --redirect
+sudo certbot --apache -d nhcxhackathon.tanuh.ai --non-interactive --agree-tos -m ashwin.rajkumar@tanuh.ai --redirect
 
 echo "SSL configuration complete. Your site is now accessible via HTTPS!"
 echo "- Frontend: https://${DOMAIN}/"
