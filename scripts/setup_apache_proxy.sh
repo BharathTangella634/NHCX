@@ -63,7 +63,7 @@ sudo apt-get install -y certbot python3-certbot-apache
 
 echo "Requesting and configuring SSL certificate with Let's Encrypt..."
 # Note: You can change the email address admin@\${DOMAIN} to your actual email
-sudo certbot --apache -d nhcxhackathon.tanuh.ai --non-interactive --agree-tos -m ashwin.rajkumar@tanuh.ai --redirect
+sudo certbot --apache -d nhcxhackathon.tanuh.ai --non-interactive --agree-tos -m ashwin.rajkumar@tanuh.ai --no-redirect
 
 echo "SSL configuration complete. Your site is now accessible via HTTPS!"
 echo "- Frontend: https://${DOMAIN}/"
