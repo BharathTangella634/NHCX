@@ -1,6 +1,6 @@
 import re
 
-file_path = "reference/Bundle-DiagnosticReport-Lab-example-03.json"
+file_path = "reference/diagnostic_report/Bundle-DiagnosticReport-Lab-example-03.json"
 
 with open(file_path, "r", encoding="utf-8") as f:
     content = f.read()
