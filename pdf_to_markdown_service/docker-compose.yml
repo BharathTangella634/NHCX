@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  pdf-to-markdown:
+    build: .
+    container_name: pdf-to-markdown-service
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
