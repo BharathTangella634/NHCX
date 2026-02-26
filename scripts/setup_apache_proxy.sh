@@ -2,7 +2,7 @@
 
 # Configuration
 DOMAIN="nhcxhackathon.tanuh.ai"
-FRONTEND_PORT="80"
+FRONTEND_PORT="8080"
 PDF2FHIRJSON_PORT="8000" # Update with actual port if different
 PDF2NHCXJSON_PORT="8001" # Update with actual port if different
 
