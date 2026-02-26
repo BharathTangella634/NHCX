@@ -32,6 +32,12 @@ sudo bash -c "cat > ${CONF_FILE}" <<EOF
 </VirtualHost>
 EOF
 
+echo "Configuring firewall to allow SSH, HTTP, and HTTPS..."
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow 443
+
 echo "Enabling necessary Apache modules..."
 sudo a2enmod proxy
 sudo a2enmod proxy_http
