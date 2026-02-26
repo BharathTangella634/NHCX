@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Configuration
+DOMAIN="nhcxhackathon.tanuh.ai"
+FRONTEND_PORT="8080"
+PDF2FHIRJSON_PORT="8000" # Update with actual port if different
+PDF2NHCXJSON_PORT="8001" # Update with actual port if different
+
+CONF_FILE="/etc/apache2/sites-available/${DOMAIN}.conf"
+
+echo "Creating Apache configuration for ${DOMAIN}..."
+
+# Create Apache virtual host configuration
+sudo bash -c "cat > ${CONF_FILE}" <<EOF
+<VirtualHost *:80>
+    ServerName ${DOMAIN}
+
+    # PDF2FHIRJSON API
+    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir
+    ProxyPassReverse /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir
+
+    # PDF2NHCXJSON API
+    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx
+    ProxyPassReverse /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx
+
+    # Frontend (Catch-all, should be last)
+    ProxyPass / http://localhost:${FRONTEND_PORT}/
+    ProxyPassReverse / http://localhost:${FRONTEND_PORT}/
+
+    ErrorLog \${APACHE_LOG_DIR}/${DOMAIN}_error.log
+    CustomLog \${APACHE_LOG_DIR}/${DOMAIN}_access.log combined
+</VirtualHost>
+EOF
+
+echo "Enabling necessary Apache modules..."
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod rewrite
+
+echo "Enabling site ${DOMAIN}..."
+sudo a2ensite ${DOMAIN}
+
+echo "Testing Apache configuration..."
+sudo apache2ctl configtest
+
+echo "Restarting Apache2..."
+sudo systemctl restart apache2
+
+echo "Apache reverse proxy setup complete for ${DOMAIN}."
+echo "- Frontend: http://${DOMAIN}/"
+echo "- PDF2FHIRJSON: http://${DOMAIN}/pdf2fhir"
+echo "- PDF2NHCXJSON: http://${DOMAIN}/pdf2nhcx"
