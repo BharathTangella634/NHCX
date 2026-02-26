@@ -9,3 +9,12 @@ services:
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1
+
+  frontend:
+    build: ./frontend
+    container_name: frontend-service
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    depends_on:
+      - pdf-to-markdown

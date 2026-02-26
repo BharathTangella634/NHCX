@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.logo {
+    max-height: 80px;
+}
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.tablinks {
+    background-color: #ddd;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 24px;
+    transition: 0.3s;
+    font-size: 16px;
+    border-radius: 5px 5px 0 0;
+    margin: 0 5px;
+}
+.tablinks:hover {
+    background-color: #ccc;
+}
+.tablinks.active {
+    background-color: #007BFF;
+    color: white;
+}
+.tabcontent {
+    display: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+.output-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.json-output {
+    width: 50%;
+    min-width: 300px;
+    height: 300px;
+    font-family: monospace;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 10px;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+}
+.validate-btn {
+    background-color: #28a745;
+    color: white;
+}
+.validate-btn:hover {
+    background-color: #218838;
+}
+.validation-result {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.error { color: red; }
+.success { color: green; }

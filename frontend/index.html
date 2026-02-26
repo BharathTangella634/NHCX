@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanuh FHIR/NHCX Processor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <img src="tanuh.png" alt="Tanuh Logo" class="logo">
+    </div>
+
+    <div class="tabs">
+        <button class="tablinks active" onclick="openTab(event, 'PDF2FHIR')">PDF2FHIR</button>
+        <button class="tablinks" onclick="openTab(event, 'PDF2NHCX')">PDF2NHCX</button>
+    </div>
+
+    <div id="PDF2FHIR" class="tabcontent" style="display: block;">
+        <h2>PDF2FHIR</h2>
+        <div class="controls">
+            <input type="file" id="fileFHIR" accept=".pdf">
+            <button onclick="processFile('PDF2FHIR')">PDF2FHIR Task</button>
+        </div>
+        <div class="output-container">
+            <textarea id="outputFHIR" class="json-output" readonly placeholder="FHIR JSON Output will appear here..."></textarea>
+            <button onclick="validateJson('outputFHIR')" class="validate-btn">Validate JSON</button>
+            <div id="validationResultFHIR" class="validation-result"></div>
+        </div>
+    </div>
+
+    <div id="PDF2NHCX" class="tabcontent">
+        <h2>PDF2NHCX</h2>
+        <div class="controls">
+            <input type="file" id="fileNHCX" accept=".pdf">
+            <button onclick="processFile('PDF2NHCX')">PDF2NHCX Task</button>
+        </div>
+        <div class="output-container">
+            <textarea id="outputNHCX" class="json-output" readonly placeholder="NHCX JSON Output will appear here..."></textarea>
+            <button onclick="validateJson('outputNHCX')" class="validate-btn">Validate JSON</button>
+            <div id="validationResultNHCX" class="validation-result"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

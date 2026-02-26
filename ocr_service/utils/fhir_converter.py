@@ -188,7 +188,7 @@ def generate_fhir_from_llm(text: str, map_files: list, doc_type: str = None) -> 
         if api_key:
             client = genai.Client(api_key=api_key)
             response = client.models.generate_content(
-                model='gemini-2.5-flash',
+                model='gemini-2.5-pro',
                 contents=prompt
             )
             

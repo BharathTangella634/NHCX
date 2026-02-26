@@ -11,7 +11,7 @@ client = genai.Client(api_key=api_key)
 
 try:
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-2.5-pro",
         contents="Hello! Are you working with my API key?"
     )
     print(response.text)
