@@ -137,8 +137,8 @@ python main.py input.pdf --output_dir fhir_results
 System Requirements:
 
 -   Python 3.10+
--   16--32 GB RAM recommended
--   GPU recommended (optional)
+-   30-32 GB RAM recommended
+-   GPU recommended
 -   Ollama installed locally
 
 ------------------------------------------------------------------------
