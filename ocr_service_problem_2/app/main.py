@@ -65,7 +65,8 @@ app.add_middleware(
 )
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_DIR = os.path.join(BASE_DIR, "pdf_uploads")
+# Map UPLOAD_DIR to /app/pdf_uploads if in Docker, else relative to app
+UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.post("/pdf2fhir")
@@ -76,7 +77,7 @@ async def convert_pdf_to_markdown(file: UploadFile = File(...)):
         
     current_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = os.path.join(repo_root, "fhir_results_problem_2")
+    relative_root = "/app/fhir_results_problem_2" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "fhir_results_problem_2")
     file_name_only = os.path.splitext(os.path.basename(file_path))[0]
     target_output_dir = os.path.join(relative_root, file_name_only)
     os.makedirs(target_output_dir, exist_ok=True)

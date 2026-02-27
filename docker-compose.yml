@@ -10,7 +10,8 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     volumes:
-      - /app/pdf_uploads:/app/pdf_uploads
+      - ./pdf_uploads:/app/pdf_uploads
+      - ./fhir_results_problem_2:/app/fhir_results_problem_2
 
   frontend:
     build: ./frontend
