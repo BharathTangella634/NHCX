@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  pdf-to-markdown:
-    build: ./pdf_to_markdown_service
-    container_name: pdf-to-markdown-service
+  ocr-service-problem-2:
+    build: ./ocr_service_problem_2
+    container_name: pdf2fhir
     ports:
       - "8000:8000"
     restart: unless-stopped
@@ -19,4 +19,4 @@ services:
       - "8080:8080"
     restart: unless-stopped
     depends_on:
-      - pdf-to-markdown
+      - ocr-service-problem-2
