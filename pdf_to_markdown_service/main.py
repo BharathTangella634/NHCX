@@ -21,16 +21,6 @@ UPLOAD_DIR = os.path.join(BASE_DIR, "pdf_uploads")
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-@app.post("/pdf2fhir")
-async def convert_pdf_to_markdown(file: UploadFile = File(...)):
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-        
-    return JSONResponse(content={
-        "message": "File uploaded successfully for FHIR processing",
-        "file_path": file_path
-    })
 
 @app.post("/pdf2nhcx")
 async def convert_pdf_to_nhcx(file: UploadFile = File(...)):

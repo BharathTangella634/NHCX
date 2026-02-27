@@ -1,101 +1,11 @@
-# import os
-# import sys
-# import argparse
-
-# # Add the parent directory to sys.path to allow importing from utils
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# from utils.ocr_engine import extract_text_from_pdf, classify_document
-# from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
-# from utils.logger import get_logger
-
-# logger = get_logger(__name__)
-
-# def process_pdf(pdf_path, output_dir=None, md_dir=None):
-#     try:
-#         filename = os.path.basename(pdf_path)
-#         logger.info(f"Processing {filename}...")
-        
-#         # Perform OCR
-#         extracted_text = extract_text_from_pdf(pdf_path)
-
-#         # Classify Document
-#         doc_type = classify_document(extracted_text)
-#         logger.info(f"Document classified as: {doc_type}")
-#         print(f"Document classified as: {doc_type}")
-
-#         # Save intermediate Markdown if requested
-#         if md_dir:
-#             if not os.path.exists(md_dir):
-#                 os.makedirs(md_dir)
-#             md_path = os.path.join(md_dir, f"{os.path.splitext(filename)[0]}_{doc_type}.md")
-#             with open(md_path, "w") as f:
-#                 f.write(extracted_text)
-#             logger.info(f"Saved intermediate markdown to {md_path}")
-
-#         # Convert to FHIR
-#         if doc_type == "discharge_summary":
-#             fhir_json, regex_data, llm_json = convert_discharge_summary_to_fhir(extracted_text, filename)
-#         else:
-#             fhir_json, regex_data, llm_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
-
-#         # Save result
-#         if output_dir:
-#             if not os.path.exists(output_dir):
-#                 os.makedirs(output_dir)
-#             output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_fhir.json")
-#             with open(output_path, "w") as f:
-#                 f.write(fhir_json)
-#             logger.info(f"Successfully processed {filename} and saved to {output_path}")
-            
-#             # Save LLM output separately if generated
-#             if llm_json:
-#                 llm_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_llm.json")
-#                 with open(llm_output_path, "w") as f:
-#                     f.write(llm_json)
-#                 logger.info(f"Saved LLM generated FHIR JSON for {filename} to {llm_output_path}")
-
-#             # Save Regex output separately
-#             regex_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_regex.json")
-#             import json
-#             with open(regex_output_path, "w") as f:
-#                 json.dump(regex_data, f, indent=2)
-#             logger.info(f"Saved Regex extraction for {filename} to {regex_output_path}")
-#         else:
-#             logger.info(f"Successfully processed {filename}. Result:")
-#             print(fhir_json)
-#             print("Regex Extracted Data:")
-#             import json
-#             print(json.dumps(regex_data, indent=2))
-
-#     except Exception as e:
-#         logger.exception(f"Error processing {pdf_path}: {e}")
-
-# def main():
-#     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
-#     parser.add_argument("input", help="Path to input PDF file or directory")
-#     parser.add_argument("--output_dir", help="Directory to save FHIR JSON results", default="fhir_results")
-#     parser.add_argument("--md_dir", help="Directory to save intermediate Markdown results", default=None)
-    
-#     args = parser.parse_args()
-
-#     if os.path.isfile(args.input):
-#         process_pdf(args.input, args.output_dir, args.md_dir)
-#     elif os.path.isdir(args.input):
-#         for file in os.listdir(args.input):
-#             if file.lower().endswith(".pdf"):
-#                 process_pdf(os.path.join(args.input, file), args.output_dir, args.md_dir)
-#     else:
-#         logger.error(f"Error: {args.input} is not a valid file or directory")
-#         sys.exit(1)
-
-# if __name__ == "__main__":
-#     main()
-
-
 import os
 import sys
 import argparse
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+import shutil
+import time
 
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -142,7 +52,46 @@ def get_abdm_json(pdf_path, output_dir=None):
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
 
-import time
+
+
+app = FastAPI(title="OCR Service Problem 2")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_DIR = os.path.join(BASE_DIR, "pdf_uploads")
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+@app.post("/pdf2fhir")
+async def convert_pdf_to_markdown(file: UploadFile = File(...)):
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+        
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(current_dir))
+    relative_root = os.path.join(repo_root, "fhir_results_problem_2")
+    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
+    target_output_dir = os.path.join(relative_root, file_name_only)
+    os.makedirs(target_output_dir, exist_ok=True)
+    
+    start_time = time.perf_counter()
+    bundle = get_abdm_json(file_path, target_output_dir)
+    end_time = time.perf_counter()
+    
+    print(f"\n⏱ get_abdm_json execution time: {(end_time - start_time):.2f} seconds")
+    
+    return JSONResponse(content={
+        "message": "File uploaded successfully for FHIR processing",
+        "file_path": file_path
+    })
+
 def main():
     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
     parser.add_argument("input", help="Path to input PDF file or directory")
@@ -186,3 +135,98 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# import os
+# import sys
+# import argparse
+
+# # Add the parent directory to sys.path to allow importing from utils
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# from utils.ocr_engine import extract_text_from_pdf, classify_document
+# from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
+# from utils.logger import get_logger
+
+# logger = get_logger(__name__)
+
+# def process_pdf(pdf_path, output_dir=None, md_dir=None):
+#     try:
+#         filename = os.path.basename(pdf_path)
+#         logger.info(f"Processing {filename}...")
+
+#         # Perform OCR
+#         extracted_text = extract_text_from_pdf(pdf_path)
+
+#         # Classify Document
+#         doc_type = classify_document(extracted_text)
+#         logger.info(f"Document classified as: {doc_type}")
+#         print(f"Document classified as: {doc_type}")
+
+#         # Save intermediate Markdown if requested
+#         if md_dir:
+#             if not os.path.exists(md_dir):
+#                 os.makedirs(md_dir)
+#             md_path = os.path.join(md_dir, f"{os.path.splitext(filename)[0]}_{doc_type}.md")
+#             with open(md_path, "w") as f:
+#                 f.write(extracted_text)
+#             logger.info(f"Saved intermediate markdown to {md_path}")
+
+#         # Convert to FHIR
+#         if doc_type == "discharge_summary":
+#             fhir_json, regex_data, llm_json = convert_discharge_summary_to_fhir(extracted_text, filename)
+#         else:
+#             fhir_json, regex_data, llm_json = convert_diagnostic_report_to_fhir(extracted_text, filename)
+
+#         # Save result
+#         if output_dir:
+#             if not os.path.exists(output_dir):
+#                 os.makedirs(output_dir)
+#             output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_fhir.json")
+#             with open(output_path, "w") as f:
+#                 f.write(fhir_json)
+#             logger.info(f"Successfully processed {filename} and saved to {output_path}")
+
+#             # Save LLM output separately if generated
+#             if llm_json:
+#                 llm_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_llm.json")
+#                 with open(llm_output_path, "w") as f:
+#                     f.write(llm_json)
+#                 logger.info(f"Saved LLM generated FHIR JSON for {filename} to {llm_output_path}")
+
+#             # Save Regex output separately
+#             regex_output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_regex.json")
+#             import json
+#             with open(regex_output_path, "w") as f:
+#                 json.dump(regex_data, f, indent=2)
+#             logger.info(f"Saved Regex extraction for {filename} to {regex_output_path}")
+#         else:
+#             logger.info(f"Successfully processed {filename}. Result:")
+#             print(fhir_json)
+#             print("Regex Extracted Data:")
+#             import json
+#             print(json.dumps(regex_data, indent=2))
+
+#     except Exception as e:
+#         logger.exception(f"Error processing {pdf_path}: {e}")
+
+# def main():
+#     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
+#     parser.add_argument("input", help="Path to input PDF file or directory")
+#     parser.add_argument("--output_dir", help="Directory to save FHIR JSON results", default="fhir_results")
+#     parser.add_argument("--md_dir", help="Directory to save intermediate Markdown results", default=None)
+
+#     args = parser.parse_args()
+
+#     if os.path.isfile(args.input):
+#         process_pdf(args.input, args.output_dir, args.md_dir)
+#     elif os.path.isdir(args.input):
+#         for file in os.listdir(args.input):
+#             if file.lower().endswith(".pdf"):
+#                 process_pdf(os.path.join(args.input, file), args.output_dir, args.md_dir)
+#     else:
+#         logger.error(f"Error: {args.input} is not a valid file or directory")
+#         sys.exit(1)
+
+# if __name__ == "__main__":
+#     main()
+
