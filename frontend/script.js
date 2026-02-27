@@ -14,6 +14,15 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
+function updateFileName(inputId) {
+    const input = document.getElementById(inputId);
+    const labelId = inputId === 'fileFHIR' ? 'labelFHIR' : 'labelNHCX';
+    const label = document.getElementById(labelId);
+    if (input.files.length > 0) {
+        label.querySelector('.file-text').textContent = input.files[0].name;
+    }
+}
+
 async function processFile(taskType) {
     const fileInputId = taskType === 'PDF2FHIR' ? 'fileFHIR' : 'fileNHCX';
     const outputId = taskType === 'PDF2FHIR' ? 'outputFHIR' : 'outputNHCX';
@@ -22,16 +31,15 @@ async function processFile(taskType) {
     const fileInput = document.getElementById(fileInputId);
     
     if (!fileInput.files.length) {
-        alert("Please select a file first.");
+        alert("Please select a PDF file first.");
         return;
     }
 
-    const file = fileInput.files[0];
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", fileInput.files[0]);
 
     const outputElement = document.getElementById(outputId);
-    outputElement.value = "Processing...";
+    outputElement.value = "Processing conversion... this may take a moment.";
 
     const loaderElement = document.getElementById(loaderId);
     const btnElement = document.getElementById(btnId);
@@ -39,63 +47,106 @@ async function processFile(taskType) {
     if (loaderElement) loaderElement.style.display = "inline-block";
     if (btnElement) btnElement.disabled = true;
 
-    // Determine API endpoint based on task
-    let apiUrl = '';
-    
-    // If we're on the deployed domain, use the current origin without port 8000
-    // Otherwise, assume local development with port 8000
-    const isLocalhost = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
-    const baseUrl = isLocalhost ? `http://${window.location.hostname}:8000` : window.location.origin;
-
-    if (taskType === 'PDF2FHIR') {
-        apiUrl = `${baseUrl}/pdf2fhir`;
-    } else if (taskType === 'PDF2NHCX') {
-        apiUrl = `${baseUrl}/pdf2nhcx`;
-    }
+    const baseUrl = window.location.hostname === "localhost" ? "http://localhost:8000" : window.location.origin;
+    const apiUrl = taskType === 'PDF2FHIR' ? `${baseUrl}/pdf2fhir` : `${baseUrl}/pdf2nhcx`;
 
     console.log(`API triggered: POST to ${apiUrl}`);
 
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
+        const response = await fetch(apiUrl, { method: 'POST', body: formData });
+        if (!response.ok) throw new Error(`Server Error: ${response.status}`);
         const data = await response.json();
         console.log(`API response received for ${taskType}. Status: ${response.status}`);
         outputElement.value = JSON.stringify(data, null, 2);
     } catch (error) {
-        outputElement.value = "Error processing file: " + error.message + "\n\n(Note: Ensure API endpoints are properly configured and CORS is enabled if needed)";
-        console.error("Error:", error);
+        outputElement.value = "Error: " + error.message;
     } finally {
         if (loaderElement) loaderElement.style.display = "none";
         if (btnElement) btnElement.disabled = false;
     }
 }
 
-function validateJson(outputId) {
-    const outputElement = document.getElementById(outputId);
-    const resultElementId = outputId === 'outputFHIR' ? 'validationResultFHIR' : 'validationResultNHCX';
-    const resultElement = document.getElementById(resultElementId);
+/**
+ * Handle Validation call to Python backend
+ */
+async function handleValidation(taskType) {
+    const outputId = taskType === 'PDF2FHIR' ? 'outputFHIR' : 'outputNHCX';
+    const reportId = taskType === 'PDF2FHIR' ? 'validationReportFHIR' : 'validationReportNHCX';
+    const btnId = taskType === 'PDF2FHIR' ? 'valBtnFHIR' : 'valBtnNHCX';
+    const loaderId = taskType === 'PDF2FHIR' ? 'loaderValFHIR' : 'loaderValNHCX';
     
-    const text = outputElement.value;
-    
-    if (!text.trim()) {
-        resultElement.textContent = "Nothing to validate.";
-        resultElement.className = "validation-result error";
+    const jsonContent = document.getElementById(outputId).value;
+    const reportArea = document.getElementById(reportId);
+    const btn = document.getElementById(btnId);
+    const loader = document.getElementById(loaderId);
+
+    if (!jsonContent || jsonContent.startsWith("Processing") || jsonContent.startsWith("Error")) {
+        alert("No valid JSON content to validate.");
         return;
     }
 
+    // Reset UI
+    reportArea.innerHTML = "";
+    loader.style.display = "inline-block";
+    btn.disabled = true;
+
+    const baseUrl = window.location.hostname === "localhost" ? "http://localhost:8000" : window.location.origin;
+    
     try {
-        JSON.parse(text);
-        resultElement.textContent = "Valid JSON format.";
-        resultElement.className = "validation-result success";
-    } catch (e) {
-        resultElement.textContent = "Invalid JSON: " + e.message;
-        resultElement.className = "validation-result error";
+        const response = await fetch(`${baseUrl}/validate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                json_data: jsonContent,
+                type: taskType // To help backend know if it's ABDM or NHCX
+            })
+        });
+
+        if (!response.ok) throw new Error("Validation service unavailable");
+
+        const result = await response.json();
+        // Assuming backend returns { report: "string_of_errors" }
+        displayValidationReport(result.report, reportArea);
+
+    } catch (error) {
+        reportArea.innerHTML = `<div class="error-card"><strong>Connection Error</strong>${error.message}</div>`;
+    } finally {
+        loader.style.display = "none";
+        btn.disabled = false;
     }
+}
+
+function displayValidationReport(reportText, container) {
+    if (!reportText || reportText.trim() === "") {
+        container.innerHTML = `<div class="success-msg"><i class="fas fa-check-circle"></i> No validation errors found. Document is compliant.</div>`;
+        return;
+    }
+
+    const lines = reportText.split('\n');
+    lines.forEach(line => {
+        if (line.trim()) {
+            const card = document.createElement('div');
+            card.className = 'error-card';
+            
+            // Extract the 'Error @ Path' part for bolding if available
+            const match = line.match(/(Error @ .*?): (.*)/);
+            if (match) {
+                card.innerHTML = `<strong>${match[1]}</strong><span>${match[2]}</span>`;
+            } else {
+                card.textContent = line;
+            }
+            container.appendChild(card);
+        }
+    });
+}
+
+function copyToClipboard(id) {
+    const textarea = document.getElementById(id);
+    if (!textarea.value) return;
+    textarea.select();
+    document.execCommand('copy');
+    const btn = event.target;
+    const oldText = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(() => btn.textContent = oldText, 2000);
 }

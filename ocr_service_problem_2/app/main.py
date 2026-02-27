@@ -7,6 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import time
 
+import subprocess
+import json
+import re
+import uuid
+from fastapi import FastAPI, Request
+
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -69,6 +75,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+
 @app.post("/pdf2fhir")
 async def convert_pdf_to_fhir(file: UploadFile = File(...)):
     logger.info(f"Received PDF upload: {file.filename}")
@@ -97,6 +104,54 @@ async def convert_pdf_to_fhir(file: UploadFile = File(...)):
         "message": "File uploaded successfully for FHIR processing",
         "file_path": file_path
     })
+
+@app.post("/validate")
+async def validate_fhir(request: Request):
+    # 1. Receive data from the frontend
+    body = await request.json()
+    json_content = body.get("json_data")
+    
+    # 2. Create a unique temporary file to validate
+    # This prevents multiple users from overwriting the same file
+    temp_file = f"validate_{uuid.uuid4()}.json"
+    
+    try:
+        with open(temp_file, "w", encoding="utf-8") as f:
+            f.write(json_content)
+
+        # 3. Run the HL7 Validator command
+        # Ensure validator_cli.jar is in the same folder as this script
+        cmd = [
+            "java", "-Xmx2G", "-jar", "validator_cli.jar",
+            temp_file, 
+            "-version", "4.0.1",
+            "-ig", "nrces.in.ndhm#6.0.0" 
+        ]
+
+        process = subprocess.run(cmd, capture_output=True, text=True)
+        raw_output = process.stdout
+
+        # 4. Clean the output using your regex logic
+        # Remove ANSI color codes
+        clean = re.sub(r'\x1B\[[0-?]*[ -/]*[@-~]', '', raw_output)
+
+        # Extract only the Error lines
+        errors = []
+        for line in clean.splitlines():
+            line = line.strip()
+            if line.startswith("Error @"):
+                errors.append(line)
+
+        # 5. Return the cleaned string back to the frontend
+        return {"report": "\n".join(errors)}
+
+    except Exception as e:
+        return {"report": f"Error @ System: Failed to run validator. {str(e)}"}
+        
+    finally:
+        # 6. Delete the temporary file
+        if os.path.exists(temp_file):
+            os.remove(temp_file)
 
 def main():
     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
