@@ -121,7 +121,6 @@ def get_abdm_json(pdf_path, output_dir=None):
             logger.info(f"Document classified as: {doc_type}")
             print(f"Document classified as: {doc_type}")
 
-
             # Save result
             if output_dir:
                 # if not os.path.exists(output_dir):

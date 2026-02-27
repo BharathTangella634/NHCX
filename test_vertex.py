@@ -49,9 +49,9 @@ def ensure_adc_available() -> None:
 def main() -> None:
     load_dotenv()
     # Prefer environment variables so you don't commit identifiers into code.
-    project = os.getenv("VERTEX_PROJECT")
-    location = os.getenv("VERTEX_LOCATION")
-    endpoint_id_or_name = os.getenv("VERTEX_ENDPOINT")
+    project = "147901050545"
+    location = "asia-northeast1"
+    endpoint_id_or_name = "mg-endpoint-85fde817-56ed-4bc4-bb4c-e541fc9ebb7a"
 
     # 1) Fail early with a helpful message if auth isn't configured.
     ensure_adc_available()

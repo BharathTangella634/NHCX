@@ -583,11 +583,11 @@ def run_abdm_pipeline(extracted_text: str, clinical_artifact: str, selected_othe
     # Complete rulebook paths (add all your paths)
     rulebook_paths = {
         # Your existing paths + add for all resources
-        "Patient": "/media/bharath/DATA_8TB1/Bharath/Problem_Statement_2_630a8c8cb6/rulebooks_updated/StructureDefinition-Patient_updated.json",
-        "Organization": "/media/bharath/DATA_8TB1/Bharath/Problem_Statement_2_630a8c8cb6/rulebooks_updated/StructureDefinition-Organization_updated.json",
+        "Patient": "./rulebooks_updated/StructureDefinition-Patient_updated.json",
+        "Organization": "./rulebooks_updated/StructureDefinition-Organization_updated.json",
         # ... add all 38 resources
         **{
-            res: f"/media/bharath/DATA_8TB1/Bharath/Problem_Statement_2_630a8c8cb6/rulebooks_updated/StructureDefinition-{res}_updated.json"
+            res: f"./rulebooks_updated/StructureDefinition-{res}_updated.json"
             for res in abdm_extraction_dictionary["OtherResources"]
         }
     }
