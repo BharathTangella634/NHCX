@@ -1,7 +1,5 @@
-pytesseract
-pdf2image
-fhir.resources
-pillow
 docling
-pandas
-openpyxl
+langchain_core
+langchain_ollama
+langchain_openai
+langgraph
