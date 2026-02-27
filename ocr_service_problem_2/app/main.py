@@ -116,6 +116,7 @@ def get_abdm_json(pdf_path, output_dir=None):
         # Perform OCR
         unique_patients_text_list, pdf_base64 = extract_text_from_abdm_pdf(pdf_path)
 
+        bundles = []
         for i, extracted_text in enumerate(unique_patients_text_list):
             # Classify Document
             doc_type, must_resources, selected_other_resources = classify_document(extracted_text, llm)
@@ -129,13 +130,14 @@ def get_abdm_json(pdf_path, output_dir=None):
                 # output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_fhir_Patient{i}.json")
                 
                 bundle = run_abdm_pipeline(extracted_text, doc_type, selected_other_resources, output_dir=output_dir, pdf_base64=pdf_base64, idx=i)
+                bundles.append(bundle)
                 logger.info(f"Successfully processed {filename} and saved to {output_dir}")
             else:
                 error_msg = "Output directory must be provided to save the results."
                 logger.error(error_msg)
                 raise ValueError(error_msg)
 
-            return bundle
+        return bundles
 
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
@@ -146,6 +148,7 @@ def main():
     parser.add_argument("input", help="Path to input PDF file or directory")
     parser.add_argument("--output_dir", help="Directory to save FHIR JSON results", default="fhir_results")
     # parser.add_argument("--md_dir", help="Directory to save intermediate Markdown results", default=None)
+    output_dir = "nhx"
     
     args = parser.parse_args()
 

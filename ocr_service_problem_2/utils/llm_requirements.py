@@ -86,16 +86,27 @@ abdm_extraction_dictionary = {
 from langchain_ollama import ChatOllama
 
 
-llm = ChatOllama(
-    model="qwen2.5:32b", 
+# llm = ChatOllama(
+#     model="qwen2.5:32b", 
+#     temperature=0,
+#     # num_predict is the "max tokens" for the output. 
+#     # Setting this to 8192 prevents the "EOF" error.
+#     num_predict=8192, 
+#     # num_ctx is the input memory. 
+#     # 32k is usually plenty for clinical text.
+#     num_ctx=32768
+# )
+
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(
+    model="qwen2.5-custom",  # ← Uses 32K context PERMANENTLY
     temperature=0,
-    # num_predict is the "max tokens" for the output. 
-    # Setting this to 8192 prevents the "EOF" error.
-    num_predict=8192, 
-    # num_ctx is the input memory. 
-    # 32k is usually plenty for clinical text.
-    num_ctx=32768
+    base_url="https://a2eb-14-139-128-66.ngrok-free.app/v1",
+    api_key="not-needed",
+    max_tokens=8192
 )
+
 
 def get_must_resources(artifact):
     if artifact == "DiagnosticReportRecord":

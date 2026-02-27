@@ -63,16 +63,27 @@ nhcx_extraction_dictionary = {
 from langchain_ollama import ChatOllama
 
 
-llm = ChatOllama(
-    model="qwen2.5:32b", 
+# llm = ChatOllama(
+#     model="qwen2.5:32b", 
+#     temperature=0,
+#     # num_predict is the "max tokens" for the output. 
+#     # Setting this to 8192 prevents the "EOF" error.
+#     num_predict=8192, 
+#     # num_ctx is the input memory. 
+#     # 32k is usually plenty for clinical text.
+#     num_ctx=32768
+# )
+
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(
+    model="qwen2.5-custom",  # ← Uses 32K context PERMANENTLY
     temperature=0,
-    # num_predict is the "max tokens" for the output. 
-    # Setting this to 8192 prevents the "EOF" error.
-    num_predict=8192, 
-    # num_ctx is the input memory. 
-    # 32k is usually plenty for clinical text.
-    num_ctx=32768
+    base_url="https://a2eb-14-139-128-66.ngrok-free.app/v1",
+    api_key="not-needed",
+    max_tokens=8192
 )
+
 def get_must_resources(artifact):
     if artifact == "InsurancePlanBundle":
         return [
@@ -602,8 +613,8 @@ def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, sel
     with open(output_path, "w") as f:
         json.dump(bundle, f, indent=2)
 
-    clean_and_reorder_bundle(output_path, output_path)
-    document_reference_node(output_path, output_path, pdf_base64=pdf_base64)
+    # clean_and_reorder_bundle(output_path, output_path)
+    # document_reference_node(output_path, output_path, pdf_base64=pdf_base64)
     
     print(f"\n SUCCESS! FHIR Bundle saved as {output_path}")
     print(f" Resources processed: {used_resources}")
