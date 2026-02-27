@@ -17,7 +17,7 @@ app.add_middleware(
 
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
-@app.post("/PDF2FHIRJSON")
+@app.post("/pdf2fhir")
 async def convert_pdf_to_markdown(file: UploadFile = File(...)):
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed.")

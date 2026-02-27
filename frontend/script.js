@@ -32,7 +32,7 @@ async function processFile(taskType) {
     // Determine API endpoint based on task. We assume these are available.
     let apiUrl = '';
     if (taskType === 'PDF2FHIR') {
-        apiUrl = 'http://localhost:8000/PDF2FHIRJSON'; // replace with actual backend API if different
+        apiUrl = 'http://localhost:8000/pdf2fhir'; // replace with actual backend API if different
     } else {
         apiUrl = 'http://localhost:8000/process/nhcx'; // replace with actual backend API if different
     }
