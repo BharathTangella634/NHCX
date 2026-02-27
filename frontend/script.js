@@ -29,13 +29,18 @@ async function processFile(taskType) {
     const outputElement = document.getElementById(outputId);
     outputElement.value = "Processing...";
 
-    // Determine API endpoint based on task. We assume these are available.
-    const host = window.location.hostname || "127.0.0.1";
+    // Determine API endpoint based on task
     let apiUrl = '';
+    
+    // If we're on the deployed domain, use the current origin without port 8000
+    // Otherwise, assume local development with port 8000
+    const isLocalhost = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
+    const baseUrl = isLocalhost ? `http://${window.location.hostname}:8000` : window.location.origin;
+
     if (taskType === 'PDF2FHIR') {
-        apiUrl = `http://${host}:8000/pdf2fhir`; // replace with actual backend API if different
+        apiUrl = `${baseUrl}/pdf2fhir`;
     } else {
-        apiUrl = `http://${host}:8000/process/nhcx`; // replace with actual backend API if different
+        apiUrl = `${baseUrl}/process/nhcx`;
     }
 
     try {
