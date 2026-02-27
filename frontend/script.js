@@ -15,6 +15,8 @@ function openTab(evt, tabName) {
 async function processFile(taskType) {
     const fileInputId = taskType === 'PDF2FHIR' ? 'fileFHIR' : 'fileNHCX';
     const outputId = taskType === 'PDF2FHIR' ? 'outputFHIR' : 'outputNHCX';
+    const loaderId = taskType === 'PDF2FHIR' ? 'loaderFHIR' : 'loaderNHCX';
+    const btnId = taskType === 'PDF2FHIR' ? 'btnFHIR' : 'btnNHCX';
     const fileInput = document.getElementById(fileInputId);
     
     if (!fileInput.files.length) {
@@ -28,6 +30,12 @@ async function processFile(taskType) {
 
     const outputElement = document.getElementById(outputId);
     outputElement.value = "Processing...";
+
+    const loaderElement = document.getElementById(loaderId);
+    const btnElement = document.getElementById(btnId);
+
+    if (loaderElement) loaderElement.style.display = "inline-block";
+    if (btnElement) btnElement.disabled = true;
 
     // Determine API endpoint based on task
     let apiUrl = '';
@@ -58,6 +66,9 @@ async function processFile(taskType) {
     } catch (error) {
         outputElement.value = "Error processing file: " + error.message + "\n\n(Note: Ensure API endpoints are properly configured and CORS is enabled if needed)";
         console.error("Error:", error);
+    } finally {
+        if (loaderElement) loaderElement.style.display = "none";
+        if (btnElement) btnElement.disabled = false;
     }
 }
 

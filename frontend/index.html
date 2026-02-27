@@ -20,7 +20,8 @@
         <h2>PDF2FHIR</h2>
         <div class="controls">
             <input type="file" id="fileFHIR" accept=".pdf">
-            <button onclick="processFile('PDF2FHIR')">PDF2FHIRJSON</button>
+            <button onclick="processFile('PDF2FHIR')" id="btnFHIR">PDF2FHIRJSON</button>
+            <div class="loader" id="loaderFHIR"></div>
         </div>
         <div class="output-container">
             <textarea id="outputFHIR" class="json-output" readonly placeholder="FHIR JSON Output will appear here..."></textarea>
@@ -33,7 +34,8 @@
         <h2>PDF2NHCX</h2>
         <div class="controls">
             <input type="file" id="fileNHCX" accept=".pdf">
-            <button onclick="processFile('PDF2NHCX')">PDF2NHCX Task</button>
+            <button onclick="processFile('PDF2NHCX')" id="btnNHCX">PDF2NHCX Task</button>
+            <div class="loader" id="loaderNHCX"></div>
         </div>
         <div class="output-container">
             <textarea id="outputNHCX" class="json-output" readonly placeholder="NHCX JSON Output will appear here..."></textarea>
