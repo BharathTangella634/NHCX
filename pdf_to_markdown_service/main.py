@@ -3,8 +3,17 @@ import tempfile
 from fastapi import FastAPI, UploadFile, File, HTTPException
 import pymupdf4llm
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="PDF to Markdown Converter Service")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 
@@ -30,6 +39,18 @@ async def convert_pdf_to_markdown(file: UploadFile = File(...)):
 
         # Convert the PDF to Markdown
         md_text = pymupdf4llm.to_markdown(tmp_path)
+        
+        # Save the result in markdown_results folder
+        results_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "markdown_results")
+        os.makedirs(results_dir, exist_ok=True)
+        
+        # Create a clean markdown filename based on the original pdf name
+        base_name = os.path.splitext(file.filename)[0]
+        md_filename = f"{base_name}.md"
+        md_filepath = os.path.join(results_dir, md_filename)
+        
+        with open(md_filepath, "w", encoding="utf-8") as f:
+            f.write(md_text)
         
         return JSONResponse(content={
             "filename": file.filename,
