@@ -163,6 +163,8 @@ def process_pdf_and_group_patients(pdf_path):
     return unique_patient_texts, pdf_base64
 
 
+
+
 from docling.datamodel.base_models import InputFormat
 from docling.document_converter import DocumentConverter
 import os
@@ -279,10 +281,12 @@ def classify_document(text: str, llm) -> list:
     
     return clinical_artifact, must_resources, selected_other_resources
 
-def extract_text_from_pdf(pdf_path):
+
+def extract_text_from_abdm_pdf(pdf_path):
     """Extracts text from PDF using Docling and inserts page break markers."""
     logger.info(f"Extracting text from {pdf_path} using Docling...")
 
     unique_patient_lists, pdf_base64 = process_pdf_and_group_patients(pdf_path)
 
     return unique_patient_lists, pdf_base64
+

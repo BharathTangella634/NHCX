@@ -100,9 +100,10 @@ import argparse
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from utils.ocr_engine import extract_text_from_pdf, classify_document
+from utils.ocr_engine import extract_text_from_abdm_pdf, classify_document
 # from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
 from utils.llm_requirements import *
+
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -113,7 +114,7 @@ def get_abdm_json(pdf_path, output_dir=None):
         logger.info(f"Processing {filename}...")
         
         # Perform OCR
-        unique_patients_text_list, pdf_base64 = extract_text_from_pdf(pdf_path)
+        unique_patients_text_list, pdf_base64 = extract_text_from_abdm_pdf(pdf_path)
 
         for i, extracted_text in enumerate(unique_patients_text_list):
             # Classify Document
@@ -134,12 +135,12 @@ def get_abdm_json(pdf_path, output_dir=None):
                 logger.error(error_msg)
                 raise ValueError(error_msg)
 
-            # bundle = run_abdm_pipeline(extracted_text, doc_type, selected_other_resources)
             return bundle
 
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
 
+import time
 def main():
     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
     parser.add_argument("input", help="Path to input PDF file or directory")
@@ -149,11 +150,15 @@ def main():
     args = parser.parse_args()
 
     if os.path.isfile(args.input):
-        get_abdm_json(args.input, args.output_dir)
-    # elif os.path.isdir(args.input):
-    #     for file in os.listdir(args.input):
-    #         if file.lower().endswith(".pdf"):
-    #             get_abdm_json(os.path.join(args.input, file), args.output_dir, args.md_dir)
+        start_time = time.perf_counter()   # ⏱ Start timer
+        
+        bundle = get_abdm_json(args.input, args.output_dir)
+        
+        end_time = time.perf_counter()     # ⏱ End timer
+        total_time = end_time - start_time
+        
+        print(f"\n⏱ get_abdm_json execution time: {total_time:.2f} seconds")
+        
     else:
         logger.error(f"Error: {args.input} is not a valid file or directory")
         sys.exit(1)
