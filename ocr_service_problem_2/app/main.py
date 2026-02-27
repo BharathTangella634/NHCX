@@ -70,10 +70,12 @@ UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.pa
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.post("/pdf2fhir")
-async def convert_pdf_to_markdown(file: UploadFile = File(...)):
+async def convert_pdf_to_fhir(file: UploadFile = File(...)):
+    logger.info(f"Received PDF upload: {file.filename}")
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
+    logger.info(f"Saved uploaded PDF to {file_path}")
         
     current_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(os.path.dirname(current_dir))
@@ -81,11 +83,14 @@ async def convert_pdf_to_markdown(file: UploadFile = File(...)):
     file_name_only = os.path.splitext(os.path.basename(file_path))[0]
     target_output_dir = os.path.join(relative_root, file_name_only)
     os.makedirs(target_output_dir, exist_ok=True)
+    logger.info(f"Target output directory: {target_output_dir}")
     
     start_time = time.perf_counter()
+    logger.info("Starting get_abdm_json processing...")
     bundle = get_abdm_json(file_path, target_output_dir)
     end_time = time.perf_counter()
     
+    logger.info(f"get_abdm_json execution time: {(end_time - start_time):.2f} seconds")
     print(f"\n⏱ get_abdm_json execution time: {(end_time - start_time):.2f} seconds")
     
     return JSONResponse(content={

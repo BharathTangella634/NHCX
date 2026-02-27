@@ -1,3 +1,5 @@
+console.log("Page loaded. Script initialized.");
+
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -51,6 +53,8 @@ async function processFile(taskType) {
         apiUrl = `${baseUrl}/pdf2nhcx`;
     }
 
+    console.log(`API triggered: POST to ${apiUrl}`);
+
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -62,6 +66,7 @@ async function processFile(taskType) {
         }
 
         const data = await response.json();
+        console.log(`API response received for ${taskType}. Status: ${response.status}`);
         outputElement.value = JSON.stringify(data, null, 2);
     } catch (error) {
         outputElement.value = "Error processing file: " + error.message + "\n\n(Note: Ensure API endpoints are properly configured and CORS is enabled if needed)";
