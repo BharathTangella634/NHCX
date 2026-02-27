@@ -34,7 +34,6 @@ PDF Input\
 → LLM Document Classification\
 → Dynamic Workflow Builder (LangGraph)\
 → Per-Resource LLM Extraction\
-→ FHIR Resource Normalization\
 → Bundle Assembly (Document Type: document)\
 → Post Processing\
 → FHIR Document Bundle JSON Output
