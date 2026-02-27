@@ -146,16 +146,34 @@ import time
 def main():
     parser = argparse.ArgumentParser(description="OCR PDF to ABDM FHIR Converter (Local)")
     parser.add_argument("input", help="Path to input PDF file or directory")
-    parser.add_argument("--output_dir", help="Directory to save FHIR JSON results", default="fhir_results")
+    # parser.add_argument("--output_dir", help="Directory to save FHIR JSON results", default="fhir_results")
     # parser.add_argument("--md_dir", help="Directory to save intermediate Markdown results", default=None)
-    output_dir = "nhx"
     
     args = parser.parse_args()
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # 2. Go up 2 levels to get to NHCX_HACKATHON root
+    # Level 1: ocr_service_problem_2
+    # Level 2: NHCX_HACKATHON
+    repo_root = os.path.dirname(os.path.dirname(current_dir))
+    
+    # 3. Define the relative root for results
+    # Path: .../NHCX_HACKATHON/fhir_results
+    relative_root = os.path.join(repo_root, "fhir_results_problem_2")
+    
+    # 4. Extract clean filename (e.g., "Test 1")
+    file_name_only = os.path.splitext(os.path.basename(args.input))[0]
+    
+    # 5. Create path: .../NHCX_HACKATHON/fhir_results/Test 1/
+    target_output_dir = os.path.join(relative_root, file_name_only)
+    os.makedirs(target_output_dir, exist_ok=True)
+    
 
     if os.path.isfile(args.input):
         start_time = time.perf_counter()   # ⏱ Start timer
         
-        bundle = get_abdm_json(args.input, args.output_dir)
+        bundle = get_abdm_json(args.input, target_output_dir)
         
         end_time = time.perf_counter()     # ⏱ End timer
         total_time = end_time - start_time
