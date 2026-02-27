@@ -70,11 +70,9 @@ PDF Input\
 -   os
 -   sys
 
-### LLM Model Weights
+### LLM Model 
 
 -   qwen2.5:32b (served via Ollama)
-
-Note: Model weights are not included in this repository.
 
 ------------------------------------------------------------------------
 
