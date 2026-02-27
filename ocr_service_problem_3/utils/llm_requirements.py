@@ -576,9 +576,9 @@ def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, sel
     # Complete rulebook paths (add all your paths)
 
     rulebook_paths = {
-        "Organization": "/media/bharath/DATA_8TB1/Bharath/Problem_Statement_3_e4cc9a3eb9/rulebooks_updated/StructureDefinition-Organization_updated.json",
-        "InsurancePlan": "/media/bharath/DATA_8TB1/Bharath/Problem_Statement_3_e4cc9a3eb9/rulebooks_updated/StructureDefinition-InsurancePlan_updated.json",
-        "InsurancePlanBundle": "/media/bharath/DATA_8TB1/Bharath/Problem_Statement_3_e4cc9a3eb9/rulebooks_updated/StructureDefinition-InsurancePlanBundle_updated.json",
+        "Organization": "./rulebooks_updated/StructureDefinition-Organization_updated.json",
+        "InsurancePlan": "./rulebooks_updated/StructureDefinition-InsurancePlan_updated.json",
+        "InsurancePlanBundle": "./rulebooks_updated/StructureDefinition-InsurancePlanBundle_updated.json",
         **{
             res: f"/media/bharath/DATA_8TB1/Bharath/Problem_Statement_3_e4cc9a3eb9/rulebooks_updated/StructureDefinition-{res}_updated.json"
             for res in selected_other_resources
