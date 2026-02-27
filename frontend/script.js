@@ -39,8 +39,8 @@ async function processFile(taskType) {
 
     if (taskType === 'PDF2FHIR') {
         apiUrl = `${baseUrl}/pdf2fhir`;
-    } else {
-        apiUrl = `${baseUrl}/process/nhcx`;
+    } else if (taskType === 'PDF2NHCX') {
+        apiUrl = `${baseUrl}/pdf2nhcx`;
     }
 
     try {
