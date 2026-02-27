@@ -1,7 +1,7 @@
 # ABDM FHIR Document Bundle Generator
 
-LLM-orchestrated pipeline that converts ABDM-compatible clinical PDFs
-into **HL7 FHIR R4 Document Bundles** compliant with **ABDM / NDHM
+LLM-orchestrated pipeline that converts clinical Diagnostic Reports and Discharge Summaries
+into **HL7 FHIR R4 Document Bundles** in json format compliant with **ABDM / NHCX
 profiles**.
 
 ------------------------------------------------------------------------
@@ -10,12 +10,11 @@ profiles**.
 
 This system:
 
--   Accepts a clinical PDF (Lab Report / Discharge Summary)
+-   Accepts a clinical PDF (Diagnostic Report / Discharge Summary)
 -   Extracts structured text using OCR (Docling)
--   Automatically identifies document type using an LLM
+-   Automatically identifies document type (Diagnostic Report / Discharge Summary) using an LLM
 -   Dynamically determines required FHIR resources
--   Extracts structured HL7 FHIR R4 resources using rulebook-constrained
-    prompts
+-   Extracts structured HL7 FHIR R4 resources using corresponding rulebooks and structured prompts
 -   Assembles a compliant **FHIR Document Bundle**
 -   Embeds the original PDF (base64) into `DocumentReference`
 -   Outputs a fully structured ABDM-compliant JSON bundle
@@ -70,8 +69,6 @@ PDF Input\
 -   collections
 -   os
 -   sys
-
-## Closed Source
 
 ### LLM Model Weights
 
@@ -137,14 +134,6 @@ python main.py input.pdf --output_dir fhir_results
 
 # 5. Dependencies
 
-Example requirements.txt:
-
--   langchain
--   langgraph
--   langchain-ollama
--   docling
--   pydantic
-
 System Requirements:
 
 -   Python 3.10+
@@ -170,26 +159,25 @@ main()\
 
 ## Core Design Principles
 
+-   Grouping of Multiple Patients within the PDF to generate unique bundles for each Patient
 -   Deterministic dependency ordering
 -   Rulebook-driven FHIR extraction
--   Strict UUID enforcement
--   No hallucinated data
+-   UUID enforcement
 -   Composition-first document bundling
 -   PDF embedded via DocumentReference
+-   Automatic FHIR validation and display of Errors
 
 ------------------------------------------------------------------------
 
 # 7. Known Limitations
 
--   Only first patient returned due to early return inside loop
 -   Latency scales with number of resources
--   No automatic FHIR validation layer
 -   No retry mechanism for malformed JSON
 -   Large memory footprint for 32B model
 
 ------------------------------------------------------------------------
 
-# 8. Output Example
+# 8. Output
 
 FHIR_BUNDLE_DiagnosticReportRecord_Patient_0.json
 
@@ -204,4 +192,4 @@ Conforms to:
 
 # License
 
-Specify your license here.
+
