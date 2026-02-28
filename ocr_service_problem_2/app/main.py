@@ -137,7 +137,7 @@ async def validate_fhir(request: Request):
             return {"report": "Error @ System: validator_cli.jar not found"}
 
         cmd = [
-            "java", "-Xmx2G", "-jar", validator_jar,
+            "/usr/bin/java", "-Xmx2G", "-jar", validator_jar,
             temp_file,
             "-version", "4.0.1",
             "-ig", "nrces.in.ndhm#6.0.0"
