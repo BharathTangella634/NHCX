@@ -304,7 +304,7 @@ main()
 
 PDF Input  
 → Docling OCR  
-→ Patient Fingerprinting  
+→ Patient Grouping  
 → LLM Classification  
 → Dependency Graph Builder  
 → Resource Agents  
