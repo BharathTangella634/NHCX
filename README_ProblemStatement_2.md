@@ -75,13 +75,13 @@ PDF Input\
 
 ------------------------------------------------------------------------
 
-# 4. Setup Instructions
+# 4. Setup Instructions for running code for problem statement 2
 
 ## Step 1 --- Clone Repository
 
 ``` bash
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/tanuh-bcd/NHCX_HACKATHON
+cd NHCX_HACKATHON
 ```
 
 ## Step 2 --- Create Virtual Environment
