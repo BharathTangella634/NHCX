@@ -129,13 +129,18 @@ async def validate_fhir(request: Request):
         with open(temp_file, "w", encoding="utf-8") as f:
             f.write(json_content)
 
-        # 3. Run the HL7 Validator command
-        # Ensure validator_cli.jar is in the same folder as this script
+            # 3. Run the HL7 Validator command
+        # Compute absolute path for the JAR so that it works regardless of cwd
+        validator_jar = os.path.join(BASE_DIR, "validator_cli.jar")
+        if not os.path.exists(validator_jar):
+            logger.error(f"Validator JAR not found at {validator_jar}")
+            return {"report": "Error @ System: validator_cli.jar not found"}
+
         cmd = [
-            "java", "-Xmx2G", "-jar", "validator_cli.jar",
-            temp_file, 
+            "java", "-Xmx2G", "-jar", validator_jar,
+            temp_file,
             "-version", "4.0.1",
-            "-ig", "nrces.in.ndhm#6.0.0" 
+            "-ig", "nrces.in.ndhm#6.0.0"
         ]
 
         process = subprocess.run(cmd, capture_output=True, text=True)
