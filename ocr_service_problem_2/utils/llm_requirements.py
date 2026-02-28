@@ -589,6 +589,7 @@ def document_reference_node(input_file, output_file, pdf_base64):
 
     with open(output_file, 'w') as f:
         json.dump(bundle, f, indent=2)
+    return bundle
 
 def run_abdm_pipeline(extracted_text: str, clinical_artifact: str, selected_other_resources: List[str], output_dir=None, pdf_base64=None, idx=None):
     # Complete rulebook paths (add all your paths)
@@ -631,7 +632,7 @@ def run_abdm_pipeline(extracted_text: str, clinical_artifact: str, selected_othe
         json.dump(bundle, f, indent=2)
 
     clean_and_reorder_bundle(output_path, output_path)
-    document_reference_node(output_path, output_path, pdf_base64=pdf_base64)
+    bundle = document_reference_node(output_path, output_path, pdf_base64=pdf_base64)
     
     print(f"\n SUCCESS! FHIR Bundle saved as {output_path}")
     print(f" Resources processed: {used_resources}")
