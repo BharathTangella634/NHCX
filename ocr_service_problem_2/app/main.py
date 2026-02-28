@@ -33,6 +33,7 @@ def get_abdm_json(pdf_path, output_dir=None):
         unique_patients_text_list, pdf_base64 = extract_text_from_abdm_pdf(pdf_path)
 
         bundles = []
+        doc_types = []
         for i, extracted_text in enumerate(unique_patients_text_list):
             # Classify Document
             doc_type, must_resources, selected_other_resources = classify_document(extracted_text, llm)
@@ -47,13 +48,14 @@ def get_abdm_json(pdf_path, output_dir=None):
                 
                 bundle = run_abdm_pipeline(extracted_text, doc_type, selected_other_resources, output_dir=output_dir, pdf_base64=pdf_base64, idx=i)
                 bundles.append(bundle)
+                doc_types.append(doc_type)
                 logger.info(f"Successfully processed {filename} and saved to {output_dir}")
             else:
                 error_msg = "Output directory must be provided to save the results."
                 logger.error(error_msg)
                 raise ValueError(error_msg)
 
-        return bundles
+        return bundles, doc_types
 
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
@@ -94,15 +96,20 @@ async def convert_pdf_to_fhir(file: UploadFile = File(...)):
     
     start_time = time.perf_counter()
     logger.info("Starting get_abdm_json processing...")
-    bundle = get_abdm_json(file_path, target_output_dir)
+    result = get_abdm_json(file_path, target_output_dir)
+    bundles, doc_types = result if result else ([], [])
     end_time = time.perf_counter()
     
-    logger.info(f"get_abdm_json execution time: {(end_time - start_time):.2f} seconds")
-    print(f"\n⏱ get_abdm_json execution time: {(end_time - start_time):.2f} seconds")
+    processing_time = round(end_time - start_time, 2)
+    
+    logger.info(f"get_abdm_json execution time: {processing_time} seconds")
+    print(f"\n⏱ get_abdm_json execution time: {processing_time} seconds")
     
     return JSONResponse(content={
         "message": "File uploaded successfully for FHIR processing",
-        "file_path": file_path
+        "file_path": file_path,
+        "processing_time": f"{processing_time} seconds",
+        "document_type": ", ".join(doc_types) if doc_types else "Unknown"
     })
 
 @app.post("/validate")

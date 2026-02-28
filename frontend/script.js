@@ -58,6 +58,21 @@ async function processFile(taskType) {
         const data = await response.json();
         console.log(`API response received for ${taskType}. Status: ${response.status}`);
         outputElement.value = JSON.stringify(data, null, 2);
+        
+        if (taskType === 'PDF2FHIR') {
+            const infoElement = document.getElementById('infoFHIR');
+            const docTypeSpan = document.getElementById('docTypeFHIR');
+            const procTimeSpan = document.getElementById('procTimeFHIR');
+            if (infoElement && docTypeSpan && procTimeSpan) {
+                if (data.document_type || data.processing_time) {
+                    infoElement.style.display = 'block';
+                    docTypeSpan.textContent = data.document_type || 'Unknown';
+                    procTimeSpan.textContent = data.processing_time || 'N/A';
+                } else {
+                    infoElement.style.display = 'none';
+                }
+            }
+        }
     } catch (error) {
         outputElement.value = "Error: " + error.message;
     } finally {
