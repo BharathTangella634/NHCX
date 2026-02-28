@@ -13,6 +13,18 @@ services:
       - ./pdf_uploads:/app/pdf_uploads
       - ./fhir_results_problem_2:/app/fhir_results_problem_2
 
+  ocr-service-problem-3:
+    build: ./ocr_service_problem_3
+    container_name: pdf2nhcx
+    ports:
+      - "8001:8000"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./pdf_uploads:/app/pdf_uploads
+      - ./nhcx_results_problem_3:/app/nhcx_results_problem_3
+
   frontend:
     build: ./frontend
     container_name: frontend-service
@@ -21,3 +33,4 @@ services:
     restart: unless-stopped
     depends_on:
       - ocr-service-problem-2
+      - ocr-service-problem-3

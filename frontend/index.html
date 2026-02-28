@@ -27,8 +27,9 @@
 
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tablinks active" onclick="openTab(event, 'PDF2FHIR')">PDF to ABDM</button>
-            <button class="tablinks" onclick="openTab(event, 'PDF2NHCX')">PDF to NHCX</button>
+            <button class="tablinks active" onclick="openTab(event, 'PDF2FHIR')">Problem 2: PDF to ABDM</button>
+            <button class="tablinks" onclick="openTab(event, 'PDF2NHCX')">Problem 3: PDF to NHCX</button>
+            <button class="tablinks" onclick="openTab(event, 'AboutUs')">About Us</button>
         </div>
     </div>
 
@@ -50,7 +51,7 @@
                         </label>
                     </div>
                     <button onclick="processFile('PDF2FHIR')" id="btnFHIR" class="process-btn">
-                        <span>Process to ABDM</span>
+                        <span>Problem 2: PDF to ABDM</span>
                         <div class="loader" id="loaderFHIR"></div>
                     </button>
                 </div>
@@ -105,7 +106,7 @@
                         </label>
                     </div>
                     <button onclick="processFile('PDF2NHCX')" id="btnNHCX" class="process-btn">
-                        <span>Process to NHCX</span>
+                        <span>Problem 3: PDF to NHCX</span>
                         <div class="loader" id="loaderNHCX"></div>
                     </button>
                 </div>
@@ -115,6 +116,13 @@
                 <div class="output-toolbar">
                     <span class="label">NHCX JSON Output</span>
                     <button onclick="copyToClipboard('outputNHCX')" class="copy-btn">Copy JSON</button>
+                </div>
+                <div id="infoNHCX" style="display: none; padding: 10px; background: #eef2f5; border-radius: 6px; margin-bottom: 10px; font-family: sans-serif; font-size: 14px; border: 1px solid #d1d9e0;">
+                    <strong style="color: #2c3e50;">Processing Time:</strong> <span id="procTimeNHCX" style="color: #34495e;">-</span>
+                </div>
+                <div id="bundleSelectorContainerNHCX" style="display: none; padding: 10px; background: #eef2f5; border-radius: 6px; margin-bottom: 10px; border: 1px solid #d1d9e0;">
+                    <label for="bundleSelectNHCX" style="font-weight: bold; color: #2c3e50; margin-right: 10px;">Select Bundle:</label>
+                    <select id="bundleSelectNHCX" style="padding: 5px; border-radius: 4px; border: 1px solid #ccc; width: 60%; font-family: sans-serif;"></select>
                 </div>
                 <div id="processingLogoNHCX" style="display: none; text-align: center; padding: 40px; border: 1px dashed #d1d9e0; border-radius: 6px; background: #fafafa; margin-bottom: 10px;">
                     <img src="tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
@@ -133,24 +141,35 @@
                 <div id="validationReportNHCX" class="validation-report-area"></div>
             </div>
         </div>
+
+        <!-- About Us Tab -->
+        <div id="AboutUs" class="tabcontent" style="display: none;">
+            <div class="tab-header">
+                <h2>About Us</h2>
+                <p>Information about our team and project.</p>
+            </div>
+            <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 20px 0;">
+                <p>This is the About Us section.</p>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
         <div class="footer-links">
-            <a href="https://www.tanuh.ai" target="_blank" class="blue-link">
-                <i class="fas fa-globe"></i> Website
+            <a href="https://www.tanuh.ai" target="_blank" class="blue-link" title="Website">
+                <i class="fas fa-globe"></i>
             </a>
-            <a href="https://www.linkedin.com/company/tanuh-aicoe/" target="_blank" class="blue-link">
-                <i class="fab fa-linkedin"></i> LinkedIn
+            <a href="https://www.linkedin.com/company/tanuh-aicoe/" target="_blank" class="blue-link" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://x.com/TANUH_AI" target="_blank" class="blue-link">
-                <i class="fab fa-twitter"></i> Twitter
+            <a href="https://x.com/TANUH_AI" target="_blank" class="blue-link" title="Twitter">
+                <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.youtube.com/@TANUH-AI" target="_blank" class="blue-link">
-                <i class="fab fa-youtube"></i> YouTube
+            <a href="https://www.youtube.com/@TANUH-AI" target="_blank" class="blue-link" title="YouTube">
+                <i class="fab fa-youtube"></i>
             </a>
         </div>
-        <p class="copyright">&copy; 2024 Tanuh AI. All rights reserved.</p>
+        <p class="copyright">&copy; 2026 Tanuh AI. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>

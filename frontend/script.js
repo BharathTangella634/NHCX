@@ -52,7 +52,14 @@ async function processFile(taskType) {
     if (loaderElement) loaderElement.style.display = "inline-block";
     if (btnElement) btnElement.disabled = true;
 
-    const baseUrl = window.location.hostname === "localhost" ? "http://localhost:8000" : window.location.origin;
+    let baseUrl;
+    if (window.location.hostname === "localhost") {
+        baseUrl = taskType === 'PDF2FHIR' ? "http://localhost:8000" : "http://localhost:8001";
+    } else {
+        // If not localhost, assume an ingress routes /pdf2fhir to port 8000 and /pdf2nhcx to port 8001,
+        // or we just use origin and the backend routes them properly.
+        baseUrl = window.location.origin;
+    }
     const apiUrl = taskType === 'PDF2FHIR' ? `${baseUrl}/pdf2fhir` : `${baseUrl}/pdf2nhcx`;
 
     console.log(`API triggered: POST to ${apiUrl}`);
@@ -64,46 +71,54 @@ async function processFile(taskType) {
         console.log(`API response received for ${taskType}. Status: ${response.status}`);
         outputElement.value = JSON.stringify(data, null, 2);
         
-        if (taskType === 'PDF2FHIR') {
-            const infoElement = document.getElementById('infoFHIR');
-            const docTypeSpan = document.getElementById('docTypeFHIR');
-            const procTimeSpan = document.getElementById('procTimeFHIR');
-            const bundleContainer = document.getElementById('bundleSelectorContainerFHIR');
-            const bundleSelect = document.getElementById('bundleSelectFHIR');
+        const suffix = taskType === 'PDF2FHIR' ? 'FHIR' : 'NHCX';
+        const infoElement = document.getElementById(`info${suffix}`);
+        const docTypeSpan = document.getElementById(`docType${suffix}`); // NHCX doesn't have docType in HTML but it's fine if null
+        const procTimeSpan = document.getElementById(`procTime${suffix}`);
+        const bundleContainer = document.getElementById(`bundleSelectorContainer${suffix}`);
+        const bundleSelect = document.getElementById(`bundleSelect${suffix}`);
 
-            if (infoElement && docTypeSpan && procTimeSpan) {
-                if (data.document_type || data.processing_time) {
-                    infoElement.style.display = 'block';
-                    docTypeSpan.textContent = data.document_type || 'Unknown';
-                    procTimeSpan.textContent = data.processing_time || 'N/A';
-                } else {
-                    infoElement.style.display = 'none';
-                }
+        if (infoElement && procTimeSpan) {
+            if (data.document_type || data.processing_time) {
+                infoElement.style.display = 'block';
+                if (docTypeSpan) docTypeSpan.textContent = data.document_type || 'Unknown';
+                procTimeSpan.textContent = data.processing_time || 'N/A';
+            } else {
+                infoElement.style.display = 'none';
+            }
+        }
+
+        if (bundleContainer && bundleSelect) {
+            let bundles = data.bundles;
+            let bundle_names = data.bundle_names;
+            
+            // Normalize NHCX bundle data
+            if (taskType === 'PDF2NHCX' && data.bundle) {
+                bundles = [data.bundle];
+                bundle_names = data.bundle_names || ["NHCX Bundle"];
             }
 
-            if (bundleContainer && bundleSelect) {
-                if (data.bundles && data.bundles.length > 0) {
-                    bundleContainer.style.display = 'block';
-                    bundleSelect.innerHTML = '';
-                    
-                    data.bundles.forEach((bundle, index) => {
-                        const option = document.createElement('option');
-                        option.value = index;
-                        option.textContent = data.bundle_names && data.bundle_names[index] ? data.bundle_names[index] : `Bundle ${index + 1}`;
-                        bundleSelect.appendChild(option);
-                    });
+            if (bundles && bundles.length > 0) {
+                bundleContainer.style.display = 'block';
+                bundleSelect.innerHTML = '';
+                
+                bundles.forEach((bundle, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = bundle_names && bundle_names[index] ? bundle_names[index] : `Bundle ${index + 1}`;
+                    bundleSelect.appendChild(option);
+                });
 
-                    // Set initial output to first bundle
-                    outputElement.value = JSON.stringify(data.bundles[0], null, 2);
+                // Set initial output to first bundle
+                outputElement.value = JSON.stringify(bundles[0], null, 2);
 
-                    bundleSelect.onchange = (e) => {
-                        const idx = e.target.value;
-                        outputElement.value = JSON.stringify(data.bundles[idx], null, 2);
-                    };
-                } else {
-                    bundleContainer.style.display = 'none';
-                    bundleSelect.innerHTML = '';
-                }
+                bundleSelect.onchange = (e) => {
+                    const idx = e.target.value;
+                    outputElement.value = JSON.stringify(bundles[idx], null, 2);
+                };
+            } else {
+                bundleContainer.style.display = 'none';
+                bundleSelect.innerHTML = '';
             }
         }
     } catch (error) {
@@ -140,7 +155,12 @@ async function handleValidation(taskType) {
     loader.style.display = "inline-block";
     btn.disabled = true;
 
-    const baseUrl = window.location.hostname === "localhost" ? "http://localhost:8000" : window.location.origin;
+    let baseUrl;
+    if (window.location.hostname === "localhost") {
+        baseUrl = taskType === 'PDF2FHIR' ? "http://localhost:8000" : "http://localhost:8001";
+    } else {
+        baseUrl = window.location.origin;
+    }
     
     try {
         const response = await fetch(`${baseUrl}/validate`, {

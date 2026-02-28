@@ -96,16 +96,31 @@
 import os
 import sys
 import argparse
+from fastapi import FastAPI, UploadFile, File, Request
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+import shutil
+import time
 
 import subprocess
 import json
-import os
 import re
 import uuid
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Map UPLOAD_DIR to /app/pdf_uploads if in Docker, else relative to app
+UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -151,7 +166,40 @@ def get_nhcx_json(pdf_path, output_dir=None):
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
 
-import time
+@app.post("/pdf2nhcx")
+async def convert_pdf_to_nhcx(file: UploadFile = File(...)):
+    file.filename = file.filename.replace(" ", "_")
+    logger.info(f"Received PDF upload: {file.filename}")
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    logger.info(f"Saved uploaded PDF to {file_path}")
+        
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(current_dir))
+    relative_root = "/app/nhcx_results_problem_3" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "nhcx_results_problem_3")
+    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
+    target_output_dir = os.path.join(relative_root, file_name_only)
+    os.makedirs(target_output_dir, exist_ok=True)
+    logger.info(f"Target output directory: {target_output_dir}")
+    
+    start_time = time.perf_counter()
+    logger.info("Starting get_nhcx_json processing...")
+    bundle = get_nhcx_json(file_path, target_output_dir)
+    end_time = time.perf_counter()
+    
+    processing_time = round(end_time - start_time, 2)
+    
+    logger.info(f"get_nhcx_json execution time: {processing_time} seconds")
+    print(f"\n⏱ get_nhcx_json execution time: {processing_time} seconds")
+    
+    return JSONResponse(content={
+        "message": "File uploaded successfully for NHCX processing",
+        "file_path": file_path,
+        "processing_time": f"{processing_time} seconds",
+        "bundle": bundle,
+        "bundle_names": ["NHCX Bundle"] if bundle else []
+    })
 
 @app.post("/validate")
 async def validate_fhir(request: Request):
