@@ -220,3 +220,23 @@ function copyToClipboard(id) {
     btn.textContent = "Copied!";
     setTimeout(() => btn.textContent = oldText, 2000);
 }
+
+function downloadJSON(id) {
+    const textarea = document.getElementById(id);
+    if (!textarea.value) return;
+    
+    const blob = new Blob([textarea.value], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    
+    const filename = id === 'outputFHIR' ? 'abdm_output.json' : 'nhcx_output.json';
+    a.download = filename;
+    
+    document.body.appendChild(a);
+    a.click();
+    
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
