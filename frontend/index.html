@@ -65,6 +65,14 @@
                     <strong style="color: #2c3e50;">Document Type:</strong> <span id="docTypeFHIR" style="color: #34495e; margin-right: 15px;">-</span>
                     <strong style="color: #2c3e50;">Processing Time:</strong> <span id="procTimeFHIR" style="color: #34495e;">-</span>
                 </div>
+                <div id="bundleSelectorContainerFHIR" style="display: none; padding: 10px; background: #eef2f5; border-radius: 6px; margin-bottom: 10px; border: 1px solid #d1d9e0;">
+                    <label for="bundleSelectFHIR" style="font-weight: bold; color: #2c3e50; margin-right: 10px;">Select Bundle:</label>
+                    <select id="bundleSelectFHIR" style="padding: 5px; border-radius: 4px; border: 1px solid #ccc; width: 60%; font-family: sans-serif;"></select>
+                </div>
+                <div id="processingLogoFHIR" style="display: none; text-align: center; padding: 40px; border: 1px dashed #d1d9e0; border-radius: 6px; background: #fafafa; margin-bottom: 10px;">
+                    <img src="tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
+                    <p style="margin-top: 15px; color: #34495e; font-family: sans-serif; font-weight: bold;">Processing file... Please wait.</p>
+                </div>
                 <textarea id="outputFHIR" class="json-output" readonly placeholder="Output will appear here..."></textarea>
             </div>
 
@@ -107,6 +115,10 @@
                 <div class="output-toolbar">
                     <span class="label">NHCX JSON Output</span>
                     <button onclick="copyToClipboard('outputNHCX')" class="copy-btn">Copy JSON</button>
+                </div>
+                <div id="processingLogoNHCX" style="display: none; text-align: center; padding: 40px; border: 1px dashed #d1d9e0; border-radius: 6px; background: #fafafa; margin-bottom: 10px;">
+                    <img src="tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
+                    <p style="margin-top: 15px; color: #34495e; font-family: sans-serif; font-weight: bold;">Processing file... Please wait.</p>
                 </div>
                 <textarea id="outputNHCX" class="json-output" readonly placeholder="Output will appear here..."></textarea>
             </div>

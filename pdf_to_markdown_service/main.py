@@ -24,6 +24,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.post("/pdf2nhcx")
 async def convert_pdf_to_nhcx(file: UploadFile = File(...)):
+    file.filename = file.filename.replace(" ", "_")
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)

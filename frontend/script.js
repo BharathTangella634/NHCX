@@ -41,6 +41,11 @@ async function processFile(taskType) {
     const outputElement = document.getElementById(outputId);
     outputElement.value = "Processing conversion... this may take a moment.";
 
+    const processingLogoId = taskType === 'PDF2FHIR' ? 'processingLogoFHIR' : 'processingLogoNHCX';
+    const processingLogo = document.getElementById(processingLogoId);
+    if (processingLogo) processingLogo.style.display = "block";
+    if (outputElement) outputElement.style.display = "none";
+
     const loaderElement = document.getElementById(loaderId);
     const btnElement = document.getElementById(btnId);
 
@@ -63,6 +68,9 @@ async function processFile(taskType) {
             const infoElement = document.getElementById('infoFHIR');
             const docTypeSpan = document.getElementById('docTypeFHIR');
             const procTimeSpan = document.getElementById('procTimeFHIR');
+            const bundleContainer = document.getElementById('bundleSelectorContainerFHIR');
+            const bundleSelect = document.getElementById('bundleSelectFHIR');
+
             if (infoElement && docTypeSpan && procTimeSpan) {
                 if (data.document_type || data.processing_time) {
                     infoElement.style.display = 'block';
@@ -72,10 +80,37 @@ async function processFile(taskType) {
                     infoElement.style.display = 'none';
                 }
             }
+
+            if (bundleContainer && bundleSelect) {
+                if (data.bundles && data.bundles.length > 0) {
+                    bundleContainer.style.display = 'block';
+                    bundleSelect.innerHTML = '';
+                    
+                    data.bundles.forEach((bundle, index) => {
+                        const option = document.createElement('option');
+                        option.value = index;
+                        option.textContent = data.bundle_names && data.bundle_names[index] ? data.bundle_names[index] : `Bundle ${index + 1}`;
+                        bundleSelect.appendChild(option);
+                    });
+
+                    // Set initial output to first bundle
+                    outputElement.value = JSON.stringify(data.bundles[0], null, 2);
+
+                    bundleSelect.onchange = (e) => {
+                        const idx = e.target.value;
+                        outputElement.value = JSON.stringify(data.bundles[idx], null, 2);
+                    };
+                } else {
+                    bundleContainer.style.display = 'none';
+                    bundleSelect.innerHTML = '';
+                }
+            }
         }
     } catch (error) {
         outputElement.value = "Error: " + error.message;
     } finally {
+        if (processingLogo) processingLogo.style.display = "none";
+        if (outputElement) outputElement.style.display = "block";
         if (loaderElement) loaderElement.style.display = "none";
         if (btnElement) btnElement.disabled = false;
     }

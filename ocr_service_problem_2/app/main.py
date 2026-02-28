@@ -80,6 +80,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.post("/pdf2fhir")
 async def convert_pdf_to_fhir(file: UploadFile = File(...)):
+    file.filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {file.filename}")
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
@@ -109,7 +110,9 @@ async def convert_pdf_to_fhir(file: UploadFile = File(...)):
         "message": "File uploaded successfully for FHIR processing",
         "file_path": file_path,
         "processing_time": f"{processing_time} seconds",
-        "document_type": ", ".join(doc_types) if doc_types else "Unknown"
+        "document_type": ", ".join(doc_types) if doc_types else "Unknown",
+        "bundles": bundles,
+        "bundle_names": [f"Bundle {i+1} - {doc_types[i] if i < len(doc_types) else 'Unknown'}" for i in range(len(bundles))]
     })
 
 @app.post("/validate")
