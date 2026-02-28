@@ -24,12 +24,11 @@ Most document-to-JSON tools:
 Our system instead:
 
 ✅ Uses **LLM-Orchestrated Dynamic Workflows**  
-✅ Performs **Lossless Insurance Text Distillation**  
+✅ Performs **Insurance Text Distillation**  
 ✅ Applies **NHCX Rulebook-Based Structural Constraints**  
 ✅ Enforces Dependency Graph Ordering  
 ✅ Assembles True NHCX InsurancePlanBundle (Bundle type: collection)  
 ✅ Maintains UUID Linking Integrity  
-✅ Preserves Financial Precision (INR, %, Waiting Periods, Limits)  
 ✅ Runs Fully Offline and Locally  
 ✅ Is 100% Open Source  
 
@@ -43,7 +42,7 @@ This makes our system architecturally superior to basic extraction-based approac
 
 PDF  
 → Docling Extraction  
-→ LLM Lossless Distillation  
+→ LLM Distillation of Text  
 → LLM Resource Selection  
 → Dynamic Workflow Builder (LangGraph)  
 → Per-Resource LLM Extraction  
@@ -61,7 +60,7 @@ This modular architecture significantly improves structural reliability.
 
 ---
 
-## 2️⃣ Lossless Insurance Text Distillation
+## 2️⃣ Insurance Text Distillation
 
 Insurance documents contain:
 - Legal preambles
@@ -73,9 +72,8 @@ Insurance documents contain:
 
 Instead of feeding the entire raw text directly to the extraction agent, we:
 
-✔ Split into overlapping chunks  
+✔ Split into chunks  
 ✔ Use an LLM Underwriter-style “Fact Sheet” distillation  
-✔ Preserve ALL numerics and percentages  
 ✔ Reconstruct tables where applicable  
 ✔ Remove narrative fluff  
 ✔ Keep only actionable insurance data  
@@ -289,7 +287,6 @@ Our pipeline handles this via:
 - Resource decomposition
 - Structured prompts
 - Assembly-first logic
-- Strict linking enforcement
 
 This is not extraction.
 
@@ -345,7 +342,6 @@ PDF Input
 # 💡 Why This Is Production-Ready
 
 - Deterministic workflow orchestration
-- Financial precision preservation
 - Rulebook enforcement
 - Strict UUID linking
 - Local deployment
