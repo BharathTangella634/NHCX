@@ -16,11 +16,10 @@ sudo bash -c "cat > ${CONF_FILE}" <<EOF
     ServerName ${DOMAIN}
 
     # PDF2FHIRJSON API
-    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir
+    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir timeout=1500
     ProxyPassReverse /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir
-
     # PDF2NHCXJSON API
-    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx
+    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx timeout=1500
     ProxyPassReverse /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx
 
     # Frontend (Catch-all, should be last)
