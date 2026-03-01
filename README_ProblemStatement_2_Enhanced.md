@@ -12,7 +12,13 @@ This is not a simple extraction tool.
 This is a **structured, dependency-aware, rulebook-driven FHIR generation framework** powered entirely by local Large Language Models — without using any paid APIs.
 
 ---
+## 🔐 Privacy-First Architecture & Data Sovereignty
 
+To ensure the highest standards of data sovereignty and privacy in healthcare, our solution **operates entirely through on-premises microservices**. The architecture runs fully offline and locally, eliminating the need for cloud LLM endpoints or external APIs. This local deployment ensures **zero data leakage** and full health data sovereignty, directly **aligning with the Digital Personal Data Protection (DPDP) Act requirements** for secure and compliant processing*. 
+To manage the complexity of multi-page documents, we use a pre-processing stage called "Patient Grouping". This process uses Docling to extract text and then intelligently groups patients based on identifying attributes such as age, gender, and laboratory collection details. By organizing document content into patient-specific segments before extraction, the system prevents cross-patient data mixing, improves structural clarity, and ensures accurate resource generation within a secure, production-ready environment.
+By maintaining complete local execution, the system guarantees secure handling of clinical documents while preserving strict ABDM/NHCX structural compliance and UUID linking integrity within a production-ready healthcare environment.
+
+---
 # 🌟 Why Our Approach Is Different
 
 Most PDF-to-JSON systems:
@@ -119,7 +125,7 @@ And our design prioritizes that.
 
 ---
 
-# 🔐 Privacy & Open Source Advantage
+# 🧩 Open Source Advantage
 
 This is one of our strongest achievements.
 
