@@ -343,8 +343,8 @@ This is a strong foundation for real-world healthcare integration.
 ## Clone Repository
 
 ```bash
-git clone <repo-url>
-cd <repo-folder>
+git clone https://github.com/tanuh-bcd/NHCX_HACKATHON
+cd NHCX_HACKATHON/ocr_service_problem_2/app
 ```
 
 ## Create Virtual Environment
@@ -367,6 +367,7 @@ https://ollama.com
 ```bash
 ollama pull qwen2.5:32b
 ollama serve
+# You have to modify the llm initialization in llm_requirements.py from ChatOpenAI to ChatOllama
 ```
 
 ## Run Pipeline (CLI)
