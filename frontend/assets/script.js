@@ -256,14 +256,21 @@ async function openModal(fileUrl) {
             // Fetch and parse Markdown
             const response = await fetch(fileUrl);
             if (!response.ok) throw new Error(`Failed to load ${fileUrl}`);
-            const markdownText = await response.text();
+            let markdownText = await response.text();
             
+            // Fix image paths for markdown loaded from assets
+            if (fileUrl.startsWith('assets/')) {
+                markdownText = markdownText.replace(/\!\[([^\]]*)\]\((?:\.\/)?([^)]+\.(png|jpg|jpeg|gif))\)/gi, '![$1](assets/$2)');
+            }
+
             // Assuming marked.js is included in index.html
             if (typeof marked !== 'undefined') {
                 modalBody.innerHTML = marked.parse(markdownText);
             } else {
                 modalBody.innerHTML = `<pre style="white-space: pre-wrap;">${markdownText}</pre>`;
             }
+        } else if (fileUrl.endsWith('.png') || fileUrl.endsWith('.jpg') || fileUrl.endsWith('.jpeg')) {
+            modalBody.innerHTML = `<div style="text-align:center;"><img src="${fileUrl}" style="max-width:100%; max-height:80vh; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>`;
         } else {
             modalBody.innerHTML = `<p style="color:red;">Unsupported file type.</p>`;
         }
