@@ -156,7 +156,7 @@ This makes our framework production-safe for real healthcare systems.
 For a 3-page PDF:
 
 | GPU | Average Time |
-|******|************|
+|------|-------------|
 | NVIDIA A6000 | 6 – 8 minutes |
 | NVIDIA A6000 ADA | 5 – 7 minutes |
 
