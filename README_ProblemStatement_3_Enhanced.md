@@ -12,6 +12,11 @@ This is not a flat text-to-JSON conversion.
 This is a **structured, dependency-aware, rulebook-driven insurance-to-FHIR transformation framework** powered entirely by local Large Language Models — without using any paid APIs.
 
 ---
+## 🔐 Privacy-First Architecture & Data Sovereignty
+
+To ensure the highest standards of data sovereignty and privacy in healthcare, our solution **operates entirely through on-premises microservices**. The architecture runs fully offline and locally, eliminating the need for cloud LLM endpoints or external APIs. This local deployment ensures **zero data leakage** and full health data sovereignty, directly **aligning with the Digital Personal Data Protection (DPDP) Act requirements** for secure and compliant processing. To manage the complexity of multi-page document, we use a pre-processing stage called "Text Distillation". This process uses Docling to extract text and filters out narrative "fluff" into an actionable "Fact Sheet". By distilling data before extraction, the system prevents context overflow and optimizes performance on local hardware like the NVIDIA A6000. This structured orchestration maintains strict NHCX rulebook compliance and ensures UUID linking integrity within a secure, production-ready environment.
+
+---
 
 # 🌟 Why Our Approach Is Different
 
