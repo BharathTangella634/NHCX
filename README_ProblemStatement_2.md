@@ -1,7 +1,7 @@
 # 🚀 ABDM FHIR Document Bundle Generator  
 ### Open-Source LLM-Driven Clinical PDF → ABDM/NHCX FHIR Bundle Pipeline  
 
----
+***
 
 ## 🏆 What We Built
 
@@ -11,14 +11,14 @@ This is not a simple extraction tool.
 
 This is a **structured, dependency-aware, rulebook-driven FHIR generation framework** powered entirely by local Large Language Models — without using any paid APIs.
 
----
+***
 ## 🔐 Privacy-First Architecture & Data Sovereignty
 
 To ensure the highest standards of data sovereignty and privacy in healthcare, our solution **operates entirely through on-premises microservices**. The architecture runs fully offline and locally, eliminating the need for cloud LLM endpoints or external APIs. This local deployment ensures **zero data leakage** and full health data sovereignty, directly **aligning with the Digital Personal Data Protection (DPDP) Act requirements** for secure and compliant processing*. 
 To manage the complexity of multi-page documents, we use a pre-processing stage called "Patient Grouping". This process uses Docling to extract text and then intelligently groups patients based on identifying attributes such as age, gender, and laboratory collection details. By organizing document content into patient-specific segments before extraction, the system prevents cross-patient data mixing, improves structural clarity, and ensures accurate resource generation within a secure, production-ready environment.
 By maintaining complete local execution, the system guarantees secure handling of clinical documents while preserving strict ABDM/NHCX structural compliance and UUID linking integrity within a production-ready healthcare environment.
 
----
+***
 # 🌟 Why Our Approach Is Different
 
 Most PDF-to-JSON systems:
@@ -41,11 +41,11 @@ Our system instead:
 
 This makes our pipeline significantly more robust and architecturally superior to naive prompt-based extraction.
 
----
+***
 # 🏗 System Architecture
 ![ABDM Problem 2 Architecture](./ABDM_problem_2_Architecture.png)
 
----
+***
 
 # 🧠 Core Methodology
 
@@ -72,7 +72,7 @@ Each FHIR resource is generated independently with:
 
 This significantly improves structural reliability.
 
----
+***
 
 ## 2️⃣ Rulebook-Driven Extraction
 
@@ -94,7 +94,7 @@ So we:
 
 This modular architecture increases accuracy.
 
----
+***
 
 ## 3️⃣ LLM Model Strategy
 
@@ -127,7 +127,7 @@ For this problem:
 
 And our design prioritizes that.
 
----
+***
 
 # 🧩 Open Source Advantage
 
@@ -149,14 +149,14 @@ This means:
 
 This makes our framework production-safe for real healthcare systems.
 
----
+***
 
 # 📊 Performance Observations
 
 For a 3-page PDF:
 
 | GPU | Average Time |
-|------|-------------|
+|******|************-|
 | NVIDIA A6000 | 6 – 8 minutes |
 | NVIDIA A6000 ADA | 5 – 7 minutes |
 
@@ -164,7 +164,7 @@ Stronger GPUs (H100 / H200 class) would reduce latency significantly.
 
 We intentionally did not optimize for speed — we optimized for structure and correctness.
 
----
+***
 
 # 🏗 Microservice Deployment
 
@@ -185,7 +185,7 @@ Supports:
 
 Fully open source backend.
 
----
+***
 
 # 🧪 Current Validation Capability
 
@@ -199,7 +199,7 @@ However, due to hackathon time constraints:
 
 We were unable to fully implement automated error correction layers.
 
----
+***
 
 # 🔮 Our Big Future Vision: LLM-In-The-Loop Validation
 
@@ -207,7 +207,7 @@ This is our strongest future enhancement idea.
 
 We propose adding **multi-layer validation agents**:
 
----
+***
 
 ## Layer 1 – Missing Field Resolver
 
@@ -217,7 +217,7 @@ LLM compares:
 
 If fields exist in text but are missing in JSON (e.g., Observations), it regenerates them.
 
----
+***
 
 ## Layer 2 – Terminology & Coding Fixer
 
@@ -232,7 +232,7 @@ Corrects:
 - Invalid coding formats
 - Terminology inconsistencies
 
----
+***
 
 ## Layer 3 – Structural FHIR Validator Loop
 
@@ -254,7 +254,7 @@ We could not complete this due to time constraints.
 
 But architecturally — this is extremely powerful.
 
----
+***
 
 # 🎯 Why Our Approach Is Strong
 
@@ -277,7 +277,7 @@ This is not just extraction.
 
 This is structured healthcare data engineering.
 
----
+***
 
 # ⚠️ Known Limitations
 
@@ -286,14 +286,14 @@ This is structured healthcare data engineering.
 - Heavy GPU requirement for 32B model
 - Large rulebooks stress model context window
 
----
+***
 
 # 📦 Supported Clinical Artifacts
 
 - DiagnosticReportRecord
 - DischargeSummaryRecord
 
----
+***
 
 # 🧩 Execution Flow
 
@@ -308,7 +308,7 @@ main()
 → DocumentReference Embedding  
 → JSON Output  
 
----
+***
 
 # 🏗 System Architecture
 
@@ -322,7 +322,7 @@ PDF Input
 → Validator  
 → Final ABDM JSON  
 
----
+***
 
 # 💡 Why We Believe This Is Production-Capable
 
@@ -336,7 +336,7 @@ PDF Input
 
 This is a strong foundation for real-world healthcare integration.
 
----
+***
 
 # 🛠 Setup Instructions
 
@@ -381,7 +381,7 @@ python main.py input.pdf
 uvicorn main:app --reload
 ```
 
----
+***
 
 # 🖥 System Requirements
 
@@ -390,7 +390,7 @@ uvicorn main:app --reload
 - GPU strongly recommended
 - NVIDIA A6000 class minimum for 32B model
 
----
+***
 
 # 🏁 Conclusion
 
