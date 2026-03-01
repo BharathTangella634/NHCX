@@ -240,3 +240,48 @@ function downloadJSON(id) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
+
+// Modal functionality
+async function openModal(fileUrl) {
+    const modal = document.getElementById("docModal");
+    const modalBody = document.getElementById("modalBody");
+    modalBody.innerHTML = '<div style="text-align:center; padding:40px;"><div class="loader" style="display:inline-block; border-top-color:var(--primary);"></div><p>Loading document...</p></div>';
+    modal.style.display = "block";
+
+    try {
+        if (fileUrl.endsWith('.pdf')) {
+            // For PDF, we can use an iframe
+            modalBody.innerHTML = `<iframe src="${fileUrl}" width="100%" height="700px" style="border:none;"></iframe>`;
+        } else if (fileUrl.endsWith('.md')) {
+            // Fetch and parse Markdown
+            const response = await fetch(fileUrl);
+            if (!response.ok) throw new Error(`Failed to load ${fileUrl}`);
+            const markdownText = await response.text();
+            
+            // Assuming marked.js is included in index.html
+            if (typeof marked !== 'undefined') {
+                modalBody.innerHTML = marked.parse(markdownText);
+            } else {
+                modalBody.innerHTML = `<pre style="white-space: pre-wrap;">${markdownText}</pre>`;
+            }
+        } else {
+            modalBody.innerHTML = `<p style="color:red;">Unsupported file type.</p>`;
+        }
+    } catch (error) {
+        modalBody.innerHTML = `<div class="error-card"><strong>Error Loading Document</strong><p>${error.message}</p></div>`;
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById("docModal");
+    modal.style.display = "none";
+    document.getElementById("modalBody").innerHTML = ''; // Clear content
+}
+
+// Close modal if user clicks outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById("docModal");
+    if (event.target === modal) {
+        closeModal();
+    }
+}
