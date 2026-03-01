@@ -18,12 +18,14 @@ sudo bash -c "cat > ${CONF_FILE}" <<EOF
     # Set timeouts to 25 minutes (1500 seconds)
     Timeout 1500
     ProxyTimeout 1500
+    KeepAlive On
+    KeepAliveTimeout 1500
 
     # PDF2FHIRJSON API
-    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir timeout=1500
+    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir timeout=1500 keepalive=On
     ProxyPassReverse /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir
     # PDF2NHCXJSON API
-    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx timeout=1500
+    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx timeout=1500 keepalive=On
     ProxyPassReverse /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx
 
     # Frontend (Catch-all, should be last)
@@ -72,11 +74,11 @@ echo "Updating SSL VirtualHost configuration to include timeouts..."
 SSL_CONF_FILE="/etc/apache2/sites-available/${DOMAIN}-le-ssl.conf"
 if [ -f "\$SSL_CONF_FILE" ]; then
     # Add Timeout and ProxyTimeout if not already present
-    sudo sed -i '/ServerName.*nhcxhackathon.tanuh.ai/a \ \ \ \ Timeout 1500\n    ProxyTimeout 1500' "\$SSL_CONF_FILE"
+    sudo sed -i '/ServerName.*nhcxhackathon.tanuh.ai/a \ \ \ \ Timeout 1500\n    ProxyTimeout 1500\n    KeepAlive On\n    KeepAliveTimeout 1500' "\$SSL_CONF_FILE"
     
     # Update ProxyPass timeout in SSL conf if it was generated without it
-    sudo sed -i 's|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir.*|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir timeout=1500|g' "\$SSL_CONF_FILE"
-    sudo sed -i 's|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx.*|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx timeout=1500|g' "\$SSL_CONF_FILE"
+    sudo sed -i 's|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir.*|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir timeout=1500 keepalive=On|g' "\$SSL_CONF_FILE"
+    sudo sed -i 's|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx.*|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx timeout=1500 keepalive=On|g' "\$SSL_CONF_FILE"
     
     sudo systemctl restart apache2
 fi
