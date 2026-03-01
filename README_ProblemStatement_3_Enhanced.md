@@ -154,7 +154,7 @@ We intentionally prioritized structural accuracy over execution speed.
 
 ---
 
-# 🔐 Privacy & Open Source Advantage
+# 🧩 Open Source Advantage
 
 We did not use:
 
