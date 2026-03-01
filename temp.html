@@ -1,0 +1,248 @@
+<h1 id="abdm-fhir-document-bundle-generator">🚀 ABDM FHIR Document Bundle Generator</h1>
+<h3 id="open-source-llm-driven-clinical-pdf-abdmnhcx-fhir-bundle-pipeline">Open-Source LLM-Driven Clinical PDF → ABDM/NHCX FHIR Bundle Pipeline</h3>
+<hr />
+<h2 id="what-we-built">🏆 What We Built</h2>
+<p>We designed and implemented a <strong>fully open-source, privacy-preserving, LLM-orchestrated pipeline</strong> that converts clinical PDFs (Diagnostic Reports and Discharge Summaries) into <strong>HL7 FHIR R4 Document Bundles compliant with ABDM / NHCX profiles</strong>.</p>
+<p>This is not a simple extraction tool.</p>
+<p>This is a <strong>structured, dependency-aware, rulebook-driven FHIR generation framework</strong> powered entirely by local Large Language Models — without using any paid APIs.</p>
+<hr />
+<h2 id="privacy-first-architecture-data-sovereignty">🔐 Privacy-First Architecture &amp; Data Sovereignty</h2>
+<p>To ensure the highest standards of data sovereignty and privacy in healthcare, our solution <strong>operates entirely through on-premises microservices</strong>. The architecture runs fully offline and locally, eliminating the need for cloud LLM endpoints or external APIs. This local deployment ensures <strong>zero data leakage</strong> and full health data sovereignty, directly <strong>aligning with the Digital Personal Data Protection (DPDP) Act requirements</strong> for secure and compliant processing*. To manage the complexity of multi-page documents, we use a pre-processing stage called “Patient Grouping”. This process uses Docling to extract text and then intelligently groups patients based on identifying attributes such as age, gender, and laboratory collection details. By organizing document content into patient-specific segments before extraction, the system prevents cross-patient data mixing, improves structural clarity, and ensures accurate resource generation within a secure, production-ready environment. By maintaining complete local execution, the system guarantees secure handling of clinical documents while preserving strict ABDM/NHCX structural compliance and UUID linking integrity within a production-ready healthcare environment.</p>
+<hr />
+<h1 id="why-our-approach-is-different">🌟 Why Our Approach Is Different</h1>
+<p>Most PDF-to-JSON systems: - Extract raw text - Use one-shot prompts - Generate loosely structured JSON - Break when structure becomes complex</p>
+<p>Our system instead:</p>
+<p>✅ Uses <strong>LLM-Orchestrated Dynamic Workflows</strong><br />
+✅ Enforces <strong>FHIR Resource Dependency Graphs</strong><br />
+✅ Uses <strong>ABDM Rulebooks as Structural Constraints</strong><br />
+✅ Groups multi-patient PDFs intelligently<br />
+✅ Assembles true FHIR <em>Document Bundles</em><br />
+✅ Embeds original PDF in <code>DocumentReference</code><br />
+✅ Maintains UUID linking integrity<br />
+✅ Runs completely <strong>offline and locally</strong><br />
+✅ Is 100% <strong>open source</strong></p>
+<p>This makes our pipeline significantly more robust and architecturally superior to naive prompt-based extraction.</p>
+<hr />
+<h1 id="system-architecture">🏗 System Architecture</h1>
+<figure>
+<img src="./ABDM_problem_2_Architecture.png" alt="" /><figcaption>ABDM Problem 2 Architecture</figcaption>
+</figure>
+<hr />
+<h1 id="core-methodology">🧠 Core Methodology</h1>
+<h2 id="structured-pipeline-not-single-llm-call">1️⃣ Structured Pipeline (Not Single LLM Call)</h2>
+<p>Instead of relying on one large prompt, we designed:</p>
+<p>PDF<br />
+→ OCR (Docling)<br />
+→ Page Grouping (multi-patient detection)<br />
+→ LLM Document Classification<br />
+→ Dynamic Workflow Builder (LangGraph)<br />
+→ Resource-wise LLM Extraction<br />
+→ Dependency-aware Linking<br />
+→ Bundle Assembly<br />
+→ Post Processing<br />
+→ Validator</p>
+<p>Each FHIR resource is generated independently with: - Dedicated rulebook - Strict structural prompt - UUID enforcement - Terminology constraints</p>
+<p>This significantly improves structural reliability.</p>
+<hr />
+<h2 id="rulebook-driven-extraction">2️⃣ Rulebook-Driven Extraction</h2>
+<p>Each resource uses its ABDM structure definition JSON.</p>
+<p>This prevents: - Hallucinated fields - Wrong nesting - Invalid structure</p>
+<p>However, rulebooks are extremely large.</p>
+<p>Smaller LLMs struggle with them in a single pass.</p>
+<p>So we: - Break extraction into resource-level calls - Use dependency ordering - Enforce strict output constraints</p>
+<p>This modular architecture increases accuracy.</p>
+<hr />
+<h2 id="llm-model-strategy">3️⃣ LLM Model Strategy</h2>
+<p>We used:</p>
+<p><strong>Qwen 2.5 – 32B</strong></p>
+<p>Running locally on:</p>
+<ul>
+<li>NVIDIA A6000<br />
+</li>
+<li>NVIDIA A6000 ADA</li>
+</ul>
+<p>Why?</p>
+<p>Because: - We had limited GPU compute - Hackathon constraints - Fully local execution required</p>
+<p>Even though Qwen 2.5 32B is a mid-tier model, our architecture compensates for model limitations via structured orchestration.</p>
+<p>If we had access to: - Larger models (70B+) - More powerful GPUs (H200 class)</p>
+<p>Accuracy would significantly improve.</p>
+<p>For this problem: &gt; Accuracy &gt; Latency</p>
+<p>And our design prioritizes that.</p>
+<hr />
+<h1 id="open-source-advantage">🧩 Open Source Advantage</h1>
+<p>This is one of our strongest achievements.</p>
+<ul>
+<li>No OpenAI API</li>
+<li>No paid APIs</li>
+<li>No cloud inference</li>
+<li>No external data transmission</li>
+<li>Fully local</li>
+<li>Fully open-source stack</li>
+</ul>
+<p>This means:</p>
+<p>✅ Zero data leakage risk<br />
+✅ Full data sovereignty<br />
+✅ Deployable inside hospital networks<br />
+✅ Compliant with healthcare privacy expectations</p>
+<p>This makes our framework production-safe for real healthcare systems.</p>
+<hr />
+<h1 id="performance-observations">📊 Performance Observations</h1>
+<p>For a 3-page PDF:</p>
+<div class="line-block">GPU | Average Time |</div>
+<p>|******|************-| | NVIDIA A6000 | 6 – 8 minutes | | NVIDIA A6000 ADA | 5 – 7 minutes |</p>
+<p>Stronger GPUs (H100 / H200 class) would reduce latency significantly.</p>
+<p>We intentionally did not optimize for speed — we optimized for structure and correctness.</p>
+<hr />
+<h1 id="microservice-deployment">🏗 Microservice Deployment</h1>
+<p>We built a live working platform:</p>
+<p>🌐 https://nhcxhackathon.tanuh.ai/</p>
+<p>Features: - Upload PDF - Generate ABDM/NHCX FHIR Bundle - Download JSON - Validate bundle - View validation errors</p>
+<p>Supports: - Problem Statement 2 (Diagnostic / Discharge) - Problem Statement 3 (Insurance Plan Bundle)</p>
+<p>Fully open source backend.</p>
+<hr />
+<h1 id="current-validation-capability">🧪 Current Validation Capability</h1>
+<p>We integrated:</p>
+<p>✔ HL7 FHIR Validator CLI<br />
+✔ Error extraction<br />
+✔ Error reporting in UI</p>
+<p>However, due to hackathon time constraints:</p>
+<p>We were unable to fully implement automated error correction layers.</p>
+<hr />
+<h1 id="our-big-future-vision-llm-in-the-loop-validation">🔮 Our Big Future Vision: LLM-In-The-Loop Validation</h1>
+<p>This is our strongest future enhancement idea.</p>
+<p>We propose adding <strong>multi-layer validation agents</strong>:</p>
+<hr />
+<h2 id="layer-1-missing-field-resolver">Layer 1 – Missing Field Resolver</h2>
+<p>LLM compares: - Extracted text - Generated JSON</p>
+<p>If fields exist in text but are missing in JSON (e.g., Observations), it regenerates them.</p>
+<hr />
+<h2 id="layer-2-terminology-coding-fixer">Layer 2 – Terminology &amp; Coding Fixer</h2>
+<p>LLM reviews: - SNOMED - LOINC - UCUM - Profile conformance</p>
+<p>Corrects: - Wrong code systems - Invalid coding formats - Terminology inconsistencies</p>
+<hr />
+<h2 id="layer-3-structural-fhir-validator-loop">Layer 3 – Structural FHIR Validator Loop</h2>
+<p>We design an iterative loop:</p>
+<ol type="1">
+<li>Generate JSON</li>
+<li>Run FHIR Validator</li>
+<li>Feed errors back to LLM</li>
+<li>LLM fixes JSON</li>
+<li>Repeat K times (k = 3 or 4)</li>
+</ol>
+<p>This “LLM in the loop” architecture:</p>
+<ul>
+<li>Backpropagates validation errors</li>
+<li>Improves structural conformance</li>
+<li>Produces increasingly accurate bundles</li>
+</ul>
+<p>We could not complete this due to time constraints.</p>
+<p>But architecturally — this is extremely powerful.</p>
+<hr />
+<h1 id="why-our-approach-is-strong">🎯 Why Our Approach Is Strong</h1>
+<p>Even large LLMs struggle with:</p>
+<ul>
+<li>Large rulebooks</li>
+<li>Deeply nested FHIR structures</li>
+<li>Multi-resource linking</li>
+<li>UUID reference integrity</li>
+</ul>
+<p>Our pipeline solves this via:</p>
+<ul>
+<li>Resource decomposition</li>
+<li>Dependency graph ordering</li>
+<li>Controlled prompt templates</li>
+<li>Assembly-first architecture</li>
+<li>Composition-first bundling</li>
+</ul>
+<p>This is not just extraction.</p>
+<p>This is structured healthcare data engineering.</p>
+<hr />
+<h1 id="known-limitations">⚠️ Known Limitations</h1>
+<ul>
+<li>High latency due to multi-step extraction</li>
+<li>Validation auto-correction not yet implemented</li>
+<li>Heavy GPU requirement for 32B model</li>
+<li>Large rulebooks stress model context window</li>
+</ul>
+<hr />
+<h1 id="supported-clinical-artifacts">📦 Supported Clinical Artifacts</h1>
+<ul>
+<li>DiagnosticReportRecord</li>
+<li>DischargeSummaryRecord</li>
+</ul>
+<hr />
+<h1 id="execution-flow">🧩 Execution Flow</h1>
+<p>main()<br />
+→ get_abdm_json()<br />
+→ OCR &amp; Page Grouping<br />
+→ LLM Classification<br />
+→ Dynamic Workflow (LangGraph)<br />
+→ Resource Nodes<br />
+→ Assembly Node<br />
+→ Clean &amp; Reorder<br />
+→ DocumentReference Embedding<br />
+→ JSON Output</p>
+<hr />
+<h1 id="system-architecture-1">🏗 System Architecture</h1>
+<p>PDF Input<br />
+→ Docling OCR<br />
+→ Patient Grouping<br />
+→ LLM Classification<br />
+→ Dependency Graph Builder<br />
+→ Resource Agents<br />
+→ Bundle Composer<br />
+→ Validator<br />
+→ Final ABDM JSON</p>
+<hr />
+<h1 id="why-we-believe-this-is-production-capable">💡 Why We Believe This Is Production-Capable</h1>
+<ul>
+<li>Deterministic workflow</li>
+<li>Strict structural prompts</li>
+<li>UUID enforcement</li>
+<li>Composition-first bundling</li>
+<li>Embedded source document</li>
+<li>Fully local execution</li>
+<li>Microservice deployment ready</li>
+</ul>
+<p>This is a strong foundation for real-world healthcare integration.</p>
+<hr />
+<h1 id="setup-instructions">🛠 Setup Instructions</h1>
+<h2 id="clone-repository">Clone Repository</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">git</span> clone <span class="op">&lt;</span>repo-url<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">cd</span> <span class="op">&lt;</span>repo-folder<span class="op">&gt;</span></span></code></pre></div>
+<h2 id="create-virtual-environment">Create Virtual Environment</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">python</span> -m venv venv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="bu">source</span> venv/bin/activate</span></code></pre></div>
+<h2 id="install-dependencies">Install Dependencies</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">pip</span> install -r requirements.txt</span></code></pre></div>
+<h2 id="install-ollama">Install Ollama</h2>
+<p>https://ollama.com</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="ex">ollama</span> pull qwen2.5:32b</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="ex">ollama</span> serve</span></code></pre></div>
+<h2 id="run-pipeline-cli">Run Pipeline (CLI)</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ex">python</span> main.py input.pdf</span></code></pre></div>
+<h2 id="run-as-microservice">Run as Microservice</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ex">uvicorn</span> main:app --reload</span></code></pre></div>
+<hr />
+<h1 id="system-requirements">🖥 System Requirements</h1>
+<ul>
+<li>Python 3.10+</li>
+<li>30–32GB RAM recommended</li>
+<li>GPU strongly recommended</li>
+<li>NVIDIA A6000 class minimum for 32B model</li>
+</ul>
+<hr />
+<h1 id="conclusion">🏁 Conclusion</h1>
+<p>We built:</p>
+<ul>
+<li>A structured LLM-orchestrated ABDM FHIR generator</li>
+<li>A dynamic dependency-aware pipeline</li>
+<li>A privacy-preserving open-source framework</li>
+<li>A deployable microservice</li>
+<li>A validation-ready architecture</li>
+<li>A future-ready LLM-in-the-loop correction system</li>
+</ul>
+<p>With more time and stronger GPUs, this system can become:</p>
+<blockquote>
+<p>A fully autonomous clinical-to-FHIR transformation engine with near-perfect structural conformance.</p>
+</blockquote>
