@@ -9,6 +9,8 @@ RUN sed -i 's/LogLevel warn/LogLevel debug/g' /usr/local/apache2/conf/httpd.conf
 # Change Apache default port to 8080
 RUN sed -i 's/Listen 80/Listen 8080/g' /usr/local/apache2/conf/httpd.conf
 
-COPY . /usr/local/apache2/htdocs/
+COPY frontend/ /usr/local/apache2/htdocs/
+COPY README_ProblemStatement_2_Enhanced.md /usr/local/apache2/htdocs/assets/
+COPY README_ProblemStatement_3_Enhanced.md /usr/local/apache2/htdocs/assets/
 
 EXPOSE 8080

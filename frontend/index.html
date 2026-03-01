@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FHIR Converter | Tanuh AI</title>
-    <link rel="icon" type="image/png" href="tanuh.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/tanuh.png">
+    <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="main-header">
         <div class="header-left">
-            <img src="tanuh.png" alt="Tanuh Logo" class="logo">
+            <img src="assets/tanuh.png" alt="Tanuh Logo" class="logo">
         </div>
         <div class="header-center">
             <div class="title-group">
@@ -21,7 +21,7 @@
             <p class="subtitle">Convert medical PDFs to ABDM & NHCX standards</p>
         </div>
         <div class="header-right">
-            <img src="IISc_logo.png" alt="IISc Logo" class="logo">
+            <img src="assets/IISc_logo.png" alt="IISc Logo" class="logo">
         </div>
     </header>
 
@@ -40,7 +40,7 @@
                 <h2>PDF to ABDM Conversion</h2>
                 <p>Transform clinical documents into ABDM compliant FHIR JSON resources.</p>
                 <div style="margin-top: 10px;">
-                    <a href="#" onclick="openModal('path_to_demo_2.pdf'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
+                    <a href="#" onclick="openModal('assets/path_to_demo_2.pdf'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
                         <i class="fas fa-file-pdf"></i> View Demo PDF for Problem-2
                     </a>
                 </div>
@@ -79,7 +79,7 @@
                     <select id="bundleSelectFHIR" style="padding: 5px; border-radius: 4px; border: 1px solid #ccc; width: 60%; font-family: sans-serif;"></select>
                 </div>
                 <div id="processingLogoFHIR" style="display: none; text-align: center; padding: 40px; border: 1px dashed #d1d9e0; border-radius: 6px; background: #fafafa; margin-bottom: 10px;">
-                    <img src="tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
+                    <img src="assets/tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
                     <p style="margin-top: 15px; color: #34495e; font-family: sans-serif; font-weight: bold;">Processing file... Please wait.</p>
                 </div>
                 <textarea id="outputFHIR" class="json-output" readonly placeholder="Output will appear here..."></textarea>
@@ -93,6 +93,14 @@
                     </button>
                     <div class="loader-v" id="loaderValFHIR"></div>
                 </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 15px; width: 100%; padding: 0 10px;">
+                    <a href="#" onclick="openModal('assets/README_ProblemStatement_2_Enhanced.md'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
+                        <i class="fas fa-book-open"></i> Readme
+                    </a>
+                    <a href="#" onclick="openModal('assets/Architecture_Diagram_Problem_2.pdf'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
+                        <i class="fas fa-project-diagram"></i> Architecture Diagram
+                    </a>
+                </div>
                 <div id="validationReportFHIR" class="validation-report-area"></div>
             </div>
         </div>
@@ -103,7 +111,7 @@
                 <h2>PDF to NHCX Conversion</h2>
                 <p>Process insurance and claim documents into NHCX compliant format.</p>
                 <div style="margin-top: 10px;">
-                    <a href="#" onclick="openModal('path_to_demo_3.pdf'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
+                    <a href="#" onclick="openModal('assets/path_to_demo_3.pdf'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
                         <i class="fas fa-file-pdf"></i> View Demo PDF for Problem-3
                     </a>
                 </div>
@@ -141,7 +149,7 @@
                     <select id="bundleSelectNHCX" style="padding: 5px; border-radius: 4px; border: 1px solid #ccc; width: 60%; font-family: sans-serif;"></select>
                 </div>
                 <div id="processingLogoNHCX" style="display: none; text-align: center; padding: 40px; border: 1px dashed #d1d9e0; border-radius: 6px; background: #fafafa; margin-bottom: 10px;">
-                    <img src="tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
+                    <img src="assets/tanuh.png" alt="Processing Logo" style="width: 60px; height: auto; animation: pulse 1.5s infinite;">
                     <p style="margin-top: 15px; color: #34495e; font-family: sans-serif; font-weight: bold;">Processing file... Please wait.</p>
                 </div>
                 <textarea id="outputNHCX" class="json-output" readonly placeholder="Output will appear here..."></textarea>
@@ -154,6 +162,14 @@
                     </button>
                     <div class="loader-v" id="loaderValNHCX"></div>
                 </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 15px; width: 100%; padding: 0 10px;">
+                    <a href="#" onclick="openModal('assets/README_ProblemStatement_3_Enhanced.md'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
+                        <i class="fas fa-book-open"></i> Readme
+                    </a>
+                    <a href="#" onclick="openModal('assets/Architecture_Diagram_Problem_3.pdf'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; font-size: 14px;">
+                        <i class="fas fa-project-diagram"></i> Architecture Diagram
+                    </a>
+                </div>
                 <div id="validationReportNHCX" class="validation-report-area"></div>
             </div>
         </div>
@@ -163,34 +179,34 @@
             <div class="tab-header">
                 <h2>About Us</h2>
                 <p style="line-height: 1.6; max-width: 800px; margin: 0 auto; padding-bottom: 10px;">
-                    <a href="https://tanuh.org" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">TANUH</a> (Translational Artificial Intelligence for Networked Universal Healthcare) is a Section 8 not-for-profit organization hosted by the <a href="https://iisc.ac.in/" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">Indian Institute of Science (IISc)</a>. Funded by the Ministry of Education as a national AI Centre of Excellence in Healthcare, TANUH is dedicated to advancing the Government of India's vision to <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2178092&reg=3&lang=2" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">"Make AI in India and Make AI Work for India."</a>
+                    <a href="https://tanuh.ai" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">TANUH</a> (Translational Artificial Intelligence for Networked Universal Healthcare) is a Section 8 not-for-profit organization hosted by the <a href="https://iisc.ac.in/" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">Indian Institute of Science (IISc)</a>. Funded by the Ministry of Education as a national AI Centre of Excellence in Healthcare, TANUH is dedicated to advancing the Government of India's vision to <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2178092&reg=3&lang=2" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">"Make AI in India and Make AI Work for India."</a>
                 </p>
             </div>
             <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin: 20px 0;">
                 <h3>Team Members</h3>
                 <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: row; justify-content: space-around; flex-wrap: wrap;">
                     <li style="margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 150px;">
-                        <img src="manideep.png" alt="Venkata Sai Manideep" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                        <img src="assets/manideep.png" alt="Venkata Sai Manideep" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
                         <a href="https://www.linkedin.com/in/venkata-sai-manideep-nanepalli-42bab3261/" target="_blank" style="text-decoration: none; color: #2c3e50; font-size: 16px; font-weight: bold;">Venkata Sai Manideep</a>
                         <span style="font-size: 14px; color: #64748b; margin-top: 5px;">Research Staff, TANUH</span>
                     </li>
                     <li style="margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 150px;">
-                        <img src="bharath.png" alt="Bharath Kumar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                        <img src="assets/bharath.png" alt="Bharath Kumar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
                         <a href="https://www.linkedin.com/in/bharath-kumar-tangella-628738213/" target="_blank" style="text-decoration: none; color: #2c3e50; font-size: 16px; font-weight: bold;">Bharath Kumar</a>
                         <span style="font-size: 14px; color: #64748b; margin-top: 5px;">Research Staff, TANUH</span>
                     </li>
                     <li style="margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 150px;">
-                        <img src="hema.png" alt="Dr. Hema Priyadharshini" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                        <img src="assets/hema.png" alt="Dr. Hema Priyadharshini" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
                         <a href="https://www.linkedin.com/in/dr-s-hema-priyadarshini-64246314/" target="_blank" style="text-decoration: none; color: #2c3e50; font-size: 16px; font-weight: bold;">Dr. Hema Priyadharshini</a>
                         <span style="font-size: 14px; color: #64748b; margin-top: 5px;">Program Manager (Chronic Kidney Disease, TANUH)</span>
                     </li>
                     <li style="margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 150px;">
-                        <img src="ark_portrait.png" alt="Dr. Ashwin RaajKumar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                        <img src="assets/ark_portrait.png" alt="Dr. Ashwin RaajKumar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
                         <a href="https://www.linkedin.com/in/ashwin-rajkumar/" target="_blank" style="text-decoration: none; color: #2c3e50; font-size: 16px; font-weight: bold;">Dr. Ashwin RaajKumar</a>
                         <span style="font-size: 14px; color: #64748b; margin-top: 5px;">Program Manager (Breast Cancer Detection, TANUH)</span>
                     </li>
                     <li style="margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; width: 150px;">
-                        <img src="Phani_porttrait.png" alt="Dr. Phaneendra Yalavarthy" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                        <img src="assets/Phani_porttrait.png" alt="Dr. Phaneendra Yalavarthy" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
                         <a href="https://www.linkedin.com/in/phaneendra-yalavarthy-88033462/" target="_blank" style="text-decoration: none; color: #2c3e50; font-size: 16px; font-weight: bold;">Dr. Phaneendra Yalavarthy</a>
                         <span style="font-size: 14px; color: #64748b; margin-top: 5px;">Chief Project Manager (TANUH FOUNDATION)</span>
                     </li>
@@ -238,7 +254,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="assets/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
