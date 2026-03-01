@@ -40,6 +40,11 @@ Our system instead:
 This makes our system architecturally superior to basic extraction-based approaches.
 
 ---
+# 🏗 System Architecture
+
+![NHCX Problem 3 Architecture](NHCX_problem_3_Architecture.png)
+
+--- 
 
 # 🧠 Core Methodology
 

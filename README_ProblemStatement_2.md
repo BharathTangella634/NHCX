@@ -42,6 +42,10 @@ Our system instead:
 This makes our pipeline significantly more robust and architecturally superior to naive prompt-based extraction.
 
 ---
+# 🏗 System Architecture
+![ABDM Problem 2 Architecture](./ABDM_problem_2_Architecture.png)
+
+---
 
 # 🧠 Core Methodology
 
