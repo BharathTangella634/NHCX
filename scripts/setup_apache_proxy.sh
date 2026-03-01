@@ -22,14 +22,14 @@ sudo bash -c "cat > ${CONF_FILE}" <<EOF
     KeepAliveTimeout 1500
 
     # PDF2FHIRJSON API
-    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir timeout=1500 keepalive=On
+    ProxyPass /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir timeout=1500 keepalive=On disablereuse=on
     ProxyPassReverse /pdf2fhir http://localhost:${PDF2FHIRJSON_PORT}/pdf2fhir
     # PDF2NHCXJSON API
-    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx timeout=1500 keepalive=On
+    ProxyPass /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx timeout=1500 keepalive=On disablereuse=on
     ProxyPassReverse /pdf2nhcx http://localhost:${PDF2NHCXJSON_PORT}/pdf2nhcx
 
     # Frontend (Catch-all, should be last)
-    ProxyPass / http://localhost:${FRONTEND_PORT}/
+    ProxyPass / http://localhost:${FRONTEND_PORT}/ disablereuse=on
     ProxyPassReverse / http://localhost:${FRONTEND_PORT}/
 
     ErrorLog \${APACHE_LOG_DIR}/${DOMAIN}_error.log
@@ -77,8 +77,9 @@ if [ -f "\$SSL_CONF_FILE" ]; then
     sudo sed -i '/ServerName.*nhcxhackathon.tanuh.ai/a \ \ \ \ Timeout 1500\n    ProxyTimeout 1500\n    KeepAlive On\n    KeepAliveTimeout 1500' "\$SSL_CONF_FILE"
     
     # Update ProxyPass timeout in SSL conf if it was generated without it
-    sudo sed -i 's|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir.*|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir timeout=1500 keepalive=On|g' "\$SSL_CONF_FILE"
-    sudo sed -i 's|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx.*|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx timeout=1500 keepalive=On|g' "\$SSL_CONF_FILE"
+    sudo sed -i 's|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir.*|ProxyPass /pdf2fhir http://localhost:8000/pdf2fhir timeout=1500 keepalive=On disablereuse=on|g' "\$SSL_CONF_FILE"
+    sudo sed -i 's|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx.*|ProxyPass /pdf2nhcx http://localhost:8001/pdf2nhcx timeout=1500 keepalive=On disablereuse=on|g' "\$SSL_CONF_FILE"
+    sudo sed -i 's|ProxyPass / http://localhost:8080/.*|ProxyPass / http://localhost:8080/ disablereuse=on|g' "\$SSL_CONF_FILE"
     
     sudo systemctl restart apache2
 fi
