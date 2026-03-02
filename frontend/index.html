@@ -225,8 +225,40 @@
 
                 <h3>Project Resources</h3>
                 <div style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 10px; font-size: 16px;"><a href="#" onclick="openTab(event, 'PDF2FHIR')" style="color: #2c3e50; text-decoration: underline;">Problem 2</a></h4>
+                    <p style="margin-bottom: 15px;">
+                        <a href="#" onclick="openModal('assets/README_ProblemStatement_2.md'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; margin-right: 20px;">
+                            <i class="fas fa-book-open"></i> Readme
+                        </a>
+                        <a href="#" onclick="openModal('assets/ABDM_problem_2_Architecture.png'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; margin-right: 20px;">
+                            <i class="fas fa-project-diagram"></i> Architecture Diagram
+                        </a>
+                        <a href="https://youtu.be/FhVtWN0eFXs" target="_blank" style="text-decoration: none; color: #3498db; font-weight: bold;">
+                            <i class="fas fa-video"></i> YouTube Video
+                        </a>
+                    </p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h4 style="margin-bottom: 10px; font-size: 16px;"><a href="#" onclick="openTab(event, 'PDF2NHCX')" style="color: #2c3e50; text-decoration: underline;">Problem 3</a></h4>
+                    <p style="margin-bottom: 15px;">
+                        <a href="#" onclick="openModal('assets/README_ProblemStatement_3.md'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; margin-right: 20px;">
+                            <i class="fas fa-book-open"></i> Readme
+                        </a>
+                        <a href="#" onclick="openModal('assets/NHCX_problem_3_Architecture.png'); return false;" style="text-decoration: none; color: #3498db; font-weight: bold; margin-right: 20px;">
+                            <i class="fas fa-project-diagram"></i> Architecture Diagram
+                        </a>
+                        <a href="https://youtu.be/03RjWkxIwmw" target="_blank" style="text-decoration: none; color: #3498db; font-weight: bold;">
+                            <i class="fas fa-video"></i> YouTube Video
+                        </a>
+                    </p>
+                </div>
+                <div style="margin-top: 20px;">
                     <h4 style="color: #2c3e50; margin-bottom: 10px; font-size: 16px;"><i class="fas fa-exclamation-triangle" style="color: #e67e22;"></i> Project Limitations</h4>
-                    <p style="color: #64748b; font-size: 14px; line-height: 1.5;">Site limitation: Current API requests have a 600-second timeout, so very large files may not finish processing in a single request. We plan to add an email-based workflow that will send the results once processing completes for larger uploads.</p>
+                    <p style="color: #64748b; font-size: 14px; line-height: 1.5;">Site Limitation: Current API requests are subject to a 600-second timeout. For very large files, the frontend API call may expire before the process finishes, preventing the result from displaying in the UI. However, the file is still successfully generated and stored on the VM.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <h4 style="color: #2c3e50; margin-bottom: 10px; font-size: 16px;"><i class="fas fa-rocket" style="color: #3498db;"></i> Future Updates</h4>
+                    <p style="color: #64748b; font-size: 14px; line-height: 1.5;">We are working on integrating an email service that will automatically deliver the file to you once processing is complete, ensuring a seamless workflow for larger uploads.</p>
                 </div>
             </div>
         </div>
