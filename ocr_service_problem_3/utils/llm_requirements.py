@@ -79,7 +79,7 @@ from langchain_openai import ChatOpenAI
 llm = ChatOpenAI(
     model="qwen2.5-custom",  # ← Uses 32K context PERMANENTLY
     temperature=0,
-    base_url="https://5a00-14-139-128-66.ngrok-free.app/v1",
+    base_url="https://8880-14-139-128-66.ngrok-free.app/v1",
     api_key="not-needed",
     max_tokens=8192
 )
