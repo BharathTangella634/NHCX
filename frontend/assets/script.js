@@ -1,5 +1,35 @@
 console.log("Page loaded. Script initialized.");
 
+// ── AI Status Badge ─────────────────────────────────────────────────────────
+async function checkAiStatus() {
+    const badge  = document.getElementById('aiBadge');
+    const textEl = document.getElementById('aiBadgeText');
+
+    const base1 = window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.origin;
+    const base2 = window.location.hostname === 'localhost' ? 'http://localhost:8001' : window.location.origin;
+
+    try {
+        const [r1, r2] = await Promise.all([
+            fetch(`${base1}/health`, { method: 'GET', signal: AbortSignal.timeout(5000) }),
+            fetch(`${base2}/health`, { method: 'GET', signal: AbortSignal.timeout(5000) })
+        ]);
+        if (r1.ok && r2.ok) {
+            badge.classList.remove('ai-badge-off');
+            textEl.textContent = 'AI ON';
+        } else {
+            throw new Error('one or more services down');
+        }
+    } catch {
+        badge.classList.add('ai-badge-off');
+        textEl.textContent = 'AI OFF';
+    }
+}
+
+// Run health check on load
+window.addEventListener('DOMContentLoaded', checkAiStatus);
+// ────────────────────────────────────────────────────────────────────────────
+
+
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

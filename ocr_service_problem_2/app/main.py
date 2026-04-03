@@ -77,6 +77,10 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "service": "ocr-service-problem-2"}
+
 
 @app.post("/pdf2fhir")
 async def convert_pdf_to_fhir(file: UploadFile = File(...)):

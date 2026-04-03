@@ -122,6 +122,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "service": "ocr-service-problem-3"}
+
+
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

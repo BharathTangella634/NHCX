@@ -60,28 +60,24 @@ nhcx_extraction_dictionary = {
 }
 
 
-from langchain_ollama import ChatOllama
-
-
-# llm = ChatOllama(
-#     model="qwen2.5:32b", 
-#     temperature=0,
-#     # num_predict is the "max tokens" for the output. 
-#     # Setting this to 8192 prevents the "EOF" error.
-#     num_predict=8192, 
-#     # num_ctx is the input memory. 
-#     # 32k is usually plenty for clinical text.
-#     num_ctx=32768
-# )
-
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+import os
+
+# Load API key and endpoint config from shared .env
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../../.env"))
+
+_PROJECT_ID = os.getenv("PROJECT_ID", "tanuh-bcd-questionnaire")
+_REGION     = os.getenv("REGION", "global")
+_ENDPOINT   = os.getenv("ENDPOINT", "aiplatform.googleapis.com")
+_API_KEY    = os.getenv("API_KEY", "")
 
 llm = ChatOpenAI(
-    model="qwen2.5-custom",  # ← Uses 32K context PERMANENTLY
-    temperature=0,
-    base_url="https://8880-14-139-128-66.ngrok-free.app/v1",
-    api_key="not-needed",
-    max_tokens=8192
+    model="qwen/qwen3-next-80b-a3b-instruct-maas",
+    temperature=0.7,
+    base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
+    api_key=_API_KEY,
+    max_tokens=8192,
 )
 
 def get_must_resources(artifact):

@@ -1,6 +1,6 @@
 docling
 langchain_core
-langchain_ollama
+python-dotenv
 langchain_openai
 langgraph
 fastapi
