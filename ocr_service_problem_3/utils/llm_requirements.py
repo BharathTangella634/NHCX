@@ -64,31 +64,52 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 import os
 
-# Load API key and endpoint config from shared .env
-# Searches several candidate paths so it works locally and inside Docker
+# Load .env for local development (Docker injects vars via env_file)
 _here = os.path.dirname(__file__)
 for _candidate in [
-    os.path.join(_here, "../../.env"),   # local: repo root
-    os.path.join(_here, "../.env"),      # one level up
-    "/.env",                             # Docker root
-    "/app/.env",                         # Docker /app
+    os.path.join(_here, "../../.env"),
+    os.path.join(_here, "../.env"),
+    "/.env",
+    "/app/.env",
 ]:
     if os.path.isfile(_candidate):
         load_dotenv(dotenv_path=_candidate)
         break
 else:
-    load_dotenv()  # fallback: let python-dotenv search standard locations
+    load_dotenv()
 
 _PROJECT_ID = os.getenv("PROJECT_ID", "tanuh-bcd-questionnaire")
 _REGION     = os.getenv("REGION", "global")
 _ENDPOINT   = os.getenv("ENDPOINT", "aiplatform.googleapis.com")
-_API_KEY    = os.getenv("API_KEY", "")
+
+# ── Authentication ───────────────────────────────────────────────────────────
+# Priority 1: Google Application Default Credentials (ADC)
+#   - Works automatically on GCP VMs via metadata server
+#   - Run 'gcloud auth application-default login' for local dev
+# Priority 2: API_KEY from .env (for local/testing)
+def _get_vertex_token() -> str:
+    """Return a fresh OAuth2 access token via ADC, or fall back to API_KEY."""
+    try:
+        import google.auth
+        import google.auth.transport.requests
+        credentials, _ = google.auth.default(
+            scopes=["https://www.googleapis.com/auth/cloud-platform"]
+        )
+        credentials.refresh(google.auth.transport.requests.Request())
+        print("✅ Using Google Application Default Credentials (ADC)")
+        return credentials.token
+    except Exception as e:
+        fallback = os.getenv("API_KEY", "")
+        print(f"⚠️  ADC unavailable ({e}), falling back to API_KEY env var")
+        return fallback
+
+_auth_token = _get_vertex_token()
 
 llm = ChatOpenAI(
     model="qwen/qwen3-next-80b-a3b-instruct-maas",
     temperature=0.7,
     base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
-    api_key=_API_KEY,
+    api_key=_auth_token,
     max_tokens=8192,
 )
 

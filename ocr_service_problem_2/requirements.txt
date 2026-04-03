@@ -8,3 +8,5 @@ uvicorn
 python-multipart
 pymupdf4llm
 pymupdf
+google-auth
+google-auth-httplib2
