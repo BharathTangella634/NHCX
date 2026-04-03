@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   ocr-service-problem-2:
@@ -12,10 +11,12 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
+      - GCS_CREDENTIALS_JSON=/app/gcs-service-account.json
     volumes:
       - ./pdf_uploads:/app/pdf_uploads
       - ./fhir_results_problem_2:/app/fhir_results_problem_2
       - ./gcp-service-account.json:/app/gcp-service-account.json:ro
+      - ./gcs-service-account.json:/app/gcs-service-account.json:ro
 
   ocr-service-problem-3:
     build: ./ocr_service_problem_3
@@ -28,10 +29,12 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
+      - GCS_CREDENTIALS_JSON=/app/gcs-service-account.json
     volumes:
       - ./pdf_uploads:/app/pdf_uploads
       - ./nhcx_results_problem_3:/app/nhcx_results_problem_3
       - ./gcp-service-account.json:/app/gcp-service-account.json:ro
+      - ./gcs-service-account.json:/app/gcs-service-account.json:ro
 
   frontend:
     build: 
