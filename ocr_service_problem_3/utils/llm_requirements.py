@@ -65,7 +65,19 @@ from dotenv import load_dotenv
 import os
 
 # Load API key and endpoint config from shared .env
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "../../.env"))
+# Searches several candidate paths so it works locally and inside Docker
+_here = os.path.dirname(__file__)
+for _candidate in [
+    os.path.join(_here, "../../.env"),   # local: repo root
+    os.path.join(_here, "../.env"),      # one level up
+    "/.env",                             # Docker root
+    "/app/.env",                         # Docker /app
+]:
+    if os.path.isfile(_candidate):
+        load_dotenv(dotenv_path=_candidate)
+        break
+else:
+    load_dotenv()  # fallback: let python-dotenv search standard locations
 
 _PROJECT_ID = os.getenv("PROJECT_ID", "tanuh-bcd-questionnaire")
 _REGION     = os.getenv("REGION", "global")
