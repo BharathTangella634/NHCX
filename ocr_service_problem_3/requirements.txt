@@ -10,3 +10,4 @@ pymupdf4llm
 pymupdf
 google-auth
 google-auth-httplib2
+google-cloud-storage

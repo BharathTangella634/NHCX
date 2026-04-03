@@ -91,7 +91,14 @@ async def convert_pdf_to_fhir(file: UploadFile = File(...)):
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     logger.info(f"Saved uploaded PDF to {file_path}")
-        
+
+    # ── Upload PDF to GCS ──────────────────────────────────────────────────
+    from utils.gcs_storage import upload_pdf_to_gcs
+    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2fhir/PDF2ABDM")
+    if gcs_uri:
+        logger.info(f"PDF uploaded to GCS: {gcs_uri}")
+    # ───────────────────────────────────────────────────────────────────────
+
     current_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(os.path.dirname(current_dir))
     relative_root = "/app/fhir_results_problem_2" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "fhir_results_problem_2")
