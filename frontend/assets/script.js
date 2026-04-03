@@ -5,13 +5,17 @@ async function checkAiStatus() {
     const badge  = document.getElementById('aiBadge');
     const textEl = document.getElementById('aiBadgeText');
 
-    const base1 = window.location.hostname === 'localhost' ? 'http://localhost:8000' : window.location.origin;
-    const base2 = window.location.hostname === 'localhost' ? 'http://localhost:8001' : window.location.origin;
+    // On localhost dev: hit FastAPI ports directly
+    // On production: use the reverse-proxied paths (/pdf2fhir & /pdf2nhcx)
+    //   which are routed by nginx to the backend containers
+    const isLocal = window.location.hostname === 'localhost';
+    const health1 = isLocal ? 'http://localhost:8000/health' : `${window.location.origin}/pdf2fhir/health`;
+    const health2 = isLocal ? 'http://localhost:8001/health' : `${window.location.origin}/pdf2nhcx/health`;
 
     try {
         const [r1, r2] = await Promise.all([
-            fetch(`${base1}/health`, { method: 'GET', signal: AbortSignal.timeout(5000) }),
-            fetch(`${base2}/health`, { method: 'GET', signal: AbortSignal.timeout(5000) })
+            fetch(health1, { method: 'GET', signal: AbortSignal.timeout(5000) }),
+            fetch(health2, { method: 'GET', signal: AbortSignal.timeout(5000) })
         ]);
         if (r1.ok && r2.ok) {
             badge.classList.remove('ai-badge-off');

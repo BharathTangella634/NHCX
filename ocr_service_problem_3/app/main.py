@@ -123,6 +123,7 @@ UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.pa
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.get("/health")
+@app.get("/pdf2nhcx/health")
 def health_check():
     return {"status": "ok", "service": "ocr-service-problem-3"}
 
