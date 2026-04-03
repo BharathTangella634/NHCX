@@ -165,84 +165,8 @@ async function processFile(taskType) {
     }
 }
 
-/**
- * Handle Validation call to Python backend
- */
-async function handleValidation(taskType) {
-    const outputId = taskType === 'PDF2FHIR' ? 'outputFHIR' : 'outputNHCX';
-    const reportId = taskType === 'PDF2FHIR' ? 'validationReportFHIR' : 'validationReportNHCX';
-    const btnId = taskType === 'PDF2FHIR' ? 'valBtnFHIR' : 'valBtnNHCX';
-    const loaderId = taskType === 'PDF2FHIR' ? 'loaderValFHIR' : 'loaderValNHCX';
-    
-    const jsonContent = document.getElementById(outputId).value;
-    const reportArea = document.getElementById(reportId);
-    const btn = document.getElementById(btnId);
-    const loader = document.getElementById(loaderId);
+// Old validation functions removed in favor of fhir_validator.js
 
-    if (!jsonContent || jsonContent.startsWith("Processing") || jsonContent.startsWith("Error")) {
-        alert("No valid JSON content to validate.");
-        return;
-    }
-
-    // Reset UI
-    reportArea.innerHTML = "";
-    loader.style.display = "inline-block";
-    btn.disabled = true;
-
-    let baseUrl;
-    if (window.location.hostname === "localhost") {
-        baseUrl = taskType === 'PDF2FHIR' ? "http://localhost:8000" : "http://localhost:8001";
-    } else {
-        baseUrl = window.location.origin;
-    }
-    
-    try {
-        const response = await fetch(`${baseUrl}/validate`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                json_data: jsonContent,
-                type: taskType // To help backend know if it's ABDM or NHCX
-            })
-        });
-
-        if (!response.ok) throw new Error("Validation service unavailable");
-
-        const result = await response.json();
-        // Assuming backend returns { report: "string_of_errors" }
-        displayValidationReport(result.report, reportArea);
-
-    } catch (error) {
-        reportArea.innerHTML = `<div class="error-card"><strong>Connection Error</strong>${error.message}</div>`;
-    } finally {
-        loader.style.display = "none";
-        btn.disabled = false;
-    }
-}
-
-function displayValidationReport(reportText, container) {
-    if (!reportText || reportText.trim() === "") {
-        container.innerHTML = `<div class="success-msg"><i class="fas fa-check-circle"></i> No validation errors found. Document is compliant.</div>`;
-        return;
-    }
-
-    const lines = reportText.split('\n');
-    lines.forEach(line => {
-        if (line.trim()) {
-            const card = document.createElement('div');
-            card.className = 'error-card';
-            
-            // Extract the 'Error @ Path' part for bolding if available
-            const match = line.match(/(Error @ .*?): (.*)/);
-            if (match) {
-                card.innerHTML = `<strong>${match[1]}</strong><span>${match[2]}</span>`;
-            } else {
-                card.textContent = line;
-            }
-            container.appendChild(card);
-        }
-    });
-}
 
 function copyToClipboard(id) {
     const textarea = document.getElementById(id);

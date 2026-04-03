@@ -270,3 +270,330 @@ body {
     color: var(--error-red);
     text-decoration: none;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LINE-NUMBERED JSON VIEWER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.lnv-wrapper {
+    display: flex;
+    height: 340px;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    background: #0d1117;
+    border: 1px solid #1e293b;
+}
+
+/* Gutter (line numbers column) */
+.lnv-gutter {
+    width: 58px;
+    min-width: 58px;
+    background: #0a0e14;
+    border-right: 1px solid #1e293b;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.lnv-line-gutter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 0 6px 0 4px;
+    white-space: nowrap;
+    height: 1.55em; /* must match line height */
+}
+
+.lnv-linenum {
+    color: #475569;
+    font-size: 0.72rem;
+    min-width: 20px;
+    text-align: right;
+}
+
+/* Gutter state coloring */
+.lnv-gutter-error { background: rgba(239, 68, 68, 0.12); border-left: 3px solid #ef4444; }
+.lnv-gutter-warn  { background: rgba(245, 158, 11, 0.10); border-left: 3px solid #f59e0b; }
+.lnv-gutter-info  { background: rgba(59, 130, 246, 0.08); border-left: 3px solid #3b82f6; }
+
+/* Error count badges in gutter */
+.lnv-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0 4px;
+    min-width: 14px;
+    text-align: center;
+    line-height: 1.4;
+}
+.lnv-badge-error { background: #ef4444; color: white; }
+.lnv-badge-warn  { background: #f59e0b; color: #1a1a1a; }
+.lnv-badge-info  { background: #3b82f6; color: white; }
+
+/* Code panel */
+.lnv-code {
+    flex: 1;
+    overflow: auto;
+    background: #0d1117;
+    white-space: nowrap;
+}
+
+.lnv-line-code {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 0 12px;
+    height: 1.55em;
+    position: relative;
+    transition: background 0.15s;
+}
+
+.lnv-line-error { background: rgba(239, 68, 68, 0.07); }
+.lnv-line-warn  { background: rgba(245, 158, 11, 0.05); }
+.lnv-line-info  { background: rgba(59, 130, 246, 0.05); }
+.lnv-line-code:hover { background: rgba(255, 255, 255, 0.04); }
+
+.lnv-code-text {
+    color: #38bdf8;
+    white-space: pre;
+    flex-shrink: 0;
+}
+
+/* Inline floating error tile on a line (The "Overlay") */
+.lnv-inline-tile {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 1px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-weight: 500;
+    opacity: 0.85;
+    margin-left: 6px;
+    pointer-events: auto; /* Enable hover/click if needed */
+    flex-shrink: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.lnv-tile-error { background: rgba(239, 68, 68, 0.82); color: white; border: 1px solid rgba(255, 255, 255, 0.3); }
+.lnv-tile-warn  { background: rgba(245, 158, 11, 0.82); color: black; border: 1px solid rgba(0, 0, 0, 0.2); }
+.lnv-tile-info  { background: rgba(59, 130, 246, 0.82); color: white; border: 1px solid rgba(255, 255, 255, 0.3); }
+
+/* Flash highlight animation when scrolling to a line */
+@keyframes lnv-flash {
+    0%   { background: rgba(250, 204, 21, 0.28); }
+    60%  { background: rgba(250, 204, 21, 0.18); }
+    100% { background: transparent; }
+}
+.lnv-line-highlight-flash {
+    animation: lnv-flash 1.8s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FHIR VALIDATION REPORT PANEL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Summary bar (counts strip) */
+.val-summary-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    border: 1px solid #334155;
+    border-radius: 10px 10px 0 0;
+    padding: 14px 20px;
+    margin-bottom: 0;
+}
+
+.val-summary-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.02em;
+}
+
+.val-summary-counts {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.val-count-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+}
+.val-count-error { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
+.val-count-warn  { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); }
+.val-count-info  { background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+
+/* Issues list container */
+.val-issues-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #334155;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+/* Individual issue tile */
+.val-issue-tile {
+    padding: 12px 16px;
+    border-bottom: 1px solid #1e293b;
+    transition: background 0.15s;
+    background: #0f172a;
+}
+.val-issue-tile:last-child { border-bottom: none; }
+.val-issue-tile:hover { background: #1a2535; }
+
+.val-tile-error { border-left: 4px solid #ef4444; }
+.val-tile-warn  { border-left: 4px solid #f59e0b; }
+.val-tile-info  { border-left: 4px solid #3b82f6; }
+
+.val-tile-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.val-tile-icon { font-size: 0.9rem; }
+.val-tile-error .val-tile-icon, .val-tile-error .val-tile-sev { color: #f87171; }
+.val-tile-warn .val-tile-icon,  .val-tile-warn .val-tile-sev  { color: #fbbf24; }
+.val-tile-info .val-tile-icon,  .val-tile-info .val-tile-sev  { color: #60a5fa; }
+
+.val-tile-lineref {
+    margin-left: auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #38bdf8;
+    text-decoration: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.val-tile-lineref:hover { background: rgba(56, 189, 248, 0.22); }
+
+.val-tile-msg {
+    color: #cbd5e1;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
+.val-tile-loc {
+    font-size: 0.74rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+.val-tile-loc code {
+    background: rgba(255,255,255,0.06);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #94a3b8;
+    font-size: 0.73rem;
+}
+
+/* Success state */
+.val-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #022c22;
+    border: 1px solid #10b981;
+    border-radius: 10px;
+    padding: 20px 24px;
+    color: #d1fae5;
+}
+
+.val-success-icon {
+    font-size: 1.8rem;
+    color: #34d399;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.val-success strong {
+    display: block;
+    font-size: 1rem;
+    color: #6ee7b7;
+    margin-bottom: 4px;
+}
+
+.val-success p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #a7f3d0;
+    line-height: 1.5;
+}
+
+/* Loading state */
+.val-loading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 20px 24px;
+    color: #94a3b8;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.val-spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid #1e293b;
+    border-top-color: #38bdf8;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+/* Empty / no output state */
+.val-report-empty {
+    background: #1e293b;
+    border: 1px dashed #334155;
+    border-radius: 10px;
+    padding: 18px 24px;
+    color: #64748b;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* override: JSON output area matches viewer height */
+.output-section .lnv-wrapper {
+    margin-top: 0;
+}
