@@ -18,8 +18,8 @@ if [ -z "$FRESH_TOKEN" ]; then
   exit 1
 fi
 
-# Update API_KEY in .env
-sed -i '' "s|API_KEY=.*|API_KEY=\"${FRESH_TOKEN}\"|" "$ENV_FILE"
+# Update API_KEY in .env (no quotes — compatible with docker-compose env_file)
+sed -i '' "s|API_KEY=.*|API_KEY=${FRESH_TOKEN}|" "$ENV_FILE"
 
 echo "✅ API_KEY updated successfully in .env"
 echo "Token expires in ~1 hour."
