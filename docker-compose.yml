@@ -11,9 +11,11 @@ services:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
     volumes:
       - ./pdf_uploads:/app/pdf_uploads
       - ./fhir_results_problem_2:/app/fhir_results_problem_2
+      - ./gcp-service-account.json:/app/gcp-service-account.json:ro
 
   ocr-service-problem-3:
     build: ./ocr_service_problem_3
@@ -25,9 +27,11 @@ services:
       - .env
     environment:
       - PYTHONUNBUFFERED=1
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
     volumes:
       - ./pdf_uploads:/app/pdf_uploads
       - ./nhcx_results_problem_3:/app/nhcx_results_problem_3
+      - ./gcp-service-account.json:/app/gcp-service-account.json:ro
 
   frontend:
     build: 
