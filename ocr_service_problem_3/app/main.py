@@ -142,7 +142,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.ocr_engine import  extract_distilled_text_from_nhcx_pdf, select_nhcx_resources 
 # from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
-from utils.llm_requirements import run_nhcx_insurance_pipeline, llm
+from utils.llm_requirements import run_nhcx_insurance_pipeline
 
 from utils.logger import get_logger
 
@@ -155,10 +155,10 @@ def get_nhcx_json(pdf_path, output_dir=None):
         logger.info(f"Processing {filename}...")
         
         # Perform OCR
-        distilled_text, pdf_base64 = extract_distilled_text_from_nhcx_pdf(pdf_path, llm)
+        distilled_text, pdf_base64 = extract_distilled_text_from_nhcx_pdf(pdf_path)
 
 
-        doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text, llm)
+        doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text)
 
 
         logger.info(f"Document classified as: {doc_type}")

@@ -186,7 +186,7 @@ def get_must_resources(artifact):
 
 logger = get_logger(__name__)
 
-def classify_document(text: str, llm) -> list:
+def classify_document(text: str) -> list:
     print("\n🔍 Classifying document type and required resources using LLM...")
     abdm_extraction_dictionary = {
         "ClinicalArtifacts": {
@@ -251,10 +251,10 @@ def classify_document(text: str, llm) -> list:
     }}
     """
 
-    # Invoke the LLM
-    from .llm_requirements import refresh_llm_token
-    refresh_llm_token(llm)
-    response = llm.invoke(prompt)
+    # Invoke the LLM with a fresh client (token baked in at construction)
+    from .llm_requirements import get_llm
+    fresh_llm = get_llm()
+    response = fresh_llm.invoke(prompt)
     raw_output = response.content.strip()
 
     # Parsing Logic

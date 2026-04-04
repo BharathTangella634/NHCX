@@ -112,17 +112,21 @@ def _get_vertex_token() -> str:
         print(f"⚠️  ADC unavailable ({e}), falling back to API_KEY env var")
         return fallback
 
-def refresh_llm_token(llm_instance):
-    """Update the LLM's API key with a fresh token."""
-    new_token = _get_vertex_token()
-    if new_token:
-        try:
-            # In recent langchain-openai, the field name is openai_api_key
-            llm_instance.openai_api_key = new_token
-        except Exception:
-            # Fallback for older versions or different Pydantic structures
-            setattr(llm_instance, "api_key", new_token)
-    return llm_instance
+def get_llm():
+    """Factory: return a NEW ChatOpenAI instance with a fresh OAuth2 token.
+    
+    ChatOpenAI bakes the api_key into its internal httpx client at construction
+    time.  Mutating `openai_api_key` afterwards does NOT update the client that
+    actually sends HTTP requests, so every call must use a freshly-constructed
+    instance to guarantee a valid token.
+    """
+    return ChatOpenAI(
+        model="qwen/qwen3-next-80b-a3b-instruct-maas",
+        temperature=0.7,
+        base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
+        api_key=_get_vertex_token(),
+        max_tokens=8192,
+    )
 
 def check_llm_health():
     """Verify that we can at least get a token or the API_KEY is set."""
@@ -130,15 +134,6 @@ def check_llm_health():
     if token and len(token) > 10:
         return True, "ok"
     return False, "auth_failed"
-
-# Initialize with a fresh token
-llm = ChatOpenAI(
-    model="qwen/qwen3-next-80b-a3b-instruct-maas",
-    temperature=0.7,
-    base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
-    api_key=_get_vertex_token(),
-    max_tokens=8192,
-)
 
 def get_must_resources(artifact):
     if artifact == "InsurancePlanBundle":
@@ -282,7 +277,8 @@ Return ONLY the JSON resource(s) for {resource_type}.
 '''
 
     try:
-        response = llm.invoke([HumanMessage(content=prompt)])
+        fresh_llm = get_llm()
+        response = fresh_llm.invoke([HumanMessage(content=prompt)])
         raw_output = response.content.strip()
         print(f"\n🔍 Raw output for {resource_type}:\n{raw_output[:500]}...")
         

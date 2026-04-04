@@ -18,7 +18,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.ocr_engine import extract_text_from_abdm_pdf, classify_document
 # from utils.fhir_converter import convert_diagnostic_report_to_fhir, convert_discharge_summary_to_fhir
-from utils.llm_requirements import *
+from utils.llm_requirements import run_abdm_pipeline
 
 from utils.logger import get_logger
 
@@ -36,7 +36,7 @@ def get_abdm_json(pdf_path, output_dir=None):
         doc_types = []
         for i, extracted_text in enumerate(unique_patients_text_list):
             # Classify Document
-            doc_type, must_resources, selected_other_resources = classify_document(extracted_text, llm)
+            doc_type, must_resources, selected_other_resources = classify_document(extracted_text)
             logger.info(f"Document classified as: {doc_type}")
             print(f"Document classified as: {doc_type}")
 

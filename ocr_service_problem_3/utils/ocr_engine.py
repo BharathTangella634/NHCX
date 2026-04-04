@@ -78,7 +78,7 @@ def get_must_resources(artifact):
     return []
 
 import re
-def select_nhcx_resources(distilled_text, llm):
+def select_nhcx_resources(distilled_text):
     nhcx_extraction_dictionary = {
         "NHCXArtifact": {
             "InsurancePlanBundle": "This profile is based on a Bundle of type collection, providing a description of a health insurance package that consists of a comprehensive list of covered benefits (referred to as the product), associated costs (known as the plan), and supplementary details regarding the offering, such as ownership and administration."
@@ -131,10 +131,10 @@ def select_nhcx_resources(distilled_text, llm):
     }}
     """
 
-    # Invoke the LLM
-    from .llm_requirements import refresh_llm_token
-    refresh_llm_token(llm)
-    response = llm.invoke(prompt)
+    # Invoke the LLM with a fresh client (token baked in at construction)
+    from .llm_requirements import get_llm
+    fresh_llm = get_llm()
+    response = fresh_llm.invoke(prompt)
     raw_output = response.content.strip()
 
     # Parsing Logic
@@ -168,7 +168,7 @@ from langchain_core.messages import HumanMessage
 import math
 from langchain_core.messages import HumanMessage
 
-def distill_insurance_text(full_text, llm):
+def distill_insurance_text(full_text):
     # 1. Divide text with OVERLAP to prevent data loss at boundaries
     num_chunks = 8 # Increased chunks slightly for better focus
     overlap_size = 2000 # ~500 words overlap
@@ -213,9 +213,9 @@ def distill_insurance_text(full_text, llm):
         print(f"📝 Processing Section {i+1}/{num_chunks}...")
         
         try:
-            from .llm_requirements import refresh_llm_token
-            refresh_llm_token(llm)
-            response = llm.invoke([HumanMessage(content=distill_prompt_template.format(chunk_text=chunk))])
+            from .llm_requirements import get_llm
+            fresh_llm = get_llm()
+            response = fresh_llm.invoke([HumanMessage(content=distill_prompt_template.format(chunk_text=chunk))])
             content = response.content.strip()
             
             if "[NO_INSURANCE_DATA]" not in content:
@@ -232,7 +232,7 @@ def distill_insurance_text(full_text, llm):
     return final_distilled_text
 
 
-def extract_distilled_text_from_nhcx_pdf(pdf_path, llm):
+def extract_distilled_text_from_nhcx_pdf(pdf_path):
     """Extracts text from PDF using Docling and inserts page break markers."""
     logger.info(f"Extracting text from {pdf_path} using Docling...")
 
@@ -264,7 +264,7 @@ def extract_distilled_text_from_nhcx_pdf(pdf_path, llm):
         pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
 
     
-    distilled_text = distill_insurance_text(extracted_text, llm)
+    distilled_text = distill_insurance_text(extracted_text)
 
 
     return distilled_text, pdf_base64
