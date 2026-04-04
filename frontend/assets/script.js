@@ -183,13 +183,20 @@ async function processFile(taskType) {
 
 function copyToClipboard(id) {
     const textarea = document.getElementById(id);
-    if (!textarea.value) return;
-    textarea.select();
-    document.execCommand('copy');
-    const btn = event.target;
-    const oldText = btn.textContent;
-    btn.textContent = "Copied!";
-    setTimeout(() => btn.textContent = oldText, 2000);
+    if (!textarea || !textarea.value) return;
+
+    // Use modern Clipboard API for better compatibility and to work even if textarea is hidden
+    navigator.clipboard.writeText(textarea.value).then(() => {
+        const btn = event.target;
+        const oldText = btn.textContent;
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = oldText, 2000);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+        // Fallback for older browsers
+        textarea.select();
+        document.execCommand('copy');
+    });
 }
 
 function downloadJSON(id) {
