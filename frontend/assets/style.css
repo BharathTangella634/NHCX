@@ -364,13 +364,13 @@ body {
     flex-shrink: 0;
 }
 
-/* Syntax Highlighting */
-.json-key       { color: #7dd3fc; } /* Light Blue */
-.json-string    { color: #4ade80; } /* Green */
-.json-number    { color: #fb923c; } /* Orange */
-.json-boolean   { color: #fb7185; } /* Rose */
-.json-null      { color: #fb7185; } /* Rose */
-.json-important { color: #facc15; font-weight: 800; text-shadow: 0 0 8px rgba(250, 204, 21, 0.4); } /* Bold Yellow/Gold */
+/* Syntax Highlighting - Scoped to JSON Viewer */
+.lnv-wrapper .json-key       { color: #7dd3fc; } /* Light Blue */
+.lnv-wrapper .json-string    { color: #4ade80; } /* Green */
+.lnv-wrapper .json-number    { color: #fb923c; } /* Orange */
+.lnv-wrapper .json-boolean   { color: #fb7185; } /* Rose */
+.lnv-wrapper .json-null      { color: #fb7185; } /* Rose */
+.lnv-wrapper .json-important { color: #facc15; font-weight: 800; text-shadow: 0 0 8px rgba(250, 204, 21, 0.4); } /* Bold Yellow/Gold */
 
 /* Inline floating error tile on a line (The "Overlay") */
 .lnv-inline-tile {
