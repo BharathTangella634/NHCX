@@ -15,6 +15,56 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
+const IMPORTANT_RESOURCES = new Set([
+    'AllergyIntolerance', 'Appointment', 'Binary', 'CarePlan', 'ChargeItem', 'Condition', 
+    'DiagnosticReportImaging', 'DiagnosticReportLab', 'DiagnosticReportRecord', 
+    'DischargeSummaryRecord', 'DocumentBundle', 'DocumentReference', 'Encounter', 
+    'FamilyMemberHistory', 'ImagingStudy', 'ImmunizationRecommendation', 'Immunization', 
+    'Invoice', 'Media', 'MedicationRequest', 'MedicationStatement', 'Medication', 
+    'ObservationBodyMeasurement', 'ObservationGeneralAssessment', 'ObservationLifestyle', 
+    'ObservationPhysicalActivity', 'ObservationVitalSigns', 'ObservationWomenHealth', 
+    'Observation', 'Organization', 'Patient', 'PractitionerRole', 'Practitioner', 
+    'Procedure', 'ServiceRequest', 'Specimen', 'ClaimResponse', 'Claim', 
+    'CommunicationRequest', 'Communication', 'CoverageEligibilityRequest', 
+    'CoverageEligibilityResponse', 'Coverage', 'InsurancePlanBundle', 'InsurancePlan', 
+    'PaymentNotice', 'PaymentReconciliation', 'Task', 'Bundle'
+]);
+
+function syntaxHighlightJsonLine(line) {
+    if (!line) return ' ';
+    
+    // 1. Escape HTML for safety
+    let escaped = escapeHtml(line);
+    
+    // 2. Tokenize JSON via Regex
+    // This regex looks for strings (capturing potential keys), numbers, booleans, and null
+    return escaped.replace(/("(\\u[a-z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/gi, function (match) {
+        let cls = 'json-value';
+        
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'json-key';
+            } else {
+                cls = 'json-string';
+                // Check if the string content is an "important" resource name
+                const innerText = match.replace(/"/g, '').trim();
+                // We check if the trimmed inner text matches our important set
+                if (IMPORTANT_RESOURCES.has(innerText)) {
+                    cls += ' json-important';
+                }
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'json-boolean';
+        } else if (/null/.test(match)) {
+            cls = 'json-null';
+        } else if (/[0-9]/.test(match)) {
+            cls = 'json-number';
+        }
+        
+        return `<span class="${cls}">${match}</span>`;
+    });
+}
+
 // ─── Line-Numbered JSON Viewer ────────────────────────────────────────────────
 
 // Registry: textareaId → { renderLines }
@@ -87,7 +137,8 @@ function buildLineNumberedViewer(textareaEl) {
 
             const codeSpan = document.createElement('span');
             codeSpan.className = 'lnv-code-text';
-            codeSpan.textContent = line.length ? line : ' ';
+            // Use syntax highlighting here
+            codeSpan.innerHTML = line.length ? syntaxHighlightJsonLine(line) : ' ';
             codeCell.appendChild(codeSpan);
 
             // Inline floating error tile on the line
