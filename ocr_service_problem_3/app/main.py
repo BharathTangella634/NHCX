@@ -125,7 +125,16 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 @app.get("/health")
 @app.get("/pdf2nhcx/health")
 def health_check():
-    return {"status": "ok", "service": "ocr-service-problem-3"}
+    from utils.llm_requirements import check_llm_health
+    is_healthy, status_code = check_llm_health()
+    if is_healthy:
+        return {"status": "ok", "service": "ocr-service-problem-3"}
+    else:
+        # We use JSONResponse to set the 503 status code for specific failure
+        return JSONResponse(
+            status_code=503,
+            content={"status": "error", "reason": status_code, "service": "ocr-service-problem-3"}
+        )
 
 
 # Add the parent directory to sys.path to allow importing from utils

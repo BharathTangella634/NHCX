@@ -87,29 +87,51 @@ _ENDPOINT   = os.getenv("ENDPOINT", "aiplatform.googleapis.com")
 #   - Works automatically on GCP VMs via metadata server
 #   - Run 'gcloud auth application-default login' for local dev
 # Priority 2: API_KEY from .env (for local/testing)
+
+_cached_credentials = None
+
 def _get_vertex_token() -> str:
     """Return a fresh OAuth2 access token via ADC, or fall back to API_KEY."""
+    global _cached_credentials
     try:
         import google.auth
         import google.auth.transport.requests
-        credentials, _ = google.auth.default(
-            scopes=["https://www.googleapis.com/auth/cloud-platform"]
-        )
-        credentials.refresh(google.auth.transport.requests.Request())
-        print("✅ Using Google Application Default Credentials (ADC)")
-        return credentials.token
+        
+        if _cached_credentials is None:
+            _cached_credentials, _ = google.auth.default(
+                scopes=["https://www.googleapis.com/auth/cloud-platform"]
+            )
+            
+        _cached_credentials.refresh(google.auth.transport.requests.Request())
+        print("✅ Fresh token obtained via Google ADC")
+        return _cached_credentials.token
     except Exception as e:
         fallback = os.getenv("API_KEY", "")
+        # If the fallback key starts with 'AQ.' it's likely a short-lived token, 
+        # but we use it as-is if ADC fails.
         print(f"⚠️  ADC unavailable ({e}), falling back to API_KEY env var")
         return fallback
 
-_auth_token = _get_vertex_token()
+def refresh_llm_token(llm_instance):
+    """Update the LLM's API key with a fresh token."""
+    new_token = _get_vertex_token()
+    if new_token:
+        llm_instance.api_key = new_token
+    return llm_instance
 
+def check_llm_health():
+    """Verify that we can at least get a token or the API_KEY is set."""
+    token = _get_vertex_token()
+    if token and len(token) > 10:
+        return True, "ok"
+    return False, "auth_failed"
+
+# Initialize with a fresh token
 llm = ChatOpenAI(
     model="qwen/qwen3-next-80b-a3b-instruct-maas",
     temperature=0.7,
     base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
-    api_key=_auth_token,
+    api_key=_get_vertex_token(),
     max_tokens=8192,
 )
 

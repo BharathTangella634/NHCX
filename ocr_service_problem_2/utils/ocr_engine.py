@@ -252,6 +252,8 @@ def classify_document(text: str, llm) -> list:
     """
 
     # Invoke the LLM
+    from .llm_requirements import refresh_llm_token
+    refresh_llm_token(llm)
     response = llm.invoke(prompt)
     raw_output = response.content.strip()
 

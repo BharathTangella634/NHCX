@@ -80,7 +80,16 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 @app.get("/health")
 @app.get("/pdf2fhir/health")
 def health_check():
-    return {"status": "ok", "service": "ocr-service-problem-2"}
+    from utils.llm_requirements import check_llm_health
+    is_healthy, status_code = check_llm_health()
+    if is_healthy:
+        return {"status": "ok", "service": "ocr-service-problem-2"}
+    else:
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            status_code=503,
+            content={"status": "error", "reason": status_code, "service": "ocr-service-problem-2"}
+        )
 
 
 @app.post("/pdf2fhir")

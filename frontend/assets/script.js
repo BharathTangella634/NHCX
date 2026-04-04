@@ -17,15 +17,28 @@ async function checkAiStatus() {
             fetch(health1, { method: 'GET', signal: AbortSignal.timeout(5000) }),
             fetch(health2, { method: 'GET', signal: AbortSignal.timeout(5000) })
         ]);
+
+        // If either service is 503 (auth error) or not 200, AI is considered OFF
         if (r1.ok && r2.ok) {
             badge.classList.remove('ai-badge-off');
             textEl.textContent = 'AI ON';
         } else {
-            throw new Error('one or more services down');
+            // Check for specific auth failure reason if r1/r2 provide it
+            let reason = "one or more services down";
+            try {
+                const data1 = !r1.ok ? await r1.json() : {};
+                const data2 = !r2.ok ? await r2.json() : {};
+                if (data1.reason === 'auth_failed' || data2.reason === 'auth_failed') {
+                    reason = "AI Authentication Failed";
+                }
+            } catch(e) {}
+            
+            throw new Error(reason);
         }
-    } catch {
+    } catch (err) {
         badge.classList.add('ai-badge-off');
         textEl.textContent = 'AI OFF';
+        console.warn("AI Status Check failed:", err.message);
     }
 }
 

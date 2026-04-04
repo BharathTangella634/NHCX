@@ -132,6 +132,8 @@ def select_nhcx_resources(distilled_text, llm):
     """
 
     # Invoke the LLM
+    from .llm_requirements import refresh_llm_token
+    refresh_llm_token(llm)
     response = llm.invoke(prompt)
     raw_output = response.content.strip()
 
@@ -211,6 +213,8 @@ def distill_insurance_text(full_text, llm):
         print(f"📝 Processing Section {i+1}/{num_chunks}...")
         
         try:
+            from .llm_requirements import refresh_llm_token
+            refresh_llm_token(llm)
             response = llm.invoke([HumanMessage(content=distill_prompt_template.format(chunk_text=chunk))])
             content = response.content.strip()
             
