@@ -1,5 +1,25 @@
 console.log("Page loaded. Script initialized.");
 
+// ── Mixpanel Initialization ─────────────────────────────────────────────────
+mixpanel.init("b175723126491e0011d3d2b4c1afea9b", {
+    debug: true,
+    track_pageview: true,
+    persistence: "localStorage",
+    autocapture: true,
+    record_sessions_percent: 100,
+});
+
+// Identify anonymous user with a stable ID stored in localStorage
+(function () {
+    var uid = localStorage.getItem('mp_anon_id');
+    if (!uid) {
+        uid = crypto.randomUUID ? crypto.randomUUID() : 'anon-' + Date.now();
+        localStorage.setItem('mp_anon_id', uid);
+    }
+    mixpanel.identify(uid);
+})();
+// ────────────────────────────────────────────────────────────────────────────
+
 // ── AI Status Badge ─────────────────────────────────────────────────────────
 async function checkAiStatus() {
     const badge  = document.getElementById('aiBadge');
@@ -59,6 +79,12 @@ function openTab(evt, tabName) {
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+
+    // Mixpanel: track tab navigation
+    mixpanel.track('Page View', {
+        'page_url': window.location.href + '#' + tabName,
+        'page_title': tabName,
+    });
 }
 
 function updateFileName(inputId) {
@@ -117,6 +143,15 @@ async function processFile(taskType) {
         const data = await response.json();
         console.log(`API response received for ${taskType}. Status: ${response.status}`);
         outputElement.value = JSON.stringify(data, null, 2);
+
+        // Mixpanel: track successful conversion (the core value event)
+        mixpanel.track('Conversion', {
+            'Conversion Type': taskType === 'PDF2FHIR' ? 'PDF to ABDM' : 'PDF to NHCX',
+            'Conversion Value': data.processing_time || 'N/A',
+            'file_name': fileInput.files[0].name,
+            'document_type': data.document_type || 'Unknown',
+            'bundle_count': (data.bundles ? data.bundles.length : (data.bundle ? 1 : 0)),
+        });
         
         const suffix = taskType === 'PDF2FHIR' ? 'FHIR' : 'NHCX';
         const infoElement = document.getElementById(`info${suffix}`);
@@ -170,6 +205,13 @@ async function processFile(taskType) {
         }
     } catch (error) {
         outputElement.value = "Error: " + error.message;
+
+        // Mixpanel: track conversion error
+        mixpanel.track('Error', {
+            'error_type': 'server',
+            'error_message': error.message,
+            'page_url': window.location.href,
+        });
     } finally {
         if (processingLogo) processingLogo.style.display = "none";
         if (outputElement) outputElement.style.display = "block";
@@ -214,7 +256,12 @@ function downloadJSON(id) {
     
     document.body.appendChild(a);
     a.click();
-    
+
+    // Mixpanel: track file download
+    mixpanel.track('Conversion', {
+        'Conversion Type': id === 'outputFHIR' ? 'Download ABDM JSON' : 'Download NHCX JSON',
+    });
+
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
