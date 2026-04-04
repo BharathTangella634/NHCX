@@ -137,7 +137,12 @@ def refresh_llm_token(llm_instance):
     """Update the LLM's API key with a fresh token."""
     new_token = _get_vertex_token()
     if new_token:
-        llm_instance.api_key = new_token
+        try:
+            # In recent langchain-openai, the field name is openai_api_key
+            llm_instance.openai_api_key = new_token
+        except Exception:
+            # Fallback for older versions or different Pydantic structures
+            setattr(llm_instance, "api_key", new_token)
     return llm_instance
 
 def check_llm_health():
