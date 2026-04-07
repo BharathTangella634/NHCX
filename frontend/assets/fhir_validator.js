@@ -44,6 +44,10 @@ function syntaxHighlightJsonLine(line) {
         if (/^"/.test(match)) {
             if (/:$/.test(match)) {
                 cls = 'json-key';
+                const innerText = match.replace(/"/g, '').replace(/:$/, '').trim();
+                if (['system', 'text', 'coding', 'cost', 'type'].includes(innerText)) {
+                    cls += ` json-key-${innerText}`;
+                }
             } else {
                 cls = 'json-string';
                 // Check if the string content is an "important" resource name

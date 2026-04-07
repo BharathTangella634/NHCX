@@ -19,6 +19,10 @@ body {
     color: var(--text-dark);
 }
 
+h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn, .process-btn span, .blue-link {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
 /* Header - Left, Center, Right */
 .main-header {
     background: #DAF3F4;
@@ -369,6 +373,11 @@ body {
 
 /* Syntax Highlighting - Scoped to JSON Viewer */
 .lnv-wrapper .json-key       { color: #ff79c6; } /* Vibrant Pink */
+.lnv-wrapper .json-key-system { color: #f1fa8c; text-shadow: 0 0 5px rgba(241, 250, 140, 0.4); } /* Yellow */
+.lnv-wrapper .json-key-text   { color: #8be9fd; text-shadow: 0 0 5px rgba(139, 233, 253, 0.4); }  /* Cyan */
+.lnv-wrapper .json-key-coding { color: #50fa7b; text-shadow: 0 0 5px rgba(80, 250, 123, 0.4); }  /* Green */
+.lnv-wrapper .json-key-cost   { color: #ffb86c; font-weight: bold; } /* Orange */
+.lnv-wrapper .json-key-type   { color: #ff5555; text-shadow: 0 0 5px rgba(255, 85, 85, 0.4); } /* Red */
 .lnv-wrapper .json-string    { color: #f1fa8c; } /* Bright Yellow */
 .lnv-wrapper .json-number    { color: #bd93f9; } /* Purple */
 .lnv-wrapper .json-boolean   { color: #ffb86c; } /* Orange */
