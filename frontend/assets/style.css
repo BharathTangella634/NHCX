@@ -33,14 +33,16 @@ body {
 }
 
 .header-left, .header-right { flex: 1; }
+.header-left { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
 .header-right { display: flex; justify-content: flex-end; }
-.header-center { flex: 2; text-align: center; }
+.header-center { flex: 2; display: flex; justify-content: center; }
 
+.logo-group { display: flex; align-items: center; gap: 20px; }
 .logo { max-height: 70px; width: auto; }
-.title-group { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.title-group { display: flex; align-items: center; justify-content: flex-start; gap: 12px; }
 .fhir-icon { font-size: 1.8rem; color: #ef4444; }
-.header-center h1 { margin: 0; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.02em; }
-.subtitle { margin: 4px 0 0; color: var(--text-light); font-size: 0.85rem; }
+.header-left h1 { margin: 0; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.02em; }
+.subtitle { margin: 4px 0 0; color: var(--text-light); font-size: 0.85rem; text-align: left; }
 
 /* Tabs */
 .tabs-container { display: flex; justify-content: center; margin-top: 2rem; }
