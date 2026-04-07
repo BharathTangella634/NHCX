@@ -1,7 +1,7 @@
 :root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-color: #f8fafc;
+    --primary: #14868C;
+    --primary-hover: #0E6C71;
+    --bg-color: #DAF3F4;
     --card-bg: #ffffff;
     --text-dark: #0f172a;
     --text-light: #64748b;
@@ -14,18 +14,19 @@ body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
+    background: linear-gradient(170deg, #F5FFFF 0%, #DAF3F4 100%);
+    min-height: 100vh;
     color: var(--text-dark);
 }
 
 /* Header - Left, Center, Right */
 .main-header {
-    background: white;
+    background: #DAF3F4;
     padding: 1.25rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -365,12 +366,12 @@ body {
 }
 
 /* Syntax Highlighting - Scoped to JSON Viewer */
-.lnv-wrapper .json-key       { color: #7dd3fc; } /* Light Blue */
-.lnv-wrapper .json-string    { color: #4ade80; } /* Green */
-.lnv-wrapper .json-number    { color: #fb923c; } /* Orange */
-.lnv-wrapper .json-boolean   { color: #fb7185; } /* Rose */
-.lnv-wrapper .json-null      { color: #fb7185; } /* Rose */
-.lnv-wrapper .json-important { color: #facc15; font-weight: 800; text-shadow: 0 0 8px rgba(250, 204, 21, 0.4); } /* Bold Yellow/Gold */
+.lnv-wrapper .json-key       { color: #ff79c6; } /* Vibrant Pink */
+.lnv-wrapper .json-string    { color: #f1fa8c; } /* Bright Yellow */
+.lnv-wrapper .json-number    { color: #bd93f9; } /* Purple */
+.lnv-wrapper .json-boolean   { color: #ffb86c; } /* Orange */
+.lnv-wrapper .json-null      { color: #ff5555; } /* Red */
+.lnv-wrapper .json-important { color: #8be9fd; font-weight: 800; text-shadow: 0 0 8px rgba(139, 233, 253, 0.5); } /* Cyan */
 
 /* Inline floating error tile on a line (The "Overlay") */
 .lnv-inline-tile {

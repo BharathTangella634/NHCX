@@ -15,6 +15,7 @@
 <body>
     <header class="main-header">
         <div class="header-left">
+            <img src="assets/moe.png" alt="Ministry of Education Logo" class="logo" style="margin-right: 15px;">
             <img src="assets/tanuh.png" alt="Tanuh Logo" class="logo">
         </div>
         <div class="header-center">
@@ -36,8 +37,8 @@
 
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tablinks active" onclick="openTab(event, 'PDF2FHIR')">Problem 2: PDF to ABDM</button>
-            <button class="tablinks" onclick="openTab(event, 'PDF2NHCX')">Problem 3: PDF to NHCX</button>
+            <button class="tablinks active" onclick="openTab(event, 'PDF2FHIR')">clinical document</button>
+            <button class="tablinks" onclick="openTab(event, 'PDF2NHCX')">insurance policy</button>
             <button class="tablinks" onclick="openTab(event, 'AboutUs')">About Us</button>
         </div>
     </div>
@@ -58,6 +59,15 @@
                 </div>
             </div>
             
+            <div class="info-notes" style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #14868C; background-color: #f0fdfa; border-radius: 6px;">
+                <p style="margin: 0 0 8px 0; color: #0f766e; font-size: 14px;">
+                    <strong><i class="fas fa-clock"></i> Note:</strong> Processing time is typically <strong>3 to 5 minutes</strong>, depending on the PDF size.
+                </p>
+                <p style="margin: 0; color: #0f766e; font-size: 14px;">
+                    <strong><i class="fas fa-user-shield"></i> Privacy:</strong> We do not save any of your data and we purge it after use. Kindly download the JSON bundles.
+                </p>
+            </div>
+            
             <div class="upload-section">
                 <div class="controls">
                     <div class="file-input-wrapper">
@@ -68,7 +78,7 @@
                         </label>
                     </div>
                     <button onclick="processFile('PDF2FHIR')" id="btnFHIR" class="process-btn">
-                        <span>Problem 2: PDF to ABDM</span>
+                        <span>clinical document</span>
                         <div class="loader" id="loaderFHIR"></div>
                     </button>
                 </div>
@@ -134,6 +144,15 @@
                 </div>
             </div>
             
+            <div class="info-notes" style="margin-bottom: 20px; padding: 15px; border-left: 4px solid #14868C; background-color: #f0fdfa; border-radius: 6px;">
+                <p style="margin: 0 0 8px 0; color: #0f766e; font-size: 14px;">
+                    <strong><i class="fas fa-clock"></i> Note:</strong> Processing time is typically <strong>3 to 5 minutes</strong>, depending on the PDF size.
+                </p>
+                <p style="margin: 0; color: #0f766e; font-size: 14px;">
+                    <strong><i class="fas fa-user-shield"></i> Privacy:</strong> We do not save any of your data and we purge it after use. Kindly download the JSON bundles.
+                </p>
+            </div>
+            
             <div class="upload-section">
                 <div class="controls">
                     <div class="file-input-wrapper">
@@ -144,7 +163,7 @@
                         </label>
                     </div>
                     <button onclick="processFile('PDF2NHCX')" id="btnNHCX" class="process-btn">
-                        <span>Problem 3: PDF to NHCX</span>
+                        <span>insurance policy</span>
                         <div class="loader" id="loaderNHCX"></div>
                     </button>
                 </div>
