@@ -62,8 +62,129 @@ async function checkAiStatus() {
     }
 }
 
-// Run health check on load
-window.addEventListener('DOMContentLoaded', checkAiStatus);
+// Run health check on page load
+window.addEventListener('DOMContentLoaded', () => {
+    checkAiStatus();
+    // Probe every model and every OCR engine in parallel on load
+    ['llama4-scout', 'qwen3', 'mistral-medium-3'].forEach(m => checkModelHealth(m));
+    ['FHIR', 'NHCX'].forEach(tab =>
+        ['lighton', 'suriya', 'chandra'].forEach(eng => checkOcrHealth(tab, eng))
+    );
+});
+// ────────────────────────────────────────────────────────────────────────────
+
+// ── Helper: build base URLs for each service ─────────────────────────────────
+function getServiceBase(service) {
+    // service: 'fhir' | 'nhcx'
+    const isLocal = window.location.hostname === 'localhost';
+    if (service === 'fhir') return isLocal ? 'http://localhost:8000' : `${window.location.origin}/pdf2fhir`;
+    return isLocal ? 'http://localhost:8001' : `${window.location.origin}/pdf2nhcx`;
+}
+
+// ── Status-dot helper ────────────────────────────────────────────────────────
+function setDotState(dotEl, state /* 'checking' | 'ok' | 'error' */) {
+    if (!dotEl) return;
+    dotEl.className = `status-dot status-dot--${state}`;
+}
+
+// ── Model Selector ───────────────────────────────────────────────────────────
+let selectedModel = 'llama4-scout';
+
+function selectModel(modelKey, clickedBtn) {
+    selectedModel = modelKey;
+
+    // Swap active class
+    document.querySelectorAll('.model-chip').forEach(c => c.classList.remove('active'));
+    clickedBtn.classList.add('active');
+
+    // Refresh main AI badge immediately (show refreshing)
+    const badge  = document.getElementById('aiBadge');
+    const textEl = document.getElementById('aiBadgeText');
+    badge.classList.add('ai-badge-off');
+    textEl.textContent = 'Refreshing…';
+
+    // Check both the model specific endpoint and the global service health
+    checkModelHealth(modelKey, /* updateBadge */ true);
+
+    console.log(`Model switched to: ${modelKey}`);
+    mixpanel.track('Model Changed', { model: modelKey });
+}
+
+async function checkModelHealth(modelKey, updateBadge = false) {
+    const dotEl = document.getElementById(`modelDot-${modelKey}`);
+    setDotState(dotEl, 'checking');
+
+    // Hit BOTH services — model must be available in both
+    const fhirUrl = `${getServiceBase('fhir')}/model-health?model=${modelKey}`;
+    const nhcxUrl = `${getServiceBase('nhcx')}/model-health?model=${modelKey}`;
+
+    try {
+        const [r1, r2] = await Promise.all([
+            fetch(fhirUrl,  { method: 'GET', signal: AbortSignal.timeout(6000) }),
+            fetch(nhcxUrl, { method: 'GET', signal: AbortSignal.timeout(6000) }),
+        ]);
+        const allOk = r1.ok && r2.ok;
+        setDotState(dotEl, allOk ? 'ok' : 'error');
+
+        // Only update the main badge when this is the currently selected model
+        if (updateBadge || modelKey === selectedModel) {
+            const badge  = document.getElementById('aiBadge');
+            const textEl = document.getElementById('aiBadgeText');
+            if (allOk) {
+                badge.classList.remove('ai-badge-off');
+                textEl.textContent = 'AI ON';
+            } else {
+                badge.classList.add('ai-badge-off');
+                textEl.textContent = 'AI OFF';
+            }
+        }
+    } catch (err) {
+        setDotState(dotEl, 'error');
+        if (updateBadge || modelKey === selectedModel) {
+            document.getElementById('aiBadge').classList.add('ai-badge-off');
+            document.getElementById('aiBadgeText').textContent = 'AI OFF';
+        }
+        console.warn(`Model health check failed for ${modelKey}:`, err.message);
+    }
+}
+
+// ── OCR Engine Selector ───────────────────────────────────────────────────────
+const selectedOcr = { FHIR: 'lighton', NHCX: 'lighton' };
+
+function selectOcr(tab, ocrKey, clickedBtn) {
+    selectedOcr[tab] = ocrKey;
+
+    // Swap active class within this tab's group
+    const group = document.getElementById(`ocrGroup${tab}`);
+    if (group) {
+        group.querySelectorAll('.ocr-chip').forEach(c =>
+            c.classList.toggle('active', c.dataset.ocr === ocrKey)
+        );
+    }
+
+    // Re-probe health for the newly selected engine
+    checkOcrHealth(tab, ocrKey);
+
+    console.log(`OCR engine for ${tab} switched to: ${ocrKey}`);
+    mixpanel.track('OCR Changed', { tab, ocr_engine: ocrKey });
+}
+
+async function checkOcrHealth(tab, engine) {
+    const dotEl = document.getElementById(`ocrDot-${tab}-${engine}`);
+    setDotState(dotEl, 'checking');
+
+    // FHIR tab → check pdf2fhir service, NHCX → check pdf2nhcx service
+    const service = tab === 'FHIR' ? 'fhir' : 'nhcx';
+    const url = `${getServiceBase(service)}/ocr-health?engine=${engine}`;
+
+    try {
+        const r = await fetch(url, { method: 'GET', signal: AbortSignal.timeout(6000) });
+        setDotState(dotEl, r.ok ? 'ok' : 'error');
+    } catch (err) {
+        setDotState(dotEl, 'error');
+        console.warn(`OCR health check failed for ${tab}/${engine}:`, err.message);
+    }
+}
 // ────────────────────────────────────────────────────────────────────────────
 
 
@@ -110,6 +231,9 @@ async function processFile(taskType) {
 
     const formData = new FormData();
     formData.append("file", fileInput.files[0]);
+    // Attach currently selected model and OCR engine for backend routing
+    formData.append("model", selectedModel);
+    formData.append("ocr_engine", selectedOcr[taskType === 'PDF2FHIR' ? 'FHIR' : 'NHCX']);
 
     const outputElement = document.getElementById(outputId);
     outputElement.value = "Processing conversion... this may take a moment.";

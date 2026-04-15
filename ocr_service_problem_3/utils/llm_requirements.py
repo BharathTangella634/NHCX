@@ -11,11 +11,12 @@ from datetime import datetime, timezone
 
 
 # ---------------- STATE ----------------
-class AgentState(TypedDict):
+class AgentState(TypedDict, total=False):
     text: str
     id_registry: Dict[str, Any]
     final_resources: Annotated[List[dict], operator.add]
     rulebook_paths: Dict[str, str]
+    model: str          # frontend model selector value, propagated through the graph
 
 # ---------------- LLM ----------------
 # llm = ChatOllama(model="qwen2.5:latest", temperature=0)
@@ -112,16 +113,31 @@ def _get_vertex_token() -> str:
         print(f"⚠️  ADC unavailable ({e}), falling back to API_KEY env var")
         return fallback
 
-def get_llm():
+# ── Model Selection Map ───────────────────────────────────────────────────────
+# Maps frontend selector values → Vertex AI Express model strings
+MODEL_MAP = {
+    "llama4-scout":     "meta/llama-4-scout-17b-16e-instruct-maas",
+    "qwen3":            "qwen/qwen3-next-80b-a3b-instruct-maas",
+    "mistral-medium-3": "mistral-ai/mistral-medium-3-maas",
+}
+_DEFAULT_MODEL = "llama4-scout"
+
+def get_llm(model: str = _DEFAULT_MODEL):
     """Factory: return a NEW ChatOpenAI instance with a fresh OAuth2 token.
-    
+
     ChatOpenAI bakes the api_key into its internal httpx client at construction
     time.  Mutating `openai_api_key` afterwards does NOT update the client that
     actually sends HTTP requests, so every call must use a freshly-constructed
     instance to guarantee a valid token.
+
+    Args:
+        model: frontend selector value (e.g. 'llama4-scout', 'qwen3',
+               'mistral-medium-3').  Unknown values fall back to the default.
     """
+    vertex_model = MODEL_MAP.get(model, MODEL_MAP[_DEFAULT_MODEL])
+    print(f"🤖 Using model: {vertex_model} (requested: {model})")
     return ChatOpenAI(
-        model="qwen/qwen3-next-80b-a3b-instruct-maas",
+        model=vertex_model,
         temperature=0.7,
         base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
         api_key=_get_vertex_token(),
@@ -218,7 +234,7 @@ def get_single_resource(resources_list, resource_type):
     }
 
 # ---------------- CORE AGENT FUNCTION ----------------
-def run_extraction_agent(state: AgentState, resource_type: str):
+def run_extraction_agent(state: AgentState, resource_type: str, model: str = _DEFAULT_MODEL):
     rulebook_path = state['rulebook_paths'].get(resource_type)
      # Load rulebook content
     rulebook_content = ""
@@ -277,7 +293,7 @@ Return ONLY the JSON resource(s) for {resource_type}.
 '''
 
     try:
-        fresh_llm = get_llm()
+        fresh_llm = get_llm(state.get('model', _DEFAULT_MODEL))
         response = fresh_llm.invoke([HumanMessage(content=prompt)])
         raw_output = response.content.strip()
         print(f"\n🔍 Raw output for {resource_type}:\n{raw_output[:500]}...")
@@ -312,6 +328,7 @@ def create_insurance_node(resource_type: str):
     
     def node(state: AgentState):
         # ✅ SPECIAL CASE: InsurancePlanBundle is a Bundle resource
+        model = state.get('model', _DEFAULT_MODEL)
         if resource_type == "InsurancePlanBundle":
             actual_resource_type = "Bundle"
             is_insurance_bundle = True
@@ -320,7 +337,7 @@ def create_insurance_node(resource_type: str):
             is_insurance_bundle = False
         
         # Run the extraction agent (using the prompt we defined previously)
-        resources = run_extraction_agent(state, actual_resource_type)
+        resources = run_extraction_agent(state, actual_resource_type, model)
         resources = normalize_resource_output(resources, actual_resource_type)
         
         if isinstance(resources, list):
@@ -624,7 +641,7 @@ def document_reference_node(input_file, output_file, pdf_base64):
     with open(output_file, 'w') as f:
         json.dump(bundle, f, indent=2)
 
-def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, selected_other_resources: List[str], output_dir=None, pdf_base64=None, idx=None):
+def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, selected_other_resources: List[str], output_dir=None, pdf_base64=None, idx=None, model: str = _DEFAULT_MODEL):
     # Complete rulebook paths (add all your paths)
 
     rulebook_paths = {
@@ -642,7 +659,8 @@ def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, sel
         "clinical_artifact": clinical_artifact,
         "id_registry": {},
         "final_resources": [],
-        "rulebook_paths": rulebook_paths
+        "rulebook_paths": rulebook_paths,
+        "model": model,  # propagate model selection through the LangGraph state
     }
     
     # Build and run dynamic workflow

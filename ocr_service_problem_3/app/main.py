@@ -96,7 +96,7 @@
 import os
 import sys
 import argparse
-from fastapi import FastAPI, UploadFile, File, Request
+from fastapi import FastAPI, UploadFile, File, Request, Form
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
@@ -130,10 +130,46 @@ def health_check():
     if is_healthy:
         return {"status": "ok", "service": "ocr-service-problem-3"}
     else:
-        # We use JSONResponse to set the 503 status code for specific failure
         return JSONResponse(
             status_code=503,
             content={"status": "error", "reason": status_code, "service": "ocr-service-problem-3"}
+        )
+
+@app.get("/model-health")
+@app.get("/pdf2nhcx/model-health")
+def model_health(model: str = "llama4-scout"):
+    """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
+    from utils.llm_requirements import check_llm_health, MODEL_MAP
+    if model not in MODEL_MAP:
+        return JSONResponse(
+            status_code=404,
+            content={"status": "error", "reason": "unknown_model", "model": model}
+        )
+    is_healthy, reason = check_llm_health()
+    if is_healthy:
+        return {"status": "ok", "model": model, "vertex_model": MODEL_MAP[model]}
+    return JSONResponse(
+        status_code=503,
+        content={"status": "error", "reason": reason, "model": model}
+    )
+
+@app.get("/ocr-health")
+@app.get("/pdf2nhcx/ocr-health")
+def ocr_health(engine: str = "lighton"):
+    """Check if a specific OCR engine is available."""
+    KNOWN_ENGINES = {"lighton", "suriya", "chandra"}
+    if engine not in KNOWN_ENGINES:
+        return JSONResponse(
+            status_code=404,
+            content={"status": "error", "reason": "unknown_engine", "engine": engine}
+        )
+    try:
+        from docling.document_converter import DocumentConverter  # noqa: F401
+        return {"status": "ok", "engine": engine}
+    except ImportError:
+        return JSONResponse(
+            status_code=503,
+            content={"status": "error", "reason": "docling_unavailable", "engine": engine}
         )
 
 
@@ -149,7 +185,7 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-def get_nhcx_json(pdf_path, output_dir=None):
+def get_nhcx_json(pdf_path, output_dir=None, model: str = "llama4-scout"):
     try:
         filename = os.path.basename(pdf_path)
         logger.info(f"Processing {filename}...")
@@ -157,34 +193,37 @@ def get_nhcx_json(pdf_path, output_dir=None):
         # Perform OCR
         distilled_text, pdf_base64 = extract_distilled_text_from_nhcx_pdf(pdf_path)
 
-
         doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text)
-
 
         logger.info(f"Document classified as: {doc_type}")
         print(f"Document classified as: {doc_type}")
 
         if output_dir:
-            # if not os.path.exists(output_dir):
-            #     os.makedirs(output_dir)
-            # output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_fhir_Patient{i}.json")
-            
-            bundle = run_nhcx_insurance_pipeline(distilled_text, doc_type, selected_other_resources, output_dir=output_dir, pdf_base64=pdf_base64, idx = 0)
+            bundle = run_nhcx_insurance_pipeline(
+                distilled_text, doc_type, selected_other_resources,
+                output_dir=output_dir, pdf_base64=pdf_base64, idx=0,
+                model=model
+            )
             logger.info(f"Successfully processed {filename} and saved to {output_dir}")
         else:
             error_msg = "Output directory must be provided to save the results."
             logger.error(error_msg)
             raise ValueError(error_msg)
 
-
         return bundle
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
 
 @app.post("/pdf2nhcx")
-async def convert_pdf_to_nhcx(file: UploadFile = File(...)):
+async def convert_pdf_to_nhcx(
+    file: UploadFile = File(...),
+    model: str = Form("llama4-scout"),
+    ocr_engine: str = Form("lighton"),
+):
     file.filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {file.filename}")
+    logger.info(f"🤖 Model selected: {model} | 👁 OCR engine: {ocr_engine}")
+    print(f"🤖 Model: {model}  |  👁 OCR: {ocr_engine}")
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
@@ -207,7 +246,7 @@ async def convert_pdf_to_nhcx(file: UploadFile = File(...)):
     
     start_time = time.perf_counter()
     logger.info("Starting get_nhcx_json processing...")
-    bundle = get_nhcx_json(file_path, target_output_dir)
+    bundle = get_nhcx_json(file_path, target_output_dir, model=model)
     end_time = time.perf_counter()
     
     processing_time = round(end_time - start_time, 2)
@@ -220,7 +259,9 @@ async def convert_pdf_to_nhcx(file: UploadFile = File(...)):
         "file_path": file_path,
         "processing_time": f"{processing_time} seconds",
         "bundle": bundle,
-        "bundle_names": ["NHCX Bundle"] if bundle else []
+        "bundle_names": ["NHCX Bundle"] if bundle else [],
+        "model_used": model,
+        "ocr_engine_used": ocr_engine,
     })
 
 @app.post("/validate")

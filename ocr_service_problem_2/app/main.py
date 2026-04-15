@@ -1,7 +1,7 @@
 import os
 import sys
 import argparse
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
@@ -24,7 +24,7 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-def get_abdm_json(pdf_path, output_dir=None):
+def get_abdm_json(pdf_path, output_dir=None, model: str = "llama4-scout"):
     try:
         filename = os.path.basename(pdf_path)
         logger.info(f"Processing {filename}...")
@@ -42,11 +42,11 @@ def get_abdm_json(pdf_path, output_dir=None):
 
             # Save result
             if output_dir:
-                # if not os.path.exists(output_dir):
-                #     os.makedirs(output_dir)
-                # output_path = os.path.join(output_dir, f"{os.path.splitext(filename)[0]}_{doc_type}_fhir_Patient{i}.json")
-                
-                bundle = run_abdm_pipeline(extracted_text, doc_type, selected_other_resources, output_dir=output_dir, pdf_base64=pdf_base64, idx=i)
+                bundle = run_abdm_pipeline(
+                    extracted_text, doc_type, selected_other_resources,
+                    output_dir=output_dir, pdf_base64=pdf_base64, idx=i,
+                    model=model
+                )
                 bundles.append(bundle)
                 doc_types.append(doc_type)
                 logger.info(f"Successfully processed {filename} and saved to {output_dir}")
@@ -91,11 +91,54 @@ def health_check():
             content={"status": "error", "reason": status_code, "service": "ocr-service-problem-2"}
         )
 
+@app.get("/model-health")
+@app.get("/pdf2fhir/model-health")
+def model_health(model: str = "llama4-scout"):
+    """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
+    from utils.llm_requirements import check_llm_health, MODEL_MAP
+    if model not in MODEL_MAP:
+        return JSONResponse(
+            status_code=404,
+            content={"status": "error", "reason": "unknown_model", "model": model}
+        )
+    is_healthy, reason = check_llm_health()
+    if is_healthy:
+        return {"status": "ok", "model": model, "vertex_model": MODEL_MAP[model]}
+    return JSONResponse(
+        status_code=503,
+        content={"status": "error", "reason": reason, "model": model}
+    )
+
+@app.get("/ocr-health")
+@app.get("/pdf2fhir/ocr-health")
+def ocr_health(engine: str = "lighton"):
+    """Check if a specific OCR engine is available."""
+    KNOWN_ENGINES = {"lighton", "suriya", "chandra"}
+    if engine not in KNOWN_ENGINES:
+        return JSONResponse(
+            status_code=404,
+            content={"status": "error", "reason": "unknown_engine", "engine": engine}
+        )
+    try:
+        from docling.document_converter import DocumentConverter  # noqa: F401
+        return {"status": "ok", "engine": engine}
+    except ImportError:
+        return JSONResponse(
+            status_code=503,
+            content={"status": "error", "reason": "docling_unavailable", "engine": engine}
+        )
+
 
 @app.post("/pdf2fhir")
-async def convert_pdf_to_fhir(file: UploadFile = File(...)):
+async def convert_pdf_to_fhir(
+    file: UploadFile = File(...),
+    model: str = Form("llama4-scout"),
+    ocr_engine: str = Form("lighton"),
+):
     file.filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {file.filename}")
+    logger.info(f"🤖 Model selected: {model} | 👁 OCR engine: {ocr_engine}")
+    print(f"🤖 Model: {model}  |  👁 OCR: {ocr_engine}")
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
@@ -118,7 +161,7 @@ async def convert_pdf_to_fhir(file: UploadFile = File(...)):
     
     start_time = time.perf_counter()
     logger.info("Starting get_abdm_json processing...")
-    result = get_abdm_json(file_path, target_output_dir)
+    result = get_abdm_json(file_path, target_output_dir, model=model)
     bundles, doc_types = result if result else ([], [])
     end_time = time.perf_counter()
     
@@ -133,7 +176,9 @@ async def convert_pdf_to_fhir(file: UploadFile = File(...)):
         "processing_time": f"{processing_time} seconds",
         "document_type": ", ".join(doc_types) if doc_types else "Unknown",
         "bundles": bundles,
-        "bundle_names": [f"Bundle {i+1} - {doc_types[i] if i < len(doc_types) else 'Unknown'}" for i in range(len(bundles))]
+        "bundle_names": [f"Bundle {i+1} - {doc_types[i] if i < len(doc_types) else 'Unknown'}" for i in range(len(bundles))],
+        "model_used": model,
+        "ocr_engine_used": ocr_engine,
     })
 
 @app.post("/validate")
