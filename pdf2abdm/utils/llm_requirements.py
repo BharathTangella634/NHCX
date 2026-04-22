@@ -137,7 +137,7 @@ def _get_vertex_token() -> str:
 # ── Model Selection Map ───────────────────────────────────────────────────────
 # Maps frontend selector values → Vertex AI Express model strings
 MODEL_MAP = {
-    "gemma4":           "google/gemma-4-26b-a4b-it-maas",
+    "gemma4":           "publishers/google/models/gemma-4-26b-a4b-it-maas",
     "llama4-scout":     "meta/llama-4-scout-17b-16e-instruct-maas",
     "qwen3":            "qwen/qwen3-next-80b-a3b-instruct-maas",
     "mistral-medium-3": "mistral-ai/mistral-medium-3-maas",
