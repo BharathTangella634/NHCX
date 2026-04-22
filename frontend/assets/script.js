@@ -26,45 +26,46 @@ async function checkAiStatus() {
     const textEl = document.getElementById('aiBadgeText');
 
     // On localhost dev: hit FastAPI ports directly
-    // On production: use the reverse-proxied paths (/pdf2fhir & /pdf2nhcx)
-    //   which are routed by nginx to the backend containers
+    // On production: use the reverse-proxied paths routed by nginx
     const isLocal = window.location.hostname === 'localhost';
-    const health1 = isLocal ? 'http://localhost:8000/health' : `${window.location.origin}/pdf2abdm/health`;
-    const health2 = isLocal ? 'http://localhost:8001/health' : `${window.location.origin}/pdf2nhcx/health`;
+    const base1 = isLocal ? 'http://localhost:8000' : `${window.location.origin}/pdf2abdm`;
+    const base2 = isLocal ? 'http://localhost:8001' : `${window.location.origin}/pdf2nhcx`;
+
+    // Check Gemma4 model-health on both services — this is the authoritative AI signal
+    const url1 = `${base1}/model-health?model=gemma4`;
+    const url2 = `${base2}/model-health?model=gemma4`;
 
     try {
         const [r1, r2] = await Promise.all([
-            fetch(health1, { method: 'GET', signal: AbortSignal.timeout(5000) }),
-            fetch(health2, { method: 'GET', signal: AbortSignal.timeout(5000) })
+            fetch(url1, { method: 'GET', signal: AbortSignal.timeout(8000) }),
+            fetch(url2, { method: 'GET', signal: AbortSignal.timeout(8000) })
         ]);
 
-        // If either service is 503 (auth error) or not 200, AI is considered OFF
         if (r1.ok && r2.ok) {
             badge.classList.remove('ai-badge-off');
             textEl.textContent = 'AI ON';
+            badge.title = 'Gemma 4 is available on both services';
         } else {
-            // Check for specific auth failure reason if r1/r2 provide it
-            let reason = "one or more services down";
+            let reason = 'Gemma4 unavailable on one or more services';
             try {
-                const data1 = !r1.ok ? await r1.json() : {};
-                const data2 = !r2.ok ? await r2.json() : {};
-                if (data1.reason === 'auth_failed' || data2.reason === 'auth_failed') {
-                    reason = "AI Authentication Failed";
-                }
+                const body = !r1.ok ? await r1.json() : await r2.json();
+                if (body.reason === 'auth_failed') reason = 'Vertex AI authentication failed';
+                else if (body.detail)               reason = body.detail;
             } catch(e) {}
-            
             throw new Error(reason);
         }
     } catch (err) {
         badge.classList.add('ai-badge-off');
         textEl.textContent = 'AI OFF';
-        console.warn("AI Status Check failed:", err.message);
+        badge.title = err.message;
+        console.warn('AI Status Check failed:', err.message);
     }
 }
 
-// Run health check on page load
+// Run on page load, then re-check every 60 s
 window.addEventListener('DOMContentLoaded', () => {
     checkAiStatus();
+    setInterval(checkAiStatus, 60000);
 });
 // ────────────────────────────────────────────────────────────────────────────
 
