@@ -1,0 +1,113 @@
+"""
+pdf2abdm/tasks.py — Dedicated Celery background task for ABDM (Clinical) processing.
+
+Flow:
+  1. OCR the PDF (Docling waterfall)
+  2. Classify document type
+  3. Run ABDM pipeline (generates FHIR bundles, uploads each to GCS)
+  4. Store GCS URIs in Redis under key  result:<task_id>  with 24 h TTL
+"""
+
+import os
+import sys
+import asyncio
+import json
+import logging
+
+# Ensure the app root is on the path so sibling imports work inside the worker
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from common.celery_app import celery_app
+
+logger = logging.getLogger(__name__)
+
+RESULT_TTL = int(os.getenv("TASK_RESULT_TTL", 86400))   # 24 h
+
+
+def _get_redis():
+    """Return a redis.Redis client using the same URL as Celery."""
+    import redis as _redis
+    url = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+    return _redis.from_url(url, decode_responses=True)
+
+
+@celery_app.task(bind=True, name="pdf2abdm.tasks.process_abdm_task",
+                 time_limit=1800, soft_time_limit=1740)
+def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
+    """
+    Async Celery task for ABDM FHIR bundle generation.
+    Returns a result dict that is also cached in Redis for /task-result/{task_id}.
+    """
+    task_id = self.request.id
+
+    def update(step: str, progress: int):
+        self.update_state(state="PROGRESS",
+                          meta={"step": step, "progress": progress,
+                                "task_id": task_id})
+
+    try:
+        # ── Step 1: OCR ──────────────────────────────────────────────────────
+        update("OCR", 15)
+        from utils.ocr_engine import extract_text_from_abdm_pdf, classify_document
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        unique_patients_text_list, pdf_base64 = loop.run_until_complete(
+            extract_text_from_abdm_pdf(pdf_path)
+        )
+
+        # ── Step 2: Classify & Extract ───────────────────────────────────────
+        from utils.llm_requirements import run_abdm_pipeline
+        from utils.gcs_storage import upload_json_to_gcs
+
+        bundle_gcs_uris = []
+        bundles = []
+        doc_types = []
+
+        total = len(unique_patients_text_list)
+        for i, extracted_text in enumerate(unique_patients_text_list):
+            progress_pct = 20 + int((i / max(total, 1)) * 70)
+            update(f"LLM Extraction — patient {i+1}/{total}", progress_pct)
+
+            doc_type, must_resources, selected_other_resources = classify_document(extracted_text)
+            logger.info(f"[{task_id}] Patient {i}: {doc_type}")
+
+            bundle = run_abdm_pipeline(
+                extracted_text, doc_type, selected_other_resources,
+                pdf_base64=pdf_base64, idx=i, model=model
+            )
+            bundles.append(bundle)
+            doc_types.append(doc_type)
+
+            # GCS upload is already done inside run_abdm_pipeline;
+            # build the expected URI so we can expose it.
+            filename = f"FHIR_BUNDLE_{doc_type}_Patient_{i}.json"
+            gcs_uri = f"json_output/abdm/{filename}"
+            bundle_gcs_uris.append(gcs_uri)
+
+        # ── Step 3: Store result in Redis ────────────────────────────────────
+        update("Storing results", 95)
+        result_payload = {
+            "status": "completed",
+            "task_id": task_id,
+            "doc_types": doc_types,
+            "bundle_count": len(bundles),
+            "bundles": bundles,
+            "bundle_gcs_uris": bundle_gcs_uris,
+            "model_used": model,
+        }
+        r = _get_redis()
+        r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(result_payload))
+
+        update("Completed", 100)
+        logger.info(f"[{task_id}] ABDM task completed — {len(bundles)} bundle(s)")
+        return result_payload
+
+    except Exception as exc:
+        logger.exception(f"[{task_id}] ABDM task failed: {exc}")
+        error_payload = {"status": "failed", "task_id": task_id, "error": str(exc)}
+        try:
+            r = _get_redis()
+            r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(error_payload))
+        except Exception:
+            pass
+        raise

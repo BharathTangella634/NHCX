@@ -1,0 +1,476 @@
+{
+  "info": {
+    "name": "NHCX / ABDM Processing API",
+    "_postman_id": "nhcx-abdm-v2",
+    "description": "API collection for the NHCX Hackathon processing pipeline.\n\n## Workflow\n1. **Submit** a PDF → receive `task_id` (< 1 s)\n2. **Poll** `GET /task-status/{task_id}` every 5–10 s until `status == completed`\n3. **Fetch** result from `GET /task-result/{task_id}`\n\n## Environments\nImport `NHCX_ABDM_Environments.postman_environment.json` and select either **localhost** or **Production**.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "abdm_base", "value": "http://localhost:8000" },
+    { "key": "nhcx_base", "value": "http://localhost:8001" }
+  ],
+  "item": [
+
+    {
+      "name": "🏥 ABDM — Clinical Documents (port 8000)",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{abdm_base}}/health", "host": ["{{abdm_base}}"], "path": ["health"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Service is pdf2abdm', () => {",
+                  "  const b = pm.response.json();",
+                  "  pm.expect(b.status).to.eql('ok');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit PDF (async upload)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": "", "description": "Select a clinical PDF (max 25 MB / 100 pages)" },
+                { "key": "model", "value": "gemma4", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{abdm_base}}/pdf2abdm/submit", "host": ["{{abdm_base}}"], "path": ["pdf2abdm", "submit"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 202 Accepted', () => pm.response.to.have.status(202));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has task_id', () => pm.expect(b.task_id).to.be.a('string').and.not.empty);",
+                  "pm.test('Has poll_url', () => pm.expect(b.poll_url).to.be.a('string'));",
+                  "pm.test('Has result_url', () => pm.expect(b.result_url).to.be.a('string'));",
+                  "// Save task_id for subsequent requests",
+                  "pm.environment.set('abdm_task_id', b.task_id);",
+                  "pm.environment.set('abdm_result_url', b.result_url);",
+                  "console.log('ABDM task queued:', b.task_id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit via File Path (async url)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_path\": \"/app/pdf_uploads/abdm_diagnostic_report.pdf\",\n  \"model\": \"gemma4\",\n  \"ocr_engine\": \"auto\"\n}"
+            },
+            "url": { "raw": "{{abdm_base}}/pdf2abdm/submit-url", "host": ["{{abdm_base}}"], "path": ["pdf2abdm", "submit-url"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 202 Accepted', () => pm.response.to.have.status(202));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has task_id', () => pm.expect(b.task_id).to.be.a('string').and.not.empty);",
+                  "pm.environment.set('abdm_task_id', b.task_id);",
+                  "pm.environment.set('abdm_result_url', b.result_url);",
+                  "console.log('ABDM task queued (url):', b.task_id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Poll Task Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{abdm_base}}/task-status/{{abdm_task_id}}",
+              "host": ["{{abdm_base}}"],
+              "path": ["task-status", "{{abdm_task_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const taskId = pm.environment.get('abdm_task_id');",
+                  "if (!taskId) { console.warn('No abdm_task_id set — run Submit first.'); }"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has status field', () => pm.expect(b.status).to.be.a('string'));",
+                  "console.log('Task status:', b.status, '| Step:', b.step, '| Progress:', b.progress + '%');",
+                  "if (b.status === 'completed') {",
+                  "  pm.test('Has result_url when completed', () => pm.expect(b.result_url).to.be.a('string'));",
+                  "  console.log('✅ Task complete! Fetch result from:', b.result_url);",
+                  "} else if (b.status === 'failed') {",
+                  "  pm.test('Task should not have failed', () => pm.expect(b.status).to.not.eql('failed'));",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Fetch Task Result",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{abdm_base}}/task-result/{{abdm_task_id}}",
+              "host": ["{{abdm_base}}"],
+              "path": ["task-result", "{{abdm_task_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const taskId = pm.environment.get('abdm_task_id');",
+                  "if (!taskId) { console.warn('No abdm_task_id set — run Submit first.'); }"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const code = pm.response.code;",
+                  "if (code === 202) {",
+                  "  console.log('⏳ Still processing — try again in 10 s');",
+                  "  pm.test('Still processing (202 expected)', () => pm.expect(code).to.eql(202));",
+                  "} else if (code === 200) {",
+                  "  pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "  const b = pm.response.json();",
+                  "  pm.test('Result status is completed', () => pm.expect(b.status).to.eql('completed'));",
+                  "  pm.test('Has bundles array', () => pm.expect(b.bundles).to.be.an('array').with.length.above(0));",
+                  "  pm.test('First bundle is FHIR Bundle', () => {",
+                  "    pm.expect(b.bundles[0].resourceType).to.eql('Bundle');",
+                  "  });",
+                  "  pm.test('Bundle has entries', () => {",
+                  "    pm.expect(b.bundles[0].entry).to.be.an('array').with.length.above(0);",
+                  "  });",
+                  "  pm.environment.set('abdm_result', JSON.stringify(b.bundles[0]));",
+                  "  console.log('✅ Got', b.bundles.length, 'bundle(s), doc types:', b.doc_types);",
+                  "} else {",
+                  "  pm.test('Unexpected status ' + code, () => false);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit PDF (sync — legacy)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": "", "description": "⚠️ May timeout for large files. Use /pdf2abdm/submit instead." },
+                { "key": "model", "value": "gemma4", "type": "text" },
+                { "key": "ocr_engine", "value": "auto", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{abdm_base}}/pdf2abdm", "host": ["{{abdm_base}}"], "path": ["pdf2abdm"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has bundles', () => pm.expect(b.bundles).to.be.an('array'));",
+                  "pm.test('Has processing_time', () => pm.expect(b.processing_time).to.be.a('string'));",
+                  "console.log('Sync result: bundles=', b.bundles?.length, 'time=', b.processing_time);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "🏦 NHCX — Insurance Documents (port 8001)",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{nhcx_base}}/health", "host": ["{{nhcx_base}}"], "path": ["health"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Service is pdf2nhcx', () => {",
+                  "  const b = pm.response.json();",
+                  "  pm.expect(b.status).to.eql('ok');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit PDF (async upload)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": "", "description": "Select an insurance policy PDF (max 25 MB / 100 pages)" },
+                { "key": "model", "value": "gemma4", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{nhcx_base}}/pdf2nhcx/submit", "host": ["{{nhcx_base}}"], "path": ["pdf2nhcx", "submit"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 202 Accepted', () => pm.response.to.have.status(202));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has task_id', () => pm.expect(b.task_id).to.be.a('string').and.not.empty);",
+                  "pm.environment.set('nhcx_task_id', b.task_id);",
+                  "pm.environment.set('nhcx_result_url', b.result_url);",
+                  "console.log('NHCX task queued:', b.task_id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit via File Path (async url)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_path\": \"/app/pdf_uploads/nhcx_demo_doc.pdf\",\n  \"model\": \"gemma4\",\n  \"ocr_engine\": \"auto\"\n}"
+            },
+            "url": { "raw": "{{nhcx_base}}/pdf2nhcx/submit-url", "host": ["{{nhcx_base}}"], "path": ["pdf2nhcx", "submit-url"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 202 Accepted', () => pm.response.to.have.status(202));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has task_id', () => pm.expect(b.task_id).to.be.a('string').and.not.empty);",
+                  "pm.environment.set('nhcx_task_id', b.task_id);",
+                  "pm.environment.set('nhcx_result_url', b.result_url);",
+                  "console.log('NHCX task queued (url):', b.task_id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Poll Task Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{nhcx_base}}/task-status/{{nhcx_task_id}}",
+              "host": ["{{nhcx_base}}"],
+              "path": ["task-status", "{{nhcx_task_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const taskId = pm.environment.get('nhcx_task_id');",
+                  "if (!taskId) { console.warn('No nhcx_task_id set — run Submit first.'); }"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has status field', () => pm.expect(b.status).to.be.a('string'));",
+                  "console.log('Task status:', b.status, '| Step:', b.step, '| Progress:', b.progress + '%');",
+                  "if (b.status === 'completed') {",
+                  "  console.log('✅ Task complete! Fetch result from:', b.result_url);",
+                  "} else if (b.status === 'failed') {",
+                  "  pm.test('Task should not have failed', () => pm.expect(b.status).to.not.eql('failed'));",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Fetch Task Result",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{nhcx_base}}/task-result/{{nhcx_task_id}}",
+              "host": ["{{nhcx_base}}"],
+              "path": ["task-result", "{{nhcx_task_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const taskId = pm.environment.get('nhcx_task_id');",
+                  "if (!taskId) { console.warn('No nhcx_task_id set — run Submit first.'); }"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const code = pm.response.code;",
+                  "if (code === 202) {",
+                  "  console.log('⏳ Still processing — try again in 10 s');",
+                  "  pm.test('Still processing (202 expected)', () => pm.expect(code).to.eql(202));",
+                  "} else if (code === 200) {",
+                  "  pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "  const b = pm.response.json();",
+                  "  pm.test('Result status is completed', () => pm.expect(b.status).to.eql('completed'));",
+                  "  pm.test('Has bundle object', () => pm.expect(b.bundle).to.be.an('object'));",
+                  "  pm.test('Bundle is FHIR Bundle', () => {",
+                  "    pm.expect(b.bundle.resourceType).to.eql('Bundle');",
+                  "  });",
+                  "  pm.test('Bundle has entries', () => {",
+                  "    pm.expect(b.bundle.entry).to.be.an('array').with.length.above(0);",
+                  "  });",
+                  "  pm.environment.set('nhcx_result', JSON.stringify(b.bundle));",
+                  "  console.log('✅ Got NHCX bundle, doc type:', b.doc_type);",
+                  "} else {",
+                  "  pm.test('Unexpected status ' + code, () => false);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit PDF (sync — legacy)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file", "type": "file", "src": "", "description": "⚠️ May timeout for large files. Use /pdf2nhcx/submit instead." },
+                { "key": "model", "value": "gemma4", "type": "text" },
+                { "key": "ocr_engine", "value": "auto", "type": "text" }
+              ]
+            },
+            "url": { "raw": "{{nhcx_base}}/pdf2nhcx", "host": ["{{nhcx_base}}"], "path": ["pdf2nhcx"] }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
+                  "const b = pm.response.json();",
+                  "pm.test('Has bundle', () => pm.expect(b.bundle).to.be.an('object'));",
+                  "pm.test('Has processing_time', () => pm.expect(b.processing_time).to.be.a('string'));",
+                  "console.log('Sync result: doc_type=', b.document_type, 'time=', b.processing_time);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "⚙️ System Health",
+      "item": [
+        {
+          "name": "ABDM — Health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{abdm_base}}/health", "host": ["{{abdm_base}}"], "path": ["health"] }
+          }
+        },
+        {
+          "name": "NHCX — Health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{nhcx_base}}/health", "host": ["{{nhcx_base}}"], "path": ["health"] }
+          }
+        },
+        {
+          "name": "ABDM — OpenAPI Docs",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{abdm_base}}/docs", "host": ["{{abdm_base}}"], "path": ["docs"] }
+          }
+        },
+        {
+          "name": "NHCX — OpenAPI Docs",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{nhcx_base}}/docs", "host": ["{{nhcx_base}}"], "path": ["docs"] }
+          }
+        }
+      ]
+    }
+  ]
+}

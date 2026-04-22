@@ -166,7 +166,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from common.tasks import process_document_task
+from pdf2nhcx.tasks import process_nhcx_task
 from celery.result import AsyncResult
 
 
@@ -353,37 +353,145 @@ async def convert_pdf_to_nhcx_url(request: LocalFileRequest):
         "ocr_engine_used": ocr_engine,
     })
 
-@app.post("/pdf2nhcx-async", tags=["Processing"], summary="Submit PDF for async processing")
-async def convert_pdf_to_nhcx_async(
+# ── Async Submit: file upload ────────────────────────────────────────────────
+@app.post("/pdf2nhcx/submit", tags=["Processing"],
+          summary="Submit PDF upload for async NHCX processing",
+          status_code=202)
+async def submit_nhcx(
     file: UploadFile = File(...),
     model: str = Form("gemma4"),
 ):
     """
-    Submits a PDF for asynchronous processing.
-    Returns a task ID that can be used to poll for results.
+    Submit a PDF for background processing. Returns a `task_id` immediately.
+    Poll `GET /task-status/{task_id}` for progress.
+    Fetch the result from `GET /task-result/{task_id}` when completed.
+    Typical processing time: 3–8 minutes.
     """
     file.filename = file.filename.replace(" ", "_")
     file_path = os.path.join(UPLOAD_DIR, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-    
-    task = process_document_task.delay(file_path, model=model)
-    return {"task_id": task.id, "status": "queued"}
 
-@app.get("/task-status/{task_id}", tags=["Processing"], summary="Get status of an async task")
+    validate_pdf_upload(file_path)
+    task = process_nhcx_task.delay(file_path, model=model)
+    logger.info(f"NHCX task queued: {task.id} for {file.filename}")
+    return JSONResponse(status_code=202, content={
+        "task_id": task.id,
+        "status": "queued",
+        "poll_url": f"/task-status/{task.id}",
+        "result_url": f"/task-result/{task.id}",
+        "message": "Processing started. Poll poll_url every 5–10 s for updates.",
+    })
+
+
+# ── Async Submit: local file path ────────────────────────────────────────────
+@app.post("/pdf2nhcx/submit-url", tags=["Processing"],
+          summary="Submit local PDF path for async NHCX processing",
+          status_code=202)
+async def submit_nhcx_url(request: LocalFileRequest):
+    """
+    Same as /pdf2nhcx/submit but accepts a JSON body with a `file_path` pointing
+    to a file already accessible inside the container (e.g. mounted volume).
+    """
+    file_path = request.file_path
+    if not os.path.exists(file_path):
+        return JSONResponse(status_code=404,
+                            content={"message": f"File not found: {file_path}"})
+    validate_pdf_upload(file_path)
+    task = process_nhcx_task.delay(file_path, model=request.model)
+    logger.info(f"NHCX task queued (url): {task.id} for {file_path}")
+    return JSONResponse(status_code=202, content={
+        "task_id": task.id,
+        "status": "queued",
+        "poll_url": f"/task-status/{task.id}",
+        "result_url": f"/task-result/{task.id}",
+        "message": "Processing started. Poll poll_url every 5–10 s for updates.",
+    })
+
+
+# ── Task Status (enhanced) ────────────────────────────────────────────────────
+@app.get("/task-status/{task_id}", tags=["Processing"],
+         summary="Poll the status of a submitted task")
 async def get_task_status(task_id: str):
     """
-    Poll this endpoint with the task ID to check progress and get final results.
+    Returns the current status of a background task.
+
+    States:
+    - `queued`    — task is waiting for a worker
+    - `STARTED`   — worker picked it up
+    - `PROGRESS`  — running (includes step + progress 0–100)
+    - `completed` — finished; call GET /task-result/{task_id}
+    - `failed`    — task raised an exception
     """
-    res = AsyncResult(task_id)
-    if res.ready():
-        result = res.result
-        return {"task_id": task_id, "status": "completed", "result": result}
-    
-    # Check for progress updates
+    res = AsyncResult(task_id, app=process_nhcx_task.app)
     state = res.state
-    info = res.info if isinstance(res.info, dict) else {"progress": 0, "step": "Pending"}
-    return {"task_id": task_id, "status": state, "info": info}
+
+    if state == "SUCCESS" or (res.ready() and not res.failed()):
+        return JSONResponse(content={
+            "task_id": task_id,
+            "status": "completed",
+            "result_url": f"/task-result/{task_id}",
+        })
+
+    if res.failed():
+        return JSONResponse(status_code=200, content={
+            "task_id": task_id,
+            "status": "failed",
+            "error": str(res.result),
+        })
+
+    info = res.info if isinstance(res.info, dict) else {}
+    return JSONResponse(content={
+        "task_id": task_id,
+        "status": state,
+        "step": info.get("step", "Pending"),
+        "progress": info.get("progress", 0),
+        "result_url": f"/task-result/{task_id}",
+    })
+
+
+# ── Task Result ───────────────────────────────────────────────────────────────
+@app.get("/task-result/{task_id}", tags=["Processing"],
+         summary="Retrieve the result of a completed task")
+async def get_task_result(task_id: str):
+    """
+    Returns 200 + bundle JSON if the task is complete.
+    Returns 202 if still processing.
+    Returns 404 if task is unknown or result has expired (24 h TTL).
+    """
+    import redis as _redis
+    r = _redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"),
+                        decode_responses=True)
+    raw = r.get(f"result:{task_id}")
+    if raw is None:
+        res = AsyncResult(task_id, app=process_nhcx_task.app)
+        if not res.ready():
+            return JSONResponse(status_code=202, content={
+                "task_id": task_id, "status": "processing",
+                "message": "Task is still running. Try again shortly.",
+            })
+        return JSONResponse(status_code=404, content={
+            "task_id": task_id,
+            "message": "Result not found. It may have expired (24 h TTL) or the task ID is invalid.",
+        })
+
+    import json as _json
+    payload = _json.loads(raw)
+    if payload.get("status") == "failed":
+        return JSONResponse(status_code=500, content=payload)
+    return JSONResponse(content=payload)
+
+
+# ── Legacy async endpoint (kept for backward compat) ─────────────────────────
+@app.post("/pdf2nhcx-async", tags=["Processing"],
+          summary="[DEPRECATED] Use /pdf2nhcx/submit instead",
+          deprecated=True)
+async def convert_pdf_to_nhcx_async_legacy(
+    file: UploadFile = File(...),
+    model: str = Form("gemma4"),
+):
+    """Deprecated. Use POST /pdf2nhcx/submit."""
+    return await submit_nhcx(file=file, model=model)
 
 
 @app.post("/validate")
