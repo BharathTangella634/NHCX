@@ -171,9 +171,6 @@ from celery.result import AsyncResult
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Map UPLOAD_DIR to /app/pdf_uploads if in Docker, else relative to app
-UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.get("/health", tags=["Status"], summary="Check API health")
 @app.get("/pdf2nhcx/health", tags=["Status"], include_in_schema=False)
@@ -271,21 +268,28 @@ async def convert_pdf_to_nhcx(
     model: str = Form("gemma4"),
     ocr_engine: str = Form("auto"),
 ):
-    file.filename = file.filename.replace(" ", "_")
-    logger.info(f"Received PDF upload: {file.filename}")
-    logger.info(f"🤖 Model selected: {model} | 👁 OCR engine: {ocr_engine}")
-    print(f"🤖 Model: {model}  |  👁 OCR: {ocr_engine}")
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    logger.info(f"Saved uploaded PDF to {file_path}")
+    filename = file.filename.replace(" ", "_")
+    logger.info(f"Received PDF upload: {filename}")
+
+    # Stream PDF bytes directly to GCS (no local file written)
+    file_bytes = await file.read()
+    from utils.gcs_storage import upload_pdf_from_bytes
+    gcs_uri = upload_pdf_from_bytes(file_bytes, filename, "pdf_uploads/nhcx")
+    if gcs_uri:
+        logger.info(f"PDF uploaded to GCS: {gcs_uri}")
+
+    # Temp file for Celery task (needs a file path for OCR)
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False, prefix=filename + "_") as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
 
     # ── Validate file size + page count ─────────────────────────────────
     validate_pdf_upload(file_path)
 
     # ── Upload PDF to GCS ──────────────────────────────────────────────────
     from utils.gcs_storage import upload_pdf_to_gcs
-    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2fhir/PDF2NHCX")
+    gcs_uri = upload_pdf_to_gcs(file_path, "pdf_uploads/nhcx")
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
@@ -328,7 +332,7 @@ async def convert_pdf_to_nhcx_url(request: LocalFileRequest):
 
     # ── Upload PDF to GCS ──────────────────────────────────────────────────
     from utils.gcs_storage import upload_pdf_to_gcs
-    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2fhir/PDF2NHCX")
+    gcs_uri = upload_pdf_to_gcs(file_path, "pdf_uploads/nhcx")
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
@@ -367,20 +371,44 @@ async def submit_nhcx(
     Fetch the result from `GET /task-result/{task_id}` when completed.
     Typical processing time: 3–8 minutes.
     """
-    file.filename = file.filename.replace(" ", "_")
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    filename = file.filename.replace(" ", "_")
+    logger.info(f"Received PDF upload: {filename}")
 
-    validate_pdf_upload(file_path)
-    task = process_nhcx_task.delay(file_path, model=model)
-    logger.info(f"NHCX task queued: {task.id} for {file.filename}")
-    return JSONResponse(status_code=202, content={
-        "task_id": task.id,
-        "status": "queued",
-        "poll_url": f"/task-status/{task.id}",
-        "result_url": f"/task-result/{task.id}",
-        "message": "Processing started. Poll poll_url every 5–10 s for updates.",
+    # Read bytes and upload directly to GCS (no local file written)
+    file_bytes = await file.read()
+    from utils.gcs_storage import upload_pdf_from_bytes
+    gcs_uri = upload_pdf_from_bytes(file_bytes, filename, "pdf_uploads/nhcx")
+    if gcs_uri:
+        logger.info(f"PDF uploaded to GCS: {gcs_uri}")
+
+    # Temp file for OCR engine (needs a path, auto-deleted after)
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
+
+    try:
+        validate_pdf_upload(tmp_path)
+        start_time = time.perf_counter()
+        bundle = await get_nhcx_json(tmp_path, model=model)
+        processing_time = round(time.perf_counter() - start_time, 2)
+    finally:
+        os.unlink(tmp_path)
+
+    logger.info(f"get_nhcx_json execution time: {processing_time} seconds")
+
+    if bundle is None:
+        return JSONResponse(status_code=500, content={"message": "NHCX processing failed."})
+
+    return JSONResponse(content={
+        "message": "File processed successfully",
+        "gcs_uri": gcs_uri,
+        "processing_time": f"{processing_time} seconds",
+        "document_type": bundle.get("meta", {}).get("tag", [{}])[0].get("display", "Unknown") if bundle else "Unknown",
+        "bundle": bundle,
+        "bundle_names": ["NHCX Bundle"],
+        "model_used": model,
+        "ocr_engine_used": ocr_engine,
     })
 
 

@@ -118,11 +118,7 @@ app.add_middleware(
 from pdf2abdm.tasks import process_abdm_task
 from celery.result import AsyncResult
 
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Map UPLOAD_DIR to /app/pdf_uploads if in Docker, else relative to app
-UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
-os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.get("/health", tags=["Status"], summary="Check API health")
 @app.get("/pdf2abdm/health", tags=["Status"], include_in_schema=False)
@@ -185,38 +181,35 @@ async def convert_pdf_to_abdm(
     model: str = Form("gemma4"),
     ocr_engine: str = Form("auto"),
 ):
-    file.filename = file.filename.replace(" ", "_")
-    logger.info(f"Received PDF upload: {file.filename}")
-    logger.info(f"🤖 Model selected: {model} | 👁 OCR engine: {ocr_engine}")
-    print(f"🤖 Model: {model}  |  👁 OCR: {ocr_engine}")
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-    logger.info(f"Saved uploaded PDF to {file_path}")
+    filename = file.filename.replace(" ", "_")
+    logger.info(f"Received PDF upload: {filename}")
 
-    # ── Validate file size + page count ─────────────────────────────────
-    validate_pdf_upload(file_path)
-
-    # ── Upload PDF to GCS ──────────────────────────────────────────────────
-    from utils.gcs_storage import upload_pdf_to_gcs
-    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2abdm/PDF2ABDM")
+    # Read bytes and upload directly to GCS (no local file written)
+    file_bytes = await file.read()
+    from utils.gcs_storage import upload_pdf_from_bytes
+    gcs_uri = upload_pdf_from_bytes(file_bytes, filename, "pdf_uploads/abdm")
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
-    # ───────────────────────────────────────────────────────────────────────
-    start_time = time.perf_counter()
-    logger.info("Starting get_abdm_json processing...")
-    result = await get_abdm_json(file_path, model=model)
-    bundles, doc_types = result if result else ([], [])
-    end_time = time.perf_counter()
-    
-    processing_time = round(end_time - start_time, 2)
-    
+
+    # Temp file for OCR engine (needs a path, auto-deleted after)
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
+
+    try:
+        validate_pdf_upload(tmp_path)
+        start_time = time.perf_counter()
+        result = await get_abdm_json(tmp_path, model=model)
+        bundles, doc_types = result if result else ([], [])
+        processing_time = round(time.perf_counter() - start_time, 2)
+    finally:
+        os.unlink(tmp_path)
+
     logger.info(f"get_abdm_json execution time: {processing_time} seconds")
-    print(f"\n⏱ get_abdm_json execution time: {processing_time} seconds")
-    
     return JSONResponse(content={
-        "message": "File uploaded successfully for FHIR processing",
-        "file_path": file_path,
+        "message": "File processed successfully",
+        "gcs_uri": gcs_uri,
         "processing_time": f"{processing_time} seconds",
         "document_type": ", ".join(doc_types) if doc_types else "Unknown",
         "bundles": bundles,
@@ -235,32 +228,23 @@ async def convert_pdf_to_abdm_url(request: LocalFileRequest):
         return JSONResponse(status_code=404, content={"message": f"File not found: {file_path}"})
 
     logger.info(f"Received local PDF request for: {file_path}")
-    logger.info(f"🤖 Model selected: {model} | 👁 OCR engine: {ocr_engine}")
-    print(f"🤖 Model: {model}  |  👁 OCR: {ocr_engine}")
-
-    # ── Validate file size + page count ─────────────────────────────────
     validate_pdf_upload(file_path)
 
-    # ── Upload PDF to GCS ──────────────────────────────────────────────────
+    # Upload PDF to GCS (file is from mounted volume, no extra VM copy)
     from utils.gcs_storage import upload_pdf_to_gcs
-    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2abdm/PDF2ABDM")
+    gcs_uri = upload_pdf_to_gcs(file_path, "pdf_uploads/abdm")
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
-    # ───────────────────────────────────────────────────────────────────────
+
     start_time = time.perf_counter()
-    logger.info("Starting get_abdm_json processing...")
     result = await get_abdm_json(file_path, model=model)
     bundles, doc_types = result if result else ([], [])
-    end_time = time.perf_counter()
-    
-    processing_time = round(end_time - start_time, 2)
-    
+    processing_time = round(time.perf_counter() - start_time, 2)
+
     logger.info(f"get_abdm_json execution time: {processing_time} seconds")
-    print(f"\n⏱ get_abdm_json execution time: {processing_time} seconds")
-    
     return JSONResponse(content={
-        "message": "Local file processed successfully for FHIR processing",
-        "file_path": file_path,
+        "message": "Local file processed successfully",
+        "gcs_uri": gcs_uri,
         "processing_time": f"{processing_time} seconds",
         "document_type": ", ".join(doc_types) if doc_types else "Unknown",
         "bundles": bundles,
@@ -283,17 +267,28 @@ async def submit_abdm(
     Fetch the result from `GET /task-result/{task_id}` when completed.
     Typical processing time: 3–8 minutes.
     """
-    file.filename = file.filename.replace(" ", "_")
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    filename = file.filename.replace(" ", "_")
 
-    validate_pdf_upload(file_path)
-    task = process_abdm_task.delay(file_path, model=model)
-    logger.info(f"ABDM task queued: {task.id} for {file.filename}")
+    # ── Stream PDF bytes directly to GCS (no local file written) ─────────
+    file_bytes = await file.read()
+    from utils.gcs_storage import upload_pdf_from_bytes
+    gcs_uri = upload_pdf_from_bytes(file_bytes, filename, "pdf_uploads/abdm")
+    if gcs_uri:
+        logger.info(f"PDF uploaded to GCS: {gcs_uri}")
+
+    # ── Write temp file for Celery task (needs a file path for OCR) ───────
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False, prefix=filename + "_") as tmp:
+        tmp.write(file_bytes)
+        tmp_path = tmp.name
+
+    validate_pdf_upload(tmp_path)
+    task = process_abdm_task.delay(tmp_path, model=model)
+    logger.info(f"ABDM task queued: {task.id} for {filename}")
     return JSONResponse(status_code=202, content={
         "task_id": task.id,
         "status": "queued",
+        "gcs_pdf_uri": gcs_uri,
         "poll_url": f"/task-status/{task.id}",
         "result_url": f"/task-result/{task.id}",
         "message": "Processing started. Poll poll_url every 5–10 s for updates.",

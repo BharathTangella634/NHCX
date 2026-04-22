@@ -1,6 +1,13 @@
 """
 gcs_storage.py — GCS upload utility for NHCX Hackathon services
 
+GCS folder layout (bucket: tanuh-bcd-bucket)
+─────────────────────────────────────────────
+  pdf_uploads/abdm/<filename>.pdf    ← uploaded PDFs (clinical)
+  pdf_uploads/nhcx/<filename>.pdf    ← uploaded PDFs (insurance)
+  json_output/abdm/<filename>.json   ← ABDM FHIR bundles
+  json_output/nhcx/<filename>.json   ← NHCX insurance bundles
+
 Auth priority:
   1. GCS_CREDENTIALS_JSON env var → dedicated SA for GCS (tanuh-bcd-application2)
   2. GOOGLE_APPLICATION_CREDENTIALS → shared SA or ADC
@@ -19,44 +26,70 @@ GCS_CREDENTIALS_JSON = os.getenv("GCS_CREDENTIALS_JSON", "")   # dedicated GCS S
 GOOGLE_CREDENTIALS   = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "")
 
 
-def upload_pdf_to_gcs(local_file_path: str, gcs_folder: str) -> str | None:
+def _get_gcs_client():
+    """Return an authenticated GCS client."""
+    from google.cloud import storage as gcs
+    if GCS_CREDENTIALS_JSON and os.path.isfile(GCS_CREDENTIALS_JSON):
+        logger.info(f"GCS: using dedicated GCS SA ({GCS_CREDENTIALS_JSON})")
+        return gcs.Client.from_service_account_json(GCS_CREDENTIALS_JSON)
+    if GOOGLE_CREDENTIALS and os.path.isfile(GOOGLE_CREDENTIALS):
+        logger.info(f"GCS: using GOOGLE_APPLICATION_CREDENTIALS ({GOOGLE_CREDENTIALS})")
+        return gcs.Client.from_service_account_json(GOOGLE_CREDENTIALS)
+    logger.info("GCS: using Application Default Credentials (ADC)")
+    return gcs.Client()
+
+
+# ── PDF uploads ───────────────────────────────────────────────────────────────
+
+def upload_pdf_from_bytes(file_bytes: bytes, filename: str, gcs_folder: str) -> str | None:
     """
-    Upload a PDF file to GCS.
+    Upload a PDF from in-memory bytes to GCS. No local file is written.
 
     Args:
-        local_file_path: Absolute path to the local PDF file.
-        gcs_folder:      Destination folder inside the bucket
-                         e.g. 'pdf2fhir/PDF2ABDM' or 'pdf2fhir/PDF2NHCX'.
+        file_bytes: Raw bytes of the PDF.
+        filename:   Destination filename inside the bucket folder.
+        gcs_folder: e.g. 'pdf_uploads/abdm' or 'pdf_uploads/nhcx'.
 
     Returns:
         GCS URI string, or None if upload failed (non-fatal).
     """
     try:
-        from google.cloud import storage as gcs
+        client    = _get_gcs_client()
+        bucket    = client.bucket(GCS_BUCKET)
+        blob_name = f"{gcs_folder.rstrip('/')}/{filename}"
+        blob      = bucket.blob(blob_name)
+        blob.upload_from_string(file_bytes, content_type="application/pdf")
+        gcs_uri = f"gs://{GCS_BUCKET}/{blob_name}"
+        logger.info(f"GCS PDF upload successful: {gcs_uri}")
+        return gcs_uri
+    except ImportError:
+        logger.warning("google-cloud-storage not installed — skipping GCS PDF upload")
+        return None
+    except Exception as e:
+        logger.warning(f"GCS PDF upload failed (non-fatal): {e}")
+        return None
 
-        # Priority 1: dedicated GCS service account JSON
-        if GCS_CREDENTIALS_JSON and os.path.isfile(GCS_CREDENTIALS_JSON):
-            client = gcs.Client.from_service_account_json(GCS_CREDENTIALS_JSON)
-            logger.info(f"GCS: using dedicated GCS service account ({GCS_CREDENTIALS_JSON})")
-        # Priority 2: shared GOOGLE_APPLICATION_CREDENTIALS
-        elif GOOGLE_CREDENTIALS and os.path.isfile(GOOGLE_CREDENTIALS):
-            client = gcs.Client.from_service_account_json(GOOGLE_CREDENTIALS)
-            logger.info(f"GCS: using GOOGLE_APPLICATION_CREDENTIALS ({GOOGLE_CREDENTIALS})")
-        # Priority 3: ADC (GCP metadata server)
-        else:
-            client = gcs.Client()
-            logger.info("GCS: using Application Default Credentials (ADC)")
 
+def upload_pdf_to_gcs(local_file_path: str, gcs_folder: str) -> str | None:
+    """
+    Upload a PDF from a local path to GCS.
+    Kept for backward compat (used by pdf2abdmurl / pdf2nhcxurl which receive
+    a path to a pre-existing file on the mounted volume).
+
+    GCS folder convention:
+        pdf_uploads/abdm/   for clinical documents
+        pdf_uploads/nhcx/   for insurance documents
+    """
+    try:
+        client    = _get_gcs_client()
         bucket    = client.bucket(GCS_BUCKET)
         filename  = os.path.basename(local_file_path)
         blob_name = f"{gcs_folder.rstrip('/')}/{filename}"
         blob      = bucket.blob(blob_name)
-
         blob.upload_from_filename(local_file_path, content_type="application/pdf")
         gcs_uri = f"gs://{GCS_BUCKET}/{blob_name}"
-        logger.info(f"GCS upload successful: {gcs_uri}")
+        logger.info(f"GCS PDF upload successful: {gcs_uri}")
         return gcs_uri
-
     except ImportError:
         logger.warning("google-cloud-storage not installed — skipping GCS upload")
         return None
@@ -64,39 +97,31 @@ def upload_pdf_to_gcs(local_file_path: str, gcs_folder: str) -> str | None:
         logger.warning(f"GCS upload failed (non-fatal): {e}")
         return None
 
+
+# ── JSON uploads ──────────────────────────────────────────────────────────────
+
 def upload_json_to_gcs(json_data: dict, gcs_folder: str, filename: str) -> str | None:
     """
-    Upload a JSON dictionary to GCS as a text file.
+    Upload a JSON dictionary to GCS directly from memory. No local file is written.
+
+    GCS folder convention:
+        json_output/abdm/   for ABDM FHIR bundles
+        json_output/nhcx/   for NHCX insurance bundles
 
     Args:
-        json_data:  The Python dictionary to save.
+        json_data:  The Python dictionary to serialise and save.
         gcs_folder: Destination folder inside the bucket.
-        filename:   The filename to save as (e.g., 'bundle.json').
+        filename:   The filename to save as (e.g. 'bundle.json').
 
     Returns:
         GCS URI string, or None if upload failed.
     """
     try:
-        from google.cloud import storage as gcs
         import json
-
-        # Priority 1: dedicated GCS service account JSON
-        if GCS_CREDENTIALS_JSON and os.path.isfile(GCS_CREDENTIALS_JSON):
-            client = gcs.Client.from_service_account_json(GCS_CREDENTIALS_JSON)
-            logger.info(f"GCS JSON: using dedicated GCS service account ({GCS_CREDENTIALS_JSON})")
-        # Priority 2: shared GOOGLE_APPLICATION_CREDENTIALS
-        elif GOOGLE_CREDENTIALS and os.path.isfile(GOOGLE_CREDENTIALS):
-            client = gcs.Client.from_service_account_json(GOOGLE_CREDENTIALS)
-            logger.info(f"GCS JSON: using GOOGLE_APPLICATION_CREDENTIALS ({GOOGLE_CREDENTIALS})")
-        # Priority 3: ADC (GCP metadata server)
-        else:
-            client = gcs.Client()
-            logger.info("GCS JSON: using Application Default Credentials (ADC)")
-
+        client    = _get_gcs_client()
         bucket    = client.bucket(GCS_BUCKET)
         blob_name = f"{gcs_folder.rstrip('/')}/{filename}"
         blob      = bucket.blob(blob_name)
-
         blob.upload_from_string(
             data=json.dumps(json_data, indent=2),
             content_type="application/json"
@@ -104,7 +129,6 @@ def upload_json_to_gcs(json_data: dict, gcs_folder: str, filename: str) -> str |
         gcs_uri = f"gs://{GCS_BUCKET}/{blob_name}"
         logger.info(f"GCS JSON upload successful: {gcs_uri}")
         return gcs_uri
-
     except ImportError:
         logger.warning("google-cloud-storage not installed — skipping GCS JSON upload")
         return None
