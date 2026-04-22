@@ -18,9 +18,11 @@ COPY pdf2abdm/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY common/ ./common/
+COPY pdf2abdm/__init__.py ./pdf2abdm/__init__.py
 COPY pdf2abdm/app/ ./pdf2abdm/app/
 COPY pdf2abdm/utils/ ./pdf2abdm/utils/
 COPY pdf2abdm/rulebooks_updated/ ./pdf2abdm/rulebooks_updated/
+COPY pdf2abdm/tasks.py ./pdf2abdm/tasks.py
 
 # Set PYTHONPATH so imports work
 ENV PYTHONPATH=/app

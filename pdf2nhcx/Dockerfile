@@ -18,9 +18,11 @@ COPY pdf2nhcx/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY common/ ./common/
+COPY pdf2nhcx/__init__.py ./pdf2nhcx/__init__.py
 COPY pdf2nhcx/app/ ./pdf2nhcx/app/
 COPY pdf2nhcx/utils/ ./pdf2nhcx/utils/
 COPY pdf2nhcx/rulebooks_updated/ ./pdf2nhcx/rulebooks_updated/
+COPY pdf2nhcx/tasks.py ./pdf2nhcx/tasks.py
 
 # Set PYTHONPATH so imports work
 ENV PYTHONPATH=/app
