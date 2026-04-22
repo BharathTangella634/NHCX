@@ -176,34 +176,32 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 @app.get("/pdf2nhcx/health", tags=["Status"], include_in_schema=False)
 @app.get("/ocr-service-problem-3/health", tags=["Status"], include_in_schema=False)
 def health_check():
-    from utils.llm_requirements import check_llm_health
-    is_healthy, status_code = check_llm_health()
-    if is_healthy:
-        return {"status": "ok", "service": "pdf2nhcx"}
-    else:
-        return JSONResponse(
-            status_code=503,
-            content={"status": "error", "reason": status_code, "service": "pdf2nhcx"}
-        )
+    """Lightweight liveness probe — always 200 if the service started."""
+    return {"status": "ok", "service": "pdf2nhcx"}
 
 @app.get("/model-health", tags=["Status"], summary="Check LLM model availability")
 @app.get("/pdf2nhcx/model-health", tags=["Status"], include_in_schema=False)
 @app.get("/ocr-service-problem-3/model-health", tags=["Status"], include_in_schema=False)
 def model_health(model: str = "gemma4"):
-    """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
-    from utils.llm_requirements import check_llm_health, MODEL_MAP
+    """Check if a specific LLM model is reachable via Vertex AI credentials."""
+    from utils.llm_requirements import MODEL_MAP
     if model not in MODEL_MAP:
         return JSONResponse(
             status_code=404,
             content={"status": "error", "reason": "unknown_model", "model": model}
         )
-    is_healthy, reason = check_llm_health()
-    if is_healthy:
-        return {"status": "ok", "model": model, "vertex_model": MODEL_MAP[model]}
-    return JSONResponse(
-        status_code=503,
-        content={"status": "error", "reason": reason, "model": model}
-    )
+    # Lightweight credential probe: can we find ADC? No live token fetch needed.
+    try:
+        import google.auth
+        creds, project = google.auth.default(
+            scopes=["https://www.googleapis.com/auth/cloud-platform"]
+        )
+        return {"status": "ok", "model": model, "vertex_model": MODEL_MAP[model], "project": project}
+    except Exception as e:
+        return JSONResponse(
+            status_code=503,
+            content={"status": "error", "reason": "auth_failed", "detail": str(e), "model": model}
+        )
 
 @app.get("/ocr-health", tags=["Status"], summary="Check OCR engine availability")
 @app.get("/pdf2nhcx/ocr-health", tags=["Status"], include_in_schema=False)
