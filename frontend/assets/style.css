@@ -79,11 +79,13 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 }
 
 /* JSON Output Box */
-.output-section { background: #0f172a; border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem; overflow: hidden; }
+.output-wrapper { width: 100%; box-sizing: border-box; margin-bottom: 1.5rem; }
+.output-section { background: #0f172a; border-radius: 10px; padding: 1.25rem; }
 .output-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
 .output-toolbar .label { color: #94a3b8; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
 .copy-btn { background: #334155; color: #e2e8f0; border: none; padding: 5px 12px; border-radius: 5px; font-size: 0.75rem; cursor: pointer; }
 .json-output {
+    display: block;
     width: 100%; max-width: 100%; height: 320px;
     background: transparent !important; border: none;
     margin: 0 !important; padding: 0 !important;

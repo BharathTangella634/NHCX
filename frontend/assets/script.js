@@ -168,7 +168,7 @@ async function processFile(taskType) {
     const processingLogoId = taskType === 'PDF2FHIR' ? 'processingLogoFHIR' : 'processingLogoNHCX';
     const processingLogo = document.getElementById(processingLogoId);
     if (processingLogo) processingLogo.style.display = "block";
-    if (outputElement) outputElement.style.display = "none";
+    if (outputElement && outputElement.parentElement) outputElement.parentElement.style.display = "none";
 
     const loaderElement = document.getElementById(loaderId);
     const btnElement = document.getElementById(btnId);
@@ -294,7 +294,7 @@ async function processFile(taskType) {
         });
     } finally {
         if (processingLogo) processingLogo.style.display = "none";
-        if (outputElement) outputElement.style.display = "block";
+        if (outputElement && outputElement.parentElement) outputElement.parentElement.style.display = "block";
         if (loaderElement) loaderElement.style.display = "none";
         if (btnElement) btnElement.disabled = false;
     }
