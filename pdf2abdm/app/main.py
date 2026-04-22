@@ -63,7 +63,7 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-async def get_abdm_json(pdf_path, output_dir=None, model: str = "gemma4"):
+async def get_abdm_json(pdf_path, model: str = "gemma4"):
     try:
         filename = os.path.basename(pdf_path)
         logger.info(f"Processing {filename}...")
@@ -79,20 +79,15 @@ async def get_abdm_json(pdf_path, output_dir=None, model: str = "gemma4"):
             logger.info(f"Document classified as: {doc_type}")
             print(f"Document classified as: {doc_type}")
 
-            # Save result
-            if output_dir:
-                bundle = run_abdm_pipeline(
-                    extracted_text, doc_type, selected_other_resources,
-                    output_dir=output_dir, pdf_base64=pdf_base64, idx=i,
-                    model=model
-                )
-                bundles.append(bundle)
-                doc_types.append(doc_type)
-                logger.info(f"Successfully processed {filename} and saved to {output_dir}")
-            else:
-                error_msg = "Output directory must be provided to save the results."
-                logger.error(error_msg)
-                raise ValueError(error_msg)
+            # Process and upload to GCS
+            bundle = run_abdm_pipeline(
+                extracted_text, doc_type, selected_other_resources,
+                pdf_base64=pdf_base64, idx=i,
+                model=model
+            )
+            bundles.append(bundle)
+            doc_types.append(doc_type)
+            logger.info(f"Successfully processed {filename}")
 
         return bundles, doc_types
 
@@ -208,18 +203,9 @@ async def convert_pdf_to_abdm(
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = "/app/fhir_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "fhir_results")
-    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
-    target_output_dir = os.path.join(relative_root, file_name_only)
-    os.makedirs(target_output_dir, exist_ok=True)
-    logger.info(f"Target output directory: {target_output_dir}")
-    
     start_time = time.perf_counter()
     logger.info("Starting get_abdm_json processing...")
-    result = await get_abdm_json(file_path, target_output_dir, model=model)
+    result = await get_abdm_json(file_path, model=model)
     bundles, doc_types = result if result else ([], [])
     end_time = time.perf_counter()
     
@@ -261,18 +247,9 @@ async def convert_pdf_to_abdm_url(request: LocalFileRequest):
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = "/app/fhir_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "fhir_results")
-    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
-    target_output_dir = os.path.join(relative_root, file_name_only)
-    os.makedirs(target_output_dir, exist_ok=True)
-    logger.info(f"Target output directory: {target_output_dir}")
-    
     start_time = time.perf_counter()
     logger.info("Starting get_abdm_json processing...")
-    result = await get_abdm_json(file_path, target_output_dir, model=model)
+    result = await get_abdm_json(file_path, model=model)
     bundles, doc_types = result if result else ([], [])
     end_time = time.perf_counter()
     

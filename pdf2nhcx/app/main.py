@@ -241,7 +241,7 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-async def get_nhcx_json(pdf_path, output_dir=None, model: str = "gemma4"):
+async def get_nhcx_json(pdf_path, model: str = "gemma4"):
     try:
         filename = os.path.basename(pdf_path)
         logger.info(f"Processing {filename}...")
@@ -254,17 +254,12 @@ async def get_nhcx_json(pdf_path, output_dir=None, model: str = "gemma4"):
         logger.info(f"Document classified as: {doc_type}")
         print(f"Document classified as: {doc_type}")
 
-        if output_dir:
-            bundle = run_nhcx_insurance_pipeline(
-                distilled_text, doc_type, selected_other_resources,
-                output_dir=output_dir, pdf_base64=pdf_base64, idx=0,
-                model=model
-            )
-            logger.info(f"Successfully processed {filename} and saved to {output_dir}")
-        else:
-            error_msg = "Output directory must be provided to save the results."
-            logger.error(error_msg)
-            raise ValueError(error_msg)
+        bundle = run_nhcx_insurance_pipeline(
+            distilled_text, doc_type, selected_other_resources,
+            pdf_base64=pdf_base64, idx=0,
+            model=model
+        )
+        logger.info(f"Successfully processed {filename}")
 
         return bundle
     except Exception as e:
@@ -295,17 +290,9 @@ async def convert_pdf_to_nhcx(
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
 
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = "/app/nhcx_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "nhcx_results")
-    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
-    target_output_dir = os.path.join(relative_root, file_name_only)
-    os.makedirs(target_output_dir, exist_ok=True)
-    logger.info(f"Target output directory: {target_output_dir}")
-    
     start_time = time.perf_counter()
     logger.info("Starting get_nhcx_json processing...")
-    bundle = await get_nhcx_json(file_path, target_output_dir, model=model)
+    bundle = await get_nhcx_json(file_path, model=model)
     end_time = time.perf_counter()
     
     processing_time = round(end_time - start_time, 2)
@@ -346,17 +333,9 @@ async def convert_pdf_to_nhcx_url(request: LocalFileRequest):
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
 
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = "/app/nhcx_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "nhcx_results")
-    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
-    target_output_dir = os.path.join(relative_root, file_name_only)
-    os.makedirs(target_output_dir, exist_ok=True)
-    logger.info(f"Target output directory: {target_output_dir}")
-    
     start_time = time.perf_counter()
     logger.info("Starting get_nhcx_json processing...")
-    bundle = await get_nhcx_json(file_path, target_output_dir, model=model)
+    bundle = await get_nhcx_json(file_path, model=model)
     end_time = time.perf_counter()
     
     processing_time = round(end_time - start_time, 2)

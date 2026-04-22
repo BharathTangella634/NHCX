@@ -63,3 +63,51 @@ def upload_pdf_to_gcs(local_file_path: str, gcs_folder: str) -> str | None:
     except Exception as e:
         logger.warning(f"GCS upload failed (non-fatal): {e}")
         return None
+
+def upload_json_to_gcs(json_data: dict, gcs_folder: str, filename: str) -> str | None:
+    """
+    Upload a JSON dictionary to GCS as a text file.
+
+    Args:
+        json_data:  The Python dictionary to save.
+        gcs_folder: Destination folder inside the bucket.
+        filename:   The filename to save as (e.g., 'bundle.json').
+
+    Returns:
+        GCS URI string, or None if upload failed.
+    """
+    try:
+        from google.cloud import storage as gcs
+        import json
+
+        # Priority 1: dedicated GCS service account JSON
+        if GCS_CREDENTIALS_JSON and os.path.isfile(GCS_CREDENTIALS_JSON):
+            client = gcs.Client.from_service_account_json(GCS_CREDENTIALS_JSON)
+            logger.info(f"GCS JSON: using dedicated GCS service account ({GCS_CREDENTIALS_JSON})")
+        # Priority 2: shared GOOGLE_APPLICATION_CREDENTIALS
+        elif GOOGLE_CREDENTIALS and os.path.isfile(GOOGLE_CREDENTIALS):
+            client = gcs.Client.from_service_account_json(GOOGLE_CREDENTIALS)
+            logger.info(f"GCS JSON: using GOOGLE_APPLICATION_CREDENTIALS ({GOOGLE_CREDENTIALS})")
+        # Priority 3: ADC (GCP metadata server)
+        else:
+            client = gcs.Client()
+            logger.info("GCS JSON: using Application Default Credentials (ADC)")
+
+        bucket    = client.bucket(GCS_BUCKET)
+        blob_name = f"{gcs_folder.rstrip('/')}/{filename}"
+        blob      = bucket.blob(blob_name)
+
+        blob.upload_from_string(
+            data=json.dumps(json_data, indent=2),
+            content_type="application/json"
+        )
+        gcs_uri = f"gs://{GCS_BUCKET}/{blob_name}"
+        logger.info(f"GCS JSON upload successful: {gcs_uri}")
+        return gcs_uri
+
+    except ImportError:
+        logger.warning("google-cloud-storage not installed — skipping GCS JSON upload")
+        return None
+    except Exception as e:
+        logger.warning(f"GCS JSON upload failed (non-fatal): {e}")
+        return None

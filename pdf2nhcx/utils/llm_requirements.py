@@ -562,11 +562,7 @@ def build_insurance_workflow(clinical_artifact: str, selected_other_resources: L
 
 import json
 
-def clean_and_reorder_bundle(input_file, output_file):
-    # 1. Load the JSON
-    with open(input_file, 'r') as f:
-        bundle = json.load(f)
-
+def clean_and_reorder_bundle(bundle):
     entries = bundle.get("entry", [])
     
     # Identify indices for removal and relocation
@@ -593,21 +589,12 @@ def clean_and_reorder_bundle(input_file, output_file):
     if composition_entry:
         final_entries = [composition_entry] + cleaned_entries
         bundle["entry"] = final_entries
-        # print("✅ Success: Composition moved to index 0.")
     else:
         bundle["entry"] = cleaned_entries
-        # print("⚠️ Warning: No Composition resource was found to relocate.")
 
-    # 3. Save the corrected JSON
-    with open(output_file, 'w') as f:
-        json.dump(bundle, f, indent=2)
-    
-    # print(f"💾 Corrected file saved as: {output_file}")
+    return bundle
 
-def document_reference_node(input_file, output_file, pdf_base64):
-
-    with open(input_file, 'r') as f:
-        bundle = json.load(f)
+def document_reference_node(bundle, pdf_base64):
 
     updated = False
 
@@ -639,8 +626,7 @@ def document_reference_node(input_file, output_file, pdf_base64):
                 print(attachment['data'])
                 # print("Updated existing content block")
 
-    with open(output_file, 'w') as f:
-        json.dump(bundle, f, indent=2)
+    return bundle
 
 def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, selected_other_resources: List[str], output_dir=None, pdf_base64=None, idx=None, model: str = _DEFAULT_MODEL):
     # Complete rulebook paths (add all your paths)
@@ -667,28 +653,21 @@ def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, sel
     # Build and run dynamic workflow
     app, used_resources = build_insurance_workflow(clinical_artifact, selected_other_resources, rulebook_paths)
     
-    if output_dir:
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-        output_path = os.path.join(output_dir, f"FHIR_BUNDLE_{clinical_artifact}_Patient_{idx}.json")
-    else:
-        raise Exception("No output Directory")
-
-
-
     print(f"🚀 Starting FHIR Bundle Generation for Patient {idx}...")
     final_output = app.invoke(initial_state)
     bundle = final_output['final_resources'][-1]
-    # Save output
-    # filename = f"FHIR_BUNDLE_{clinical_artifact}_Patient{idx}.json"
-    with open(output_path, "w") as f:
-        json.dump(bundle, f, indent=2)
-
-    # clean_and_reorder_bundle(output_path, output_path)
-    # document_reference_node(output_path, output_path, pdf_base64=pdf_base64)
     
-    print(f"\n SUCCESS! FHIR Bundle saved as {output_path}")
+    # Process the bundle in memory if needed
+    # bundle = clean_and_reorder_bundle(bundle)
+    # bundle = document_reference_node(bundle, pdf_base64=pdf_base64)
+    
+    # Upload to GCS instead of local file save
+    from utils.gcs_storage import upload_json_to_gcs
+    filename = f"FHIR_BUNDLE_{clinical_artifact}_Patient_{idx}.json"
+    gcs_uri = upload_json_to_gcs(bundle, "json_output/nhcx", filename)
+    
+    print(f"\n SUCCESS! FHIR Bundle generated (GCS: {gcs_uri})")
     print(f" Resources processed: {used_resources}")
-    print(f" Bundle entries: {len(bundle['entry'])}")
+    print(f" Bundle entries: {len(bundle.get('entry', []))}")
     
     return bundle
