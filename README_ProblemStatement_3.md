@@ -313,10 +313,18 @@ This is insurance data engineering.
 
 ---
 
-# 📦 Primary Artifact
+# 📦 Primary Artifact & Bundle Definitions
 
-InsurancePlanBundle  
-(Bundle type: collection)
+The centralized configuration for the supported InsurancePlanBundle, generated FHIR Resources, and their strict dependency mappings can be found in a single place in the codebase:
+
+📄 **File:** `pdf2nhcx/utils/llm_requirements.py`
+
+Inside this file, you will find:
+- `CORE_RESOURCES_MAP`: Defines the strict list of FHIR resources that must be generated for the `InsurancePlanBundle` type (e.g. `["InsurancePlan", "Organization"]`).
+- `nhcx_extraction_dictionary`: Contains the full system definitions and descriptions for each supported resource type, such as `InsurancePlan`, `Organization`, `Condition`, `Coverage`, `Claim`, and `DocumentReference`.
+
+Currently, the primary root artifact is:
+- **InsurancePlanBundle** (Bundle type: collection)
 
 ---
 
