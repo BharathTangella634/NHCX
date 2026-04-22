@@ -11,7 +11,40 @@ import subprocess
 import json
 import re
 import uuid
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
+
+# ── PDF Upload Limits ────────────────────────────────────────────────────
+MAX_FILE_SIZE_MB = 25
+MAX_PAGE_COUNT   = 100
+
+def validate_pdf_upload(file_path: str):
+    """Raise HTTPException 413 if the PDF exceeds size or page limits."""
+    import os
+    size_mb = os.path.getsize(file_path) / (1024 * 1024)
+    if size_mb > MAX_FILE_SIZE_MB:
+        raise HTTPException(
+            status_code=413,
+            detail={
+                "title": "File Too Large",
+                "message": f"The uploaded PDF is {size_mb:.1f} MB. Maximum allowed size is {MAX_FILE_SIZE_MB} MB."
+            }
+        )
+    try:
+        import pypdf
+        reader = pypdf.PdfReader(file_path)
+        page_count = len(reader.pages)
+        if page_count > MAX_PAGE_COUNT:
+            raise HTTPException(
+                status_code=413,
+                detail={
+                    "title": "Too Many Pages",
+                    "message": f"The uploaded PDF has {page_count} pages. Maximum allowed is {MAX_PAGE_COUNT} pages."
+                }
+            )
+    except HTTPException:
+        raise
+    except Exception:
+        pass  # If page counting fails, let the pipeline handle it
 
 # Add the parent directory to sys.path to allow importing from utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -156,6 +189,9 @@ async def convert_pdf_to_abdm(
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     logger.info(f"Saved uploaded PDF to {file_path}")
+
+    # ── Validate file size + page count ─────────────────────────────────
+    validate_pdf_upload(file_path)
 
     # ── Upload PDF to GCS ──────────────────────────────────────────────────
     from utils.gcs_storage import upload_pdf_to_gcs

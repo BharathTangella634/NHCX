@@ -202,6 +202,79 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 }
 
 
+/* ── Toast Notifications ─────────────────────────────────────────────────── */
+#toast-container {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 300px;
+    max-width: 420px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    pointer-events: auto;
+    animation: toast-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.toast.toast-hide {
+    animation: toast-out 0.3s ease-in forwards;
+}
+
+.toast-icon {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.toast-body { flex: 1; }
+.toast-title {
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+}
+.toast-msg { color: #94a3b8; font-size: 0.8rem; }
+
+/* Variants */
+.toast-error  { border-left: 4px solid #ef4444; }
+.toast-error .toast-icon { color: #f87171; }
+.toast-error .toast-title { color: #fca5a5; }
+
+.toast-warn   { border-left: 4px solid #f59e0b; }
+.toast-warn .toast-icon { color: #fbbf24; }
+.toast-warn .toast-title { color: #fde68a; }
+
+.toast-info   { border-left: 4px solid var(--primary); }
+.toast-info .toast-icon { color: #5eead4; }
+.toast-info .toast-title { color: #99f6e4; }
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateX(60px) scale(0.92); }
+    to   { opacity: 1; transform: translateX(0)   scale(1); }
+}
+@keyframes toast-out {
+    from { opacity: 1; transform: translateX(0)   scale(1); }
+    to   { opacity: 0; transform: translateX(60px) scale(0.92); }
+}
+
 /* ── Status Dot ─────────────────────────────────────────────────────────── */
 .status-dot {
     width: 7px;

@@ -13,3 +13,4 @@ google-auth-httplib2
 google-cloud-storage
 celery
 redis
+pypdf>=4.0.0

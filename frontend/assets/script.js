@@ -112,6 +112,25 @@ function updateFileName(inputId) {
     }
 }
 
+// ── Toast Notification System ─────────────────────────────────────────────
+function showToast(title, message, type = 'error', duration = 6000) {
+    const container = document.getElementById('toast-container');
+    const icons = { error: 'fa-circle-xmark', warn: 'fa-triangle-exclamation', info: 'fa-circle-info' };
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <i class="fas ${icons[type] || icons.error} toast-icon"></i>
+        <div class="toast-body">
+            <div class="toast-title">${title}</div>
+            <div class="toast-msg">${message}</div>
+        </div>`;
+    container.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.add('toast-hide');
+        toast.addEventListener('animationend', () => toast.remove());
+    }, duration);
+}
+
 async function processFile(taskType) {
     const fileInputId = taskType === 'PDF2FHIR' ? 'fileFHIR' : 'fileNHCX';
     const outputId = taskType === 'PDF2FHIR' ? 'outputFHIR' : 'outputNHCX';
@@ -120,7 +139,19 @@ async function processFile(taskType) {
     const fileInput = document.getElementById(fileInputId);
     
     if (!fileInput.files.length) {
-        alert("Please select a PDF file first.");
+        showToast('No File Selected', 'Please select a PDF file before processing.', 'warn');
+        return;
+    }
+
+    // ── Client-side file-size guard (25 MB) ───────────────────────────────
+    const MAX_SIZE_MB = 25;
+    const fileSizeMB = fileInput.files[0].size / (1024 * 1024);
+    if (fileSizeMB > MAX_SIZE_MB) {
+        showToast(
+            'File Too Large',
+            `"${fileInput.files[0].name}" is ${fileSizeMB.toFixed(1)} MB. Maximum allowed size is ${MAX_SIZE_MB} MB.`,
+            'error'
+        );
         return;
     }
 
@@ -158,7 +189,22 @@ async function processFile(taskType) {
 
     try {
         const response = await fetch(apiUrl, { method: 'POST', body: formData });
-        if (!response.ok) throw new Error(`Server Error: ${response.status}`);
+        if (!response.ok) {
+            let errTitle = 'Processing Failed';
+            let errMsg = `Server responded with status ${response.status}.`;
+            try {
+                const errData = await response.json();
+                if (errData.detail) {
+                    errTitle = errData.detail.title || errTitle;
+                    errMsg = errData.detail.message || errMsg;
+                } else if (errData.message) {
+                    errMsg = errData.message;
+                }
+            } catch(_) {}
+            const err = new Error(errMsg);
+            err._detail = { title: errTitle, message: errMsg };
+            throw err;
+        }
         const data = await response.json();
         console.log(`API response received for ${taskType}. Status: ${response.status}`);
         outputElement.value = JSON.stringify(data, null, 2);
@@ -223,12 +269,22 @@ async function processFile(taskType) {
             }
         }
     } catch (error) {
-        outputElement.value = "Error: " + error.message;
+        let title = 'Processing Failed';
+        let msg = error.message;
+
+        // Parse structured error details from backend
+        try {
+            const detail = error._detail;
+            if (detail) { title = detail.title || title; msg = detail.message || msg; }
+        } catch(_) {}
+
+        showToast(title, msg, 'error');
+        outputElement.value = `Error: ${msg}`;
 
         // Mixpanel: track conversion error
         mixpanel.track('Error', {
             'error_type': 'server',
-            'error_message': error.message,
+            'error_message': msg,
             'page_url': window.location.href,
         });
     } finally {
