@@ -114,36 +114,61 @@ def _get_vertex_token() -> str:
         return fallback
 
 # ── Model Selection Map ───────────────────────────────────────────────────────
-# Maps frontend selector values → Vertex AI Express model strings
+# Maps frontend selector values → Vertex AI model identifiers
+# Gemma 4 uses native VertexAI SDK path; others use OpenAI-compat MaaS endpoint.
 MODEL_MAP = {
-    "gemma4":           "publishers/google/models/gemma-4-26b-a4b-it-maas",
-    "llama4-scout":     "meta/llama-4-scout-17b-16e-instruct-maas",
-    "qwen3":            "qwen/qwen3-next-80b-a3b-instruct-maas",
-    "mistral-medium-3": "mistral-ai/mistral-medium-3-maas",
+    "gemma4":           "publishers/google/models/gemma-4-26b-a4b-it-maas",  # native Vertex AI
+    "llama4-scout":     "meta/llama-4-scout-17b-16e-instruct-maas",          # OpenAI-compat MaaS
+    "qwen3":            "qwen/qwen3-next-80b-a3b-instruct-maas",             # OpenAI-compat MaaS
+    "mistral-medium-3": "mistral-ai/mistral-medium-3-maas",                  # OpenAI-compat MaaS
 }
 _DEFAULT_MODEL = "gemma4"
 
-def get_llm(model: str = _DEFAULT_MODEL):
-    """Factory: return a NEW ChatOpenAI instance with a fresh OAuth2 token.
+# Models that MUST use the native Vertex AI SDK (ChatVertexAI)
+_VERTEX_NATIVE_MODELS = {"gemma4"}
 
-    ChatOpenAI bakes the api_key into its internal httpx client at construction
-    time.  Mutating `openai_api_key` afterwards does NOT update the client that
-    actually sends HTTP requests, so every call must use a freshly-constructed
-    instance to guarantee a valid token.
+def get_llm(model: str = _DEFAULT_MODEL):
+    """Factory: return a fresh LLM client for the requested model.
+
+    - Gemma 4: uses ChatVertexAI (native Vertex AI SDK) — the publishers/google/...
+      path is NOT accepted by the OpenAI-compat /openapi endpoint.
+    - All other MaaS models (Llama 4, Qwen3, Mistral): use ChatOpenAI pointed
+      at the Vertex AI OpenAI-compatible endpoint with a fresh OAuth2 token.
 
     Args:
-        model: frontend selector value (e.g. 'llama4-scout', 'qwen3',
-               'mistral-medium-3').  Unknown values fall back to the default.
+        model: frontend selector value (e.g. 'gemma4', 'llama4-scout', 'qwen3',
+               'mistral-medium-3'). Unknown values fall back to the default.
     """
     vertex_model = MODEL_MAP.get(model, MODEL_MAP[_DEFAULT_MODEL])
     print(f"🤖 Using model: {vertex_model} (requested: {model})")
-    return ChatOpenAI(
-        model=vertex_model,
-        temperature=0.7,
-        base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
-        api_key=_get_vertex_token(),
-        max_tokens=8192,
-    )
+
+    if model in _VERTEX_NATIVE_MODELS:
+        # ── Native Vertex AI SDK path ──────────────────────────────────────────
+        # ChatVertexAI handles ADC authentication automatically.
+        try:
+            from langchain_google_vertexai import ChatVertexAI
+        except ImportError as e:
+            raise RuntimeError(
+                "langchain-google-vertexai is not installed. "
+                "Add it to requirements.txt and rebuild the container."
+            ) from e
+
+        return ChatVertexAI(
+            model_name=vertex_model,
+            project=_PROJECT_ID,
+            location=_REGION if _REGION != "global" else "us-central1",
+            temperature=0.7,
+            max_output_tokens=8192,
+        )
+    else:
+        # ── OpenAI-compatible MaaS endpoint path ──────────────────────────────
+        return ChatOpenAI(
+            model=vertex_model,
+            temperature=0.7,
+            base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
+            api_key=_get_vertex_token(),
+            max_tokens=8192,
+        )
 
 def check_llm_health():
     """Verify that we can at least get a token or the API_KEY is set."""
