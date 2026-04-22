@@ -288,10 +288,19 @@ This is structured healthcare data engineering.
 
 ***
 
-# 📦 Supported Clinical Artifacts
+# 📦 Supported Clinical Artifacts & Bundle Definitions
 
-- DiagnosticReportRecord
-- DischargeSummaryRecord
+The centralized configuration for all supported DocumentBundles, generated FHIR Resources, and their strict dependency mappings can be found in a single place in the codebase:
+
+📄 **File:** `pdf2abdm/utils/llm_requirements.py`
+
+Inside this file, you will find:
+- `CORE_RESOURCES_MAP`: Defines the strict list of FHIR resources that must be generated for each DocumentBundle type.
+- `abdm_extraction_dictionary`: Contains the full system definitions and descriptions for each supported resource type.
+
+Currently, the following root DocumentBundles are fully supported:
+- **DiagnosticReportRecord** (Includes Patient, DiagnosticReportLab, Practitioner, Organization, Observation, etc.)
+- **DischargeSummaryRecord** (Includes Patient, Encounter, Condition, MedicationRequest, Procedure, CarePlan, etc.)
 
 ***
 
