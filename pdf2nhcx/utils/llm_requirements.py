@@ -127,7 +127,7 @@ def get_llm(model: str = _DEFAULT_MODEL):
     return ChatVertexAI(
         model_name=vertex_model,
         project=_PROJECT_ID,
-        location=_REGION if _REGION != "global" else "us-central1",
+        location="global",   # Gemma 4 MaaS is only available via the global endpoint
         temperature=0.7,
         max_output_tokens=8192,
     )
