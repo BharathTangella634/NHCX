@@ -269,45 +269,38 @@ async def convert_pdf_to_nhcx(
     filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {filename}")
 
-    # Stream PDF bytes directly to GCS (no local file written)
+    # ── Read bytes and upload directly to GCS (no local file written) ──────
     file_bytes = await file.read()
     from utils.gcs_storage import upload_pdf_from_bytes
     gcs_uri = upload_pdf_from_bytes(file_bytes, filename, "pdf_uploads/nhcx")
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
 
-    # Temp file for Celery task (needs a file path for OCR)
+    # ── Temp file for OCR engine (needs a path; auto-deleted after) ─────────
     import tempfile
-    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False, prefix=filename + "_") as tmp:
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
         tmp.write(file_bytes)
         tmp_path = tmp.name
 
-    # ── Validate file size + page count ─────────────────────────────────
-    validate_pdf_upload(file_path)
+    try:
+        validate_pdf_upload(tmp_path)
+        start_time = time.perf_counter()
+        bundle = await get_nhcx_json(tmp_path, model=model)
+        processing_time = round(time.perf_counter() - start_time, 2)
+    finally:
+        os.unlink(tmp_path)
 
-    # ── Upload PDF to GCS ──────────────────────────────────────────────────
-    from utils.gcs_storage import upload_pdf_to_gcs
-    gcs_uri = upload_pdf_to_gcs(file_path, "pdf_uploads/nhcx")
-    if gcs_uri:
-        logger.info(f"PDF uploaded to GCS: {gcs_uri}")
-    # ───────────────────────────────────────────────────────────────────────
-
-    start_time = time.perf_counter()
-    logger.info("Starting get_nhcx_json processing...")
-    bundle = await get_nhcx_json(file_path, model=model)
-    end_time = time.perf_counter()
-    
-    processing_time = round(end_time - start_time, 2)
-    
     logger.info(f"get_nhcx_json execution time: {processing_time} seconds")
-    print(f"\n⏱ get_nhcx_json execution time: {processing_time} seconds")
-    
+
+    if bundle is None:
+        return JSONResponse(status_code=500, content={"message": "NHCX processing failed."})
+
     return JSONResponse(content={
-        "message": "File uploaded successfully for NHCX processing",
-        "file_path": file_path,
+        "message": "File processed successfully",
+        "gcs_uri": gcs_uri,
         "processing_time": f"{processing_time} seconds",
         "bundle": bundle,
-        "bundle_names": ["NHCX Bundle"] if bundle else [],
+        "bundle_names": ["NHCX Bundle"],
         "model_used": model,
         "ocr_engine_used": ocr_engine,
     })
