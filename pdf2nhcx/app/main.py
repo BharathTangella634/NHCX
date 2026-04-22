@@ -107,6 +107,12 @@ import json
 import re
 import uuid
 from fastapi import HTTPException
+from pydantic import BaseModel
+
+class LocalFileRequest(BaseModel):
+    file_path: str
+    model: str = "gemma4"
+    ocr_engine: str = "auto"
 
 # ── PDF Upload Limits ────────────────────────────────────────────────────
 MAX_FILE_SIZE_MB = 25
@@ -309,6 +315,57 @@ async def convert_pdf_to_nhcx(
     
     return JSONResponse(content={
         "message": "File uploaded successfully for NHCX processing",
+        "file_path": file_path,
+        "processing_time": f"{processing_time} seconds",
+        "bundle": bundle,
+        "bundle_names": ["NHCX Bundle"] if bundle else [],
+        "model_used": model,
+        "ocr_engine_used": ocr_engine,
+    })
+
+@app.post("/pdf2nhcxurl", tags=["Processing"], summary="Convert local PDF to NHCX Bundle via file path")
+async def convert_pdf_to_nhcx_url(request: LocalFileRequest):
+    file_path = request.file_path
+    model = request.model
+    ocr_engine = request.ocr_engine
+
+    if not os.path.exists(file_path):
+        return JSONResponse(status_code=404, content={"message": f"File not found: {file_path}"})
+
+    logger.info(f"Received local PDF request for: {file_path}")
+    logger.info(f"🤖 Model selected: {model} | 👁 OCR engine: {ocr_engine}")
+    print(f"🤖 Model: {model}  |  👁 OCR: {ocr_engine}")
+
+    # ── Validate file size + page count ─────────────────────────────────
+    validate_pdf_upload(file_path)
+
+    # ── Upload PDF to GCS ──────────────────────────────────────────────────
+    from utils.gcs_storage import upload_pdf_to_gcs
+    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2fhir/PDF2NHCX")
+    if gcs_uri:
+        logger.info(f"PDF uploaded to GCS: {gcs_uri}")
+    # ───────────────────────────────────────────────────────────────────────
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(current_dir))
+    relative_root = "/app/nhcx_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "nhcx_results")
+    file_name_only = os.path.splitext(os.path.basename(file_path))[0]
+    target_output_dir = os.path.join(relative_root, file_name_only)
+    os.makedirs(target_output_dir, exist_ok=True)
+    logger.info(f"Target output directory: {target_output_dir}")
+    
+    start_time = time.perf_counter()
+    logger.info("Starting get_nhcx_json processing...")
+    bundle = await get_nhcx_json(file_path, target_output_dir, model=model)
+    end_time = time.perf_counter()
+    
+    processing_time = round(end_time - start_time, 2)
+    
+    logger.info(f"get_nhcx_json execution time: {processing_time} seconds")
+    print(f"\n⏱ get_nhcx_json execution time: {processing_time} seconds")
+    
+    return JSONResponse(content={
+        "message": "Local file processed successfully for NHCX processing",
         "file_path": file_path,
         "processing_time": f"{processing_time} seconds",
         "bundle": bundle,
