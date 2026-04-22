@@ -84,7 +84,6 @@ abdm_extraction_dictionary = {
     }
 }
 
-from langchain_openai import ChatOpenAI
 
 # Load .env for local development (Docker injects vars via env_file)
 _here = os.path.dirname(__file__)
@@ -134,62 +133,25 @@ def _get_vertex_token() -> str:
         print(f"⚠️  ADC unavailable ({e}), falling back to API_KEY env var")
         return fallback
 
-# ── Model Selection Map ───────────────────────────────────────────────────────
-# Maps frontend selector values → Vertex AI model identifiers
-# Gemma 4 uses native VertexAI SDK path; others use OpenAI-compat MaaS endpoint.
+# ── Model ──────────────────────────────────────────────────────────────────
 MODEL_MAP = {
-    "gemma4":           "publishers/google/models/gemma-4-26b-a4b-it-maas",  # native Vertex AI
-    "llama4-scout":     "meta/llama-4-scout-17b-16e-instruct-maas",          # OpenAI-compat MaaS
-    "qwen3":            "qwen/qwen3-next-80b-a3b-instruct-maas",             # OpenAI-compat MaaS
-    "mistral-medium-3": "mistral-ai/mistral-medium-3-maas",                  # OpenAI-compat MaaS
+    "gemma4": "publishers/google/models/gemma-4-26b-a4b-it-maas",
 }
 _DEFAULT_MODEL = "gemma4"
 
-# Models that MUST use the native Vertex AI SDK (ChatVertexAI)
-_VERTEX_NATIVE_MODELS = {"gemma4"}
-
 def get_llm(model: str = _DEFAULT_MODEL):
-    """Factory: return a fresh LLM client for the requested model.
-
-    - Gemma 4: uses ChatVertexAI (native Vertex AI SDK) — the publishers/google/...
-      path is NOT accepted by the OpenAI-compat /openapi endpoint.
-    - All other MaaS models (Llama 4, Qwen3, Mistral): use ChatOpenAI pointed
-      at the Vertex AI OpenAI-compatible endpoint with a fresh OAuth2 token.
-
-    Args:
-        model: frontend selector value (e.g. 'gemma4', 'llama4-scout', 'qwen3',
-               'mistral-medium-3'). Unknown values fall back to the default.
-    """
+    """Return a ChatVertexAI instance for Gemma 4 via the native Vertex AI SDK."""
     vertex_model = MODEL_MAP.get(model, MODEL_MAP[_DEFAULT_MODEL])
-    print(f"🤖 Using model: {vertex_model} (requested: {model})")
+    print(f"🤖 Using model: {vertex_model}")
 
-    if model in _VERTEX_NATIVE_MODELS:
-        # ── Native Vertex AI SDK path ──────────────────────────────────────────
-        # ChatVertexAI handles ADC authentication automatically.
-        try:
-            from langchain_google_vertexai import ChatVertexAI
-        except ImportError as e:
-            raise RuntimeError(
-                "langchain-google-vertexai is not installed. "
-                "Add it to requirements.txt and rebuild the container."
-            ) from e
-
-        return ChatVertexAI(
-            model_name=vertex_model,
-            project=_PROJECT_ID,
-            location=_REGION if _REGION != "global" else "us-central1",
-            temperature=0.7,
-            max_output_tokens=8192,
-        )
-    else:
-        # ── OpenAI-compatible MaaS endpoint path ──────────────────────────────
-        return ChatOpenAI(
-            model=vertex_model,
-            temperature=0.7,
-            base_url=f"https://{_ENDPOINT}/v1beta1/projects/{_PROJECT_ID}/locations/{_REGION}/endpoints/openapi",
-            api_key=_get_vertex_token(),
-            max_tokens=8192,
-        )
+    from langchain_google_vertexai import ChatVertexAI
+    return ChatVertexAI(
+        model_name=vertex_model,
+        project=_PROJECT_ID,
+        location=_REGION if _REGION != "global" else "us-central1",
+        temperature=0.7,
+        max_output_tokens=8192,
+    )
 
 def check_llm_health():
     """Verify that we can at least get a token or the API_KEY is set."""

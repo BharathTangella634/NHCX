@@ -1,7 +1,6 @@
 docling
 langchain_core
 python-dotenv
-langchain_openai
 langchain-google-vertexai
 google-cloud-aiplatform
 langgraph
