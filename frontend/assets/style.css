@@ -84,9 +84,15 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 .output-toolbar .label { color: #94a3b8; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
 .copy-btn { background: #334155; color: #e2e8f0; border: none; padding: 5px 12px; border-radius: 5px; font-size: 0.75rem; cursor: pointer; }
 .json-output {
-    width: 100%; height: 320px; background: transparent; border: none;
-    color: #38bdf8; font-family: 'Fira Code', 'Courier New', monospace;
-    font-size: 0.9rem; resize: vertical; outline: none; line-height: 1.4;
+    width: 100%; height: 320px; background: transparent !important; border: none;
+    margin: 0 !important; padding: 0 !important;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.85rem; outline: none; line-height: 1.5;
+    overflow-y: auto; overflow-x: auto;
+}
+.json-output code {
+    background: transparent !important;
+    color: #e2e8f0; /* Default color before highlighting kicks in */
 }
 
 /* Validation Area (Outside Box) */

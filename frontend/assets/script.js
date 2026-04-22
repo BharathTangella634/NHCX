@@ -162,7 +162,8 @@ async function processFile(taskType) {
     formData.append("ocr_engine", selectedOcr[taskType === 'PDF2FHIR' ? 'FHIR' : 'NHCX']);
 
     const outputElement = document.getElementById(outputId);
-    outputElement.value = "Processing conversion... this may take a moment.";
+    outputElement.textContent = "Processing conversion... this may take a moment.";
+    if (window.Prism) Prism.highlightElement(outputElement);
 
     const processingLogoId = taskType === 'PDF2FHIR' ? 'processingLogoFHIR' : 'processingLogoNHCX';
     const processingLogo = document.getElementById(processingLogoId);
@@ -207,7 +208,8 @@ async function processFile(taskType) {
         }
         const data = await response.json();
         console.log(`API response received for ${taskType}. Status: ${response.status}`);
-        outputElement.value = JSON.stringify(data, null, 2);
+        outputElement.textContent = JSON.stringify(data, null, 2);
+        if (window.Prism) Prism.highlightElement(outputElement);
 
         // Mixpanel: track successful conversion (the core value event)
         mixpanel.track('Conversion', {
@@ -257,11 +259,13 @@ async function processFile(taskType) {
                 });
 
                 // Set initial output to first bundle
-                outputElement.value = JSON.stringify(bundles[0], null, 2);
+                outputElement.textContent = JSON.stringify(bundles[0], null, 2);
+                if (window.Prism) Prism.highlightElement(outputElement);
 
                 bundleSelect.onchange = (e) => {
                     const idx = e.target.value;
-                    outputElement.value = JSON.stringify(bundles[idx], null, 2);
+                    outputElement.textContent = JSON.stringify(bundles[idx], null, 2);
+                    if (window.Prism) Prism.highlightElement(outputElement);
                 };
             } else {
                 bundleContainer.style.display = 'none';
@@ -279,7 +283,8 @@ async function processFile(taskType) {
         } catch(_) {}
 
         showToast(title, msg, 'error');
-        outputElement.value = `Error: ${msg}`;
+        outputElement.textContent = `Error: ${msg}`;
+        if (window.Prism) Prism.highlightElement(outputElement);
 
         // Mixpanel: track conversion error
         mixpanel.track('Error', {
@@ -300,10 +305,10 @@ async function processFile(taskType) {
 
 function copyToClipboard(id) {
     const textarea = document.getElementById(id);
-    if (!textarea || !textarea.value) return;
+    if (!textarea || !textarea.textContent) return;
 
     // Use modern Clipboard API for better compatibility and to work even if textarea is hidden
-    navigator.clipboard.writeText(textarea.value).then(() => {
+    navigator.clipboard.writeText(textarea.textContent).then(() => {
         const btn = event.target;
         const oldText = btn.textContent;
         btn.textContent = "Copied!";
@@ -318,9 +323,9 @@ function copyToClipboard(id) {
 
 function downloadJSON(id) {
     const textarea = document.getElementById(id);
-    if (!textarea.value) return;
+    if (!textarea.textContent) return;
     
-    const blob = new Blob([textarea.value], { type: "application/json" });
+    const blob = new Blob([textarea.textContent], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     
     const a = document.createElement('a');
