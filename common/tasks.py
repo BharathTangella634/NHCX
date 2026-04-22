@@ -47,7 +47,7 @@ async def async_process(self, pdf_path: str, model: str):
     try:
         if category == "CLINICAL":
             # Lazy import to avoid circular dependencies or heavy init
-            from ocr_service_problem_2.utils.llm_requirements import run_abdm_pipeline
+            from pdf2abdm.utils.llm_requirements import run_abdm_pipeline
             # We need to adapt run_abdm_pipeline to take markdown or we pass the PDF
             # Currently it takes extracted_text.
             # Wait, ocr_service_problem_2 uses Docling internally. We should adapt it to use our ocr_result.
@@ -66,7 +66,7 @@ async def async_process(self, pdf_path: str, model: str):
             result["bundle"] = bundle
             
         elif category == "INSURANCE":
-            from ocr_service_problem_3.utils.llm_requirements import run_nhcx_insurance_pipeline
+            from pdf2nhcx.utils.llm_requirements import run_nhcx_insurance_pipeline
             bundle = run_nhcx_insurance_pipeline(
                 distilled_text=ocr_result.markdown,
                 clinical_artifact="InsurancePlanBundle",

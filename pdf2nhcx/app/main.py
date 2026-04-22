@@ -141,11 +141,11 @@ def health_check():
     from utils.llm_requirements import check_llm_health
     is_healthy, status_code = check_llm_health()
     if is_healthy:
-        return {"status": "ok", "service": "ocr-service-problem-3"}
+        return {"status": "ok", "service": "pdf2nhcx"}
     else:
         return JSONResponse(
             status_code=503,
-            content={"status": "error", "reason": status_code, "service": "ocr-service-problem-3"}
+            content={"status": "error", "reason": status_code, "service": "pdf2nhcx"}
         )
 
 @app.get("/model-health", tags=["Status"], summary="Check LLM model availability")
@@ -251,7 +251,7 @@ async def convert_pdf_to_nhcx(
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = "/app/nhcx_results_problem_3" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "nhcx_results_problem_3")
+    relative_root = "/app/nhcx_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "nhcx_results")
     file_name_only = os.path.splitext(os.path.basename(file_path))[0]
     target_output_dir = os.path.join(relative_root, file_name_only)
     os.makedirs(target_output_dir, exist_ok=True)
@@ -373,13 +373,13 @@ def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     
     # 2. Go up 2 levels to get to NHCX_HACKATHON root
-    # Level 1: ocr_service_problem_2
+    # Level 1: pdf2nhcx
     # Level 2: NHCX_HACKATHON
     repo_root = os.path.dirname(os.path.dirname(current_dir))
     
     # 3. Define the relative root for results
     # Path: .../NHCX_HACKATHON/fhir_results
-    relative_root = os.path.join(repo_root, "fhir_results_problem_3")
+    relative_root = os.path.join(repo_root, "nhcx_results")
     
     # 4. Extract clean filename (e.g., "Test 1")
     file_name_only = os.path.splitext(os.path.basename(args.input))[0]

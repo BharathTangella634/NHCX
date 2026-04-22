@@ -29,7 +29,7 @@ async function checkAiStatus() {
     // On production: use the reverse-proxied paths (/pdf2fhir & /pdf2nhcx)
     //   which are routed by nginx to the backend containers
     const isLocal = window.location.hostname === 'localhost';
-    const health1 = isLocal ? 'http://localhost:8000/health' : `${window.location.origin}/pdf2fhir/health`;
+    const health1 = isLocal ? 'http://localhost:8000/health' : `${window.location.origin}/pdf2abdm/health`;
     const health2 = isLocal ? 'http://localhost:8001/health' : `${window.location.origin}/pdf2nhcx/health`;
 
     try {
@@ -70,9 +70,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // ── Helper: build base URLs for each service ─────────────────────────────────
 function getServiceBase(service) {
-    // service: 'fhir' | 'nhcx'
+    // service: 'abdm' | 'nhcx'
     const isLocal = window.location.hostname === 'localhost';
-    if (service === 'fhir') return isLocal ? 'http://localhost:8000' : `${window.location.origin}/pdf2fhir`;
+    if (service === 'abdm') return isLocal ? 'http://localhost:8000' : `${window.location.origin}/pdf2abdm`;
     return isLocal ? 'http://localhost:8001' : `${window.location.origin}/pdf2nhcx`;
 }
 
@@ -152,7 +152,7 @@ async function processFile(taskType) {
         // or we just use origin and the backend routes them properly.
         baseUrl = window.location.origin;
     }
-    const apiUrl = taskType === 'PDF2FHIR' ? `${baseUrl}/pdf2fhir` : `${baseUrl}/pdf2nhcx`;
+    const apiUrl = taskType === 'PDF2FHIR' ? `${baseUrl}/pdf2abdm` : `${baseUrl}/pdf2nhcx`;
 
     console.log(`API triggered: POST to ${apiUrl}`);
 

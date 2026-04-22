@@ -14,17 +14,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ocr_service_problem_3/requirements.txt .
+COPY pdf2nhcx/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY common/ ./common/
-COPY ocr_service_problem_3/app/ ./ocr_service_problem_3/app/
-COPY ocr_service_problem_3/utils/ ./ocr_service_problem_3/utils/
-COPY ocr_service_problem_3/rulebooks_updated/ ./ocr_service_problem_3/rulebooks_updated/
+COPY pdf2nhcx/app/ ./pdf2nhcx/app/
+COPY pdf2nhcx/utils/ ./pdf2nhcx/utils/
+COPY pdf2nhcx/rulebooks_updated/ ./pdf2nhcx/rulebooks_updated/
 
 # Set PYTHONPATH so imports work
 ENV PYTHONPATH=/app
 
 EXPOSE 8000
 
-CMD ["uvicorn", "ocr_service_problem_3.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "1500"]
+CMD ["uvicorn", "pdf2nhcx.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "1500"]

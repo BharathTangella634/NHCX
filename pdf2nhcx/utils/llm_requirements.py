@@ -116,7 +116,7 @@ def _get_vertex_token() -> str:
 # ── Model Selection Map ───────────────────────────────────────────────────────
 # Maps frontend selector values → Vertex AI Express model strings
 MODEL_MAP = {
-    "gemma4":           "publishers/google/models/gemma-4-26b-a4b-it-maas",
+    "gemma4":           "google/gemma-4-26b-a4b-it-maas",
     "llama4-scout":     "meta/llama-4-scout-17b-16e-instruct-maas",
     "qwen3":            "qwen/qwen3-next-80b-a3b-instruct-maas",
     "mistral-medium-3": "mistral-ai/mistral-medium-3-maas",
@@ -650,7 +650,7 @@ def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, sel
         "InsurancePlan": "./rulebooks_updated/StructureDefinition-InsurancePlan_updated.json",
         "InsurancePlanBundle": "./rulebooks_updated/StructureDefinition-InsurancePlanBundle_updated.json",
         **{
-            res: f"/media/bharath/DATA_8TB1/Bharath/Problem_Statement_3_e4cc9a3eb9/rulebooks_updated/StructureDefinition-{res}_updated.json"
+            res: f"./rulebooks_updated/StructureDefinition-{res}_updated.json"
             for res in selected_other_resources
         }
     }

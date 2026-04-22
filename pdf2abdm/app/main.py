@@ -91,21 +91,21 @@ UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.pa
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.get("/health", tags=["Status"], summary="Service health check")
-@app.get("/pdf2fhir/health", tags=["Status"], include_in_schema=False)
+@app.get("/pdf2abdm/health", tags=["Status"], include_in_schema=False)
 def health_check():
     from utils.llm_requirements import check_llm_health
     is_healthy, status_code = check_llm_health()
     if is_healthy:
-        return {"status": "ok", "service": "ocr-service-problem-2"}
+        return {"status": "ok", "service": "pdf2abdm"}
     else:
         from fastapi.responses import JSONResponse
         return JSONResponse(
             status_code=503,
-            content={"status": "error", "reason": status_code, "service": "ocr-service-problem-2"}
+            content={"status": "error", "reason": status_code, "service": "pdf2abdm"}
         )
 
 @app.get("/model-health", tags=["Status"], summary="Check LLM model availability")
-@app.get("/pdf2fhir/model-health", tags=["Status"], include_in_schema=False)
+@app.get("/pdf2abdm/model-health", tags=["Status"], include_in_schema=False)
 def model_health(model: str = "gemma4"):
     """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
     from utils.llm_requirements import check_llm_health, MODEL_MAP
@@ -123,7 +123,7 @@ def model_health(model: str = "gemma4"):
     )
 
 @app.get("/ocr-health", tags=["Status"], summary="Check OCR engine availability")
-@app.get("/pdf2fhir/ocr-health", tags=["Status"], include_in_schema=False)
+@app.get("/pdf2abdm/ocr-health", tags=["Status"], include_in_schema=False)
 def ocr_health(engine: str = "lighton"):
     """Check if a specific OCR engine is available."""
     KNOWN_ENGINES = {"lighton", "suriya", "chandra", "docling"}
@@ -142,8 +142,8 @@ def ocr_health(engine: str = "lighton"):
         )
 
 
-@app.post("/pdf2fhir", tags=["Processing"], summary="Convert PDF to ABDM FHIR Bundle (Sync)")
-async def convert_pdf_to_fhir(
+@app.post("/pdf2abdm", tags=["Processing"], summary="Convert PDF to ABDM FHIR Bundle (Sync)")
+async def convert_pdf_to_abdm(
     file: UploadFile = File(...),
     model: str = Form("gemma4"),
     ocr_engine: str = Form("auto"),
@@ -159,14 +159,14 @@ async def convert_pdf_to_fhir(
 
     # ── Upload PDF to GCS ──────────────────────────────────────────────────
     from utils.gcs_storage import upload_pdf_to_gcs
-    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2fhir/PDF2ABDM")
+    gcs_uri = upload_pdf_to_gcs(file_path, "pdf2abdm/PDF2ABDM")
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
     # ───────────────────────────────────────────────────────────────────────
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.dirname(os.path.dirname(current_dir))
-    relative_root = "/app/fhir_results_problem_2" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "fhir_results_problem_2")
+    relative_root = "/app/fhir_results" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(repo_root, "fhir_results")
     file_name_only = os.path.splitext(os.path.basename(file_path))[0]
     target_output_dir = os.path.join(relative_root, file_name_only)
     os.makedirs(target_output_dir, exist_ok=True)
@@ -194,8 +194,8 @@ async def convert_pdf_to_fhir(
         "ocr_engine_used": ocr_engine,
     })
 
-@app.post("/pdf2fhir-async", tags=["Processing"], summary="Submit PDF for async processing")
-async def convert_pdf_to_fhir_async(
+@app.post("/pdf2abdm-async", tags=["Processing"], summary="Submit PDF for async processing")
+async def convert_pdf_to_abdm_async(
     file: UploadFile = File(...),
     model: str = Form("gemma4"),
 ):
@@ -291,13 +291,13 @@ def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     
     # 2. Go up 2 levels to get to NHCX_HACKATHON root
-    # Level 1: ocr_service_problem_2
+    # Level 1: pdf2abdm
     # Level 2: NHCX_HACKATHON
     repo_root = os.path.dirname(os.path.dirname(current_dir))
     
     # 3. Define the relative root for results
     # Path: .../NHCX_HACKATHON/fhir_results
-    relative_root = os.path.join(repo_root, "fhir_results_problem_2")
+    relative_root = os.path.join(repo_root, "fhir_results")
     
     # 4. Extract clean filename (e.g., "Test 1")
     file_name_only = os.path.splitext(os.path.basename(args.input))[0]
