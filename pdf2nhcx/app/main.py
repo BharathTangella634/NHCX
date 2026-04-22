@@ -169,8 +169,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-@app.get("/health", tags=["Status"], summary="Service health check")
+@app.get("/health", tags=["Status"], summary="Check API health")
 @app.get("/pdf2nhcx/health", tags=["Status"], include_in_schema=False)
+@app.get("/ocr-service-problem-3/health", tags=["Status"], include_in_schema=False)
 def health_check():
     from utils.llm_requirements import check_llm_health
     is_healthy, status_code = check_llm_health()
@@ -184,6 +185,7 @@ def health_check():
 
 @app.get("/model-health", tags=["Status"], summary="Check LLM model availability")
 @app.get("/pdf2nhcx/model-health", tags=["Status"], include_in_schema=False)
+@app.get("/ocr-service-problem-3/model-health", tags=["Status"], include_in_schema=False)
 def model_health(model: str = "gemma4"):
     """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
     from utils.llm_requirements import check_llm_health, MODEL_MAP
@@ -202,6 +204,7 @@ def model_health(model: str = "gemma4"):
 
 @app.get("/ocr-health", tags=["Status"], summary="Check OCR engine availability")
 @app.get("/pdf2nhcx/ocr-health", tags=["Status"], include_in_schema=False)
+@app.get("/ocr-service-problem-3/ocr-health", tags=["Status"], include_in_schema=False)
 def ocr_health(engine: str = "lighton"):
     """Check if a specific OCR engine is available."""
     KNOWN_ENGINES = {"lighton", "suriya", "chandra", "docling"}
