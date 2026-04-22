@@ -36,25 +36,6 @@
     <!-- AI Status Bar -->
     <div class="ai-status-bar">
         <div class="ai-status-inner">
-            <!-- Model Chips -->
-            <div class="selector-group" id="modelSelectorGroup">
-                <span class="selector-label"><i class="fas fa-brain"></i> Model</span>
-                <div class="model-chip-group" id="modelChipGroup">
-                    <button class="model-chip active" data-model="llama4-scout" id="modelChip-llama4-scout" onclick="selectModel('llama4-scout', this)">
-                        <span class="status-dot status-dot--checking" id="modelDot-llama4-scout"></span>
-                        <i class="fas fa-paw"></i> Llama 4 Scout
-                    </button>
-                    <button class="model-chip" data-model="qwen3" id="modelChip-qwen3" onclick="selectModel('qwen3', this)">
-                        <span class="status-dot status-dot--checking" id="modelDot-qwen3"></span>
-                        <i class="fas fa-microchip"></i> Qwen 3
-                    </button>
-                    <button class="model-chip" data-model="mistral-medium-3" id="modelChip-mistral-medium-3" onclick="selectModel('mistral-medium-3', this)">
-                        <span class="status-dot status-dot--checking" id="modelDot-mistral-medium-3"></span>
-                        <i class="fas fa-wind"></i> Mistral Medium 3
-                    </button>
-                </div>
-            </div>
-
             <!-- AI Badge -->
             <div class="ai-badge ai-badge-off" id="aiBadge"><span class="ai-badge-dot"></span> <span id="aiBadgeText">Checking...</span></div>
         </div>
@@ -94,24 +75,6 @@
             </div>
             
             <div class="upload-section">
-                <!-- OCR Selector for FHIR Tab -->
-                <div class="ocr-selector-row">
-                    <span class="ocr-selector-label"><i class="fas fa-eye"></i> OCR Engine</span>
-                    <div class="ocr-chip-group" id="ocrGroupFHIR">
-                        <button class="ocr-chip active" data-ocr="lighton" id="ocrChip-FHIR-lighton" onclick="selectOcr('FHIR', 'lighton', this)">
-                            <span class="status-dot status-dot--checking" id="ocrDot-FHIR-lighton"></span>
-                            <i class="fas fa-bolt"></i> LightOn OCR <span class="ocr-tag">PS-2</span>
-                        </button>
-                        <button class="ocr-chip" data-ocr="suriya" id="ocrChip-FHIR-suriya" onclick="selectOcr('FHIR', 'suriya', this)">
-                            <span class="status-dot status-dot--checking" id="ocrDot-FHIR-suriya"></span>
-                            <i class="fas fa-sun"></i> Suriya OCR <span class="ocr-tag">Classic</span>
-                        </button>
-                        <button class="ocr-chip" data-ocr="chandra" id="ocrChip-FHIR-chandra" onclick="selectOcr('FHIR', 'chandra', this)">
-                            <span class="status-dot status-dot--checking" id="ocrDot-FHIR-chandra"></span>
-                            <i class="fas fa-language"></i> Chandra OCR <span class="ocr-tag">Indian Language</span>
-                        </button>
-                    </div>
-                </div>
                 <div class="controls">
                     <div class="file-input-wrapper">
                         <input type="file" id="fileFHIR" accept=".pdf" onchange="updateFileName('fileFHIR')">
@@ -197,24 +160,6 @@
             </div>
             
             <div class="upload-section">
-                <!-- OCR Selector for NHCX Tab -->
-                <div class="ocr-selector-row">
-                    <span class="ocr-selector-label"><i class="fas fa-eye"></i> OCR Engine</span>
-                    <div class="ocr-chip-group" id="ocrGroupNHCX">
-                        <button class="ocr-chip active" data-ocr="lighton" id="ocrChip-NHCX-lighton" onclick="selectOcr('NHCX', 'lighton', this)">
-                            <span class="status-dot status-dot--checking" id="ocrDot-NHCX-lighton"></span>
-                            <i class="fas fa-bolt"></i> LightOn OCR <span class="ocr-tag">PS-2</span>
-                        </button>
-                        <button class="ocr-chip" data-ocr="suriya" id="ocrChip-NHCX-suriya" onclick="selectOcr('NHCX', 'suriya', this)">
-                            <span class="status-dot status-dot--checking" id="ocrDot-NHCX-suriya"></span>
-                            <i class="fas fa-sun"></i> Suriya OCR <span class="ocr-tag">Classic</span>
-                        </button>
-                        <button class="ocr-chip" data-ocr="chandra" id="ocrChip-NHCX-chandra" onclick="selectOcr('NHCX', 'chandra', this)">
-                            <span class="status-dot status-dot--checking" id="ocrDot-NHCX-chandra"></span>
-                            <i class="fas fa-language"></i> Chandra OCR <span class="ocr-tag">Indian Language</span>
-                        </button>
-                    </div>
-                </div>
                 <div class="controls">
                     <div class="file-input-wrapper">
                         <input type="file" id="fileNHCX" accept=".pdf" onchange="updateFileName('fileNHCX')">

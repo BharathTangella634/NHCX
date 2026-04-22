@@ -1,7 +1,16 @@
 
 services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
   ocr-service-problem-2:
-    build: ./ocr_service_problem_2
+    build:
+      context: .
+      dockerfile: ocr_service_problem_2/Dockerfile
     container_name: pdf2fhir
     ports:
       - "8000:8000"
@@ -12,14 +21,19 @@ services:
       - PYTHONUNBUFFERED=1
       - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
       - GCS_CREDENTIALS_JSON=/app/gcs-service-account.json
+      - REDIS_URL=redis://redis:6379/0
     volumes:
       - ./pdf_uploads:/app/pdf_uploads
       - ./fhir_results_problem_2:/app/fhir_results_problem_2
       - ./gcp-service-account.json:/app/gcp-service-account.json:ro
       - ./gcs-service-account.json:/app/gcs-service-account.json:ro
+    depends_on:
+      - redis
 
   ocr-service-problem-3:
-    build: ./ocr_service_problem_3
+    build:
+      context: .
+      dockerfile: ocr_service_problem_3/Dockerfile
     container_name: pdf2nhcx
     ports:
       - "8001:8000"
@@ -30,11 +44,38 @@ services:
       - PYTHONUNBUFFERED=1
       - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
       - GCS_CREDENTIALS_JSON=/app/gcs-service-account.json
+      - REDIS_URL=redis://redis:6379/0
     volumes:
       - ./pdf_uploads:/app/pdf_uploads
       - ./nhcx_results_problem_3:/app/nhcx_results_problem_3
       - ./gcp-service-account.json:/app/gcp-service-account.json:ro
       - ./gcs-service-account.json:/app/gcs-service-account.json:ro
+    depends_on:
+      - redis
+
+  celery-worker:
+    build:
+      context: .
+      dockerfile: ocr_service_problem_3/Dockerfile # Re-use P3 Dockerfile as it has all deps
+    container_name: celery-worker
+    command: celery -A common.celery_app worker --loglevel=info --concurrency=2
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-service-account.json
+      - GCS_CREDENTIALS_JSON=/app/gcs-service-account.json
+      - REDIS_URL=redis://redis:6379/0
+      - PYTHONPATH=/app
+    volumes:
+      - ./pdf_uploads:/app/pdf_uploads
+      - ./fhir_results_problem_2:/app/fhir_results_problem_2
+      - ./nhcx_results_problem_3:/app/nhcx_results_problem_3
+      - ./gcp-service-account.json:/app/gcp-service-account.json:ro
+      - ./gcs-service-account.json:/app/gcs-service-account.json:ro
+    depends_on:
+      - redis
 
   frontend:
     build: 

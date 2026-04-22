@@ -126,34 +126,25 @@ def group_pages_by_patient(pages_text):
 
     return final_patient_texts
 
-def process_pdf_and_group_patients(pdf_path):
+async def process_pdf_and_group_patients(pdf_path):
     """
-    MAIN FUNCTION
-
-    Input:
-        pdf_path (str)
-
-    Output:
-        list of unique patient text blocks
+    MAIN FUNCTION using Multi-Engine OCR
     """
+    from common.ocr_service import extract_pdf_to_markdown, split_markdown_into_pages, OcrEngine
+    from pathlib import Path
 
-    # Step 1: Convert using Docling
-    converter = DocumentConverter()
-    result = converter.convert(pdf_path)
-
+    # Step 1: Convert using Multi-Engine OCR
+    logger.info(f"Extracting text from {pdf_path} using Multi-Engine OCR...")
+    result = await extract_pdf_to_markdown(Path(pdf_path), engine=OcrEngine.AUTO)
+    
     with open(pdf_path, "rb") as pdf_file:
         pdf_bytes = pdf_file.read()
         pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
 
     # Step 2: Extract page-wise text
-    pages_text = []
-
-    for i, page_num in enumerate(result.document.pages.keys(), start=1):
-        page_content = result.document.export_to_markdown(page_no=page_num)
-        pages_text.append(page_content)
-        print(f"Processed page {i}")
-
-    print(f"\n✅ Extracted {len(pages_text)} pages successfully!")
+    pages_text = split_markdown_into_pages(result.markdown)
+    
+    print(f"\n✅ Extracted {len(pages_text)} pages successfully using {result.engine_used}!")
 
     # Step 3: Group pages by patient
     unique_patient_texts = group_pages_by_patient(pages_text)
@@ -284,11 +275,11 @@ def classify_document(text: str) -> list:
     return clinical_artifact, must_resources, selected_other_resources
 
 
-def extract_text_from_abdm_pdf(pdf_path):
-    """Extracts text from PDF using Docling and inserts page break markers."""
-    logger.info(f"Extracting text from {pdf_path} using Docling...")
+async def extract_text_from_abdm_pdf(pdf_path):
+    """Extracts text from PDF using multi-engine OCR and groups patients."""
+    logger.info(f"Extracting text from {pdf_path}...")
 
-    unique_patient_lists, pdf_base64 = process_pdf_and_group_patients(pdf_path)
+    unique_patient_lists, pdf_base64 = await process_pdf_and_group_patients(pdf_path)
 
     return unique_patient_lists, pdf_base64
 

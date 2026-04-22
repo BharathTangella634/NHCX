@@ -14,13 +14,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY ocr_service_problem_2/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app/ ./app/
-COPY utils/ ./utils/
-COPY rulebooks_updated/ ./rulebooks_updated/
+COPY common/ ./common/
+COPY ocr_service_problem_2/app/ ./ocr_service_problem_2/app/
+COPY ocr_service_problem_2/utils/ ./ocr_service_problem_2/utils/
+COPY ocr_service_problem_2/rulebooks_updated/ ./ocr_service_problem_2/rulebooks_updated/
+
+# Set PYTHONPATH so imports work
+ENV PYTHONPATH=/app
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "1500"]
+CMD ["uvicorn", "ocr_service_problem_2.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "1500"]

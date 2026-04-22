@@ -232,32 +232,16 @@ def distill_insurance_text(full_text):
     return final_distilled_text
 
 
-def extract_distilled_text_from_nhcx_pdf(pdf_path):
-    """Extracts text from PDF using Docling and inserts page break markers."""
-    logger.info(f"Extracting text from {pdf_path} using Docling...")
-
-    source = pdf_path
-
-    # 1. Initialize the converter
-    converter = DocumentConverter()
-
-    # 2. Convert the entire document in one go (Preserves internal structure)
-    result = converter.convert(source)
-
-    # 3. Access individual pages from the result object
-    # Docling's 'result.document' contains the structured data
-    pages_text = []
-
-    # If you want to iterate through the document's pages as Markdown:
-    # Note: Docling usually exports the whole doc, but we can filter by page index
-    for page_num, page in result.document.pages.items():
-        # This gets the content specifically associated with this page
-        page_content = result.document.export_to_markdown(page_no=page_num)
-        pages_text.append(page_content)
-        print(f"Processed page {page_num}")
-
+async def extract_distilled_text_from_nhcx_pdf(pdf_path):
+    """Extracts text from PDF using multi-engine OCR (common)."""
+    from common.ocr_service import extract_pdf_to_markdown, OcrEngine
+    from pathlib import Path
     
-    extracted_text = "\n".join(pages_text)
+    logger.info(f"Extracting text from {pdf_path} using Multi-Engine OCR...")
+    
+    # Run OCR waterfall
+    result = await extract_pdf_to_markdown(Path(pdf_path), engine=OcrEngine.AUTO)
+    extracted_text = result.markdown
 
     with open(pdf_path, "rb") as pdf_file:
         pdf_bytes = pdf_file.read()

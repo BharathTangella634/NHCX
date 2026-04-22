@@ -24,13 +24,13 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-def get_abdm_json(pdf_path, output_dir=None, model: str = "llama4-scout"):
+async def get_abdm_json(pdf_path, output_dir=None, model: str = "gemma4"):
     try:
         filename = os.path.basename(pdf_path)
         logger.info(f"Processing {filename}...")
         
         # Perform OCR
-        unique_patients_text_list, pdf_base64 = extract_text_from_abdm_pdf(pdf_path)
+        unique_patients_text_list, pdf_base64 = await extract_text_from_abdm_pdf(pdf_path)
 
         bundles = []
         doc_types = []
@@ -62,23 +62,36 @@ def get_abdm_json(pdf_path, output_dir=None, model: str = "llama4-scout"):
 
 
 
-app = FastAPI(title="OCR Service Problem 2")
+app = FastAPI(
+    title="ABDM FHIR Extraction API",
+    description="Production-grade OCR and FHIR extraction pipeline for clinical documents.",
+    version="2.0.0",
+    docs_url="/docs",
+    openapi_tags=[
+        {"name": "Status", "description": "Health and system status endpoints."},
+        {"name": "Processing", "description": "Core document processing endpoints."},
+    ]
+)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=False,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+from common.tasks import process_document_task
+from celery.result import AsyncResult
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Map UPLOAD_DIR to /app/pdf_uploads if in Docker, else relative to app
 UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-@app.get("/health")
-@app.get("/pdf2fhir/health")
+@app.get("/health", tags=["Status"], summary="Service health check")
+@app.get("/pdf2fhir/health", tags=["Status"], include_in_schema=False)
 def health_check():
     from utils.llm_requirements import check_llm_health
     is_healthy, status_code = check_llm_health()
@@ -91,9 +104,9 @@ def health_check():
             content={"status": "error", "reason": status_code, "service": "ocr-service-problem-2"}
         )
 
-@app.get("/model-health")
-@app.get("/pdf2fhir/model-health")
-def model_health(model: str = "llama4-scout"):
+@app.get("/model-health", tags=["Status"], summary="Check LLM model availability")
+@app.get("/pdf2fhir/model-health", tags=["Status"], include_in_schema=False)
+def model_health(model: str = "gemma4"):
     """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
     from utils.llm_requirements import check_llm_health, MODEL_MAP
     if model not in MODEL_MAP:
@@ -109,11 +122,11 @@ def model_health(model: str = "llama4-scout"):
         content={"status": "error", "reason": reason, "model": model}
     )
 
-@app.get("/ocr-health")
-@app.get("/pdf2fhir/ocr-health")
+@app.get("/ocr-health", tags=["Status"], summary="Check OCR engine availability")
+@app.get("/pdf2fhir/ocr-health", tags=["Status"], include_in_schema=False)
 def ocr_health(engine: str = "lighton"):
     """Check if a specific OCR engine is available."""
-    KNOWN_ENGINES = {"lighton", "suriya", "chandra"}
+    KNOWN_ENGINES = {"lighton", "suriya", "chandra", "docling"}
     if engine not in KNOWN_ENGINES:
         return JSONResponse(
             status_code=404,
@@ -129,11 +142,11 @@ def ocr_health(engine: str = "lighton"):
         )
 
 
-@app.post("/pdf2fhir")
+@app.post("/pdf2fhir", tags=["Processing"], summary="Convert PDF to ABDM FHIR Bundle (Sync)")
 async def convert_pdf_to_fhir(
     file: UploadFile = File(...),
-    model: str = Form("llama4-scout"),
-    ocr_engine: str = Form("lighton"),
+    model: str = Form("gemma4"),
+    ocr_engine: str = Form("auto"),
 ):
     file.filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {file.filename}")
@@ -161,7 +174,7 @@ async def convert_pdf_to_fhir(
     
     start_time = time.perf_counter()
     logger.info("Starting get_abdm_json processing...")
-    result = get_abdm_json(file_path, target_output_dir, model=model)
+    result = await get_abdm_json(file_path, target_output_dir, model=model)
     bundles, doc_types = result if result else ([], [])
     end_time = time.perf_counter()
     
@@ -180,6 +193,39 @@ async def convert_pdf_to_fhir(
         "model_used": model,
         "ocr_engine_used": ocr_engine,
     })
+
+@app.post("/pdf2fhir-async", tags=["Processing"], summary="Submit PDF for async processing")
+async def convert_pdf_to_fhir_async(
+    file: UploadFile = File(...),
+    model: str = Form("gemma4"),
+):
+    """
+    Submits a PDF for asynchronous processing.
+    Returns a task ID that can be used to poll for results.
+    """
+    file.filename = file.filename.replace(" ", "_")
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    task = process_document_task.delay(file_path, model=model)
+    return {"task_id": task.id, "status": "queued"}
+
+@app.get("/task-status/{task_id}", tags=["Processing"], summary="Get status of an async task")
+async def get_task_status(task_id: str):
+    """
+    Poll this endpoint with the task ID to check progress and get final results.
+    """
+    res = AsyncResult(task_id)
+    if res.ready():
+        result = res.result
+        return {"task_id": task_id, "status": "completed", "result": result}
+    
+    # Check for progress updates
+    state = res.state
+    info = res.info if isinstance(res.info, dict) else {"progress": 0, "step": "Pending"}
+    return {"task_id": task_id, "status": state, "info": info}
+
 
 @app.post("/validate")
 async def validate_fhir(request: Request):
@@ -264,7 +310,8 @@ def main():
     if os.path.isfile(args.input):
         start_time = time.perf_counter()   # ⏱ Start timer
         
-        bundle = get_abdm_json(args.input, target_output_dir)
+        import asyncio
+        bundle = asyncio.run(get_abdm_json(args.input, target_output_dir))
         
         end_time = time.perf_counter()     # ⏱ End timer
         total_time = end_time - start_time

@@ -107,7 +107,16 @@ import json
 import re
 import uuid
 
-app = FastAPI()
+app = FastAPI(
+    title="NHCX Extraction API",
+    description="Production-grade OCR and FHIR extraction pipeline for insurance documents.",
+    version="2.0.0",
+    docs_url="/docs",
+    openapi_tags=[
+        {"name": "Status", "description": "Health and system status endpoints."},
+        {"name": "Processing", "description": "Core document processing endpoints."},
+    ]
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -117,13 +126,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from common.tasks import process_document_task
+from celery.result import AsyncResult
+
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Map UPLOAD_DIR to /app/pdf_uploads if in Docker, else relative to app
 UPLOAD_DIR = "/app/pdf_uploads" if os.environ.get("PYTHONUNBUFFERED") else os.path.join(BASE_DIR, "pdf_uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-@app.get("/health")
-@app.get("/pdf2nhcx/health")
+@app.get("/health", tags=["Status"], summary="Service health check")
+@app.get("/pdf2nhcx/health", tags=["Status"], include_in_schema=False)
 def health_check():
     from utils.llm_requirements import check_llm_health
     is_healthy, status_code = check_llm_health()
@@ -135,9 +148,9 @@ def health_check():
             content={"status": "error", "reason": status_code, "service": "ocr-service-problem-3"}
         )
 
-@app.get("/model-health")
-@app.get("/pdf2nhcx/model-health")
-def model_health(model: str = "llama4-scout"):
+@app.get("/model-health", tags=["Status"], summary="Check LLM model availability")
+@app.get("/pdf2nhcx/model-health", tags=["Status"], include_in_schema=False)
+def model_health(model: str = "gemma4"):
     """Check if a specific LLM model is available (valid name + Vertex auth OK)."""
     from utils.llm_requirements import check_llm_health, MODEL_MAP
     if model not in MODEL_MAP:
@@ -153,11 +166,11 @@ def model_health(model: str = "llama4-scout"):
         content={"status": "error", "reason": reason, "model": model}
     )
 
-@app.get("/ocr-health")
-@app.get("/pdf2nhcx/ocr-health")
+@app.get("/ocr-health", tags=["Status"], summary="Check OCR engine availability")
+@app.get("/pdf2nhcx/ocr-health", tags=["Status"], include_in_schema=False)
 def ocr_health(engine: str = "lighton"):
     """Check if a specific OCR engine is available."""
-    KNOWN_ENGINES = {"lighton", "suriya", "chandra"}
+    KNOWN_ENGINES = {"lighton", "suriya", "chandra", "docling"}
     if engine not in KNOWN_ENGINES:
         return JSONResponse(
             status_code=404,
@@ -185,13 +198,13 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
-def get_nhcx_json(pdf_path, output_dir=None, model: str = "llama4-scout"):
+async def get_nhcx_json(pdf_path, output_dir=None, model: str = "gemma4"):
     try:
         filename = os.path.basename(pdf_path)
         logger.info(f"Processing {filename}...")
         
         # Perform OCR
-        distilled_text, pdf_base64 = extract_distilled_text_from_nhcx_pdf(pdf_path)
+        distilled_text, pdf_base64 = await extract_distilled_text_from_nhcx_pdf(pdf_path)
 
         doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text)
 
@@ -214,11 +227,11 @@ def get_nhcx_json(pdf_path, output_dir=None, model: str = "llama4-scout"):
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
 
-@app.post("/pdf2nhcx")
+@app.post("/pdf2nhcx", tags=["Processing"], summary="Convert PDF to NHCX Bundle (Sync)")
 async def convert_pdf_to_nhcx(
     file: UploadFile = File(...),
-    model: str = Form("llama4-scout"),
-    ocr_engine: str = Form("lighton"),
+    model: str = Form("gemma4"),
+    ocr_engine: str = Form("auto"),
 ):
     file.filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {file.filename}")
@@ -246,7 +259,7 @@ async def convert_pdf_to_nhcx(
     
     start_time = time.perf_counter()
     logger.info("Starting get_nhcx_json processing...")
-    bundle = get_nhcx_json(file_path, target_output_dir, model=model)
+    bundle = await get_nhcx_json(file_path, target_output_dir, model=model)
     end_time = time.perf_counter()
     
     processing_time = round(end_time - start_time, 2)
@@ -263,6 +276,39 @@ async def convert_pdf_to_nhcx(
         "model_used": model,
         "ocr_engine_used": ocr_engine,
     })
+
+@app.post("/pdf2nhcx-async", tags=["Processing"], summary="Submit PDF for async processing")
+async def convert_pdf_to_nhcx_async(
+    file: UploadFile = File(...),
+    model: str = Form("gemma4"),
+):
+    """
+    Submits a PDF for asynchronous processing.
+    Returns a task ID that can be used to poll for results.
+    """
+    file.filename = file.filename.replace(" ", "_")
+    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    task = process_document_task.delay(file_path, model=model)
+    return {"task_id": task.id, "status": "queued"}
+
+@app.get("/task-status/{task_id}", tags=["Processing"], summary="Get status of an async task")
+async def get_task_status(task_id: str):
+    """
+    Poll this endpoint with the task ID to check progress and get final results.
+    """
+    res = AsyncResult(task_id)
+    if res.ready():
+        result = res.result
+        return {"task_id": task_id, "status": "completed", "result": result}
+    
+    # Check for progress updates
+    state = res.state
+    info = res.info if isinstance(res.info, dict) else {"progress": 0, "step": "Pending"}
+    return {"task_id": task_id, "status": state, "info": info}
+
 
 @app.post("/validate")
 async def validate_fhir(request: Request):
@@ -347,7 +393,8 @@ def main():
     if os.path.isfile(args.input):
         start_time = time.perf_counter()   # ⏱ Start timer
         
-        bundle = get_nhcx_json(args.input, args.output_dir)
+        import asyncio
+        bundle = asyncio.run(get_nhcx_json(args.input, target_output_dir))
         
         end_time = time.perf_counter()     # ⏱ End timer
         total_time = end_time - start_time
