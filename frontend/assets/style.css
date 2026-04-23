@@ -29,39 +29,38 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
     padding: 0;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 2px solid rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-/* Row 1 — Brand + Logos */
-.header-top {
+/* ── Row 1: Brand (left) + Logos (right) ─────────────────────────────────── */
+.header-row-brand {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2.5rem;
+    padding: 0.9rem 2.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
 }
-.header-left, .header-right { flex: 1; }
-.header-left { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-.header-right { flex: 0; }  /* empty placeholder for symmetry */
-.header-center { flex: 2; display: flex; justify-content: center; }
+.header-brand { display: flex; flex-direction: column; align-items: flex-start; }
+.header-logos { display: flex; align-items: center; gap: 20px; }
 
-/* Row 2 — Navigation tab bar */
+/* ── Row 2: Nav tabs — centered ───────────────────────────────────────────── */
 .header-nav-bar {
-    background: rgba(0,0,0,0.04);
-    border-top: 1px solid rgba(0,0,0,0.07);
+    background: rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 6px 0;
 }
-.header-nav { display: inline-flex; gap: 4px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 10px; margin: 0 auto; }
+.header-nav { display: inline-flex; gap: 4px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 10px; }
 .header-nav .tablinks { padding: 8px 18px; font-size: 0.85rem; border-radius: 7px; white-space: nowrap; }
 .header-nav .tablinks i { margin-right: 5px; }
 
-/* API Access button — distinct teal accent */
+/* API Access button — teal accent */
 .tab-api-btn {
     padding: 8px 18px; font-size: 0.85rem; border-radius: 7px; white-space: nowrap;
     border: none; cursor: pointer; font-weight: 600;
@@ -73,16 +72,22 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 .tab-api-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
 .tab-api-btn i { margin-right: 5px; }
 
-.logo-group { display: flex; align-items: center; gap: 20px; }
-.logo { max-height: 70px; width: auto; }
-.title-group { display: flex; align-items: center; justify-content: flex-start; gap: 12px; }
-.fhir-icon { font-size: 1.8rem; color: #ef4444; }
-.header-left h1 { margin: 0; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.02em; }
-.subtitle { margin: 4px 0 0; color: var(--text-light); font-size: 0.85rem; text-align: left; }
+/* ── Row 3: AI status indicator — centered ────────────────────────────────── */
+.header-ai-bar {
+    background: #f0fdfa;
+    border-bottom: 1px solid #b2e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+}
 
-/* AI Status bar — slim strip below header */
-.ai-status-bar { background: #f0fdfa; border-bottom: 1px solid #b2e8e8; padding: 5px 2rem; display: flex; justify-content: flex-end; }
-.ai-status-inner { display: flex; align-items: center; }
+/* Shared logo / title styles */
+.logo { max-height: 60px; width: auto; }
+.title-group { display: flex; align-items: center; gap: 12px; }
+.fhir-icon { font-size: 1.8rem; color: #ef4444; }
+.header-brand h1 { margin: 0; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.02em; }
+.subtitle { margin: 4px 0 0; color: var(--text-light); font-size: 0.85rem; }
 
 
 /* Tabs */
