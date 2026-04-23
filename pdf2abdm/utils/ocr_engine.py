@@ -242,6 +242,11 @@ def classify_document(text: str) -> list:
     }}
     """
 
+    # Safe defaults — guaranteed to be defined even if LLM/parsing fails
+    clinical_artifact = ""
+    must_resources = []
+    selected_other_resources = []
+
     # Invoke the LLM with a fresh client (token baked in at construction)
     from .llm_requirements import get_llm
     fresh_llm = get_llm()
@@ -268,10 +273,37 @@ def classify_document(text: str) -> list:
         print(f"Other Selected Resources: {selected_other_resources}")
 
     except Exception as e:
-        print(f"Error parsing LLM output: {e}")
+        print(f"⚠ Error parsing LLM output: {e}")
         print(f"Raw response was: {raw_output}")
+        print("⚙ Falling back to keyword-based classification...")
 
-    
+        # Keyword fallback — never let a document return empty-handed
+        text_lower = text.lower()
+        discharge_keywords = [
+            "discharge", "admission", "course in hospital",
+            "condition at discharge", "hospital course", "chief complaint",
+            "final diagnosis", "discharge diagnosis", "date of admission",
+            "date of discharge", "inpatient"
+        ]
+        diagnostic_keywords = [
+            "lab no", "collection date", "report date", "test name",
+            "reference range", "haemoglobin", "platelet", "radiology",
+            "impression", "x-ray", "mri", "ct scan", "ultrasound",
+            "laboratory", "pathology", "biopsy", "specimen"
+        ]
+        discharge_score  = sum(1 for kw in discharge_keywords  if kw in text_lower)
+        diagnostic_score = sum(1 for kw in diagnostic_keywords if kw in text_lower)
+
+        if discharge_score >= diagnostic_score:
+            clinical_artifact = "DischargeSummaryRecord"
+            print(f"  → Fallback classified as DischargeSummaryRecord (score {discharge_score} vs {diagnostic_score})")
+        else:
+            clinical_artifact = "DiagnosticReportRecord"
+            print(f"  → Fallback classified as DiagnosticReportRecord (score {diagnostic_score} vs {discharge_score})")
+
+        must_resources = get_must_resources(clinical_artifact)
+        selected_other_resources = []
+
     return clinical_artifact, must_resources, selected_other_resources
 
 
