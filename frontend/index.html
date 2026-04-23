@@ -70,7 +70,7 @@
                     <strong><i class="fas fa-user-shield"></i> Privacy:</strong> We do not save any of your data and we purge it after use. Kindly download the JSON bundles.
                 </p>
                 <p style="margin: 0; color: #0f766e; font-size: 14px;">
-                    <strong><i class="fas fa-file-pdf"></i> Limit:</strong> Maximum allowed file size is <strong>25 MB</strong> or <strong>100 pages</strong>.
+                    <strong><i class="fas fa-file-pdf"></i> Limit:</strong> Maximum allowed file size is <strong>25 MB</strong>.
                 </p>
             </div>
             
@@ -160,7 +160,7 @@
                     <strong><i class="fas fa-user-shield"></i> Privacy:</strong> We do not save any of your data and we purge it after use. Kindly download the JSON bundles.
                 </p>
                 <p style="margin: 0; color: #0f766e; font-size: 14px;">
-                    <strong><i class="fas fa-file-pdf"></i> Limit:</strong> Maximum allowed file size is <strong>25 MB</strong> or <strong>100 pages</strong>.
+                    <strong><i class="fas fa-file-pdf"></i> Limit:</strong> Maximum allowed file size is <strong>25 MB</strong>.
                 </p>
             </div>
             
@@ -389,42 +389,80 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 </body>
-</html>
-    <header class="main-header">
-        <!-- Row 1: Brand + Logos -->
-        <div class="header-top">
-            <div class="header-left">
-                <div class="title-group">
-                    <i class="fas fa-fire-alt fhir-icon"></i>
-                    <h1>FHIR Converter</h1>
-                </div>
-                <p class="subtitle">Convert Medical PDFs to ABDM &amp; NHCX Profiles</p>
-            </div>
-            <div class="header-center">
-                <div class="logo-group">
-                    <img src="assets/MoE_Logo.svg" alt="Ministry of Education Logo" class="logo">
-                    <img src="assets/NHA_logo.png" alt="NHA Logo" class="logo">
-                    <img src="assets/tanuh.png" alt="Tanuh Logo" class="logo">
-                    <img src="assets/IISc_Logo.png" alt="IISc Logo" class="logo">
-                </div>
-            </div>
-            <div class="header-right"></div>
-        </div>
-        <!-- Row 2: Navigation tabs -->
-        <div class="header-nav-bar">
-            <nav class="header-nav">
-                <button class="tablinks active" id="navClinical" onclick="openTab(event, 'PDF2FHIR')"><i class="fas fa-file-medical"></i> Clinical Document</button>
-                <button class="tablinks" id="navInsurance" onclick="openTab(event, 'PDF2NHCX')"><i class="fas fa-shield-alt"></i> Insurance Policy</button>
-                <button class="tablinks" id="navDashboard" onclick="openTab(event, 'Dashboard')"><i class="fas fa-chart-bar"></i> Dashboard</button>
-                <button class="tablinks" id="navAbout" onclick="openTab(event, 'AboutUs')"><i class="fas fa-info-circle"></i> About Us</button>
-                <button class="tab-api-btn" id="navApiAccess" onclick="openApiDocs()"><i class="fas fa-code"></i> API Access</button>
-            </nav>
-        </div>
-    </header>
-
-    <!-- AI Status Bar (below header) -->
-    <div class="ai-status-bar">
-        <div class="ai-status-inner">
-            <div class="ai-badge ai-badge-off" id="aiBadge"><span class="ai-badge-dot"></span> <span id="aiBadgeText">Checking...</span></div>
-        </div>
+</html>
+
+    <header class="main-header">
+
+        <!-- Row 1: Brand + Logos -->
+
+        <div class="header-top">
+
+            <div class="header-left">
+
+                <div class="title-group">
+
+                    <i class="fas fa-fire-alt fhir-icon"></i>
+
+                    <h1>FHIR Converter</h1>
+
+                </div>
+
+                <p class="subtitle">Convert Medical PDFs to ABDM &amp; NHCX Profiles</p>
+
+            </div>
+
+            <div class="header-center">
+
+                <div class="logo-group">
+
+                    <img src="assets/MoE_Logo.svg" alt="Ministry of Education Logo" class="logo">
+
+                    <img src="assets/NHA_logo.png" alt="NHA Logo" class="logo">
+
+                    <img src="assets/tanuh.png" alt="Tanuh Logo" class="logo">
+
+                    <img src="assets/IISc_Logo.png" alt="IISc Logo" class="logo">
+
+                </div>
+
+            </div>
+
+            <div class="header-right"></div>
+
+        </div>
+
+        <!-- Row 2: Navigation tabs -->
+
+        <div class="header-nav-bar">
+
+            <nav class="header-nav">
+
+                <button class="tablinks active" id="navClinical" onclick="openTab(event, 'PDF2FHIR')"><i class="fas fa-file-medical"></i> Clinical Document</button>
+
+                <button class="tablinks" id="navInsurance" onclick="openTab(event, 'PDF2NHCX')"><i class="fas fa-shield-alt"></i> Insurance Policy</button>
+
+                <button class="tablinks" id="navDashboard" onclick="openTab(event, 'Dashboard')"><i class="fas fa-chart-bar"></i> Dashboard</button>
+
+                <button class="tablinks" id="navAbout" onclick="openTab(event, 'AboutUs')"><i class="fas fa-info-circle"></i> About Us</button>
+
+                <button class="tab-api-btn" id="navApiAccess" onclick="openApiDocs()"><i class="fas fa-code"></i> API Access</button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- AI Status Bar (below header) -->
+
+    <div class="ai-status-bar">
+
+        <div class="ai-status-inner">
+
+            <div class="ai-badge ai-badge-off" id="aiBadge"><span class="ai-badge-dot"></span> <span id="aiBadgeText">Checking...</span></div>
+
+        </div>
+
     </div>

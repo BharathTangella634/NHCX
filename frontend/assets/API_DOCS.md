@@ -39,7 +39,7 @@ All services use **Google Application Default Credentials (ADC)** on the server 
 | `202 Accepted` | Task queued for async processing; body contains `task_id` |
 | `400 Bad Request` | Invalid input (e.g. non-PDF file, missing field) |
 | `404 Not Found` | File not found (URL-path endpoints) or unknown model |
-| `413 Request Entity Too Large` | PDF exceeds 25 MB or 100 pages |
+| `413 Request Entity Too Large` | PDF exceeds 25 MB |
 | `422 Unprocessable Entity` | Missing required form fields |
 | `500 Internal Server Error` | Processing failed (OCR or LLM error) |
 | `503 Service Unavailable` | Backend model or auth unavailable |
@@ -56,7 +56,7 @@ Converts a clinical PDF to one or more ABDM-compliant FHIR R4 DocumentBundles. W
 
 | Field | Type | Required | Default | Description |
 |-------|------|----------|---------|-------------|
-| `file` | PDF file | ✅ | — | Clinical document (max 25 MB / 100 pages) |
+| `file` | PDF file | ✅ | — | Clinical document (max 25 MB) |
 | `model` | string | ❌ | `gemma4` | LLM model identifier |
 | `ocr_engine` | string | ❌ | `auto` | OCR engine: `auto`, `docling`, `rapidocr` |
 
@@ -472,7 +472,6 @@ if __name__ == "__main__":
 | Constraint | Value |
 |------------|-------|
 | Max PDF size | 25 MB |
-| Max PDF pages | 100 |
 | Typical processing time | 3–8 minutes |
 | Async task result TTL | 24 hours (Redis cache) |
 | GCS object retention | Configurable (default: indefinite) |
