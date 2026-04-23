@@ -53,9 +53,11 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
     border-top: 1px solid rgba(0,0,0,0.07);
     display: flex;
     justify-content: center;
-    padding: 6px 2rem;
+    align-items: center;
+    width: 100%;
+    padding: 6px 0;
 }
-.header-nav { display: flex; gap: 4px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 10px; }
+.header-nav { display: inline-flex; gap: 4px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 10px; margin: 0 auto; }
 .header-nav .tablinks { padding: 8px 18px; font-size: 0.85rem; border-radius: 7px; white-space: nowrap; }
 .header-nav .tablinks i { margin-right: 5px; }
 
