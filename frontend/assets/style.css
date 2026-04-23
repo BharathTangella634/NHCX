@@ -385,7 +385,22 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 .ocr-chip.active   .status-dot         { opacity: 0.9; }
 
 /* Footer */
-.footer { margin-top: 4rem; padding: 3rem 2rem; background: white; text-align: center; border-top: 1px solid var(--border); }
+.footer { margin-top: 4rem; padding: 2rem 2rem 3rem; background: white; text-align: center; border-top: 1px solid var(--border); }
+.footer-stats {
+    display: flex; justify-content: center; align-items: center;
+    gap: 0; margin-bottom: 1.8rem;
+    background: #f8fafc; border: 1px solid var(--border);
+    border-radius: 50px; padding: 10px 28px;
+    display: inline-flex;
+}
+.footer-stat {
+    display: flex; align-items: center; gap: 7px;
+    padding: 0 18px; font-size: 0.88rem; color: var(--text-dark);
+}
+.footer-stat i { color: var(--primary); font-size: 0.9rem; }
+.footer-stat span:not(.footer-stat-label) { font-weight: 700; font-family: 'Poppins', sans-serif; font-size: 1rem; color: var(--primary); }
+.footer-stat-label { color: var(--text-light); font-size: 0.78rem; }
+.footer-stat-divider { width: 1px; height: 24px; background: var(--border); flex-shrink: 0; }
 .footer-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 1.5rem; }
 .blue-link {
     text-decoration: none; color: var(--primary); font-weight: 600;

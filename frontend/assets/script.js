@@ -57,6 +57,7 @@ async function checkAiStatus() {
 window.addEventListener('DOMContentLoaded', () => {
     checkAiStatus();
     setInterval(checkAiStatus, 30000);
+    renderDashboard(); // populate footer + dashboard immediately
 });
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -105,10 +106,10 @@ function getDash() {
 }
 function saveDash(d) { localStorage.setItem(DASH_KEY, JSON.stringify(d)); }
 
-// Increment visitor count once per browser session
+// Increment visitor count ONCE per browser (localStorage — survives sessions)
 (function trackVisitor() {
-    if (sessionStorage.getItem('visited')) return;
-    sessionStorage.setItem('visited', '1');
+    if (localStorage.getItem('tanuh_unique_visited')) return;
+    localStorage.setItem('tanuh_unique_visited', '1');
     const d = getDash();
     d.visitors = (d.visitors || 0) + 1;
     saveDash(d);
@@ -144,7 +145,12 @@ async function trackInference(type) {   // type: 'clinical' | 'insurance'
 function renderDashboard() {
     const d = getDash();
 
-    // Stat counters
+    const setCount = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = (val || 0).toLocaleString();
+    };
+
+    // Animated counter for dashboard cards
     const animate = (id, val) => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -161,19 +167,26 @@ function renderDashboard() {
     animate('statClinical',  d.clinical  || 0);
     animate('statInsurance', d.insurance || 0);
 
-    // States
+    // Footer stats — plain set (no animation to avoid flicker on load)
+    setCount('footerVisitors', d.visitors);
+    setCount('footerClinical',  d.clinical);
+    setCount('footerInsurance', d.insurance);
+
+    // States & Districts — only rendered when Dashboard tab is open
+    const stateCountEl   = document.getElementById('stateCount');
+    const stateListEl    = document.getElementById('stateList');
+    const districtCountEl = document.getElementById('districtCount');
+    const districtListEl  = document.getElementById('districtList');
+
     const states = d.states || [];
-    document.getElementById('stateCount').textContent = states.length;
-    const stateList = document.getElementById('stateList');
-    stateList.innerHTML = states.length
+    if (stateCountEl) stateCountEl.textContent = states.length;
+    if (stateListEl)  stateListEl.innerHTML = states.length
         ? states.map(s => `<span class="dash-geo-tag">${s}</span>`).join('')
         : '<span style="color:var(--text-light);font-size:0.82rem">No inferences yet</span>';
 
-    // Districts
     const districts = d.districts || [];
-    document.getElementById('districtCount').textContent = districts.length;
-    const districtList = document.getElementById('districtList');
-    districtList.innerHTML = districts.length
+    if (districtCountEl) districtCountEl.textContent = districts.length;
+    if (districtListEl)  districtListEl.innerHTML = districts.length
         ? districts.map(s => `<span class="dash-geo-tag">${s}</span>`).join('')
         : '<span style="color:var(--text-light);font-size:0.82rem">No inferences yet</span>';
 }
