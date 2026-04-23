@@ -655,12 +655,13 @@ def run_abdm_pipeline(extracted_text: str, clinical_artifact: str, selected_othe
     
     # Build and run dynamic workflow
     app, used_resources = build_dynamic_workflow(clinical_artifact, selected_other_resources, rulebook_paths)
-    if output_dir:
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-        output_path = os.path.join(output_dir, f"FHIR_BUNDLE_{clinical_artifact}_Patient_{idx}.json")
-    else:
-        raise Exception("No output Directory")
+    # output_dir is legacy — pipeline uploads directly to GCS.
+    # Use a transient temp path only as a fallback label (never written to disk).
+    import tempfile
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+    _out_label = output_dir or tempfile.gettempdir()
+    output_path = os.path.join(_out_label, f"FHIR_BUNDLE_{clinical_artifact}_Patient_{idx}.json")
 
 
 
