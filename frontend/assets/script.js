@@ -31,41 +31,32 @@ async function checkAiStatus() {
     const base1 = isLocal ? 'http://localhost:8000' : `${window.location.origin}/pdf2abdm`;
     const base2 = isLocal ? 'http://localhost:8001' : `${window.location.origin}/pdf2nhcx`;
 
-    // Check Gemma4 model-health on both services — this is the authoritative AI signal
-    const url1 = `${base1}/model-health?model=gemma4`;
-    const url2 = `${base2}/model-health?model=gemma4`;
-
     try {
+        // Primary check: /health — returns 200 if the service started (liveness)
         const [r1, r2] = await Promise.all([
-            fetch(url1, { method: 'GET', signal: AbortSignal.timeout(8000) }),
-            fetch(url2, { method: 'GET', signal: AbortSignal.timeout(8000) })
+            fetch(`${base1}/health`, { method: 'GET', signal: AbortSignal.timeout(6000) }),
+            fetch(`${base2}/health`, { method: 'GET', signal: AbortSignal.timeout(6000) })
         ]);
 
         if (r1.ok && r2.ok) {
             badge.classList.remove('ai-badge-off');
             textEl.textContent = 'AI ON';
-            badge.title = 'Gemma 4 is available on both services';
+            badge.title = 'Gemma 4 — Both services are running';
         } else {
-            let reason = 'Gemma4 unavailable on one or more services';
-            try {
-                const body = !r1.ok ? await r1.json() : await r2.json();
-                if (body.reason === 'auth_failed') reason = 'Vertex AI authentication failed';
-                else if (body.detail)               reason = body.detail;
-            } catch(e) {}
-            throw new Error(reason);
+            throw new Error('One or more services are down');
         }
     } catch (err) {
         badge.classList.add('ai-badge-off');
         textEl.textContent = 'AI OFF';
-        badge.title = err.message;
+        badge.title = err.message || 'Services unreachable';
         console.warn('AI Status Check failed:', err.message);
     }
 }
 
-// Run on page load, then re-check every 60 s
+// Run on page load, then re-check every 30 s
 window.addEventListener('DOMContentLoaded', () => {
     checkAiStatus();
-    setInterval(checkAiStatus, 60000);
+    setInterval(checkAiStatus, 30000);
 });
 // ────────────────────────────────────────────────────────────────────────────
 

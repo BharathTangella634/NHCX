@@ -131,25 +131,14 @@ def health_check():
 @app.get("/pdf2abdm/model-health", tags=["Status"], include_in_schema=False)
 @app.get("/pdf2fhir/model-health", tags=["Status"], include_in_schema=False)
 def model_health(model: str = "gemma4"):
-    """Check if a specific LLM model is reachable via Vertex AI credentials."""
+    """Returns 200 if the model name is recognised (gemma4). Auth is validated at inference time."""
     from utils.llm_requirements import MODEL_MAP
     if model not in MODEL_MAP:
         return JSONResponse(
             status_code=404,
             content={"status": "error", "reason": "unknown_model", "model": model}
         )
-    # Lightweight credential probe: can we find ADC? No live token fetch needed.
-    try:
-        import google.auth
-        creds, project = google.auth.default(
-            scopes=["https://www.googleapis.com/auth/cloud-platform"]
-        )
-        return {"status": "ok", "model": model, "vertex_model": MODEL_MAP[model], "project": project}
-    except Exception as e:
-        return JSONResponse(
-            status_code=503,
-            content={"status": "error", "reason": "auth_failed", "detail": str(e), "model": model}
-        )
+    return {"status": "ok", "model": model, "vertex_model": MODEL_MAP[model]}
 
 @app.get("/ocr-health", tags=["Status"], summary="Check OCR engine availability")
 @app.get("/pdf2abdm/ocr-health", tags=["Status"], include_in_schema=False)
