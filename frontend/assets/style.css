@@ -46,6 +46,18 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 .header-nav .tablinks { padding: 7px 14px; font-size: 0.82rem; border-radius: 7px; white-space: nowrap; }
 .header-nav .tablinks i { margin-right: 5px; }
 
+/* API Access button — distinct accent */
+.tab-api-btn {
+    padding: 7px 14px; font-size: 0.82rem; border-radius: 7px; white-space: nowrap;
+    border: none; cursor: pointer; font-weight: 600;
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: var(--primary); color: white;
+    transition: background 0.2s, transform 0.15s;
+    margin-left: 6px;
+}
+.tab-api-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.tab-api-btn i { margin-right: 5px; }
+
 .logo-group { display: flex; align-items: center; gap: 20px; }
 .logo { max-height: 70px; width: auto; }
 .title-group { display: flex; align-items: center; justify-content: flex-start; gap: 12px; }
@@ -460,6 +472,21 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
     color: var(--error-red);
     text-decoration: none;
 }
+
+/* ── Markdown prose (API docs modal) ──────────────────────────────────────── */
+.md-prose { font-size: 0.95rem; line-height: 1.75; color: var(--text-dark); }
+.md-prose h1 { font-size: 1.6rem; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-top: 0; color: var(--primary); }
+.md-prose h2 { font-size: 1.2rem; margin-top: 2rem; color: var(--primary); border-left: 4px solid var(--primary); padding-left: 10px; }
+.md-prose h3 { font-size: 1rem; margin-top: 1.5rem; color: #0f172a; }
+.md-prose blockquote { border-left: 4px solid var(--primary); background: #f0fdfa; margin: 12px 0; padding: 10px 16px; border-radius: 0 6px 6px 0; color: #0f766e; font-style: normal; }
+.md-prose table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+.md-prose th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; }
+.md-prose td { padding: 7px 12px; border-bottom: 1px solid #e2e8f0; }
+.md-prose tr:nth-child(even) td { background: #f8fafc; }
+.md-prose hr { border: none; border-top: 1px solid #e2e8f0; margin: 24px 0; }
+.md-prose code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: 'Fira Code','Courier New',monospace; font-size: 0.85em; color: #0f172a; }
+.md-prose pre { background: #0f172a; color: #e2e8f0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+.md-prose pre code { background: transparent; color: inherit; padding: 0; font-size: 0.87em; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
    LINE-NUMBERED JSON VIEWER

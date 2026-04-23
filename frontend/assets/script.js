@@ -426,6 +426,12 @@ function downloadJSON(id) {
     URL.revokeObjectURL(url);
 }
 
+// ── API Docs shortcut ────────────────────────────────────────────────────────
+function openApiDocs() {
+    openModal('assets/API_DOCS.md');
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Modal functionality
 async function openModal(fileUrl) {
     const modal = document.getElementById("docModal");
@@ -450,7 +456,9 @@ async function openModal(fileUrl) {
 
             // Assuming marked.js is included in index.html
             if (typeof marked !== 'undefined') {
-                modalBody.innerHTML = marked.parse(markdownText);
+                modalBody.innerHTML = `<div class="md-prose">${marked.parse(markdownText)}</div>`;
+                // Apply Prism syntax highlighting to code blocks
+                if (window.Prism) Prism.highlightAll();
             } else {
                 modalBody.innerHTML = `<pre style="white-space: pre-wrap;">${markdownText}</pre>`;
             }
