@@ -27,6 +27,6 @@ COPY pdf2nhcx/tasks.py ./pdf2nhcx/tasks.py
 # Set PYTHONPATH so imports work
 ENV PYTHONPATH=/app
 
-EXPOSE 8000
+EXPOSE 8001
 
-CMD ["uvicorn", "pdf2nhcx.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "1500"]
+CMD ["uvicorn", "pdf2nhcx.app.main:app", "--host", "0.0.0.0", "--port", "8001", "--timeout-keep-alive", "1500"]
