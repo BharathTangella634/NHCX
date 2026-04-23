@@ -26,34 +26,47 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 /* Header - Left, Center, Right */
 .main-header {
     background: #DAF3F4;
-    padding: 1.25rem 2.5rem;
+    padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
+/* Row 1 — Brand + Logos */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+}
 .header-left, .header-right { flex: 1; }
 .header-left { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-.header-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 8px; }
+.header-right { flex: 0; }  /* empty placeholder for symmetry */
 .header-center { flex: 2; display: flex; justify-content: center; }
 
-/* Header nav tabs */
-.header-nav { display: flex; gap: 4px; background: rgba(0,0,0,0.06); padding: 4px; border-radius: 10px; }
-.header-nav .tablinks { padding: 7px 14px; font-size: 0.82rem; border-radius: 7px; white-space: nowrap; }
+/* Row 2 — Navigation tab bar */
+.header-nav-bar {
+    background: rgba(0,0,0,0.04);
+    border-top: 1px solid rgba(0,0,0,0.07);
+    display: flex;
+    justify-content: center;
+    padding: 6px 2rem;
+}
+.header-nav { display: flex; gap: 4px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 10px; }
+.header-nav .tablinks { padding: 8px 18px; font-size: 0.85rem; border-radius: 7px; white-space: nowrap; }
 .header-nav .tablinks i { margin-right: 5px; }
 
-/* API Access button — distinct accent */
+/* API Access button — distinct teal accent */
 .tab-api-btn {
-    padding: 7px 14px; font-size: 0.82rem; border-radius: 7px; white-space: nowrap;
+    padding: 8px 18px; font-size: 0.85rem; border-radius: 7px; white-space: nowrap;
     border: none; cursor: pointer; font-weight: 600;
     font-family: 'Poppins', system-ui, sans-serif;
     background: var(--primary); color: white;
     transition: background 0.2s, transform 0.15s;
-    margin-left: 6px;
+    margin-left: 4px;
 }
 .tab-api-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
 .tab-api-btn i { margin-right: 5px; }
@@ -64,6 +77,11 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 .fhir-icon { font-size: 1.8rem; color: #ef4444; }
 .header-left h1 { margin: 0; font-size: 1.6rem; color: var(--primary); letter-spacing: -0.02em; }
 .subtitle { margin: 4px 0 0; color: var(--text-light); font-size: 0.85rem; text-align: left; }
+
+/* AI Status bar — slim strip below header */
+.ai-status-bar { background: #f0fdfa; border-bottom: 1px solid #b2e8e8; padding: 5px 2rem; display: flex; justify-content: flex-end; }
+.ai-status-inner { display: flex; align-items: center; }
+
 
 /* Tabs */
 .tabs-container { display: flex; justify-content: center; margin-top: 2rem; }
