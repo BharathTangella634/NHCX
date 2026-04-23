@@ -2,8 +2,8 @@
 
 > **Base URL (Production)**
 > ```
-> https://<your-domain>/pdf2abdm   ← Clinical Documents (ABDM FHIR)
-> https://<your-domain>/pdf2nhcx   ← Insurance Policies (NHCX)
+> https://nhcxhackathon.tanuh.ai/pdf2abdm   ← Clinical Documents (ABDM FHIR)
+> https://nhcxhackathon.tanuh.ai/pdf2nhcx   ← Insurance Policies (NHCX)
 > ```
 
 ---
@@ -261,7 +261,7 @@ Same interface as ABDM task-status.
 ```python
 import requests
 
-BASE_URL = "https://<your-domain>/pdf2abdm"  # or /pdf2nhcx
+BASE_URL = "https://nhcxhackathon.tanuh.ai/pdf2abdm"  # or /pdf2nhcx
 
 def convert_clinical_pdf(pdf_path: str) -> dict:
     """Convert a clinical PDF to ABDM FHIR bundles (synchronous)."""
@@ -293,8 +293,8 @@ if __name__ == "__main__":
 import time
 import requests
 
-ABDM_BASE = "https://<your-domain>/pdf2abdm"
-NHCX_BASE = "https://<your-domain>/pdf2nhcx"
+ABDM_BASE = "https://nhcxhackathon.tanuh.ai/pdf2abdm"
+NHCX_BASE = "https://nhcxhackathon.tanuh.ai/pdf2nhcx"
 
 # ── Step 1: Submit ─────────────────────────────────────────────────────────
 def submit_pdf(pdf_path: str, service: str = "abdm") -> str:
@@ -375,7 +375,7 @@ if __name__ == "__main__":
 import asyncio
 import aiohttp
 
-ABDM_BASE = "https://<your-domain>/pdf2abdm"
+ABDM_BASE = "https://nhcxhackathon.tanuh.ai/pdf2abdm"
 
 async def submit_async(session: aiohttp.ClientSession, pdf_path: str) -> str:
     with open(pdf_path, "rb") as f:
