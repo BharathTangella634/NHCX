@@ -32,24 +32,18 @@
                 <img src="assets/IISc_Logo.png" alt="IISc Logo" class="logo">
             </div>
         </div>
-        <div class="header-right"></div>
-    </header>
-
-    <!-- AI Status Bar -->
-    <div class="ai-status-bar">
-        <div class="ai-status-inner">
+        <div class="header-right">
+            <!-- Nav tabs inside header -->
+            <nav class="header-nav">
+                <button class="tablinks active" id="navClinical" onclick="openTab(event, 'PDF2FHIR')"><i class="fas fa-file-medical"></i> Clinical Document</button>
+                <button class="tablinks" id="navInsurance" onclick="openTab(event, 'PDF2NHCX')"><i class="fas fa-shield-alt"></i> Insurance Policy</button>
+                <button class="tablinks" id="navDashboard" onclick="openTab(event, 'Dashboard')"><i class="fas fa-chart-bar"></i> Dashboard</button>
+                <button class="tablinks" id="navAbout" onclick="openTab(event, 'AboutUs')"><i class="fas fa-info-circle"></i> About Us</button>
+            </nav>
             <!-- AI Badge -->
             <div class="ai-badge ai-badge-off" id="aiBadge"><span class="ai-badge-dot"></span> <span id="aiBadgeText">Checking...</span></div>
         </div>
-    </div>
-
-    <div class="tabs-container">
-        <div class="tabs">
-            <button class="tablinks active" onclick="openTab(event, 'PDF2FHIR')">clinical document</button>
-            <button class="tablinks" onclick="openTab(event, 'PDF2NHCX')">insurance policy</button>
-            <button class="tablinks" onclick="openTab(event, 'AboutUs')">About Us</button>
-        </div>
-    </div>
+    </header>
 
     <main class="content-container">
         <!-- PDF2ABDM Tab -->
@@ -283,6 +277,57 @@
                     <p style="margin: 0 0 8px 0;"><strong>Email:</strong> <a href="mailto:nhcx@tanuh.ai" style="color: #14868C; text-decoration: none;">nhcx@tanuh.ai</a></p>
                     <p style="margin: 0 0 0 0;"><strong>Telephone:</strong> (080) 2293 4106  |  (080) 2293 4107</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="Dashboard" class="tabcontent" style="display:none;">
+            <div class="tab-header">
+                <h2><i class="fas fa-chart-bar" style="color:var(--primary)"></i> Dashboard</h2>
+                <p>Live usage statistics and geographic reach across India.</p>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="dash-stats">
+                <div class="dash-card">
+                    <div class="dash-card-icon"><i class="fas fa-users"></i></div>
+                    <div class="dash-card-body">
+                        <span class="dash-card-value" id="statVisitors">—</span>
+                        <span class="dash-card-label">Visitors</span>
+                    </div>
+                </div>
+                <div class="dash-card" style="--card-accent:#6366f1">
+                    <div class="dash-card-icon" style="color:#6366f1"><i class="fas fa-heartbeat"></i></div>
+                    <div class="dash-card-body">
+                        <span class="dash-card-value" id="statClinical">—</span>
+                        <span class="dash-card-label">Clinical Documents Inferred</span>
+                    </div>
+                </div>
+                <div class="dash-card" style="--card-accent:#f59e0b">
+                    <div class="dash-card-icon" style="color:#f59e0b"><i class="fas fa-file-invoice"></i></div>
+                    <div class="dash-card-body">
+                        <span class="dash-card-value" id="statInsurance">—</span>
+                        <span class="dash-card-label">Insurance Policies Inferred</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Coverage -->
+            <div class="dash-coverage">
+                <h3><i class="fas fa-map-marker-alt" style="color:var(--primary)"></i> Geographic Reach</h3>
+                <div class="dash-geo-grid">
+                    <div class="dash-geo-card">
+                        <div class="dash-geo-title"><i class="fas fa-map"></i> States Touched</div>
+                        <div class="dash-geo-count" id="stateCount">0</div>
+                        <div class="dash-geo-list" id="stateList">No data yet</div>
+                    </div>
+                    <div class="dash-geo-card">
+                        <div class="dash-geo-title"><i class="fas fa-city"></i> Districts / Cities Touched</div>
+                        <div class="dash-geo-count" id="districtCount">0</div>
+                        <div class="dash-geo-list" id="districtList">No data yet</div>
+                    </div>
+                </div>
+                <p class="dash-geo-note"><i class="fas fa-info-circle"></i> Location is derived from your public IP and updated on each document inference. Data is stored locally in your browser.</p>
             </div>
         </div>
     </main>

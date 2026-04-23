@@ -88,12 +88,97 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 
+    if (tabName === 'Dashboard') renderDashboard();
+
     // Mixpanel: track tab navigation
     mixpanel.track('Page View', {
         'page_url': window.location.href + '#' + tabName,
         'page_title': tabName,
     });
 }
+
+// ── Dashboard Analytics ──────────────────────────────────────────────────────
+const DASH_KEY = 'tanuh_dash';
+
+function getDash() {
+    try { return JSON.parse(localStorage.getItem(DASH_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveDash(d) { localStorage.setItem(DASH_KEY, JSON.stringify(d)); }
+
+// Increment visitor count once per browser session
+(function trackVisitor() {
+    if (sessionStorage.getItem('visited')) return;
+    sessionStorage.setItem('visited', '1');
+    const d = getDash();
+    d.visitors = (d.visitors || 0) + 1;
+    saveDash(d);
+})();
+
+// Record an inference event + capture location
+async function trackInference(type) {   // type: 'clinical' | 'insurance'
+    const d = getDash();
+    if (type === 'clinical')  d.clinical  = (d.clinical  || 0) + 1;
+    if (type === 'insurance') d.insurance = (d.insurance || 0) + 1;
+    saveDash(d);
+
+    // Geo lookup via ipapi.co (free, no key needed)
+    try {
+        const geo = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) }).then(r => r.json());
+        const state    = geo.region    || '';
+        const district = geo.city      || '';
+
+        if (state) {
+            d.states = d.states || [];
+            if (!d.states.includes(state)) d.states.push(state);
+        }
+        if (district) {
+            d.districts = d.districts || [];
+            if (!d.districts.includes(district)) d.districts.push(district);
+        }
+        saveDash(d);
+    } catch(e) { /* silent — geo is optional */ }
+
+    renderDashboard();
+}
+
+function renderDashboard() {
+    const d = getDash();
+
+    // Stat counters
+    const animate = (id, val) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const end = val || 0;
+        let current = 0;
+        const step = Math.ceil(end / 30) || 1;
+        const timer = setInterval(() => {
+            current = Math.min(current + step, end);
+            el.textContent = current.toLocaleString();
+            if (current >= end) clearInterval(timer);
+        }, 30);
+    };
+    animate('statVisitors', d.visitors  || 0);
+    animate('statClinical',  d.clinical  || 0);
+    animate('statInsurance', d.insurance || 0);
+
+    // States
+    const states = d.states || [];
+    document.getElementById('stateCount').textContent = states.length;
+    const stateList = document.getElementById('stateList');
+    stateList.innerHTML = states.length
+        ? states.map(s => `<span class="dash-geo-tag">${s}</span>`).join('')
+        : '<span style="color:var(--text-light);font-size:0.82rem">No inferences yet</span>';
+
+    // Districts
+    const districts = d.districts || [];
+    document.getElementById('districtCount').textContent = districts.length;
+    const districtList = document.getElementById('districtList');
+    districtList.innerHTML = districts.length
+        ? districts.map(s => `<span class="dash-geo-tag">${s}</span>`).join('')
+        : '<span style="color:var(--text-light);font-size:0.82rem">No inferences yet</span>';
+}
+// ────────────────────────────────────────────────────────────────────────────
+
 
 function updateFileName(inputId) {
     const input = document.getElementById(inputId);
@@ -211,7 +296,10 @@ async function processFile(taskType) {
             'document_type': data.document_type || 'Unknown',
             'bundle_count': (data.bundles ? data.bundles.length : (data.bundle ? 1 : 0)),
         });
-        
+
+        // Dashboard: track inference + geo location
+        trackInference(taskType === 'PDF2FHIR' ? 'clinical' : 'insurance');
+
         const suffix = taskType === 'PDF2FHIR' ? 'FHIR' : 'NHCX';
         const infoElement = document.getElementById(`info${suffix}`);
         const docTypeSpan = document.getElementById(`docType${suffix}`); // NHCX doesn't have docType in HTML but it's fine if null

@@ -38,8 +38,13 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 
 .header-left, .header-right { flex: 1; }
 .header-left { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-.header-right { display: flex; justify-content: flex-end; }
+.header-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 8px; }
 .header-center { flex: 2; display: flex; justify-content: center; }
+
+/* Header nav tabs */
+.header-nav { display: flex; gap: 4px; background: rgba(0,0,0,0.06); padding: 4px; border-radius: 10px; }
+.header-nav .tablinks { padding: 7px 14px; font-size: 0.82rem; border-radius: 7px; white-space: nowrap; }
+.header-nav .tablinks i { margin-right: 5px; }
 
 .logo-group { display: flex; align-items: center; gap: 20px; }
 .logo { max-height: 70px; width: auto; }
@@ -61,6 +66,37 @@ h1, h2, h3, h4, h5, h6, strong, b, .bold, .tablinks, .validate-btn, .process-btn
 /* Content Area */
 .content-container { max-width: 960px; margin: 1.5rem auto; padding: 0 1rem; }
 .tabcontent { display: none; background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+
+/* ── Dashboard ─────────────────────────────────────────── */
+.dash-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 28px; }
+.dash-card {
+    --card-accent: var(--primary);
+    display: flex; align-items: center; gap: 16px;
+    background: white; border: 1px solid var(--border);
+    border-left: 4px solid var(--card-accent);
+    border-radius: 12px; padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+}
+.dash-card:hover { transform: translateY(-2px); }
+.dash-card-icon { font-size: 1.8rem; color: var(--card-accent); }
+.dash-card-body { display: flex; flex-direction: column; }
+.dash-card-value { font-size: 2rem; font-weight: 700; font-family: 'Poppins', sans-serif; color: var(--text-dark); line-height: 1; }
+.dash-card-label { font-size: 0.78rem; color: var(--text-light); margin-top: 4px; }
+
+.dash-coverage { background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+.dash-coverage h3 { margin: 0 0 16px; font-size: 1rem; }
+.dash-geo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.dash-geo-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.dash-geo-title { font-weight: 600; font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px; }
+.dash-geo-count { font-size: 2.2rem; font-weight: 700; color: var(--primary); font-family: 'Poppins',sans-serif; line-height: 1; margin-bottom: 10px; }
+.dash-geo-list { display: flex; flex-wrap: wrap; gap: 6px; min-height: 32px; }
+.dash-geo-tag {
+    background: #e0f2fe; color: #0369a1;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 500;
+}
+.dash-geo-note { margin: 14px 0 0; font-size: 0.75rem; color: var(--text-light); }
 
 /* File Input */
 .controls { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
