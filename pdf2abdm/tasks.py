@@ -6,6 +6,7 @@ Flow:
   2. Classify document type
   3. Run ABDM pipeline (generates FHIR bundles, uploads each to GCS)
   4. Store GCS URIs in Redis under key  result:<task_id>  with 24 h TTL
+  5. Fire-and-forget log to session_logger service
 """
 
 import os
@@ -13,6 +14,8 @@ import sys
 import asyncio
 import json
 import logging
+import time
+import uuid
 
 # Ensure the app root is on the path so sibling imports work inside the worker
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -22,6 +25,7 @@ from common.celery_app import celery_app
 logger = logging.getLogger(__name__)
 
 RESULT_TTL = int(os.getenv("TASK_RESULT_TTL", 86400))   # 24 h
+SESSION_LOGGER_URL = os.getenv("SESSION_LOGGER_URL", "http://session-logger:8002")
 
 
 def _get_redis():
@@ -29,6 +33,16 @@ def _get_redis():
     import redis as _redis
     url = os.getenv("REDIS_URL", "redis://localhost:6379/0")
     return _redis.from_url(url, decode_responses=True)
+
+
+def _fire_log(payload: dict):
+    """POST a session log entry to the logger service. Never raises."""
+    try:
+        import httpx
+        with httpx.Client(timeout=5.0) as client:
+            client.post(f"{SESSION_LOGGER_URL}/log", json=payload)
+    except Exception as exc:
+        logger.warning(f"[session-logger] fire-and-forget failed: {exc}")
 
 
 @celery_app.task(bind=True, name="pdf2abdm.tasks.process_abdm_task",
@@ -39,11 +53,23 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
     Returns a result dict that is also cached in Redis for /task-result/{task_id}.
     """
     task_id = self.request.id
+    session_id = str(uuid.uuid4())
+    task_filename = os.path.basename(pdf_path)
+    start_time = time.perf_counter()
 
     def update(step: str, progress: int):
         self.update_state(state="PROGRESS",
                           meta={"step": step, "progress": progress,
                                 "task_id": task_id})
+
+    log_payload = {
+        "session_id": session_id,
+        "service": "pdf2abdm",
+        "filename": task_filename,
+        "model_used": model,
+        "ocr_engine_used": "auto",
+        "status": "success",
+    }
 
     try:
         # ── Step 1: OCR ──────────────────────────────────────────────────────
@@ -80,12 +106,13 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
 
             # GCS upload is already done inside run_abdm_pipeline;
             # build the expected URI so we can expose it.
-            filename = f"FHIR_BUNDLE_{doc_type}_Patient_{i}.json"
-            gcs_uri = f"json_output/abdm/{filename}"
+            filename_json = f"FHIR_BUNDLE_{doc_type}_Patient_{i}.json"
+            gcs_uri = f"json_output/abdm/{filename_json}"
             bundle_gcs_uris.append(gcs_uri)
 
         # ── Step 3: Store result in Redis ────────────────────────────────────
         update("Storing results", 95)
+        processing_time = round(time.perf_counter() - start_time, 2)
         result_payload = {
             "status": "completed",
             "task_id": task_id,
@@ -97,6 +124,12 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
         }
         r = _get_redis()
         r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(result_payload))
+
+        log_payload.update({
+            "document_type": ", ".join(doc_types) if doc_types else "Unknown",
+            "processing_time": processing_time,
+            "bundle_count": len(bundles),
+        })
 
         update("Completed", 100)
         logger.info(f"[{task_id}] ABDM task completed — {len(bundles)} bundle(s)")
@@ -110,4 +143,11 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
             r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(error_payload))
         except Exception:
             pass
+        log_payload["status"] = "failed"
+        log_payload["error_message"] = str(exc)
+        log_payload["processing_time"] = round(time.perf_counter() - start_time, 2)
         raise
+
+    finally:
+        # Always attempt to log — success or failure
+        _fire_log(log_payload)

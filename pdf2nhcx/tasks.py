@@ -6,6 +6,7 @@ Flow:
   2. Classify / select NHCX resources
   3. Run NHCX insurance pipeline (generates bundle, uploads to GCS)
   4. Store GCS URI in Redis under key  result:<task_id>  with 24 h TTL
+  5. Fire-and-forget log to session_logger service
 """
 
 import os
@@ -13,6 +14,8 @@ import sys
 import asyncio
 import json
 import logging
+import time
+import uuid
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -21,12 +24,23 @@ from common.celery_app import celery_app
 logger = logging.getLogger(__name__)
 
 RESULT_TTL = int(os.getenv("TASK_RESULT_TTL", 86400))   # 24 h
+SESSION_LOGGER_URL = os.getenv("SESSION_LOGGER_URL", "http://session-logger:8002")
 
 
 def _get_redis():
     import redis as _redis
     url = os.getenv("REDIS_URL", "redis://localhost:6379/0")
     return _redis.from_url(url, decode_responses=True)
+
+
+def _fire_log(payload: dict):
+    """POST a session log entry to the logger service. Never raises."""
+    try:
+        import httpx
+        with httpx.Client(timeout=5.0) as client:
+            client.post(f"{SESSION_LOGGER_URL}/log", json=payload)
+    except Exception as exc:
+        logger.warning(f"[session-logger] fire-and-forget failed: {exc}")
 
 
 @celery_app.task(bind=True, name="pdf2nhcx.tasks.process_nhcx_task",
@@ -37,11 +51,23 @@ def process_nhcx_task(self, pdf_path: str, model: str = "gemma4"):
     Returns a result dict that is also cached in Redis for /task-result/{task_id}.
     """
     task_id = self.request.id
+    session_id = str(uuid.uuid4())
+    task_filename = os.path.basename(pdf_path)
+    start_time = time.perf_counter()
 
     def update(step: str, progress: int):
         self.update_state(state="PROGRESS",
                           meta={"step": step, "progress": progress,
                                 "task_id": task_id})
+
+    log_payload = {
+        "session_id": session_id,
+        "service": "pdf2nhcx",
+        "filename": task_filename,
+        "model_used": model,
+        "ocr_engine_used": "auto",
+        "status": "success",
+    }
 
     try:
         # ── Step 1: OCR ──────────────────────────────────────────────────────
@@ -69,8 +95,9 @@ def process_nhcx_task(self, pdf_path: str, model: str = "gemma4"):
 
         # ── Step 4: Store result in Redis ─────────────────────────────────────
         update("Storing results", 95)
-        filename = f"FHIR_BUNDLE_{doc_type}_Patient_0.json"
-        gcs_uri = f"json_output/nhcx/{filename}"
+        processing_time = round(time.perf_counter() - start_time, 2)
+        filename_json = f"FHIR_BUNDLE_{doc_type}_Patient_0.json"
+        gcs_uri = f"json_output/nhcx/{filename_json}"
 
         result_payload = {
             "status": "completed",
@@ -82,6 +109,13 @@ def process_nhcx_task(self, pdf_path: str, model: str = "gemma4"):
         }
         r = _get_redis()
         r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(result_payload))
+
+        log_payload.update({
+            "document_type": doc_type,
+            "processing_time": processing_time,
+            "bundle_count": 1 if bundle else 0,
+            "gcs_uri": gcs_uri,
+        })
 
         update("Completed", 100)
         logger.info(f"[{task_id}] NHCX task completed")
@@ -95,4 +129,11 @@ def process_nhcx_task(self, pdf_path: str, model: str = "gemma4"):
             r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(error_payload))
         except Exception:
             pass
+        log_payload["status"] = "failed"
+        log_payload["error_message"] = str(exc)
+        log_payload["processing_time"] = round(time.perf_counter() - start_time, 2)
         raise
+
+    finally:
+        # Always attempt to log — success or failure
+        _fire_log(log_payload)
