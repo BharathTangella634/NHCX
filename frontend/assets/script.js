@@ -57,7 +57,8 @@ async function checkAiStatus() {
 window.addEventListener('DOMContentLoaded', () => {
     checkAiStatus();
     setInterval(checkAiStatus, 30000);
-    renderDashboard(); // populate footer + dashboard immediately
+    renderDashboard();              // populate footer + dashboard immediately
+    setInterval(renderDashboard, 30000); // auto-refresh dashboard every 30 s
 });
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -106,27 +107,22 @@ function getDash() {
 }
 function saveDash(d) { localStorage.setItem(DASH_KEY, JSON.stringify(d)); }
 
-// Increment visitor count ONCE per browser (localStorage — survives sessions)
-(function trackVisitor() {
-    if (localStorage.getItem('tanuh_unique_visited')) return;
-    localStorage.setItem('tanuh_unique_visited', '1');
-    const d = getDash();
-    d.visitors = (d.visitors || 0) + 1;
-    saveDash(d);
-})();
+// ── Session-logger stats URL (same-origin via Apache proxy) ──────────────────
+function getStatsUrl() {
+    const isLocal = window.location.hostname === 'localhost';
+    return isLocal
+        ? 'http://localhost:8002/logs/stats'
+        : `${window.location.origin}/session-logger/logs/stats`;
+}
 
-// Record an inference event + capture location
+// Record an inference event + capture geo location (geo stays in localStorage)
 async function trackInference(type) {   // type: 'clinical' | 'insurance'
-    const d = getDash();
-    if (type === 'clinical')  d.clinical  = (d.clinical  || 0) + 1;
-    if (type === 'insurance') d.insurance = (d.insurance || 0) + 1;
-    saveDash(d);
-
     // Geo lookup via ipapi.co (free, no key needed)
     try {
         const geo = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) }).then(r => r.json());
-        const state    = geo.region    || '';
-        const district = geo.city      || '';
+        const state    = geo.region || '';
+        const district = geo.city   || '';
+        const d = getDash();
 
         if (state) {
             d.states = d.states || [];
@@ -139,42 +135,63 @@ async function trackInference(type) {   // type: 'clinical' | 'insurance'
         saveDash(d);
     } catch(e) { /* silent — geo is optional */ }
 
-    renderDashboard();
+    // Refresh dashboard after a short delay to let the DB write settle
+    setTimeout(renderDashboard, 2000);
 }
 
-function renderDashboard() {
-    const d = getDash();
+async function renderDashboard() {
+    const animate = (id, val) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const end = val || 0;
+        let current = parseInt(el.textContent.replace(/,/g, '')) || 0;
+        if (current === end) { el.textContent = end.toLocaleString(); return; }
+        const step = Math.max(1, Math.ceil(Math.abs(end - current) / 30));
+        const dir  = end > current ? 1 : -1;
+        const timer = setInterval(() => {
+            current = dir > 0
+                ? Math.min(current + step, end)
+                : Math.max(current - step, end);
+            el.textContent = current.toLocaleString();
+            if (current === end) clearInterval(timer);
+        }, 30);
+    };
 
     const setCount = (id, val) => {
         const el = document.getElementById(id);
         if (el) el.textContent = (val || 0).toLocaleString();
     };
 
-    // Animated counter for dashboard cards
-    const animate = (id, val) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const end = val || 0;
-        let current = 0;
-        const step = Math.ceil(end / 30) || 1;
-        const timer = setInterval(() => {
-            current = Math.min(current + step, end);
-            el.textContent = current.toLocaleString();
-            if (current >= end) clearInterval(timer);
-        }, 30);
-    };
-    animate('statVisitors', d.visitors  || 0);
-    animate('statClinical',  d.clinical  || 0);
-    animate('statInsurance', d.insurance || 0);
+    // ── Fetch live stats from session-logger (Cloud SQL) ─────────────────────
+    let visitors = 0, clinical = 0, insurance = 0;
+    try {
+        const res = await fetch(getStatsUrl(), { signal: AbortSignal.timeout(6000) });
+        if (res.ok) {
+            const stats = await res.json();
+            // total_sessions = clinical + insurance (all successful inferences)
+            clinical  = stats.clinical_documents  || 0;
+            insurance = stats.insurance_policies  || 0;
+            visitors  = stats.total_sessions      || 0;
+        }
+    } catch(e) {
+        console.warn('[Dashboard] Could not reach session-logger:', e.message);
+        // Graceful degradation — keep last-rendered values
+    }
 
-    // Footer stats — plain set (no animation to avoid flicker on load)
-    setCount('footerVisitors', d.visitors);
-    setCount('footerClinical',  d.clinical);
-    setCount('footerInsurance', d.insurance);
+    // Dashboard cards (animated)
+    animate('statVisitors', visitors);
+    animate('statClinical',  clinical);
+    animate('statInsurance', insurance);
 
-    // States & Districts — only rendered when Dashboard tab is open
-    const stateCountEl   = document.getElementById('stateCount');
-    const stateListEl    = document.getElementById('stateList');
+    // Footer stats (plain — no animation to avoid flicker)
+    setCount('footerVisitors', visitors);
+    setCount('footerClinical',  clinical);
+    setCount('footerInsurance', insurance);
+
+    // ── Geo data — still from localStorage (DB doesn't track location) ───────
+    const d = getDash();
+    const stateCountEl    = document.getElementById('stateCount');
+    const stateListEl     = document.getElementById('stateList');
     const districtCountEl = document.getElementById('districtCount');
     const districtListEl  = document.getElementById('districtList');
 
