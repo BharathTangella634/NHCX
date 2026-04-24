@@ -1,7 +1,7 @@
 import os
 import sys
 import argparse
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form, BackgroundTasks
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import shutil
@@ -11,8 +11,21 @@ import subprocess
 import json
 import re
 import uuid
+import httpx
 from fastapi import FastAPI, Request, HTTPException
 from pydantic import BaseModel
+
+# ── Session Logger integration ────────────────────────────────────────────────
+SESSION_LOGGER_URL = os.getenv("SESSION_LOGGER_URL", "http://session-logger:8002")
+
+def _fire_log(payload: dict):
+    """Send a log payload to session_logger. Called in a BackgroundTask — never raises."""
+    try:
+        with httpx.Client(timeout=5.0) as client:
+            client.post(f"{SESSION_LOGGER_URL}/log", json=payload)
+    except Exception as exc:
+        # Silently swallow — logging must never break the inference response
+        print(f"[session-logger] fire-and-forget failed: {exc}")
 
 class LocalFileRequest(BaseModel):
     file_path: str
@@ -166,9 +179,13 @@ async def convert_pdf_to_abdm(
     file: UploadFile = File(...),
     model: str = Form("gemma4"),
     ocr_engine: str = Form("auto"),
+    background_tasks: BackgroundTasks = BackgroundTasks(),
+    request: Request = None,
 ):
     filename = file.filename.replace(" ", "_")
     logger.info(f"Received PDF upload: {filename}")
+    session_id = str(uuid.uuid4())
+    client_ip = request.client.host if request else None
 
     # Read bytes and upload directly to GCS (no local file written)
     file_bytes = await file.read()
@@ -183,14 +200,34 @@ async def convert_pdf_to_abdm(
         tmp.write(file_bytes)
         tmp_path = tmp.name
 
+    log_payload = {
+        "session_id": session_id,
+        "service": "pdf2abdm",
+        "filename": filename,
+        "model_used": model,
+        "ocr_engine_used": ocr_engine,
+        "gcs_uri": gcs_uri,
+        "client_ip": client_ip,
+        "status": "success",
+    }
     try:
         validate_pdf_upload(tmp_path)
         start_time = time.perf_counter()
         result = await get_abdm_json(tmp_path, model=model)
         bundles, doc_types = result if result else ([], [])
         processing_time = round(time.perf_counter() - start_time, 2)
+        log_payload.update({
+            "document_type": ", ".join(doc_types) if doc_types else "Unknown",
+            "processing_time": processing_time,
+            "bundle_count": len(bundles),
+        })
+    except Exception as exc:
+        log_payload["status"] = "failed"
+        log_payload["error_message"] = str(exc)
+        raise
     finally:
         os.unlink(tmp_path)
+        background_tasks.add_task(_fire_log, log_payload)
 
     logger.info(f"get_abdm_json execution time: {processing_time} seconds")
     return JSONResponse(content={
@@ -205,10 +242,11 @@ async def convert_pdf_to_abdm(
     })
 
 @app.post("/pdf2abdmurl", tags=["Processing"], summary="Convert local PDF to ABDM FHIR Bundle via file path")
-async def convert_pdf_to_abdm_url(request: LocalFileRequest):
-    file_path = request.file_path
-    model = request.model
-    ocr_engine = request.ocr_engine
+async def convert_pdf_to_abdm_url(body: LocalFileRequest, background_tasks: BackgroundTasks = BackgroundTasks()):
+    file_path = body.file_path
+    model = body.model
+    ocr_engine = body.ocr_engine
+    session_id = str(uuid.uuid4())
 
     if not os.path.exists(file_path):
         return JSONResponse(status_code=404, content={"message": f"File not found: {file_path}"})
@@ -222,10 +260,32 @@ async def convert_pdf_to_abdm_url(request: LocalFileRequest):
     if gcs_uri:
         logger.info(f"PDF uploaded to GCS: {gcs_uri}")
 
-    start_time = time.perf_counter()
-    result = await get_abdm_json(file_path, model=model)
-    bundles, doc_types = result if result else ([], [])
-    processing_time = round(time.perf_counter() - start_time, 2)
+    filename = os.path.basename(file_path)
+    log_payload = {
+        "session_id": session_id,
+        "service": "pdf2abdm",
+        "filename": filename,
+        "model_used": model,
+        "ocr_engine_used": ocr_engine,
+        "gcs_uri": gcs_uri,
+        "status": "success",
+    }
+    try:
+        start_time = time.perf_counter()
+        result = await get_abdm_json(file_path, model=model)
+        bundles, doc_types = result if result else ([], [])
+        processing_time = round(time.perf_counter() - start_time, 2)
+        log_payload.update({
+            "document_type": ", ".join(doc_types) if doc_types else "Unknown",
+            "processing_time": processing_time,
+            "bundle_count": len(bundles),
+        })
+    except Exception as exc:
+        log_payload["status"] = "failed"
+        log_payload["error_message"] = str(exc)
+        raise
+    finally:
+        background_tasks.add_task(_fire_log, log_payload)
 
     logger.info(f"get_abdm_json execution time: {processing_time} seconds")
     return JSONResponse(content={
