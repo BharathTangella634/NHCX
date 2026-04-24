@@ -288,28 +288,18 @@ async def convert_pdf_to_nhcx(
         tmp_path = tmp.name
 
     log_payload = {
-        "session_id": session_id,
         "service": "pdf2nhcx",
-        "filename": filename,
-        "model_used": model,
-        "ocr_engine_used": ocr_engine,
-        "gcs_uri": gcs_uri,
-        "client_ip": client_ip,
-        "status": "success",
+        "ip_address": client_ip or "unknown",
+        "pdf_location": gcs_uri,
     }
     try:
         validate_pdf_upload(tmp_path)
         start_time = time.perf_counter()
         bundle = await get_nhcx_json(tmp_path, model=model)
         processing_time = round(time.perf_counter() - start_time, 2)
-        log_payload.update({
-            "document_type": bundle.get("meta", {}).get("tag", [{}])[0].get("display", "Unknown") if bundle else "Unknown",
-            "processing_time": processing_time,
-            "bundle_count": 1 if bundle else 0,
-        })
+        if bundle:
+            log_payload["json_location"] = f"json_output/nhcx/FHIR_BUNDLE_nhcx_claim_Patient_0.json"
     except Exception as exc:
-        log_payload["status"] = "failed"
-        log_payload["error_message"] = str(exc)
         raise
     finally:
         os.unlink(tmp_path)
@@ -356,27 +346,18 @@ async def convert_pdf_to_nhcx_url(body: LocalFileRequest, background_tasks: Back
 
     filename = os.path.basename(file_path)
     log_payload = {
-        "session_id": session_id,
         "service": "pdf2nhcx",
-        "filename": filename,
-        "model_used": model,
-        "ocr_engine_used": ocr_engine,
-        "gcs_uri": gcs_uri,
-        "status": "success",
+        "ip_address": "unknown",
+        "pdf_location": gcs_uri,
     }
     try:
         start_time = time.perf_counter()
         logger.info("Starting get_nhcx_json processing...")
         bundle = await get_nhcx_json(file_path, model=model)
         processing_time = round(time.perf_counter() - start_time, 2)
-        log_payload.update({
-            "document_type": bundle.get("meta", {}).get("tag", [{}])[0].get("display", "Unknown") if bundle else "Unknown",
-            "processing_time": processing_time,
-            "bundle_count": 1 if bundle else 0,
-        })
+        if bundle:
+            log_payload["json_location"] = f"json_output/nhcx/FHIR_BUNDLE_nhcx_claim_Patient_0.json"
     except Exception as exc:
-        log_payload["status"] = "failed"
-        log_payload["error_message"] = str(exc)
         raise
     finally:
         background_tasks.add_task(_fire_log, log_payload)

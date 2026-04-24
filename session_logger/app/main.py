@@ -1,26 +1,36 @@
 """
 session_logger — FastAPI microservice (port 8002)
 =================================================
-Receives fire-and-forget log payloads from pdf2abdm and pdf2nhcx after each
-document inference and persists them to nhcx.session_logs in Cloud SQL.
+Persists session data into the pre-existing nhcx.session_logs table on Cloud SQL.
+
+Table schema (existing):
+    session_id    binary(16)  PK
+    user_id       binary(16)  unique per ip_address (deterministic UUID from IP)
+    ip_address    varchar(45)
+    state         varchar(100)
+    city          varchar(100)
+    document_type enum('clinical_document','insurance_document')
+    pdf_location  text   — GCS URI of uploaded PDF
+    json_location text   — GCS URI of output JSON
+    created_at    datetime (auto IST)
 
 Endpoints:
-  POST /log              Internal — called by peer services (no auth required
-                         since the service is only reachable inside Docker network)
-  GET  /health           Liveness probe
-  GET  /logs             Paginated read of all session logs
-  GET  /logs/stats       Aggregated counts by service & status (dashboard use)
+  POST /log              — called by pdf2abdm / pdf2nhcx after each inference
+  GET  /health           — liveness probe
+  GET  /logs             — paginated read of all session logs
+  GET  /logs/stats       — aggregated counts (feeds dashboard cards)
 """
 
+import uuid
 import logging
 from typing import Optional, Literal
 
-from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, text
 
 from .core.config import settings
 from .db.session import Base, engine, get_db
@@ -30,9 +40,9 @@ from .models.models import SessionLog
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# ── Create tables on startup (idempotent) ─────────────────────────────────────
-Base.metadata.create_all(bind=engine)
-logger.info("session_logs table ensured.")
+# ── NOTE: We do NOT call Base.metadata.create_all() — the table already exists
+#    on Cloud SQL with a specific schema we must not overwrite.
+logger.info("session_logger started — using pre-existing nhcx.session_logs schema.")
 
 # ── FastAPI app ───────────────────────────────────────────────────────────────
 app = FastAPI(
@@ -40,14 +50,8 @@ app = FastAPI(
     version=settings.PROJECT_VERSION,
     description=(
         "Internal logging service for the NHCX pipeline. "
-        "Receives structured payloads from pdf2abdm / pdf2nhcx and writes them "
-        "to the nhcx.session_logs table in Cloud SQL."
+        "Persists session data into nhcx.session_logs on Cloud SQL."
     ),
-    openapi_tags=[
-        {"name": "Health",    "description": "Liveness probes."},
-        {"name": "Logging",   "description": "Ingest log entries from peer services."},
-        {"name": "Analytics", "description": "Read / aggregate session logs."},
-    ],
 )
 
 app.add_middleware(
@@ -59,36 +63,35 @@ app.add_middleware(
 )
 
 
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+def _ip_to_user_id(ip: str) -> bytes:
+    """Derive a deterministic binary(16) UUID from an IP address."""
+    return uuid.uuid5(uuid.NAMESPACE_DNS, ip or "unknown").bytes
+
+def _new_session_id() -> bytes:
+    return uuid.uuid4().bytes
+
+def _doc_type_enum(service: str) -> str:
+    """Map service name to the existing enum values."""
+    return "clinical_document" if service == "pdf2abdm" else "insurance_document"
+
+
 # ── Pydantic schemas ──────────────────────────────────────────────────────────
 
 class SessionLogCreate(BaseModel):
-    """Payload sent by pdf2abdm / pdf2nhcx after a completed inference."""
-    session_id:      str
-    service:         Literal["pdf2abdm", "pdf2nhcx"]
-    filename:        Optional[str]   = None
-    document_type:   Optional[str]   = None
-    model_used:      Optional[str]   = None
-    ocr_engine_used: Optional[str]   = None
-    processing_time: Optional[float] = None
-    gcs_uri:         Optional[str]   = None
-    bundle_count:    Optional[int]   = 1
-    status:          Literal["success", "failed"] = "success"
-    error_message:   Optional[str]   = None
-    client_ip:       Optional[str]   = None
-
-
-class SessionLogRead(SessionLogCreate):
-    id:         int
-    created_at: Optional[str] = None
-
-    class Config:
-        from_attributes = True
+    """Payload sent by pdf2abdm / pdf2nhcx after each completed inference."""
+    service:      Literal["pdf2abdm", "pdf2nhcx"]
+    ip_address:   Optional[str]  = "unknown"
+    state:        Optional[str]  = None
+    city:         Optional[str]  = None
+    pdf_location: Optional[str]  = None   # GCS URI of uploaded PDF
+    json_location: Optional[str] = None   # GCS URI of output JSON bundle
 
 
 # ── Health ─────────────────────────────────────────────────────────────────────
 
 @app.get("/health", tags=["Health"], summary="Liveness probe")
-@app.get("/session-logger/health", tags=["Health"], include_in_schema=False)
 def health_check():
     return {"status": "ok", "service": "session-logger"}
 
@@ -100,74 +103,83 @@ def health_check():
 def create_log(payload: SessionLogCreate, db: Session = Depends(get_db)):
     """
     Called internally by pdf2abdm and pdf2nhcx via a BackgroundTask.
-    Inserts one row into nhcx.session_logs.
-    Returns 409 (idempotent) if session_id already exists.
+    Inserts one row per inference into nhcx.session_logs.
+
+    Note: the table has UNIQUE KEY (user_id, ip_address) — duplicate IP+service
+    combinations will be inserted as separate rows because session_id (PK) is
+    always new.  The unique key covers user_id+ip_address, not per inference.
+    We INSERT IGNORE to gracefully handle the unique constraint if the same
+    user submits multiple documents.
     """
-    existing = db.query(SessionLog).filter(
-        SessionLog.session_id == payload.session_id
-    ).first()
+    session_id = _new_session_id()
+    user_id    = _ip_to_user_id(payload.ip_address or "unknown")
+    doc_type   = _doc_type_enum(payload.service)
 
-    if existing:
-        logger.warning(f"Duplicate session_id received: {payload.session_id} — skipping.")
-        return JSONResponse(
-            status_code=409,
-            content={"detail": "Session already logged.", "session_id": payload.session_id},
+    try:
+        # Use INSERT IGNORE to skip duplicate (user_id, ip_address) pairs
+        db.execute(
+            text("""
+                INSERT IGNORE INTO session_logs
+                    (session_id, user_id, ip_address, state, city,
+                     document_type, pdf_location, json_location)
+                VALUES
+                    (:session_id, :user_id, :ip_address, :state, :city,
+                     :document_type, :pdf_location, :json_location)
+            """),
+            {
+                "session_id":    session_id,
+                "user_id":       user_id,
+                "ip_address":    payload.ip_address or "unknown",
+                "state":         payload.state,
+                "city":          payload.city,
+                "document_type": doc_type,
+                "pdf_location":  payload.pdf_location,
+                "json_location": payload.json_location,
+            }
         )
+        db.commit()
+        logger.info(
+            f"Logged [{payload.service}] ip={payload.ip_address} "
+            f"doc_type={doc_type} pdf={payload.pdf_location}"
+        )
+        return {"status": "logged", "document_type": doc_type}
 
-    log_entry = SessionLog(**payload.model_dump())
-    db.add(log_entry)
-    db.commit()
-    db.refresh(log_entry)
-    logger.info(
-        f"Logged [{payload.service}] session={payload.session_id} "
-        f"status={payload.status} time={payload.processing_time}s"
-    )
-    return {"id": log_entry.id, "session_id": log_entry.session_id}
+    except Exception as exc:
+        db.rollback()
+        logger.error(f"[session-logger] DB write failed: {exc}")
+        return JSONResponse(status_code=500, content={"detail": str(exc)})
 
 
 # ── Read endpoints ─────────────────────────────────────────────────────────────
 
 @app.get("/logs", tags=["Analytics"], summary="Paginated session log listing")
 def list_logs(
-    skip:    int = 0,
-    limit:   int = 50,
-    service: Optional[Literal["pdf2abdm", "pdf2nhcx"]] = None,
-    status:  Optional[Literal["success", "failed"]]     = None,
+    skip:  int = 0,
+    limit: int = 50,
     db: Session = Depends(get_db),
 ):
-    """
-    Returns paginated session logs, optionally filtered by service or status.
-    Default page size is 50 rows; use `skip` + `limit` for pagination.
-    """
-    query = db.query(SessionLog)
-    if service:
-        query = query.filter(SessionLog.service == service)
-    if status:
-        query = query.filter(SessionLog.status == status)
-
-    total = query.count()
-    rows  = query.order_by(SessionLog.created_at.desc()).offset(skip).limit(limit).all()
-
+    """Returns the most recent session logs (newest first)."""
+    total = db.query(func.count(SessionLog.session_id)).scalar() or 0
+    rows  = (
+        db.query(SessionLog)
+        .order_by(SessionLog.created_at.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
     return {
-        "total":  total,
-        "skip":   skip,
-        "limit":  limit,
+        "total": total,
+        "skip":  skip,
+        "limit": limit,
         "items": [
             {
-                "id":              r.id,
-                "session_id":      r.session_id,
-                "service":         r.service,
-                "filename":        r.filename,
-                "document_type":   r.document_type,
-                "model_used":      r.model_used,
-                "ocr_engine_used": r.ocr_engine_used,
-                "processing_time": r.processing_time,
-                "gcs_uri":         r.gcs_uri,
-                "bundle_count":    r.bundle_count,
-                "status":          r.status,
-                "error_message":   r.error_message,
-                "client_ip":       r.client_ip,
-                "created_at":      str(r.created_at) if r.created_at else None,
+                "ip_address":    r.ip_address,
+                "state":         r.state,
+                "city":          r.city,
+                "document_type": r.document_type,
+                "pdf_location":  r.pdf_location,
+                "json_location": r.json_location,
+                "created_at":    str(r.created_at) if r.created_at else None,
             }
             for r in rows
         ],
@@ -178,40 +190,32 @@ def list_logs(
          summary="Aggregated counts for dashboard cards")
 def log_stats(db: Session = Depends(get_db)):
     """
-    Returns aggregate statistics used by the FHIR Converter dashboard:
-      - total_sessions      — all-time unique document inferences
-      - clinical_documents  — pdf2abdm successes
-      - insurance_policies  — pdf2nhcx successes
-      - failed              — total failures across both services
-      - avg_processing_time — mean seconds across all successful sessions
+    Returns aggregate statistics for the NHCX dashboard:
+      total_sessions     — all rows (every unique user+IP inference)
+      clinical_documents — rows where document_type = 'clinical_document'
+      insurance_policies — rows where document_type = 'insurance_document'
+      unique_ips         — distinct IP addresses seen
     """
-    total = db.query(func.count(SessionLog.id)).scalar() or 0
+    total = db.query(func.count(SessionLog.session_id)).scalar() or 0
 
     clinical = (
-        db.query(func.count(SessionLog.id))
-        .filter(SessionLog.service == "pdf2abdm", SessionLog.status == "success")
+        db.query(func.count(SessionLog.session_id))
+        .filter(SessionLog.document_type == "clinical_document")
         .scalar() or 0
     )
     insurance = (
-        db.query(func.count(SessionLog.id))
-        .filter(SessionLog.service == "pdf2nhcx", SessionLog.status == "success")
+        db.query(func.count(SessionLog.session_id))
+        .filter(SessionLog.document_type == "insurance_document")
         .scalar() or 0
     )
-    failed = (
-        db.query(func.count(SessionLog.id))
-        .filter(SessionLog.status == "failed")
+    unique_ips = (
+        db.query(func.count(func.distinct(SessionLog.ip_address)))
         .scalar() or 0
-    )
-    avg_time = (
-        db.query(func.avg(SessionLog.processing_time))
-        .filter(SessionLog.status == "success")
-        .scalar()
     )
 
     return {
         "total_sessions":      total,
         "clinical_documents":  clinical,
         "insurance_policies":  insurance,
-        "failed":              failed,
-        "avg_processing_time": round(float(avg_time), 2) if avg_time else None,
+        "unique_ips":          unique_ips,
     }

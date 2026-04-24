@@ -201,14 +201,9 @@ async def convert_pdf_to_abdm(
         tmp_path = tmp.name
 
     log_payload = {
-        "session_id": session_id,
         "service": "pdf2abdm",
-        "filename": filename,
-        "model_used": model,
-        "ocr_engine_used": ocr_engine,
-        "gcs_uri": gcs_uri,
-        "client_ip": client_ip,
-        "status": "success",
+        "ip_address": client_ip or "unknown",
+        "pdf_location": gcs_uri,
     }
     try:
         validate_pdf_upload(tmp_path)
@@ -216,14 +211,10 @@ async def convert_pdf_to_abdm(
         result = await get_abdm_json(tmp_path, model=model)
         bundles, doc_types = result if result else ([], [])
         processing_time = round(time.perf_counter() - start_time, 2)
-        log_payload.update({
-            "document_type": ", ".join(doc_types) if doc_types else "Unknown",
-            "processing_time": processing_time,
-            "bundle_count": len(bundles),
-        })
+        # Store the GCS URI of the first bundle JSON as json_location
+        if bundles and doc_types:
+            log_payload["json_location"] = f"json_output/abdm/FHIR_BUNDLE_{doc_types[0]}_Patient_0.json"
     except Exception as exc:
-        log_payload["status"] = "failed"
-        log_payload["error_message"] = str(exc)
         raise
     finally:
         os.unlink(tmp_path)
@@ -262,27 +253,18 @@ async def convert_pdf_to_abdm_url(body: LocalFileRequest, background_tasks: Back
 
     filename = os.path.basename(file_path)
     log_payload = {
-        "session_id": session_id,
         "service": "pdf2abdm",
-        "filename": filename,
-        "model_used": model,
-        "ocr_engine_used": ocr_engine,
-        "gcs_uri": gcs_uri,
-        "status": "success",
+        "ip_address": "unknown",
+        "pdf_location": gcs_uri,
     }
     try:
         start_time = time.perf_counter()
         result = await get_abdm_json(file_path, model=model)
         bundles, doc_types = result if result else ([], [])
         processing_time = round(time.perf_counter() - start_time, 2)
-        log_payload.update({
-            "document_type": ", ".join(doc_types) if doc_types else "Unknown",
-            "processing_time": processing_time,
-            "bundle_count": len(bundles),
-        })
+        if bundles and doc_types:
+            log_payload["json_location"] = f"json_output/abdm/FHIR_BUNDLE_{doc_types[0]}_Patient_0.json"
     except Exception as exc:
-        log_payload["status"] = "failed"
-        log_payload["error_message"] = str(exc)
         raise
     finally:
         background_tasks.add_task(_fire_log, log_payload)

@@ -63,12 +63,8 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
                                 "task_id": task_id})
 
     log_payload = {
-        "session_id": session_id,
         "service": "pdf2abdm",
-        "filename": task_filename,
-        "model_used": model,
-        "ocr_engine_used": "auto",
-        "status": "success",
+        "ip_address": "unknown",
     }
 
     try:
@@ -126,9 +122,8 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
         r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(result_payload))
 
         log_payload.update({
-            "document_type": ", ".join(doc_types) if doc_types else "Unknown",
-            "processing_time": processing_time,
-            "bundle_count": len(bundles),
+            "pdf_location": f"pdf_uploads/abdm/{task_filename}",
+            "json_location": bundle_gcs_uris[0] if bundle_gcs_uris else None,
         })
 
         update("Completed", 100)
@@ -143,9 +138,8 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
             r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(error_payload))
         except Exception:
             pass
-        log_payload["status"] = "failed"
-        log_payload["error_message"] = str(exc)
-        log_payload["processing_time"] = round(time.perf_counter() - start_time, 2)
+        log_payload["pdf_location"] = f"pdf_uploads/abdm/{task_filename}"
+        log_payload["processing_time_note"] = str(exc)
         raise
 
     finally:
