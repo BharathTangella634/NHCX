@@ -266,6 +266,8 @@ async def convert_pdf_to_nhcx(
     file: UploadFile = File(...),
     model: str = Form("gemma4"),
     ocr_engine: str = Form("auto"),
+    state: str = Form(None),
+    city: str = Form(None),
     background_tasks: BackgroundTasks = BackgroundTasks(),
     request: Request = None,
 ):
@@ -290,6 +292,8 @@ async def convert_pdf_to_nhcx(
     log_payload = {
         "service": "pdf2nhcx",
         "ip_address": client_ip or "unknown",
+        "state": state,
+        "city": city,
         "pdf_location": gcs_uri,
     }
     try:

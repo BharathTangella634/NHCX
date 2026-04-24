@@ -213,9 +213,25 @@ def log_stats(db: Session = Depends(get_db)):
         .scalar() or 0
     )
 
+    states = [
+        r[0] for r in db.query(SessionLog.state)
+        .filter(SessionLog.state.isnot(None), SessionLog.state != "")
+        .distinct()
+        .all()
+    ]
+    
+    districts = [
+        r[0] for r in db.query(SessionLog.city)
+        .filter(SessionLog.city.isnot(None), SessionLog.city != "")
+        .distinct()
+        .all()
+    ]
+
     return {
         "total_sessions":      total,
         "clinical_documents":  clinical,
         "insurance_policies":  insurance,
         "unique_ips":          unique_ips,
+        "states":              states,
+        "districts":           districts,
     }

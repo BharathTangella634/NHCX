@@ -59,6 +59,9 @@ window.addEventListener('DOMContentLoaded', () => {
     setInterval(checkAiStatus, 30000);
     renderDashboard();              // populate footer + dashboard immediately
     setInterval(renderDashboard, 30000); // auto-refresh dashboard every 30 s
+    
+    // Proactively fetch geo location so it's ready for inferences
+    fetchGeoLocation();
 });
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -115,26 +118,22 @@ function getStatsUrl() {
         : `${window.location.origin}/session-logger/logs/stats`;
 }
 
-// Record an inference event + capture geo location (geo stays in localStorage)
-async function trackInference(type) {   // type: 'clinical' | 'insurance'
-    // Geo lookup via ipapi.co (free, no key needed)
+// Pre-fetch geographic location from IP
+async function fetchGeoLocation() {
+    const d = getDash();
+    if (d.last_state && d.last_city) return; // already fetched
     try {
         const geo = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) }).then(r => r.json());
-        const state    = geo.region || '';
-        const district = geo.city   || '';
-        const d = getDash();
-
-        if (state) {
-            d.states = d.states || [];
-            if (!d.states.includes(state)) d.states.push(state);
-        }
-        if (district) {
-            d.districts = d.districts || [];
-            if (!d.districts.includes(district)) d.districts.push(district);
-        }
+        d.last_state = geo.region || '';
+        d.last_city  = geo.city   || '';
         saveDash(d);
-    } catch(e) { /* silent — geo is optional */ }
+    } catch(e) { /* silent fallback */ }
+}
 
+// Record an inference event
+async function trackInference(type) {   // type: 'clinical' | 'insurance'
+    // Ensure we have geo
+    await fetchGeoLocation();
     // Refresh dashboard after a short delay to let the DB write settle
     setTimeout(renderDashboard, 2000);
 }
@@ -164,6 +163,7 @@ async function renderDashboard() {
 
     // ── Fetch live stats from session-logger (Cloud SQL) ─────────────────────
     let visitors = 0, clinical = 0, insurance = 0;
+    let states = [], districts = [];
     try {
         const res = await fetch(getStatsUrl(), { signal: AbortSignal.timeout(6000) });
         if (res.ok) {
@@ -172,10 +172,15 @@ async function renderDashboard() {
             clinical  = stats.clinical_documents  || 0;
             insurance = stats.insurance_policies  || 0;
             visitors  = stats.total_sessions      || 0;
+            states    = stats.states || [];
+            districts = stats.districts || [];
         }
     } catch(e) {
         console.warn('[Dashboard] Could not reach session-logger:', e.message);
-        // Graceful degradation — keep last-rendered values
+        // Graceful degradation — keep last-rendered values or use localStorage
+        const d = getDash();
+        states = d.states || [];
+        districts = d.districts || [];
     }
 
     // Dashboard cards (animated)
@@ -188,20 +193,17 @@ async function renderDashboard() {
     setCount('footerClinical',  clinical);
     setCount('footerInsurance', insurance);
 
-    // ── Geo data — still from localStorage (DB doesn't track location) ───────
-    const d = getDash();
+    // ── Geo data (from DB via API) ───────────────────────────────────────────
     const stateCountEl    = document.getElementById('stateCount');
     const stateListEl     = document.getElementById('stateList');
     const districtCountEl = document.getElementById('districtCount');
     const districtListEl  = document.getElementById('districtList');
 
-    const states = d.states || [];
     if (stateCountEl) stateCountEl.textContent = states.length;
     if (stateListEl)  stateListEl.innerHTML = states.length
         ? states.map(s => `<span class="dash-geo-tag">${s}</span>`).join('')
         : '<span style="color:var(--text-light);font-size:0.82rem">No inferences yet</span>';
 
-    const districts = d.districts || [];
     if (districtCountEl) districtCountEl.textContent = districts.length;
     if (districtListEl)  districtListEl.innerHTML = districts.length
         ? districts.map(s => `<span class="dash-geo-tag">${s}</span>`).join('')
@@ -267,6 +269,11 @@ async function processFile(taskType) {
     // Attach currently selected model and OCR engine for backend routing
     formData.append("model", selectedModel);
     formData.append("ocr_engine", selectedOcr[taskType === 'PDF2FHIR' ? 'FHIR' : 'NHCX']);
+
+    // Attach geo data if available
+    const d = getDash();
+    if (d.last_state) formData.append("state", d.last_state);
+    if (d.last_city)  formData.append("city", d.last_city);
 
     const outputElement = document.getElementById(outputId);
     outputElement.textContent = "Processing conversion... this may take a moment.";
