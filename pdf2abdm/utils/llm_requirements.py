@@ -566,6 +566,59 @@ def build_dynamic_workflow(clinical_artifact: str, selected_other_resources: Lis
 
 import json
 
+def sanitize_fhir_resource(resource):
+    res_type = resource.get("resourceType")
+    if not res_type: return
+
+    # 1. 'entry' is ONLY valid on Bundle
+    if res_type != "Bundle" and "entry" in resource:
+        del resource["entry"]
+        
+    # 2. 'type' must be an array of objects (CodeableConcept) for Organization and InsurancePlan.
+    if res_type in ["Organization", "InsurancePlan", "Coverage"] and "type" in resource:
+        if isinstance(resource["type"], str):
+            resource["type"] = [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/organization-type", "code": "other", "display": resource["type"]}]}]
+        elif isinstance(resource["type"], dict):
+            resource["type"] = [resource["type"]]
+            
+    # 3. 'ownedBy' in InsurancePlan must be a Reference (an object), not an array.
+    if res_type == "InsurancePlan" and "ownedBy" in resource:
+        if isinstance(resource["ownedBy"], list):
+            resource["ownedBy"] = resource["ownedBy"][0] if len(resource["ownedBy"]) > 0 else {}
+
+    # 4. Clean up InsurancePlan hallucinations
+    if res_type == "InsurancePlan":
+        if "benefit" in resource: del resource["benefit"]
+        if "exclusion" in resource: del resource["exclusion"]
+        for cov in resource.get("coverage", []):
+            if "description" in cov: del cov["description"]
+            if "type" not in cov:
+                cov["type"] = {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/insurance-plan-type", "code": "medical"}]}
+            if "benefit" not in cov or not isinstance(cov["benefit"], list) or len(cov["benefit"]) == 0:
+                cov["benefit"] = [{"type": {"coding": [{"code": "benefit"}]}}]
+
+    # 5. Fix missing required fields
+    if res_type == "Procedure":
+        if "status" not in resource: resource["status"] = "completed"
+        if "subject" not in resource: resource["subject"] = {"reference": "Patient/unknown"}
+            
+    if res_type == "Coverage":
+        if "status" not in resource: resource["status"] = "active"
+        if "beneficiary" not in resource: resource["beneficiary"] = {"reference": "Patient/unknown"}
+        if "payor" not in resource: resource["payor"] = [{"reference": "Organization/unknown"}]
+            
+    if res_type == "Organization":
+        if "name" not in resource and "identifier" not in resource:
+            resource["name"] = "Unknown Organization"
+            
+    # 6. Condition category codes
+    if res_type == "Condition" and "category" in resource and isinstance(resource["category"], list):
+        for cat in resource["category"]:
+            if "coding" in cat and isinstance(cat["coding"], list):
+                for coding in cat["coding"]:
+                    if coding.get("system") == "http://terminology.hl7.org/CodeSystem/condition-category" and coding.get("code") == "encounter-related":
+                        coding["code"] = "encounter-diagnosis"
+
 def clean_and_reorder_bundle(bundle):
     entries = bundle.get("entry", [])
     
@@ -578,12 +631,15 @@ def clean_and_reorder_bundle(bundle):
         res_type = resource.get("resourceType")
 
         # Map ABDM Profile names back to standard FHIR R4 resource types
-        if res_type in ["DiagnosticReportRecord", "DischargeSummaryRecord", "WellnessRecord", "HealthDocumentRecord", "PrescriptionRecord"]:
+        if res_type in ["DiagnosticReportRecord", "DischargeSummaryRecord", "WellnessRecord", "HealthDocumentRecord", "PrescriptionRecord", "InsurancePlanBundle"]:
             resource["resourceType"] = "Composition"
             res_type = "Composition"
         elif res_type in ["DiagnosticReportLab", "DiagnosticReportImaging"]:
             resource["resourceType"] = "DiagnosticReport"
             res_type = "DiagnosticReport"
+            
+        # Clean up common LLM hallucinations
+        sanitize_fhir_resource(resource)
 
         # Task A: Find the Composition to move it later
         if res_type == "Composition":
