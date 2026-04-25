@@ -191,29 +191,27 @@ function updateLineNumberedViewer(textareaId, errorMap) {
 // ─── FHIR Validation via HL7 Public API ──────────────────────────────────────
 
 async function validateFhirJson(jsonString) {
-    const VALIDATOR_URL = 'https://validator.fhir.org/validate';
-
-    // Quick local JSON parse check
-    try { JSON.parse(jsonString); }
+    // Determine the resource type dynamically (usually Bundle)
+    let resourceType = 'Bundle';
+    try { 
+        const parsed = JSON.parse(jsonString); 
+        if (parsed.resourceType) resourceType = parsed.resourceType;
+    }
     catch (e) {
         return { issues: [{ severity: 'fatal', message: `Invalid JSON: ${e.message}`, location: '$', line: 1 }] };
     }
 
-    const encoded = btoa(unescape(encodeURIComponent(jsonString)));
-
-    const payload = {
-        cliContext: { sv: '4.0.1', profiles: [] },
-        filesToValidate: [{ fileName: 'resource.json', fileContent: encoded, fileType: 'json' }]
-    };
+    const VALIDATOR_URL = `https://hapi.fhir.org/baseR4/${resourceType}/$validate`;
 
     const response = await fetch(VALIDATOR_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/fhir+json', 'Accept': 'application/fhir+json' },
+        body: jsonString,
         signal: AbortSignal.timeout(60000)
     });
 
-    if (!response.ok) {
+    if (!response.ok && response.status !== 400 && response.status !== 422) {
+        // 400 or 422 is normal for validation errors (OperationOutcome)
         const text = await response.text();
         throw new Error(`Validator API ${response.status}: ${text.substring(0, 200)}`);
     }
@@ -221,19 +219,19 @@ async function validateFhirJson(jsonString) {
     const result = await response.json();
     const issues = [];
 
-    for (const outcome of (result.outcomes || [])) {
-        for (const issue of (outcome?.issues?.issue || [])) {
-            // Extract row from extensions
+    // The result should be an OperationOutcome resource
+    if (result.resourceType === 'OperationOutcome' && result.issue) {
+        for (const issue of result.issue) {
             let line = null;
             for (const ext of (issue.extension || [])) {
-                if (ext.url && ext.url.toLowerCase().includes('row') && ext.valueInteger != null) {
+                if (ext.url && ext.url.includes('operationoutcome-issue-line') && ext.valueInteger != null) {
                     line = ext.valueInteger;
                 }
             }
-            const loc = (issue.location || []).join(' > ');
+            const loc = (issue.location || issue.expression || []).join(' > ');
             issues.push({
                 severity: issue.severity || 'information',
-                message: issue.diagnostics || issue.details?.text || 'Unknown issue',
+                message: issue.diagnostics || (issue.details && issue.details.text) || 'Unknown issue',
                 location: loc || '$',
                 line
             });
