@@ -606,6 +606,10 @@ def sanitize_fhir_resource(resource):
         if "status" not in resource: resource["status"] = "completed"
         if "subject" not in resource: resource["subject"] = {"reference": "Patient/1"}
             
+    if res_type == "ImagingStudy":
+        if resource.get("status") not in ["registered", "available", "cancelled", "entered-in-error", "unknown"]:
+            resource["status"] = "available"
+            
     if res_type == "Coverage":
         if "status" not in resource: resource["status"] = "active"
         if "beneficiary" not in resource: resource["beneficiary"] = {"reference": "Patient/1"}
