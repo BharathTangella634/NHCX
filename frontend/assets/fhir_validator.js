@@ -195,8 +195,20 @@ function updateLineNumberedViewer(textareaId, errorMap) {
 async function validateFhirJson(jsonString) {
     // Determine the resource type dynamically (usually Bundle)
     let resourceType = 'Bundle';
+    let payloadStr = jsonString;
+    
     try { 
-        const parsed = JSON.parse(jsonString); 
+        let parsed = JSON.parse(jsonString); 
+        
+        // Auto-unwrap backend API response wrapper if present
+        if (parsed.bundles && Array.isArray(parsed.bundles) && parsed.bundles.length > 0) {
+            parsed = parsed.bundles[0];
+            payloadStr = JSON.stringify(parsed);
+        } else if (parsed.bundle) {
+            parsed = parsed.bundle;
+            payloadStr = JSON.stringify(parsed);
+        }
+        
         if (parsed.resourceType) resourceType = parsed.resourceType;
     }
     catch (e) {
@@ -208,7 +220,7 @@ async function validateFhirJson(jsonString) {
     const response = await fetch(VALIDATOR_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/fhir+json', 'Accept': 'application/fhir+json' },
-        body: jsonString,
+        body: payloadStr,
         signal: AbortSignal.timeout(60000)
     });
 
