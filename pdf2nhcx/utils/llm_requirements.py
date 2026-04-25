@@ -645,7 +645,62 @@ def sanitize_fhir_resource(resource):
         if "name" not in resource and "identifier" not in resource:
             resource["name"] = "Unknown " + res_type
             
-    # 6. Condition category codes
+    # 6. Composition fields
+    if res_type == "Composition":
+        if "author" not in resource or resource["author"] is None:
+            resource["author"] = [{"display": "Unknown Author"}]
+        elif not isinstance(resource["author"], list):
+            resource["author"] = [resource["author"]]
+            
+        for sec in resource.get("section", []):
+            if "status" in sec: del sec["status"]
+            if "text" in sec and isinstance(sec["text"], str):
+                sec["text"] = {"status": "generated", "div": f"<div xmlns=\"http://www.w3.org/1999/xhtml\">{sec['text']}</div>"}
+            elif "text" not in sec and "entry" not in sec:
+                sec["text"] = {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">No content</div>"}
+
+    # 7. Practitioner qualification
+    if res_type == "Practitioner":
+        for qual in resource.get("qualification", []):
+            if "text" in qual:
+                if "code" not in qual: qual["code"] = {"text": qual["text"]}
+                del qual["text"]
+            if "code" not in qual: qual["code"] = {"text": "Unknown Qualification"}
+            
+    # 8. Encounter fields
+    if res_type == "Encounter":
+        if "serviceType" in resource and isinstance(resource["serviceType"], list):
+            resource["serviceType"] = resource["serviceType"][0] if resource["serviceType"] else {}
+        for loc in resource.get("location", []):
+            if "display" in loc:
+                loc["location"] = {"display": loc["display"]}
+                del loc["display"]
+        if "period" in resource and "start" in resource["period"]:
+            if "T" in resource["period"]["start"] and "Z" not in resource["period"]["start"] and "+" not in resource["period"]["start"]:
+                resource["period"]["start"] += "Z"
+                
+    # 9. ImagingStudy fields
+    if res_type == "ImagingStudy":
+        for series in resource.get("series", []):
+            if "role" in series: del series["role"]
+            if "modality" not in series: series["modality"] = {"system": "http://dicom.nema.org/resources/ontology/DCM", "code": "UNKNOWN"}
+        if "started" in resource and "T" in resource["started"] and "Z" not in resource["started"] and "+" not in resource["started"]:
+            resource["started"] += "Z"
+
+    # 10. DiagnosticReport & Observation Date fields
+    if res_type == "DiagnosticReport":
+        if "issued" in resource and "T" in resource["issued"] and "Z" not in resource["issued"] and "+" not in resource["issued"]:
+            resource["issued"] += "Z"
+        if "effectiveDateTime" in resource and "T" in resource["effectiveDateTime"] and "Z" not in resource["effectiveDateTime"] and "+" not in resource["effectiveDateTime"]:
+            resource["effectiveDateTime"] += "Z"
+        if "result" in resource:
+            resource["result"] = [r for r in resource["result"] if not r.get("reference", "").startswith("Practitioner/")]
+            
+    if res_type == "Observation":
+        if "effectiveDateTime" in resource and "T" in resource["effectiveDateTime"] and "Z" not in resource["effectiveDateTime"] and "+" not in resource["effectiveDateTime"]:
+            resource["effectiveDateTime"] += "Z"
+            
+    # 11. Condition category codes
     if res_type == "Condition" and "category" in resource and isinstance(resource["category"], list):
         for cat in resource["category"]:
             if "coding" in cat and isinstance(cat["coding"], list):
@@ -692,6 +747,15 @@ def clean_and_reorder_bundle(bundle):
 
     # Task C: Reassemble with Composition at the very beginning
     if composition_entry:
+        comp_resource = composition_entry.get("resource", {})
+        if "section" not in comp_resource or not comp_resource["section"]:
+            comp_resource["section"] = [{"title": "Extracted Data", "text": {"status": "generated", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">Auto-generated section</div>"}}]
+        
+        # Link all bundle resources to the Composition to prevent HAPI "unreachable" errors
+        all_refs = [{"reference": f"urn:uuid:{e['resource']['id']}"} for e in cleaned_entries if "id" in e.get("resource", {})]
+        if all_refs:
+            comp_resource["section"][0]["entry"] = all_refs
+            
         final_entries = [composition_entry] + cleaned_entries
         bundle["entry"] = final_entries
     else:
