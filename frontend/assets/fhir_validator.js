@@ -200,7 +200,8 @@ function stripLargeAttachments(obj) {
         for (let key in obj) {
             if (key === 'attachment' && obj[key] && typeof obj[key] === 'object' && obj[key].data) {
                 // Remove huge base64 strings to prevent 413 Request Entity Too Large on HAPI FHIR
-                obj[key].data = "BASE64_DATA_REMOVED_FOR_VALIDATION";
+                // Must be a valid base64 string to pass FHIR validation
+                obj[key].data = "SU5WQUxJRF9QQUxPQUQ="; // "INVALID_PALOAD" in base64
             } else {
                 stripLargeAttachments(obj[key]);
             }

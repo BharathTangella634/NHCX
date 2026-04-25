@@ -570,16 +570,32 @@ def sanitize_fhir_resource(resource):
     res_type = resource.get("resourceType")
     if not res_type: return
 
+    # Recurse into nested Bundles
+    if res_type == "Bundle":
+        for entry in resource.get("entry", []):
+            if "resource" in entry:
+                sanitize_fhir_resource(entry["resource"])
+        return
+
     # 1. 'entry' is ONLY valid on Bundle
     if res_type != "Bundle" and "entry" in resource:
         del resource["entry"]
         
-    # 2. 'type' must be an array of objects (CodeableConcept) for Organization and InsurancePlan.
-    if res_type in ["Organization", "InsurancePlan", "Coverage"] and "type" in resource:
+    # Remove hallucinated fields
+    if "entity" in resource: del resource["entity"]
+    if "permission" in resource: del resource["permission"]
+        
+    # 2. 'type' formatting
+    if res_type in ["Organization", "InsurancePlan"] and "type" in resource:
         if isinstance(resource["type"], str):
-            resource["type"] = [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/organization-type", "code": "other", "display": resource["type"]}]}]
+            code = "pay" if res_type == "Organization" else "medical"
+            resource["type"] = [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/organization-type", "code": code, "display": resource["type"]}]}]
         elif isinstance(resource["type"], dict):
             resource["type"] = [resource["type"]]
+            
+    if res_type == "DocumentReference" and "type" in resource:
+        if isinstance(resource["type"], list):
+            resource["type"] = resource["type"][0] if len(resource["type"]) > 0 else {}
             
     # 3. 'ownedBy' in InsurancePlan must be a Reference (an object), not an array.
     if res_type == "InsurancePlan" and "ownedBy" in resource:
@@ -596,16 +612,20 @@ def sanitize_fhir_resource(resource):
                 cov["type"] = {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/insurance-plan-type", "code": "medical"}]}
             if "benefit" not in cov or not isinstance(cov["benefit"], list) or len(cov["benefit"]) == 0:
                 cov["benefit"] = [{"type": {"coding": [{"code": "benefit"}]}}]
+        if "identifier" in resource and isinstance(resource["identifier"], list):
+            for ident in resource["identifier"]:
+                if ident.get("system") == "uin":
+                    ident["system"] = "https://irdai.gov.in/uin"
 
     # 5. Fix missing required fields
     if res_type == "Procedure":
         if "status" not in resource: resource["status"] = "completed"
-        if "subject" not in resource: resource["subject"] = {"reference": "Patient/unknown"}
+        if "subject" not in resource: resource["subject"] = {"reference": "Patient/1"}
             
     if res_type == "Coverage":
         if "status" not in resource: resource["status"] = "active"
-        if "beneficiary" not in resource: resource["beneficiary"] = {"reference": "Patient/unknown"}
-        if "payor" not in resource: resource["payor"] = [{"reference": "Organization/unknown"}]
+        if "beneficiary" not in resource: resource["beneficiary"] = {"reference": "Patient/1"}
+        if "payor" not in resource: resource["payor"] = [{"reference": "Organization/1"}]
             
     if res_type == "Organization":
         if "name" not in resource and "identifier" not in resource:
