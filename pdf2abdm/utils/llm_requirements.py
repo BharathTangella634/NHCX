@@ -657,6 +657,9 @@ def clean_and_reorder_bundle(bundle):
         elif res_type in ["DiagnosticReportLab", "DiagnosticReportImaging"]:
             resource["resourceType"] = "DiagnosticReport"
             res_type = "DiagnosticReport"
+        elif res_type in ["ObservationVitalSigns", "ObservationLifestyle", "ObservationWomenHealth", "ObservationPhysicalActivity", "ObservationGeneralAssessment", "ObservationBodyMeasurement"]:
+            resource["resourceType"] = "Observation"
+            res_type = "Observation"
             
         # Clean up common LLM hallucinations
         sanitize_fhir_resource(resource)
