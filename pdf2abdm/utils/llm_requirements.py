@@ -718,6 +718,7 @@ def sanitize_fhir_resource(resource):
             resource["result"] = [r for r in resource["result"] if not r.get("reference", "").startswith("Practitioner/")]
             
     if res_type == "Observation":
+        if "procedure" in resource: del resource["procedure"]
         if "effectiveDateTime" in resource and "T" in resource["effectiveDateTime"] and "Z" not in resource["effectiveDateTime"] and "+" not in resource["effectiveDateTime"]:
             resource["effectiveDateTime"] += "Z"
             

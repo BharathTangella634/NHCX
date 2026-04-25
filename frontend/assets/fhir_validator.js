@@ -227,7 +227,8 @@ async function validateFhirJson(jsonString) {
         // Strip large attachments so HAPI FHIR Nginx doesn't reject it (which causes CORS fetch errors)
         stripLargeAttachments(parsed);
         
-        payloadStr = JSON.stringify(parsed);
+        // Stringify with indentation so HAPI FHIR returns accurate line numbers
+        payloadStr = JSON.stringify(parsed, null, 2);
         
         if (parsed.resourceType) resourceType = parsed.resourceType;
     }
