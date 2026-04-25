@@ -56,6 +56,7 @@ logger = logging.getLogger(__name__)
 
 class OcrEngine(str, Enum):
     AUTO    = "auto"
+    PYPDF   = "pypdf"
     DOCLING = "docling"
     LIGHTON = "lighton"
     SURYA   = "surya"
@@ -91,6 +92,7 @@ class OcrResult:
 # ── Waterfall order ───────────────────────────────────────────────────────────
 
 _WATERFALL: list[OcrEngine] = [
+    OcrEngine.PYPDF,
     OcrEngine.DOCLING,
     OcrEngine.LIGHTON,
     OcrEngine.SURYA,
@@ -194,6 +196,7 @@ async def _run_single_engine(
 ) -> str | None:
     """Dispatch to the correct engine module, always in a thread pool."""
     dispatch = {
+        OcrEngine.PYPDF:   _call_pypdf,
         OcrEngine.DOCLING: _call_docling,
         OcrEngine.LIGHTON: _call_lighton,
         OcrEngine.SURYA:   _call_surya,
@@ -205,6 +208,36 @@ async def _run_single_engine(
         return None
 
     return await asyncio.to_thread(fn, pdf_path, langs, page_limit)
+
+
+def _call_pypdf(pdf_path: Path, langs: list[str], page_limit: int | None) -> str | None:
+    import pypdf
+    try:
+        reader = pypdf.PdfReader(str(pdf_path))
+        pages_text = []
+        total_text_len = 0
+        for i, page in enumerate(reader.pages):
+            if page_limit and i >= page_limit:
+                break
+            text = page.extract_text() or ""
+            pages_text.append(text)
+            total_text_len += len(text.strip())
+            
+        # Triage: if the PDF has very little text (e.g. < 50 chars per page on average), 
+        # it's probably scanned or image-based. Return None to trigger fallback ML OCR.
+        if total_text_len < max(1, len(pages_text)) * 50:
+            return None
+
+        from common.ocr_engines.normaliser import wrap_markdown
+        return wrap_markdown(
+            pages=pages_text,
+            source_path=pdf_path,
+            engine="pypdf",
+            extra_meta={"fast_path": "true"}
+        )
+    except Exception as e:
+        logger.warning(f"PyPDF extraction failed: {e}")
+        return None
 
 
 def _call_docling(pdf_path: Path, langs: list[str], page_limit: int | None) -> str | None:

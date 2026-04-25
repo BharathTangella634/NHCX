@@ -84,13 +84,14 @@ async def get_abdm_json(pdf_path, model: str = "gemma4"):
         # Perform OCR
         unique_patients_text_list, pdf_base64 = await extract_text_from_abdm_pdf(pdf_path)
 
-        bundles = []
-        doc_types = []
-        for i, extracted_text in enumerate(unique_patients_text_list):
+        import concurrent.futures
+        import asyncio
+
+        def process_patient(i, extracted_text):
             # Classify Document
             doc_type, must_resources, selected_other_resources = classify_document(extracted_text)
-            logger.info(f"Document classified as: {doc_type}")
-            print(f"Document classified as: {doc_type}")
+            logger.info(f"Patient {i}: Document classified as: {doc_type}")
+            print(f"Patient {i}: Document classified as: {doc_type}")
 
             # Process and upload to GCS
             bundle = run_abdm_pipeline(
@@ -98,10 +99,24 @@ async def get_abdm_json(pdf_path, model: str = "gemma4"):
                 pdf_base64=pdf_base64, idx=i,
                 model=model
             )
+            return bundle, doc_type
+
+        bundles = []
+        doc_types = []
+        
+        loop = asyncio.get_running_loop()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            tasks = [
+                loop.run_in_executor(executor, process_patient, i, extracted_text)
+                for i, extracted_text in enumerate(unique_patients_text_list)
+            ]
+            results = await asyncio.gather(*tasks)
+
+        for bundle, doc_type in results:
             bundles.append(bundle)
             doc_types.append(doc_type)
-            logger.info(f"Successfully processed {filename}")
 
+        logger.info(f"Successfully processed {filename} with {len(bundles)} patients concurrently.")
         return bundles, doc_types
 
     except Exception as e:
