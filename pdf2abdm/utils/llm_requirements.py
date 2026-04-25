@@ -577,6 +577,14 @@ def clean_and_reorder_bundle(bundle):
         resource = entry.get("resource", {})
         res_type = resource.get("resourceType")
 
+        # Map ABDM Profile names back to standard FHIR R4 resource types
+        if res_type in ["DiagnosticReportRecord", "DischargeSummaryRecord", "WellnessRecord", "HealthDocumentRecord", "PrescriptionRecord"]:
+            resource["resourceType"] = "Composition"
+            res_type = "Composition"
+        elif res_type in ["DiagnosticReportLab", "DiagnosticReportImaging"]:
+            resource["resourceType"] = "DiagnosticReport"
+            res_type = "DiagnosticReport"
+
         # Task A: Find the Composition to move it later
         if res_type == "Composition":
             composition_entry = entry

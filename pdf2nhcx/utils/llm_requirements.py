@@ -561,6 +561,14 @@ def clean_and_reorder_bundle(bundle):
         resource = entry.get("resource", {})
         res_type = resource.get("resourceType")
 
+        # Map ABDM Profile names back to standard FHIR R4 resource types
+        if res_type in ["DiagnosticReportRecord", "DischargeSummaryRecord", "WellnessRecord", "HealthDocumentRecord", "PrescriptionRecord", "InsurancePlanBundle"]:
+            resource["resourceType"] = "Composition"
+            res_type = "Composition"
+        elif res_type in ["DiagnosticReportLab", "DiagnosticReportImaging"]:
+            resource["resourceType"] = "DiagnosticReport"
+            res_type = "DiagnosticReport"
+
         # Task A: Find the Composition to move it later
         if res_type == "Composition":
             composition_entry = entry
@@ -646,8 +654,8 @@ def run_nhcx_insurance_pipeline(distilled_text: str, clinical_artifact: str, sel
     bundle = final_output['final_resources'][-1]
     
     # Process the bundle in memory if needed
-    # bundle = clean_and_reorder_bundle(bundle)
-    # bundle = document_reference_node(bundle, pdf_base64=pdf_base64)
+    bundle = clean_and_reorder_bundle(bundle)
+    bundle = document_reference_node(bundle, pdf_base64=pdf_base64)
     
     # Upload to GCS instead of local file save
     from utils.gcs_storage import upload_json_to_gcs
