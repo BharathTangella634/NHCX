@@ -587,11 +587,22 @@ def sanitize_fhir_resource(resource):
         
     # 2. 'type' formatting
     if res_type in ["Organization", "InsurancePlan"] and "type" in resource:
+        system_url = "http://terminology.hl7.org/CodeSystem/organization-type" if res_type == "Organization" else "http://terminology.hl7.org/CodeSystem/insurance-plan-type"
         if isinstance(resource["type"], str):
             code = "pay" if res_type == "Organization" else "medical"
-            resource["type"] = [{"coding": [{"system": "http://terminology.hl7.org/CodeSystem/organization-type", "code": code, "display": resource["type"]}]}]
+            resource["type"] = [{"coding": [{"system": system_url, "code": code, "display": resource["type"]}]}]
         elif isinstance(resource["type"], dict):
             resource["type"] = [resource["type"]]
+        elif isinstance(resource["type"], list):
+            # Fix hallucinated 'insurance' code for Organization
+            for t in resource["type"]:
+                if "coding" in t and isinstance(t["coding"], list):
+                    for c in t["coding"]:
+                        if res_type == "Organization" and c.get("code") == "insurance":
+                            c["code"] = "pay"
+                            c["system"] = system_url
+                        elif res_type == "InsurancePlan" and c.get("code") == "medical":
+                            c["system"] = system_url
             
     if res_type == "DocumentReference" and "type" in resource:
         if isinstance(resource["type"], list):
@@ -606,21 +617,31 @@ def sanitize_fhir_resource(resource):
     if res_type == "InsurancePlan":
         if "benefit" in resource: del resource["benefit"]
         if "exclusion" in resource: del resource["exclusion"]
+        if "note" in resource: del resource["note"]
         for cov in resource.get("coverage", []):
             if "description" in cov: del cov["description"]
             if "type" not in cov:
                 cov["type"] = {"coding": [{"system": "http://terminology.hl7.org/CodeSystem/insurance-plan-type", "code": "medical"}]}
             if "benefit" not in cov or not isinstance(cov["benefit"], list) or len(cov["benefit"]) == 0:
                 cov["benefit"] = [{"type": {"coding": [{"code": "benefit"}]}}]
+            # Fix limit object hallucinations inside benefit
+            if isinstance(cov["benefit"], list):
+                for ben in cov["benefit"]:
+                    if "limit" in ben:
+                        # limit must be an array of objects. Just delete to be safe if hallucinated
+                        del ben["limit"]
+                    if "description" in ben:
+                        del ben["description"]
+                        
         if "identifier" in resource and isinstance(resource["identifier"], list):
             for ident in resource["identifier"]:
                 if ident.get("system") == "uin":
                     ident["system"] = "https://irdai.gov.in/uin"
 
-    # 5. Fix missing required fields
+    # 5. Fix missing required fields using 'display' instead of 'reference' to bypass resolution errors
     if res_type == "Procedure":
         if "status" not in resource: resource["status"] = "completed"
-        if "subject" not in resource: resource["subject"] = {"reference": "Patient/1"}
+        if "subject" not in resource: resource["subject"] = {"display": "Unknown Patient"}
             
     if res_type == "ImagingStudy":
         if resource.get("status") not in ["registered", "available", "cancelled", "entered-in-error", "unknown"]:
@@ -628,12 +649,12 @@ def sanitize_fhir_resource(resource):
             
     if res_type == "Coverage":
         if "status" not in resource: resource["status"] = "active"
-        if "beneficiary" not in resource: resource["beneficiary"] = {"reference": "Patient/1"}
-        if "payor" not in resource: resource["payor"] = [{"reference": "Organization/1"}]
+        if "beneficiary" not in resource: resource["beneficiary"] = {"display": "Unknown Patient"}
+        if "payor" not in resource: resource["payor"] = [{"display": "Unknown Organization"}]
             
-    if res_type == "Organization":
+    if res_type in ["Organization", "InsurancePlan"]:
         if "name" not in resource and "identifier" not in resource:
-            resource["name"] = "Unknown Organization"
+            resource["name"] = "Unknown " + res_type
             
     # 6. Condition category codes
     if res_type == "Condition" and "category" in resource and isinstance(resource["category"], list):
