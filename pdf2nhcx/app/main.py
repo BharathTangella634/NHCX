@@ -245,16 +245,22 @@ async def get_nhcx_json(pdf_path, model: str = "gemma4"):
         # Perform OCR
         distilled_text, pdf_base64 = await extract_distilled_text_from_nhcx_pdf(pdf_path)
 
-        doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text)
+        import asyncio
+        loop = asyncio.get_running_loop()
 
-        logger.info(f"Document classified as: {doc_type}")
-        print(f"Document classified as: {doc_type}")
+        def process_insurance():
+            doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text)
+            logger.info(f"Document classified as: {doc_type}")
+            print(f"Document classified as: {doc_type}")
 
-        bundle = run_nhcx_insurance_pipeline(
-            distilled_text, doc_type, selected_other_resources,
-            pdf_base64=pdf_base64, idx=0,
-            model=model
-        )
+            bundle = run_nhcx_insurance_pipeline(
+                distilled_text, doc_type, selected_other_resources,
+                pdf_base64=pdf_base64, idx=0,
+                model=model
+            )
+            return bundle
+
+        bundle = await loop.run_in_executor(None, process_insurance)
         logger.info(f"Successfully processed {filename}")
 
         return bundle
