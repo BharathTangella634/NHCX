@@ -354,7 +354,7 @@ async function runFhirValidation(taskType) {
     const btn      = document.getElementById(btnId);
     const loader   = document.getElementById(loaderId);
 
-    const jsonText = ta ? ta.value.trim() : '';
+    const jsonText = ta ? (ta.value !== undefined ? ta.value : ta.textContent || '').trim() : '';
     console.log(`[FHIR Validator] Content length: ${jsonText.length}`);
 
     if (!jsonText || jsonText.startsWith('Processing') || jsonText.startsWith('Error')) {
@@ -404,20 +404,21 @@ async function runFhirValidation(taskType) {
 function watchTextareaForViewer(textareaId) {
     const ta = document.getElementById(textareaId);
     if (!ta) return;
-    let lastValue = ta.value;
+    let lastValue = ta.value !== undefined ? ta.value : ta.textContent || '';
 
     console.log(`[FHIR Validator] Starting watcher for ${textareaId}...`);
 
     // Immediate check if content already exists
-    if (ta.value.trim() && !ta.value.startsWith('Processing') && !ta.value.startsWith('Error')) {
+    if (lastValue.trim() && !lastValue.startsWith('Processing') && !lastValue.startsWith('Error')) {
         initLineNumberedViewer(textareaId);
     }
 
     setInterval(() => {
-        if (ta.value !== lastValue) {
+        const currentValue = ta.value !== undefined ? ta.value : ta.textContent || '';
+        if (currentValue !== lastValue) {
             console.log(`[FHIR Validator] Change detected in ${textareaId}`);
-            lastValue = ta.value;
-            const v = ta.value.trim();
+            lastValue = currentValue;
+            const v = currentValue.trim();
             if (v && !v.startsWith('Processing') && !v.startsWith('Error')) {
                 updateLineNumberedViewer(textareaId, {});
                 // Clear old report on new data
