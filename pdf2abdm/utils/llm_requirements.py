@@ -702,6 +702,11 @@ def sanitize_fhir_resource(resource):
             if "modality" not in series: series["modality"] = {"system": "http://dicom.nema.org/resources/ontology/DCM", "code": "UNKNOWN"}
         if "started" in resource and "T" in resource["started"] and "Z" not in resource["started"] and "+" not in resource["started"]:
             resource["started"] += "Z"
+            
+    if res_type == "Appointment":
+        valid_statuses = ["proposed", "pending", "booked", "arrived", "fulfilled", "cancelled", "noshow", "entered-in-error", "checked-in", "waitlist"]
+        if resource.get("status") not in valid_statuses:
+            resource["status"] = "fulfilled" if resource.get("status") in ["completed", "finished", "done"] else "booked"
 
     # 10. DiagnosticReport & Observation Date fields
     if res_type == "DiagnosticReport":
