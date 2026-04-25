@@ -561,6 +561,11 @@ def sanitize_fhir_resource(resource):
                 sanitize_fhir_resource(entry["resource"])
         return
 
+    # Recurse into contained resources
+    if "contained" in resource and isinstance(resource["contained"], list):
+        for contained_res in resource["contained"]:
+            sanitize_fhir_resource(contained_res)
+
     # 1. 'entry' is ONLY valid on Bundle
     if res_type != "Bundle" and "entry" in resource:
         del resource["entry"]
