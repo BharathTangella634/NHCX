@@ -177,7 +177,8 @@ function initLineNumberedViewer(textareaId) {
     if (!ta || _lnvRegistry[textareaId]) return;
     const { renderLines } = buildLineNumberedViewer(ta);
     _lnvRegistry[textareaId] = { renderLines };
-    if (ta.value) renderLines(ta.value, {});
+    const val = ta.value !== undefined ? ta.value : ta.textContent || '';
+    if (val) renderLines(val, {});
 }
 
 function updateLineNumberedViewer(textareaId, errorMap) {
@@ -185,7 +186,8 @@ function updateLineNumberedViewer(textareaId, errorMap) {
     if (!ta) return;
     if (!_lnvRegistry[textareaId]) initLineNumberedViewer(textareaId);
     const { renderLines } = _lnvRegistry[textareaId];
-    renderLines(ta.value, errorMap || {});
+    const val = ta.value !== undefined ? ta.value : ta.textContent || '';
+    renderLines(val, errorMap || {});
 }
 
 // ─── FHIR Validation via HL7 Public API ──────────────────────────────────────
