@@ -16,3 +16,6 @@ celery
 redis
 pypdf>=4.0.0
 httpx
+transformers
+torch
+accelerate

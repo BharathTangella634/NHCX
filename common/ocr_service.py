@@ -44,6 +44,7 @@ from pathlib import Path
 
 from common.ocr_engines import (
     chandra_engine,
+    chandra2_engine,
     docling_engine,
     lighton_engine,
     surya_engine,
@@ -55,12 +56,13 @@ logger = logging.getLogger(__name__)
 # ── Public types ──────────────────────────────────────────────────────────────
 
 class OcrEngine(str, Enum):
-    AUTO    = "auto"
-    PYPDF   = "pypdf"
-    DOCLING = "docling"
-    LIGHTON = "lighton"
-    SURYA   = "surya"
-    CHANDRA = "chandra"
+    AUTO     = "auto"
+    PYPDF    = "pypdf"
+    DOCLING  = "docling"
+    LIGHTON  = "lighton"
+    SURYA    = "surya"
+    CHANDRA  = "chandra"
+    CHANDRA2 = "chandra2"
 
 
 @dataclass
@@ -93,6 +95,7 @@ class OcrResult:
 
 _WATERFALL: list[OcrEngine] = [
     OcrEngine.PYPDF,
+    OcrEngine.CHANDRA2,
     OcrEngine.DOCLING,
     OcrEngine.LIGHTON,
     OcrEngine.SURYA,
@@ -196,11 +199,12 @@ async def _run_single_engine(
 ) -> str | None:
     """Dispatch to the correct engine module, always in a thread pool."""
     dispatch = {
-        OcrEngine.PYPDF:   _call_pypdf,
-        OcrEngine.DOCLING: _call_docling,
-        OcrEngine.LIGHTON: _call_lighton,
-        OcrEngine.SURYA:   _call_surya,
-        OcrEngine.CHANDRA: _call_chandra,
+        OcrEngine.PYPDF:    _call_pypdf,
+        OcrEngine.CHANDRA2: _call_chandra2,
+        OcrEngine.DOCLING:  _call_docling,
+        OcrEngine.LIGHTON:  _call_lighton,
+        OcrEngine.SURYA:    _call_surya,
+        OcrEngine.CHANDRA:  _call_chandra,
     }
     fn = dispatch.get(engine)
     if fn is None:
@@ -242,6 +246,9 @@ def _call_pypdf(pdf_path: Path, langs: list[str], page_limit: int | None) -> str
 
 def _call_docling(pdf_path: Path, langs: list[str], page_limit: int | None) -> str | None:
     return docling_engine.run(pdf_path=pdf_path, page_limit=page_limit)
+
+def _call_chandra2(pdf_path: Path, langs: list[str], page_limit: int | None) -> str | None:
+    return chandra2_engine.run(pdf_path=pdf_path, language_hints=langs, page_limit=page_limit)
 
 
 def _call_lighton(pdf_path: Path, langs: list[str], page_limit: int | None) -> str | None:
