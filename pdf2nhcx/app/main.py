@@ -246,6 +246,7 @@ async def get_nhcx_json(pdf_path, model: str = "gemma4"):
         distilled_text, pdf_base64 = await extract_distilled_text_from_nhcx_pdf(pdf_path)
 
         import asyncio
+        import concurrent.futures
         loop = asyncio.get_running_loop()
 
         def process_insurance():
@@ -260,7 +261,9 @@ async def get_nhcx_json(pdf_path, model: str = "gemma4"):
             )
             return bundle
 
-        bundle = await loop.run_in_executor(None, process_insurance)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            bundle = await loop.run_in_executor(executor, process_insurance)
+            
         logger.info(f"Successfully processed {filename}")
 
         return bundle
