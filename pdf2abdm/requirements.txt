@@ -1,7 +1,7 @@
 docling
 langchain_core
 python-dotenv
-langchain-google-vertexai
+langchain-google-genai
 google-cloud-aiplatform
 langgraph
 fastapi

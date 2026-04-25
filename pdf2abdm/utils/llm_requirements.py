@@ -140,17 +140,18 @@ MODEL_MAP = {
 _DEFAULT_MODEL = "gemma4"
 
 def get_llm(model: str = _DEFAULT_MODEL):
-    """Return a ChatVertexAI instance for Gemma 4 via the native Vertex AI SDK."""
+    """Return a ChatGoogleGenerativeAI instance for Gemma 4."""
     vertex_model = MODEL_MAP.get(model, MODEL_MAP[_DEFAULT_MODEL])
     print(f"🤖 Using model: {vertex_model}")
 
-    from langchain_google_vertexai import ChatVertexAI
-    return ChatVertexAI(
-        model_name=vertex_model,
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    return ChatGoogleGenerativeAI(
+        model=vertex_model,
         project=_PROJECT_ID,
         location="global",   # Gemma 4 MaaS is only available via the global endpoint
         temperature=0.7,
         max_output_tokens=8192,
+        credentials=_cached_credentials,
     )
 
 def check_llm_health():
