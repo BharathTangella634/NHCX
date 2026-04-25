@@ -66,8 +66,12 @@ app.add_middleware(
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def _ip_to_user_id(ip: str) -> bytes:
-    """Derive a deterministic binary(16) UUID from an IP address."""
-    return uuid.uuid5(uuid.NAMESPACE_DNS, ip or "unknown").bytes
+    """
+    Generate a random binary(16) UUID. We previously derived this deterministically 
+    from the IP, but that caused the UNIQUE KEY (user_id, ip_address) constraint 
+    to silently block subsequent uploads (like insurance policies) from the same user.
+    """
+    return uuid.uuid4().bytes
 
 def _new_session_id() -> bytes:
     return uuid.uuid4().bytes
