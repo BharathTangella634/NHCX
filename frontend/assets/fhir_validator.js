@@ -192,6 +192,22 @@ function updateLineNumberedViewer(textareaId, errorMap) {
 
 // ─── FHIR Validation via HL7 Public API ──────────────────────────────────────
 
+function stripLargeAttachments(obj) {
+    if (!obj || typeof obj !== 'object') return;
+    if (Array.isArray(obj)) {
+        for (let item of obj) stripLargeAttachments(item);
+    } else {
+        for (let key in obj) {
+            if (key === 'attachment' && obj[key] && typeof obj[key] === 'object' && obj[key].data) {
+                // Remove huge base64 strings to prevent 413 Request Entity Too Large on HAPI FHIR
+                obj[key].data = "BASE64_DATA_REMOVED_FOR_VALIDATION";
+            } else {
+                stripLargeAttachments(obj[key]);
+            }
+        }
+    }
+}
+
 async function validateFhirJson(jsonString) {
     // Determine the resource type dynamically (usually Bundle)
     let resourceType = 'Bundle';
@@ -203,11 +219,14 @@ async function validateFhirJson(jsonString) {
         // Auto-unwrap backend API response wrapper if present
         if (parsed.bundles && Array.isArray(parsed.bundles) && parsed.bundles.length > 0) {
             parsed = parsed.bundles[0];
-            payloadStr = JSON.stringify(parsed);
         } else if (parsed.bundle) {
             parsed = parsed.bundle;
-            payloadStr = JSON.stringify(parsed);
         }
+        
+        // Strip large attachments so HAPI FHIR Nginx doesn't reject it (which causes CORS fetch errors)
+        stripLargeAttachments(parsed);
+        
+        payloadStr = JSON.stringify(parsed);
         
         if (parsed.resourceType) resourceType = parsed.resourceType;
     }
