@@ -593,9 +593,12 @@ def sanitize_fhir_resource(resource):
                         elif res_type == "InsurancePlan" and c.get("code") == "medical":
                             c["system"] = system_url
             
-    if res_type == "DocumentReference" and "type" in resource:
-        if isinstance(resource["type"], list):
-            resource["type"] = resource["type"][0] if len(resource["type"]) > 0 else {}
+    if res_type == "DocumentReference":
+        if resource.get("status") not in ["current", "superseded", "entered-in-error"]:
+            resource["status"] = "current"
+        if "type" in resource:
+            if isinstance(resource["type"], list):
+                resource["type"] = resource["type"][0] if len(resource["type"]) > 0 else {}
             
     # 3. 'ownedBy' in InsurancePlan must be a Reference (an object), not an array.
     if res_type == "InsurancePlan" and "ownedBy" in resource:
