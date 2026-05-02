@@ -85,9 +85,30 @@ def extract_metadata(page_text):
 
     return age_sex, collection_date
 
+def is_lab_report_pdf(pages_text: list) -> bool:
+    """
+    Return True only when at least one page carries real lab-specific metadata
+    (Age/Sex AND Collection Date fields), meaning this PDF is a multi-patient
+    lab/diagnostic batch.  Discharge Summaries and other clinical documents
+    will NOT have these fields and must NOT be split by patient.
+    """
+    for page_text in pages_text:
+        has_age_sex = bool(re.search(r'Age/Sex\s*:', page_text))
+        has_collection_date = bool(re.search(
+            r'Collection Date\s*:\s*[0-9]{2}-[A-Za-z]{3}-[0-9]{4}', page_text
+        ))
+        if has_age_sex and has_collection_date:
+            return True
+    return False
+
+
 def group_pages_by_patient(pages_text):
     """
-    Group pages belonging to same patient using strong fingerprint.
+    Group pages belonging to the same patient using a strong fingerprint.
+
+    IMPORTANT: This grouping is ONLY meaningful for multi-patient lab/diagnostic
+    batch PDFs.  Call `is_lab_report_pdf()` first; if it returns False, skip
+    this function and treat all pages as a single patient document.
     """
 
     grouped = defaultdict(list)
@@ -122,13 +143,19 @@ def group_pages_by_patient(pages_text):
 
         print("-" * 50)
 
-    # print(f"\n🎯 Total Unique Patients Identified: {len(final_patient_texts)}\n")
-
     return final_patient_texts
+
 
 async def process_pdf_and_group_patients(pdf_path):
     """
-    MAIN FUNCTION using Multi-Engine OCR
+    MAIN FUNCTION using Multi-Engine OCR.
+
+    For lab/diagnostic batch PDFs (multi-patient): groups pages by patient
+    fingerprint (Age/Sex + Collection Date) → one bundle per patient.
+
+    For Discharge Summaries and other single-patient clinical documents:
+    skips the grouping step entirely and returns a single merged bundle,
+    avoiding the bug where each page was treated as a separate patient.
     """
     from common.ocr_service import extract_pdf_to_markdown, split_markdown_into_pages, OcrEngine
     from pathlib import Path
@@ -136,18 +163,34 @@ async def process_pdf_and_group_patients(pdf_path):
     # Step 1: Convert using Multi-Engine OCR
     logger.info(f"Extracting text from {pdf_path} using Multi-Engine OCR...")
     result = await extract_pdf_to_markdown(Path(pdf_path), engine=OcrEngine.AUTO)
-    
+
     with open(pdf_path, "rb") as pdf_file:
         pdf_bytes = pdf_file.read()
         pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
 
     # Step 2: Extract page-wise text
     pages_text = split_markdown_into_pages(result.markdown)
-    
+
     print(f"\n✅ Extracted {len(pages_text)} pages successfully using {result.engine_used}!")
 
-    # Step 3: Group pages by patient
-    unique_patient_texts = group_pages_by_patient(pages_text)
+    # Step 3: Decide whether to group by patient or treat as a single document.
+    #
+    # The page-grouping logic uses 'Age/Sex' + 'Collection Date' fingerprints
+    # that only exist in lab/diagnostic batch reports.  Discharge Summaries
+    # do NOT carry these fields, so every page would produce the same
+    # 'UNKNOWN_UNKNOWN' key — or worse, slightly different whitespace variants
+    # that split the document into spurious per-page bundles.
+    #
+    # Fix: if the PDF is NOT a lab batch, merge all pages into one text blob
+    # and return it as a single-patient document → exactly 1 FHIR bundle.
+    if is_lab_report_pdf(pages_text):
+        print("📋 Detected lab/diagnostic batch PDF — grouping pages by patient fingerprint.")
+        unique_patient_texts = group_pages_by_patient(pages_text)
+    else:
+        print("📄 Detected single-patient clinical document (e.g. Discharge Summary) — "
+              "merging all pages into one bundle (no per-patient split).")
+        merged_text = "\n\n".join(pages_text)
+        unique_patient_texts = [merged_text]
 
     print(f"\n🎯 Total Unique Patients Identified: {len(unique_patient_texts)}")
 

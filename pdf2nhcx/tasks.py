@@ -75,12 +75,40 @@ def process_nhcx_task(self, pdf_path: str, model: str = "gemma4"):
             extract_distilled_text_from_nhcx_pdf(pdf_path)
         )
 
-        # ── Step 2: Classify ─────────────────────────────────────────────────
+        # ── Step 2: Validate document type (gate) ────────────────────────────
+        from common.classifier import classify_document_sync
+        doc_category = classify_document_sync(distilled_text)
+        logger.info(f"[{task_id}] Document category: {doc_category}")
+
+        if doc_category != "INSURANCE":
+            if doc_category == "CLINICAL":
+                error_msg = (
+                    "Wrong service: this document appears to be a clinical medical record. "
+                    "Please resubmit via the ABDM/Clinical pipeline."
+                )
+            else:
+                error_msg = (
+                    "Invalid document: the uploaded PDF is not an insurance document "
+                    "(health insurance policy, NHCX claim, pre-authorization form). "
+                    "Please upload a valid insurance document."
+                )
+            error_payload = {
+                "status": "rejected",
+                "task_id": task_id,
+                "error": error_msg,
+                "detected_type": doc_category,
+            }
+            r = _get_redis()
+            r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(error_payload))
+            logger.warning(f"[{task_id}] Document rejected: {doc_category}")
+            return error_payload
+
+        # ── Step 3: Classify NHCX resource type ──────────────────────────────
         update("Classifying document", 30)
         doc_type, must_resources, selected_other_resources = select_nhcx_resources(distilled_text)
         logger.info(f"[{task_id}] Document type: {doc_type}")
 
-        # ── Step 3: NHCX Pipeline ─────────────────────────────────────────────
+        # ── Step 4: NHCX Pipeline ─────────────────────────────────────────────
         update("LLM Extraction", 50)
         from utils.llm_requirements import run_nhcx_insurance_pipeline
 
@@ -88,6 +116,7 @@ def process_nhcx_task(self, pdf_path: str, model: str = "gemma4"):
             distilled_text, doc_type, selected_other_resources,
             pdf_base64=pdf_base64, idx=0, model=model
         )
+
 
         # ── Step 4: Store result in Redis ─────────────────────────────────────
         update("Storing results", 95)

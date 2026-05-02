@@ -77,7 +77,36 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
             extract_text_from_abdm_pdf(pdf_path)
         )
 
-        # ── Step 2: Classify & Extract ───────────────────────────────────────
+        # ── Step 2: Validate document type (gate) ────────────────────────────
+        from common.classifier import classify_document_sync
+        combined_text = "\n".join(unique_patients_text_list)
+        doc_category = classify_document_sync(combined_text)
+        logger.info(f"[{task_id}] Document category: {doc_category}")
+
+        if doc_category != "CLINICAL":
+            if doc_category == "INSURANCE":
+                error_msg = (
+                    "Wrong service: this document appears to be an insurance/NHCX document. "
+                    "Please resubmit via the NHCX pipeline."
+                )
+            else:
+                error_msg = (
+                    "Invalid document: the uploaded PDF is not a clinical medical record "
+                    "(discharge summary, lab report, diagnostic report). "
+                    "Please upload a valid clinical document."
+                )
+            error_payload = {
+                "status": "rejected",
+                "task_id": task_id,
+                "error": error_msg,
+                "detected_type": doc_category,
+            }
+            r = _get_redis()
+            r.setex(f"result:{task_id}", RESULT_TTL, json.dumps(error_payload))
+            logger.warning(f"[{task_id}] Document rejected: {doc_category}")
+            return error_payload
+
+        # ── Step 3: Classify resource type & Extract ──────────────────────────
         from utils.llm_requirements import run_abdm_pipeline
         from utils.gcs_storage import upload_json_to_gcs
 
@@ -105,6 +134,7 @@ def process_abdm_task(self, pdf_path: str, model: str = "gemma4"):
             filename_json = f"FHIR_BUNDLE_{doc_type}_Patient_{i}.json"
             gcs_uri = f"json_output/abdm/{filename_json}"
             bundle_gcs_uris.append(gcs_uri)
+
 
         # ── Step 3: Store result in Redis ────────────────────────────────────
         update("Storing results", 95)

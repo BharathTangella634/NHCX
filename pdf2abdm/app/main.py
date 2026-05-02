@@ -73,6 +73,7 @@ from utils.ocr_engine import extract_text_from_abdm_pdf, classify_document
 from utils.llm_requirements import run_abdm_pipeline
 
 from utils.logger import get_logger
+from common.classifier import classify_document_text, keyword_screen
 
 logger = get_logger(__name__)
 
@@ -83,6 +84,40 @@ async def get_abdm_json(pdf_path, model: str = "gemma4"):
         
         # Perform OCR
         unique_patients_text_list, pdf_base64 = await extract_text_from_abdm_pdf(pdf_path)
+
+        # ── Document-type gate ────────────────────────────────────────────────
+        # Check the merged text (all pages combined) before running the
+        # expensive FHIR pipeline.  Reject non-clinical documents early.
+        combined_text = "\n".join(unique_patients_text_list)
+        doc_category = await classify_document_text(combined_text)
+        logger.info(f"Document category for {filename}: {doc_category}")
+
+        if doc_category != "CLINICAL":
+            if doc_category == "INSURANCE":
+                raise HTTPException(
+                    status_code=422,
+                    detail={
+                        "title": "Wrong Service",
+                        "message": (
+                            "This document appears to be an insurance/NHCX document. "
+                            "Please upload it using the NHCX tab instead."
+                        ),
+                        "detected_type": "INSURANCE",
+                    },
+                )
+            raise HTTPException(
+                status_code=422,
+                detail={
+                    "title": "Invalid Document",
+                    "message": (
+                        "The uploaded PDF does not appear to be a clinical medical record "
+                        "(e.g. discharge summary, lab report, diagnostic report). "
+                        "Please upload a valid clinical document."
+                    ),
+                    "detected_type": doc_category,
+                },
+            )
+        # ─────────────────────────────────────────────────────────────────────
 
         import concurrent.futures
         import asyncio
@@ -119,8 +154,11 @@ async def get_abdm_json(pdf_path, model: str = "gemma4"):
         logger.info(f"Successfully processed {filename} with {len(bundles)} patients concurrently.")
         return bundles, doc_types
 
+    except HTTPException:
+        raise
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
+
 
 
 

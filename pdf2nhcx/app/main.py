@@ -233,6 +233,7 @@ from utils.ocr_engine import  extract_distilled_text_from_nhcx_pdf, select_nhcx_
 from utils.llm_requirements import run_nhcx_insurance_pipeline
 
 from utils.logger import get_logger
+from common.classifier import classify_document_text, keyword_screen
 
 logger = get_logger(__name__)
 
@@ -244,6 +245,39 @@ async def get_nhcx_json(pdf_path, model: str = "gemma4"):
         
         # Perform OCR
         distilled_text, pdf_base64 = await extract_distilled_text_from_nhcx_pdf(pdf_path)
+
+        # ── Document-type gate ────────────────────────────────────────────────
+        # Validate that the document is insurance-related before running
+        # the expensive NHCX distillation + LLM pipeline.
+        doc_category = await classify_document_text(distilled_text)
+        logger.info(f"Document category for {filename}: {doc_category}")
+
+        if doc_category != "INSURANCE":
+            if doc_category == "CLINICAL":
+                raise HTTPException(
+                    status_code=422,
+                    detail={
+                        "title": "Wrong Service",
+                        "message": (
+                            "This document appears to be a clinical medical record. "
+                            "Please upload it using the ABDM/Clinical tab instead."
+                        ),
+                        "detected_type": "CLINICAL",
+                    },
+                )
+            raise HTTPException(
+                status_code=422,
+                detail={
+                    "title": "Invalid Document",
+                    "message": (
+                        "The uploaded PDF does not appear to be an insurance document "
+                        "(e.g. health insurance policy, NHCX claim, pre-authorization form). "
+                        "Please upload a valid insurance document."
+                    ),
+                    "detected_type": doc_category,
+                },
+            )
+        # ─────────────────────────────────────────────────────────────────────
 
         import asyncio
         import concurrent.futures
@@ -267,8 +301,11 @@ async def get_nhcx_json(pdf_path, model: str = "gemma4"):
         logger.info(f"Successfully processed {filename}")
 
         return bundle
+    except HTTPException:
+        raise
     except Exception as e:
         logger.exception(f"Error processing {pdf_path}: {e}")
+
 
 @app.post("/pdf2nhcx", tags=["Processing"], summary="Convert PDF to NHCX Bundle (Sync)")
 async def convert_pdf_to_nhcx(
