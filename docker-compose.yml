@@ -30,7 +30,6 @@ services:
       - ./gcs-service-account.json:/app/gcs-service-account.json:ro
     depends_on:
       - redis
-      - session-logger
 
   pdf2nhcx:
     build:
@@ -55,7 +54,6 @@ services:
       - ./gcs-service-account.json:/app/gcs-service-account.json:ro
     depends_on:
       - redis
-      - session-logger
 
   celery-worker:
     build:
@@ -94,19 +92,20 @@ services:
       - pdf2abdm
       - pdf2nhcx
 
-  session-logger:
-    build:
-      context: .
-      dockerfile: session_logger/Dockerfile
-    container_name: session-logger
-    ports:
-      - "8002:8002"
-    restart: unless-stopped
-    env_file:
-      - .env
-    environment:
-      - PYTHONUNBUFFERED=1
-    volumes:
-      - ./server-ca.pem:/app/server-ca.pem:ro
-      - ./client-cert.pem:/app/client-cert.pem:ro
-      - ./client-key.pem:/app/client-key.pem:ro
+  # session-logger removed for local testing (no database needed)
+  # session-logger:
+  #   build:
+  #     context: .
+  #     dockerfile: session_logger/Dockerfile
+  #   container_name: session-logger
+  #   ports:
+  #     - "8002:8002"
+  #   restart: unless-stopped
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #   volumes:
+  #     - ./server-ca.pem:/app/server-ca.pem:ro
+  #     - ./client-cert.pem:/app/client-cert.pem:ro
+  #     - ./client-key.pem:/app/client-key.pem:ro
