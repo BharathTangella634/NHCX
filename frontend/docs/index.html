@@ -683,6 +683,37 @@ curl http://localhost:8080/pdf2nhcx/task-result/{task_id}</code></pre>
                 <strong>Source code is not exposed</strong> -- the executable bundles everything into a compressed binary. Users cannot see or modify the pipeline source code.
             </div>
 
+            <h2>Processing Time Benchmarks (gemma4:26b)</h2>
+            <p>Estimated average extraction time per document using the larger 26B parameter model:</p>
+            <div style="overflow-x: auto; margin-bottom: 2rem;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hardware / Deployment</th>
+                            <th>Processing Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>NVIDIA RTX A6000</strong></td>
+                            <td>~9 minutes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NVIDIA RTX A6000 Ada</strong></td>
+                            <td>~8 minutes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NVIDIA GB10</strong></td>
+                            <td>~12 minutes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Google Vertex (Cloud MaaS LLM)</strong></td>
+                            <td>~2 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <h2>Step 1: Download for Your Platform</h2>
             <div class="card-grid">
                 <a class="doc-card" href="https://drive.google.com/file/d/1Jb-KK6i1bTNtJ9731zMX8MBcMXfcWalI/view?usp=sharing" target="_blank" style="text-decoration:none;">
