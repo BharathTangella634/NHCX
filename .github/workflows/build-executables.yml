@@ -55,7 +55,7 @@ jobs:
   # Job 1b: Linux -- AppImage (ARM64)
   # ═══════════════════════════════════════════════════════════════════════════
   build-linux-arm64:
-    name: Linux ARM64 (AppImage)
+    name: Linux ARM64 (binary)
     runs-on: ubuntu-22.04-arm
     timeout-minutes: 30
 
@@ -68,29 +68,31 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y fuse libfuse2 rsync wget
-
-      - name: Build AppImage
+      - name: Install dependencies
         working-directory: nhcx-local
         run: |
-          chmod +x build_appimage.sh
-          ./build_appimage.sh
+          python -m pip install --upgrade pip setuptools wheel
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install .
+          pip install pyinstaller
 
-      - name: Verify AppImage
+      - name: Build binary with PyInstaller
         working-directory: nhcx-local
         run: |
-          chmod +x nhcx-extract-1.0.0-aarch64.AppImage
-          ./nhcx-extract-1.0.0-aarch64.AppImage --version
-          ./nhcx-extract-1.0.0-aarch64.AppImage --help
+          pyinstaller --clean --noconfirm nhcx-extract.spec
 
-      - name: Upload AppImage artifact
+      - name: Verify binary
+        working-directory: nhcx-local
+        run: |
+          chmod +x dist/nhcx-extract
+          ./dist/nhcx-extract --version
+          ./dist/nhcx-extract --help
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: nhcx-extract-linux-aarch64
-          path: nhcx-local/nhcx-extract-1.0.0-aarch64.AppImage
+          path: nhcx-local/dist/nhcx-extract
           retention-days: 30
 
   # ═══════════════════════════════════════════════════════════════════════════
@@ -202,7 +204,7 @@ jobs:
         run: |
           mkdir -p release
           cp artifacts/nhcx-extract-linux-x86_64/nhcx-extract-1.0.0-x86_64.AppImage  release/nhcx-extract-linux-x86_64.AppImage
-          cp artifacts/nhcx-extract-linux-aarch64/nhcx-extract-1.0.0-aarch64.AppImage release/nhcx-extract-linux-aarch64.AppImage
+          cp artifacts/nhcx-extract-linux-aarch64/nhcx-extract                        release/nhcx-extract-linux-aarch64
           cp artifacts/nhcx-extract-windows-x86_64/nhcx-extract.exe                   release/nhcx-extract-windows-x86_64.exe
           cp artifacts/nhcx-extract-macos/nhcx-extract                                 release/nhcx-extract-macos
           ls -lh release/
@@ -220,7 +222,7 @@ jobs:
             | Platform | File |
             |----------|------|
             | Linux x86_64 | `nhcx-extract-linux-x86_64.AppImage` |
-            | Linux ARM64 (aarch64) | `nhcx-extract-linux-aarch64.AppImage` |
+            | Linux ARM64 (aarch64) | `nhcx-extract-linux-aarch64` |
             | Windows x86_64 | `nhcx-extract-windows-x86_64.exe` |
             | macOS (Apple Silicon) | `nhcx-extract-macos` |
 
