@@ -22,6 +22,17 @@ A command-line tool that extracts **HL7 FHIR R4 Bundles** from clinical and insu
 
 > **Note:** CPU-only inference works but is significantly slower (10-30x). A GPU with 8GB+ VRAM is strongly recommended.
 
+### Processing Time Benchmarks (gemma4:26b)
+
+*Estimated average extraction time per document using the larger 26B parameter model:*
+
+| Hardware / Deployment | Processing Time |
+|-----------------------|-----------------|
+| **NVIDIA RTX A6000** | ~9 minutes |
+| **NVIDIA RTX A6000 Ada** | ~8 minutes |
+| **NVIDIA GB10** | ~12 minutes |
+| **Google Vertex (Cloud MaaS LLM)** | ~2 minutes |
+
 ---
 
 ## Installation
