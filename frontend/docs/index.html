@@ -721,6 +721,11 @@ curl http://localhost:8080/pdf2nhcx/task-result/{task_id}</code></pre>
                     <h4>Linux (x86_64)</h4>
                     <p>AppImage (~400 MB)<br>Ubuntu 20.04+, Fedora 33+</p>
                 </a>
+                <a class="doc-card" href="https://drive.google.com/file/d/16t_R4U3emX9DswYferLZwRtKHjgHP2YB/view?usp=sharing" target="_blank" style="text-decoration:none;">
+                    <div class="card-icon"><i class="fab fa-linux" style="color: var(--primary); font-size: 2rem;"></i></div>
+                    <h4>Linux (ARM64)</h4>
+                    <p>Binary (~400 MB)<br>aarch64 / AWS Graviton</p>
+                </a>
                 <a class="doc-card" href="https://drive.google.com/file/d/16rnbuXTHooIWeh4R_2OmxLBNOnbjHt7D/view?usp=sharing" target="_blank" style="text-decoration:none;">
                     <div class="card-icon"><i class="fab fa-windows" style="color: var(--primary); font-size: 2rem;"></i></div>
                     <h4>Windows (x86_64)</h4>
@@ -746,7 +751,7 @@ ollama pull gemma4:26b</code></pre>
 
             <h2>Step 4: Unzip &amp; Run</h2>
 
-            <h4>Linux</h4>
+            <h4>Linux (x86_64)</h4>
             <pre><code># Unzip the downloaded file
 unzip nhcx-extract-linux-x86_64.zip
 
@@ -757,6 +762,14 @@ sudo dnf install fuse-libs      # Fedora/RHEL
 # Make executable and run
 chmod +x nhcx-extract-1.0.0-x86_64.AppImage
 ./nhcx-extract-1.0.0-x86_64.AppImage check -m gemma4:26b</code></pre>
+
+            <h4>Linux (ARM64)</h4>
+            <pre><code># Unzip the downloaded file
+unzip nhcx-extract-linux-aarch64.zip
+
+# Make executable and run (No FUSE required)
+chmod +x nhcx-extract-linux-aarch64
+./nhcx-extract-linux-aarch64 check -m gemma4:26b</code></pre>
 
             <h4>Windows</h4>
             <pre><code># Unzip the downloaded file, then open Command Prompt:
@@ -772,10 +785,15 @@ chmod +x nhcx-extract
 
             <h2>Step 5: Extract FHIR Bundles</h2>
 
-            <h4>Linux</h4>
+            <h4>Linux (x86_64)</h4>
             <pre><code>./nhcx-extract-1.0.0-x86_64.AppImage abdm report.pdf -o result.json -m gemma4:26b
 ./nhcx-extract-1.0.0-x86_64.AppImage nhcx policy.pdf -o result.json -m gemma4:26b
 ./nhcx-extract-1.0.0-x86_64.AppImage auto document.pdf -o result.json -m gemma4:26b</code></pre>
+
+            <h4>Linux (ARM64)</h4>
+            <pre><code>./nhcx-extract-linux-aarch64 abdm report.pdf -o result.json -m gemma4:26b
+./nhcx-extract-linux-aarch64 nhcx policy.pdf -o result.json -m gemma4:26b
+./nhcx-extract-linux-aarch64 auto document.pdf -o result.json -m gemma4:26b</code></pre>
 
             <h4>Windows</h4>
             <pre><code>nhcx-extract.exe abdm report.pdf -o result.json -m gemma4:26b
