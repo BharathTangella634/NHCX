@@ -128,7 +128,7 @@ def get_llm(model: str = _DEFAULT_MODEL):
         model=vertex_model,
         project=_PROJECT_ID,
         location="global",   # Gemma 4 MaaS is only available via the global endpoint
-        temperature=0.0,
+        temperature=0.3,
         max_output_tokens=8192,
         credentials=_cached_credentials,
     )

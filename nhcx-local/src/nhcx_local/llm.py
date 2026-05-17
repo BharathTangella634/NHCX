@@ -28,7 +28,7 @@ OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 DEFAULT_MODEL = os.getenv("NHCX_MODEL", "gemma4:26b")
 
 
-def get_llm(model: str = None, temperature: float = 0.0, max_tokens: int = 8192):
+def get_llm(model: str = None, temperature: float = 0.3, max_tokens: int = 8192):
     """
     Return a LangChain ChatOllama instance for local inference.
 

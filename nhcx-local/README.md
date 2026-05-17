@@ -80,6 +80,24 @@ pip install -e .
 pip install git+https://github.com/tanuh-bcd/NHCX_HACKATHON.git#subdirectory=nhcx-local
 ```
 
+**Option C: Standalone Executables (No Python required)**
+If you do not want to install Python or pip, you can download a single executable file:
+- **Linux (x86_64 AppImage):** [Download](https://drive.google.com/file/d/1Jb-KK6i1bTNtJ9731zMX8MBcMXfcWalI/view?usp=sharing)
+- **Linux (ARM64 Binary):** [Download](https://drive.google.com/file/d/16t_R4U3emX9DswYferLZwRtKHjgHP2YB/view?usp=sharing)
+- **Windows (x86_64 EXE):** [Download](https://drive.google.com/file/d/16rnbuXTHooIWeh4R_2OmxLBNOnbjHt7D/view?usp=sharing)
+- **macOS (Universal Binary):** [Download](https://drive.google.com/file/d/1Lf6Mbydg_KCnPS-xKkDRwqVuvkFaQgYW/view?usp=sharing)
+
+After downloading, unzip and make the file executable (Linux/macOS):
+```bash
+# Linux x86_64
+chmod +x nhcx-extract-1.0.0-x86_64.AppImage
+./nhcx-extract-1.0.0-x86_64.AppImage check
+
+# Linux ARM64 (aarch64)
+chmod +x nhcx-extract-linux-aarch64
+./nhcx-extract-linux-aarch64 check
+```
+
 ### Step 4: Verify Installation
 
 ```bash
